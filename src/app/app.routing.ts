@@ -18,6 +18,7 @@ import { CustomerComponent } from 'app/customer/customer.component';
 import { ManageFileComponent } from 'app/manage-file/manage-file.component';
 import { ManageDocumentComponent } from 'app/manage-document/manage-document.component';
 import { CreateSellComponent } from 'app/create-sell/create-sell.component';
+import { ManageShopComponent } from 'app/manage-shop/manage-shop.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'maps', component: MapsComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'upgrade', component: UpgradeComponent },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+  { path: 'manage-shop', component: ManageShopComponent },
+  { path: '', redirectTo: 'manage-shop', pathMatch: 'full' }
 ];
 
 @NgModule({

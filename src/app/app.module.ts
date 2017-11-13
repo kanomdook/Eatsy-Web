@@ -25,6 +25,11 @@ import { ManageFileComponent } from './manage-file/manage-file.component';
 import { ManageDocumentComponent } from './manage-document/manage-document.component';
 import { CreateSellComponent } from './create-sell/create-sell.component';
 import { DashboardService } from 'app/dashboard/dashboard.service';
+import { ManageShopComponent } from './manage-shop/manage-shop.component';
+
+
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,6 +49,7 @@ import { DashboardService } from 'app/dashboard/dashboard.service';
     ManageFileComponent,
     ManageDocumentComponent,
     CreateSellComponent,
+    ManageShopComponent,
 
   ],
   imports: [
@@ -52,6 +58,8 @@ import { DashboardService } from 'app/dashboard/dashboard.service';
     HttpModule,
     ComponentsModule,
     RouterModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule,
     AppRoutingModule
   ],
   providers: [
