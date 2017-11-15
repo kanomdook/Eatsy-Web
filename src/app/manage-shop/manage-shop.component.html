@@ -10,10 +10,10 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li>
-              <a (click)="onClick()">เพิ่มข้อมูลเอง</a>
+              <a href="#">เพิ่มข้อมูลเอง</a>
             </li>
             <li>
-              <a href="#">นำเข้าจาก Google</a>
+              <a data-toggle="modal" data-target="#modalGoogle">นำเข้าจาก Google</a>
             </li>
             <li>
               <a href="#">นำเข้าจาก Facebook</a>
@@ -190,3 +190,38 @@
     </div>
   </div>
 </div>
+
+<!-- /////////////////////////////////MODAL Google///////////////////////// -->
+
+<div class="modal fade" id="modalGoogle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก Google</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3" *ngFor="let item of shopList">
+            <div class="card" style="width: 20rem;">
+              <img class="card-img-top" [src]="item.img" alt="Card image" width="318" height="180">
+              <div class="card-block">
+                <h4 class="card-title ellipsis">{{item.name}}</h4>
+                <p class="card-text ellipsis">{{item.vicinity}}</p>
+                <a href="#" class="btn btn-success">เลือก</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary">บันทึกข้อมูล</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div #map></div>

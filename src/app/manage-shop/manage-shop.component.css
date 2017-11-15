@@ -1,0 +1,8 @@
+.card img {
+    height: 180px;
+}
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
