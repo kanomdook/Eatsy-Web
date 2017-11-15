@@ -27,7 +27,7 @@ import { CreateSellComponent } from './create-sell/create-sell.component';
 import { DashboardService } from 'app/dashboard/dashboard.service';
 import { ManageShopComponent } from './manage-shop/manage-shop.component';
 
-
+import { FacebookModule } from 'ngx-facebook';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
@@ -59,6 +59,7 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
     ComponentsModule,
     RouterModule,
     ModalModule.forRoot(),
+    FacebookModule.forRoot(),
     BootstrapModalModule,
     AppRoutingModule
   ],
