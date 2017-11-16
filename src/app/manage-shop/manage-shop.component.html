@@ -12,11 +12,11 @@
             <li>
               <a href="#">เพิ่มข้อมูลเอง</a>
             </li>
-            <li>
+            <li (click)="getShopFromGoogle()">
               <a data-toggle="modal" data-target="#modalGoogle">นำเข้าจาก Google</a>
             </li>
-            <li>
-              <a href="#">นำเข้าจาก Facebook</a>
+            <li (click)="getShopFromFacebook()">
+              <a data-toggle="modal" data-target="#modalGoogle">นำเข้าจาก Facebook</a>
             </li>
             <li>
               <a href="#">นำเข้าจาก การแนะนำ</a>
@@ -200,26 +200,28 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก Google</h4>
+        <h4 class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก {{importForm}}</h4>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-3" *ngFor="let item of shopList">
-            <div class="card" style="width: 20rem;">
+          <div class="col-md-3" *ngFor="let item of shopList" (click)="selectShops(item.id)">
+            <div class="card" style="width: 20rem">
+              <span class="lo" *ngIf="selectedShop[item.id]"><img class="ic" src="https://i0.wp.com/triagelogic.com/wp-content/uploads/2016/02/successful-registration.png?resize=300%2C300&ssl=1"></span>
               <img class="card-img-top" [src]="item.img" alt="Card image" width="318" height="180">
               <div class="card-block">
-                <h4 class="card-title ellipsis">{{item.name}}</h4>
+                <h4 class="card-title ellipsis"><b>{{item.name}}</b></h4>
                 <p class="card-text ellipsis">{{item.vicinity}}</p>
-                <a href="#" class="btn btn-success">เลือก</a>
+                <p class="card-text ellipsis">เบอร์โทรศัพท์ {{item.phone ? item.phone : '-'}}</p>
+                <!-- <a href="#" class="btn btn-success">เลือก</a> -->
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- <div class="modal-footer">
+      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
-        <button type="button" class="btn btn-primary">บันทึกข้อมูล</button>
-      </div> -->
+        <button type="button" class="btn btn-primary" (click)="saveShops()">บันทึกข้อมูล</button>
+      </div>
     </div>
   </div>
 </div>

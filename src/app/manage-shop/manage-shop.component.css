@@ -1,8 +1,20 @@
 .card img {
     height: 180px;
 }
+
 .ellipsis {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-  }
+}
+
+.ic {
+    width: 34px !important;
+    height: 34px !important;
+}
+
+.lo {
+    position: absolute;
+    right: 4px;
+    margin-top: 4px;
+}
