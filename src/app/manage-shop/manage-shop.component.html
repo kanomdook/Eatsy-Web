@@ -212,7 +212,7 @@
           </div>
           <div class="col-md-3">
             <select class="form-control" [(ngModel)]="shopType">
-              <option value="">ทั้งหมด</option>
+              <option *ngIf="importForm == 'Google'" value="">ทั้งหมด</option>
               <option *ngIf="importForm == 'Google'" value="restaurant">restaurant</option>
               <option *ngIf="importForm == 'Google'" value="store">store</option>
               <option *ngIf="importForm == 'Google'" value="cafe">cafe</option>

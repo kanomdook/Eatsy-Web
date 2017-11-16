@@ -58,7 +58,19 @@ export class ManageShopComponent implements OnInit {
 
   convertLocalToGeo() {
     return new Promise((resolve, reject) => {
-      resolve(true);
+      let geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ 'address': this.local }, (results, status) => {
+        if (status == google.maps.GeocoderStatus.OK) {
+          this.latLng = {
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng()
+          };
+          console.log(this.latLng);
+          resolve(true);
+        } else {
+          reject(false);
+        }
+      });
     });
   }
 
@@ -109,8 +121,7 @@ export class ManageShopComponent implements OnInit {
     this.shopList = [];
 
     let map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 15,
-      center: this.latLng
+      zoom: 18
     });
 
     if (!this.customSearch) {
@@ -121,7 +132,7 @@ export class ManageShopComponent implements OnInit {
 
     let request = {
       location: this.latLng,
-      radius: '50000',
+      radius: '2000',
       types: [this.shopType],
       keyword: this.keyword
     };
@@ -163,7 +174,7 @@ export class ManageShopComponent implements OnInit {
       this.shopType = 'place';
     }
 
-    this.fb.api('/search?center=' + this.latLng.lat + ',' + this.latLng.lng + '&distance=50000&q=' + this.keyword + '&type=' + this.shopType, 'get').then(stores => {
+    this.fb.api('/search?center=' + this.latLng.lat + ',' + this.latLng.lng + '&distance=1000&q=' + this.keyword + '&type=' + this.shopType, 'get').then(stores => {
       this.dataStore(stores.data);
     }).catch(error => {
       console.log(error);
@@ -185,7 +196,7 @@ export class ManageShopComponent implements OnInit {
       });
     });
 
-    this.customSearch = false;    
+    this.customSearch = false;
   }
 
 }
