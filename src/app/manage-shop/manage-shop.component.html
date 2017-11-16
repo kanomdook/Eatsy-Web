@@ -203,13 +203,43 @@
         <h4 class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก {{importForm}}</h4>
       </div>
       <div class="modal-body">
+        <div class="row bd">
+          <div class="col-md-4">
+            <div class="form-group form-black label-floating is-empty">
+              <label class="control-label">ระแวก (เช่น สยามพารากอน)</label>
+              <input class="form-control" type="text" [(ngModel)]="local">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <select class="form-control" [(ngModel)]="shopType">
+              <option value="">ทั้งหมด</option>
+              <option *ngIf="importForm == 'Google'" value="restaurant">restaurant</option>
+              <option *ngIf="importForm == 'Google'" value="store">store</option>
+              <option *ngIf="importForm == 'Google'" value="cafe">cafe</option>
+              <option *ngIf="importForm == 'Facebook'" value="place">place</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group form-black label-floating is-empty">
+              <label class="control-label">คำค้นหา (เช่น coffee)</label>
+              <input class="form-control" type="text" [(ngModel)]="keyword">
+            </div>
+          </div>
+          <div class="col-md-2 mt-10">
+            <button class="btn btn-info" (click)="search()">ค้นหา</button>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-3" *ngFor="let item of shopList" (click)="selectShops(item.id)">
             <div class="card" style="width: 20rem">
-              <span class="lo" *ngIf="selectedShop[item.id]"><img class="ic" src="https://i0.wp.com/triagelogic.com/wp-content/uploads/2016/02/successful-registration.png?resize=300%2C300&ssl=1"></span>
+              <span class="lo" *ngIf="selectedShop[item.id]">
+                <img class="ic" src="https://i0.wp.com/triagelogic.com/wp-content/uploads/2016/02/successful-registration.png?resize=300%2C300&ssl=1">
+              </span>
               <img class="card-img-top" [src]="item.img" alt="Card image" width="318" height="180">
-              <div class="card-block">
-                <h4 class="card-title ellipsis"><b>{{item.name}}</b></h4>
+              <div class="card-block pd-4">
+                <h4 class="card-title ellipsis">
+                  <b>{{item.name}}</b>
+                </h4>
                 <p class="card-text ellipsis">{{item.vicinity}}</p>
                 <p class="card-text ellipsis">เบอร์โทรศัพท์ {{item.phone ? item.phone : '-'}}</p>
                 <!-- <a href="#" class="btn btn-success">เลือก</a> -->
@@ -219,8 +249,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
         <button type="button" class="btn btn-primary" (click)="saveShops()">บันทึกข้อมูล</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
       </div>
     </div>
   </div>

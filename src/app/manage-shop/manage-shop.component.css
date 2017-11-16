@@ -18,3 +18,16 @@
     right: 4px;
     margin-top: 4px;
 }
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.pd-4 {
+    padding: 4px;
+}
+
+.bd {
+    border: 1px #e2e2e2 solid;
+    border-radius: 4px;
+}
