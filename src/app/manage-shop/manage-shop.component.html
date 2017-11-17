@@ -48,142 +48,61 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>ละมุณภัณฑ์</td>
-                  <td class="text-center">089-4447208</td>
-                  <td>ค่าซ่าซิตี้ลำลูกกา</td>
-                  <td class="text-center">Manual</td>
+                <tr *ngFor="let item of shopTableList; let i = index">
+                  <td>{{i + 1}}</td>
+                  <td>{{item.name}}</td>
+                  <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
+                  <td>{{item.address.address}}</td>
+                  <td class="text-center">{{item.importform}}</td>
                   <td class="text-center">
+                    <button class="btn btn-success btn-simple btn-xs" type="button">
+                      <i class="material-icons">power_settings_new</i>
+                    </button>
+
                     <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop()">
                       <i class="material-icons">edit</i>
                     </button>
 
-                    <button class="btn btn-info btn-simple btn-xs" type="button">
-                      <i class="material-icons">settings_remote</i>
-                    </button>
-
                     <button class="btn btn-danger btn-simple btn-xs" type="button">
                       <i class="material-icons">delete</i>
                     </button>
                   </td>
                 </tr>
-
-                <tr>
-                  <td>2</td>
-                  <td>ริมน้ำ หมูกระทะ</td>
-                  <td class="text-center">089-4447208</td>
-                  <td>เซ็นทรัลพลาซา แจ้งวัฒนะ</td>
-                  <td class="text-center">Manual</td>
-                  <td class="text-center">
-                    <button class="btn btn-primary btn-simple btn-xs" type="button">
-                      <i class="material-icons">edit</i>
-                    </button>
-
-                    <button class="btn btn-info btn-simple btn-xs" type="button">
-                      <i class="material-icons">settings_remote</i>
-                    </button>
-
-                    <button class="btn btn-danger btn-simple btn-xs" type="button">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>3</td>
-                  <td>เอี่ยมโภชนา</td>
-                  <td class="text-center">089-4447208</td>
-                  <td>ป้อมปราบ</td>
-                  <td class="text-center">Manual</td>
-                  <td class="text-center">
-                    <button class="btn btn-primary btn-simple btn-xs" type="button">
-                      <i class="material-icons">edit</i>
-                    </button>
-
-                    <button class="btn btn-info btn-simple btn-xs" type="button">
-                      <i class="material-icons">settings_remote</i>
-                    </button>
-
-                    <button class="btn btn-danger btn-simple btn-xs" type="button">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>4</td>
-                  <td>บาร์บีคิว รีสอร์ท</td>
-                  <td class="text-center">089-4447208</td>
-                  <td>รามอินทรา</td>
-                  <td class="text-center">Manual</td>
-                  <td class="text-center">
-                    <button class="btn btn-primary btn-simple btn-xs" type="button">
-                      <i class="material-icons">edit</i>
-                    </button>
-
-                    <button class="btn btn-info btn-simple btn-xs" type="button">
-                      <i class="material-icons">settings_remote</i>
-                    </button>
-
-                    <button class="btn btn-danger btn-simple btn-xs" type="button">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>5</td>
-                  <td>รสเด็ดบุฟเฟ่ต์กุ้งกระทะ</td>
-                  <td class="text-center">089-4447208</td>
-                  <td>ค่าซ่าซิตี้ลำลูกกา</td>
-                  <td class="text-center">Manual</td>
-                  <td class="text-center">
-                    <button class="btn btn-primary btn-simple btn-xs" type="button">
-                      <i class="material-icons">edit</i>
-                    </button>
-
-                    <button class="btn btn-info btn-simple btn-xs" type="button">
-                      <i class="material-icons">settings_remote</i>
-                    </button>
-
-                    <button class="btn btn-danger btn-simple btn-xs" type="button">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </td>
-                </tr>
-
               </tbody>
             </table>
-            <nav aria-label="Page navigation">
-              <ul class="pagination">
-                <li>
-                  <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="active">
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#">2</a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <a href="#">4</a>
-                </li>
-                <li>
-                  <a href="#">5</a>
-                </li>
-                <li>
-                  <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+
+            <div class="pc">
+              <nav aria-label="Page navigation">
+                <ul class="pagination">
+                  <li>
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="active">
+                    <a href="#">1</a>
+                  </li>
+                  <li>
+                    <a href="#">2</a>
+                  </li>
+                  <li>
+                    <a href="#">3</a>
+                  </li>
+                  <li>
+                    <a href="#">4</a>
+                  </li>
+                  <li>
+                    <a href="#">5</a>
+                  </li>
+                  <li>
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
           </div>
         </div>
       </div>
@@ -231,7 +150,9 @@
         </div>
         <div class="row">
           <div class="col-md-3" *ngFor="let item of shopList" (click)="selectShops(item.id)">
-            <div class="hv" *ngIf="loadingIdx[item.id]"><img src="../../assets/img/301.svg" alt="Loading..." class="mgt-148"></div>
+            <div class="hv" *ngIf="loadingIdx[item.id]">
+              <img src="../../assets/img/301.svg" alt="Loading..." class="mgt-148">
+            </div>
             <div class="card" style="width: 20rem">
               <span class="lo" *ngIf="selectedShop[item.id]">
                 <img class="ic" src="https://i0.wp.com/triagelogic.com/wp-content/uploads/2016/02/successful-registration.png?resize=300%2C300&ssl=1">

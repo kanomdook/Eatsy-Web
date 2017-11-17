@@ -15,4 +15,10 @@ export class ManageShopService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
+    getList(): Observable<any> {
+        return this.http.get(this.server.url + 'api/shops', {})
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
 }

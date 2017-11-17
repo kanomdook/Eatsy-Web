@@ -32,6 +32,7 @@ export class ManageShopComponent implements OnInit {
     lng: 100.5347222
   }; //central world
   private customSearch: boolean = false;
+  private shopTableList: Array<any> = [];
 
   constructor(private fb: FacebookService, public manageShopService: ManageShopService) {
     let initParams: InitParams = {
@@ -50,6 +51,13 @@ export class ManageShopComponent implements OnInit {
     }).then(data => {
 
     }).catch(err => {
+      console.log(err);
+    });
+
+    this.manageShopService.getList().subscribe(data => {
+      this.shopTableList = data;
+      console.log(this.shopTableList);
+    }, err => {
       console.log(err);
     });
   }
