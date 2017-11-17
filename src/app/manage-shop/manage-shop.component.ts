@@ -17,7 +17,6 @@ declare var google;
 })
 export class ManageShopComponent implements OnInit {
   @ViewChild('map') mapElement: ElementRef;
-
   private shopList: Array<any> = [];
   private importForm: string;
   private selectedShop: Array<any> = [];
@@ -33,6 +32,7 @@ export class ManageShopComponent implements OnInit {
   }; //central world
   private customSearch: boolean = false;
   private shopTableList: Array<any> = [];
+  private shopForEdit: any = {};
 
   constructor(private fb: FacebookService, public manageShopService: ManageShopService) {
     let initParams: InitParams = {
@@ -64,7 +64,6 @@ export class ManageShopComponent implements OnInit {
 
   saveShops() {
     console.log(this.shops);
-
     this.shops.forEach(element => {
       this.loadingIdx[element.id] = true;
       element.importForm = this.importForm;
@@ -82,8 +81,9 @@ export class ManageShopComponent implements OnInit {
     this.action = 'เพิ่มร้านค้า';
   }
 
-  editShop() {
+  editShop(shop) {
     this.action = 'แก้ไขร้านค้า';
+    this.shopForEdit = shop;
   }
 
   convertLocalToGeo() {
