@@ -1,12 +1,12 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Overlay } from 'ngx-modialog';
-import { Modal } from 'ngx-modialog/plugins/bootstrap';
 import { FacebookService, InitParams } from 'ngx-facebook';
 import { error } from 'util';
 import { forEach } from '@angular/router/src/utils/collection';
 import { element } from 'protractor';
 import { resolve } from 'dns';
 import { reject } from 'q';
+import { ManageShopService } from 'app/manage-shop/manage-shop.service';
 
 declare var google;
 
@@ -21,17 +21,19 @@ export class ManageShopComponent implements OnInit {
   private shopList: Array<any> = [];
   private importForm: string;
   private selectedShop: Array<any> = [];
+  private loadingIdx: Array<any> = [];
   private shops: Array<any> = [];
   private local: string;
   private shopType: string;
   private keyword: string;
+  private action: string;
   private latLng: any = {
     lat: 13.7466532,
     lng: 100.5347222
   }; //central world
   private customSearch: boolean = false;
 
-  constructor(private fb: FacebookService, public modal: Modal) {
+  constructor(private fb: FacebookService, public manageShopService: ManageShopService) {
     let initParams: InitParams = {
       appId: '618352801888304',
       xfbml: true,
@@ -54,6 +56,26 @@ export class ManageShopComponent implements OnInit {
 
   saveShops() {
     console.log(this.shops);
+
+    this.shops.forEach(element => {
+      this.loadingIdx[element.id] = true;
+      element.importForm = this.importForm;
+      this.manageShopService.save(element).subscribe(dataRes => {
+        this.loadingIdx[element.id] = false;
+        console.log(dataRes);
+      }, err => {
+        this.loadingIdx[element.id] = false;
+        console.log(err);
+      });
+    });
+  }
+
+  createShop() {
+    this.action = 'เพิ่มร้านค้า';
+  }
+
+  editShop() {
+    this.action = 'แก้ไขร้านค้า';
   }
 
   convertLocalToGeo() {
@@ -143,6 +165,8 @@ export class ManageShopComponent implements OnInit {
         results.forEach((element, i) => {
           element.id = element.place_id;
           element.img = element.photos ? element.photos[0].getUrl({ 'maxWidth': 318, 'maxHeight': 180 }) : 'http://www.freeiconspng.com/uploads/no-image-icon-15.png';
+          element.lat = element.geometry.location.lat();
+          element.lng = element.geometry.location.lng();
           let request2 = {
             placeId: element.place_id
           };
@@ -190,6 +214,8 @@ export class ManageShopComponent implements OnInit {
         shopNewScema.name = storeData.name;
         shopNewScema.vicinity = storeData.location.street ? storeData.location.street : '' + storeData.location.city;
         shopNewScema.phone = storeData.phone;
+        shopNewScema.lat = storeData.location.latitude;
+        shopNewScema.lng = storeData.location.longitude;
         this.shopList.push(shopNewScema);
       }).catch(err2 => {
         console.log(err2);

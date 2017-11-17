@@ -30,6 +30,8 @@ import { ManageShopComponent } from './manage-shop/manage-shop.component';
 import { FacebookModule } from 'ngx-facebook';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
+import { ManageShopService } from 'app/manage-shop/manage-shop.service';
+import { ServerConfig } from 'app/provider/server.config';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
     AppRoutingModule
   ],
   providers: [
-    DashboardService
+    DashboardService,
+    ManageShopService,
+    ServerConfig
   ],
   bootstrap: [AppComponent]
 })
