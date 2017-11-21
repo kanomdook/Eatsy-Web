@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="dropdown pull-right">
-          <button class="btn btn-success pull-right dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+          <button class="btn btn-success pull-right dropdown-toggle" style="background-color:#2bea33" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="true">
             <i class="material-icons">add</i> เพิ่มร้านค้า
           </button>
@@ -41,10 +41,10 @@
                 <tr>
                   <th>#</th>
                   <th>ชื่อร้านค้า</th>
-                  <th class="text-center">เบอร์โทร</th>
+                  <th class="text-center col-md-2">เบอร์โทร</th>
                   <th>ที่อยู่</th>
-                  <th class="text-center">ช่องทางนำเข้า</th>
-                  <th class="text-center">Action</th>
+                  <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                  <th class="text-center col-md-2"><span style="margin-right:-50px">Action</span></th>
                 </tr>
               </thead>
               <tbody>
@@ -54,18 +54,31 @@
                   <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
                   <td>{{item.address.address}}</td>
                   <td class="text-center">{{item.importform}}</td>
-                  <td class="text-center">
+                  <td class="text-center dropdown pull-right">
                     <button class="btn btn-success btn-simple btn-xs" type="button">
-                      <i class="material-icons">power_settings_new</i>
+                      <i class="material-icons" style="color:#2fff38">power_settings_new</i>
                     </button>
 
+                      <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="true">
+                        <i class="material-icons">more_horiz</i>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li (click)="editShop(item)">
+                          <a [routerLink]="['/upgrade']"><i class="material-icons">edit</i> แก้ไขร้านค้า</a>
+                        </li>
+                        <li>
+                          <a href="#"><i class="material-icons">delete</i> ลบร้านค้า</a>
+                        </li>
+                      </ul>
+<!-- 
                     <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
                       <i class="material-icons">edit</i>
                     </button>
 
                     <button class="btn btn-danger btn-simple btn-xs" type="button">
                       <i class="material-icons">delete</i>
-                    </button>
+                    </button> -->
                   </td>
                 </tr>
               </tbody>

@@ -33,7 +33,7 @@ export class ManageShopComponent implements OnInit {
   private customSearch: boolean = false;
   private shopTableList: Array<any> = [];
   private shopForEdit: any = {};
-
+  menuItems: any[];
   constructor(private fb: FacebookService, public manageShopService: ManageShopService) {
     let initParams: InitParams = {
       appId: '618352801888304',

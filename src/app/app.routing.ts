@@ -36,7 +36,12 @@ const routes: Routes = [
   { path: 'maps', component: MapsComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'upgrade', component: UpgradeComponent },
-  { path: 'manage-shop', component: ManageShopComponent },
+  {
+    path: 'manage-shop', component: ManageShopComponent, children: [{
+      path: 'upgrade',
+      component: UpgradeComponent
+    }]
+  },
   { path: '', redirectTo: 'manage-shop', pathMatch: 'full' }
 ];
 
