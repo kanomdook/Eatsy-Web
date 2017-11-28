@@ -73,3 +73,7 @@
 .pagination>li>a {
     color: #9e9e9e;
 }
+
+.nav-tabs {
+    background: #afafaf;
+}

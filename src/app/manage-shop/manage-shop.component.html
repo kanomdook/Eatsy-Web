@@ -1,8 +1,36 @@
 <div class="main-content">
   <div class="container-fluid">
 
+
+    <!-- //////Apple/// -->
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a data-toggle="tab" href="#home">รายการร้านค้า</a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#menu1">ร้านค้าใหม่</a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#menu2">Official</a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#menu3">ร้านฝากซื้อ</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4" style="margin-top: -14px">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="ค้นหา...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+                <i class="material-icons">search</i>
+            </button>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-2" style="margin-top: -10px">
         <div class="dropdown pull-right">
           <button class="btn btn-success pull-right dropdown-toggle" style="background-color:#2bea33" type="button" id="dropdownMenu1"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -20,104 +48,415 @@
             </li>
           </ul>
         </div>
-        <!-- <button class="btn btn-success pull-right"><i class="material-icons">note_add</i> เพิ่มร้านค้า</button> -->
       </div>
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header dropdown" data-background-color="red">
-            <h4 class="title">รายการร้านค้า</h4>
-            <!-- <p class="category">Here is a subtitle for this table</p> -->
-          </div>
+    </div>
 
-          <div class="card-content table-responsive">
-            <table class="table">
-              <thead class="text-danger">
-                <tr>
-                  <th>#</th>
-                  <th>ชื่อร้านค้า</th>
-                  <th class="text-center col-md-2">เบอร์โทร</th>
-                  <th>ที่อยู่</th>
-                  <th class="text-center col-md-2">ช่องทางนำเข้า</th>
-                  <th class="text-center col-md-2">
-                    <span style="margin-right:-50px">Action</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of shopTableList; let i = index">
-                  <td>{{i + 1}}</td>
-                  <td>{{item.name}}</td>
-                  <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
-                  <td>{{item.address.address ? item.address.address: '-'}}</td>
-                  <td class="text-center">{{item.importform}}</td>
-                  <td class="text-center dropdown pull-right">
-                    <button class="btn btn-success btn-simple btn-xs" type="button">
-                      <i class="material-icons" style="color:#2fff38">power_settings_new</i>
-                    </button>
 
-                    <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="true">
-                      <i class="material-icons">more_horiz</i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <li (click)="editShop(item)">
-                        <a [routerLink]="['/create-shop']">
-                          <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
+
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-danger">
+                    <tr>
+                      <th>#</th>
+                      <th>ชื่อร้านค้า</th>
+                      <th class="text-center col-md-2">เบอร์โทร</th>
+                      <th>ที่อยู่</th>
+                      <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                      <th class="text-center col-md-2">
+                        <span style="margin-right:-50px">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of shopTableList; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.name}}</td>
+                      <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
+                      <td>{{item.address.address ? item.address.address: '-'}}</td>
+                      <td class="text-center">{{item.importform}}</td>
+                      <td class="text-center dropdown pull-right">
+                        <button class="btn btn-success btn-simple btn-xs" type="button">
+                          <i class="material-icons" style="color:#2fff38">power_settings_new</i>
+                        </button>
+
+                        <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="true">
+                          <i class="material-icons">more_horiz</i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <li (click)="editShop(item)">
+                            <a [routerLink]="['/create-shop']">
+                              <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="material-icons">delete</i> ลบร้านค้า</a>
+                          </li>
+                        </ul>
+                        <!-- 
+                      <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
+                        <i class="material-icons">edit</i>
+                      </button>
+  
+                      <button class="btn btn-danger btn-simple btn-xs" type="button">
+                        <i class="material-icons">delete</i>
+                      </button> -->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="pc">
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                      <li>
+                        <a href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="#">1</a>
                       </li>
                       <li>
-                        <a href="#">
-                          <i class="material-icons">delete</i> ลบร้านค้า</a>
+                        <a href="#">2</a>
+                      </li>
+                      <li>
+                        <a href="#">3</a>
+                      </li>
+                      <li>
+                        <a href="#">4</a>
+                      </li>
+                      <li>
+                        <a href="#">5</a>
+                      </li>
+                      <li>
+                        <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
                       </li>
                     </ul>
-                    <!-- 
-                    <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
-                      <i class="material-icons">edit</i>
-                    </button>
+                  </nav>
+                </div>
 
-                    <button class="btn btn-danger btn-simple btn-xs" type="button">
-                      <i class="material-icons">delete</i>
-                    </button> -->
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="pc">
-              <nav aria-label="Page navigation">
-                <ul class="pagination">
-                  <li>
-                    <a href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="active">
-                    <a href="#">1</a>
-                  </li>
-                  <li>
-                    <a href="#">2</a>
-                  </li>
-                  <li>
-                    <a href="#">3</a>
-                  </li>
-                  <li>
-                    <a href="#">4</a>
-                  </li>
-                  <li>
-                    <a href="#">5</a>
-                  </li>
-                  <li>
-                    <a href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
+
+
+
+      <div id="menu1" class="tab-pane fade">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-danger">
+                    <tr>
+                      <th>#</th>
+                      <th>ชื่อร้านค้า</th>
+                      <th class="text-center col-md-2">เบอร์โทร</th>
+                      <th>ที่อยู่</th>
+                      <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                      <th class="text-center col-md-2">
+                        <span style="margin-right:-50px">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of shopTableList; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.name}}</td>
+                      <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
+                      <td>{{item.address.address ? item.address.address: '-'}}</td>
+                      <td class="text-center">{{item.importform}}</td>
+                      <td class="text-center dropdown pull-right">
+                        <button class="btn btn-success btn-simple btn-xs" type="button">
+                          <i class="material-icons" style="color:#2fff38">power_settings_new</i>
+                        </button>
+
+                        <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="true">
+                          <i class="material-icons">more_horiz</i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <li (click)="editShop(item)">
+                            <a [routerLink]="['/create-shop']">
+                              <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="material-icons">delete</i> ลบร้านค้า</a>
+                          </li>
+                        </ul>
+                        <!-- 
+                                    <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
+                                      <i class="material-icons">edit</i>
+                                    </button>
+                
+                                    <button class="btn btn-danger btn-simple btn-xs" type="button">
+                                      <i class="material-icons">delete</i>
+                                    </button> -->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="pc">
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                      <li>
+                        <a href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="#">1</a>
+                      </li>
+                      <li>
+                        <a href="#">2</a>
+                      </li>
+                      <li>
+                        <a href="#">3</a>
+                      </li>
+                      <li>
+                        <a href="#">4</a>
+                      </li>
+                      <li>
+                        <a href="#">5</a>
+                      </li>
+                      <li>
+                        <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div id="menu2" class="tab-pane fade">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-danger">
+                    <tr>
+                      <th>#</th>
+                      <th>ชื่อร้านค้า</th>
+                      <th class="text-center col-md-2">เบอร์โทร</th>
+                      <th>ที่อยู่</th>
+                      <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                      <th class="text-center col-md-2">
+                        <span style="margin-right:-50px">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of shopTableList; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.name}}</td>
+                      <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
+                      <td>{{item.address.address ? item.address.address: '-'}}</td>
+                      <td class="text-center">{{item.importform}}</td>
+                      <td class="text-center dropdown pull-right">
+                        <button class="btn btn-success btn-simple btn-xs" type="button">
+                          <i class="material-icons" style="color:#2fff38">power_settings_new</i>
+                        </button>
+
+                        <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="true">
+                          <i class="material-icons">more_horiz</i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <li (click)="editShop(item)">
+                            <a [routerLink]="['/create-shop']">
+                              <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="material-icons">delete</i> ลบร้านค้า</a>
+                          </li>
+                        </ul>
+                        <!-- 
+                                    <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
+                                      <i class="material-icons">edit</i>
+                                    </button>
+                
+                                    <button class="btn btn-danger btn-simple btn-xs" type="button">
+                                      <i class="material-icons">delete</i>
+                                    </button> -->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="pc">
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                      <li>
+                        <a href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="#">1</a>
+                      </li>
+                      <li>
+                        <a href="#">2</a>
+                      </li>
+                      <li>
+                        <a href="#">3</a>
+                      </li>
+                      <li>
+                        <a href="#">4</a>
+                      </li>
+                      <li>
+                        <a href="#">5</a>
+                      </li>
+                      <li>
+                        <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div id="menu3" class="tab-pane fade">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-danger">
+                    <tr>
+                      <th>#</th>
+                      <th>ชื่อร้านค้า</th>
+                      <th class="text-center col-md-2">เบอร์โทร</th>
+                      <th>ที่อยู่</th>
+                      <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                      <th class="text-center col-md-2">
+                        <span style="margin-right:-50px">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of shopTableList; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.name}}</td>
+                      <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
+                      <td>{{item.address.address ? item.address.address: '-'}}</td>
+                      <td class="text-center">{{item.importform}}</td>
+                      <td class="text-center dropdown pull-right">
+                        <button class="btn btn-success btn-simple btn-xs" type="button">
+                          <i class="material-icons" style="color:#2fff38">power_settings_new</i>
+                        </button>
+
+                        <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="true">
+                          <i class="material-icons">more_horiz</i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <li (click)="editShop(item)">
+                            <a [routerLink]="['/create-shop']">
+                              <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="material-icons">delete</i> ลบร้านค้า</a>
+                          </li>
+                        </ul>
+                        <!-- 
+                                    <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
+                                      <i class="material-icons">edit</i>
+                                    </button>
+                
+                                    <button class="btn btn-danger btn-simple btn-xs" type="button">
+                                      <i class="material-icons">delete</i>
+                                    </button> -->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="pc">
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                      <li>
+                        <a href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="#">1</a>
+                      </li>
+                      <li>
+                        <a href="#">2</a>
+                      </li>
+                      <li>
+                        <a href="#">3</a>
+                      </li>
+                      <li>
+                        <a href="#">4</a>
+                      </li>
+                      <li>
+                        <a href="#">5</a>
+                      </li>
+                      <li>
+                        <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+
+
+    <!-- ////? -->
+
+
   </div>
 </div>
 
