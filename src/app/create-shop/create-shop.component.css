@@ -1,0 +1,29 @@
+.fill {
+    position: absolute;
+    top: 14px;
+    height: 255px;
+    width: 452px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.camera {
+    position: absolute;
+    top: 20px;
+    right: 26px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.name {
+    position: absolute;
+    margin-top: -96px;
+    color: #fff;
+    margin-left: auto;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.name-1 {
+    font-size: 2.0em;
+    font-weight: bold;
+}

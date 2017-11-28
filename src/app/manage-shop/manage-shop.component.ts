@@ -7,6 +7,8 @@ import { element } from 'protractor';
 import { resolve } from 'dns';
 import { reject } from 'q';
 import { ManageShopService } from 'app/manage-shop/manage-shop.service';
+import { Router } from '@angular/router';
+import { ServerConfig } from 'app/provider/server.config';
 
 declare var google;
 
@@ -34,25 +36,31 @@ export class ManageShopComponent implements OnInit {
   private shopTableList: Array<any> = [];
   private shopForEdit: any = {};
   menuItems: any[];
-  constructor(private fb: FacebookService, public manageShopService: ManageShopService) {
-    let initParams: InitParams = {
-      appId: '618352801888304',
-      xfbml: true,
-      version: 'v2.10'
-    };
-    fb.init(initParams);
+  constructor(private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
+    // let initParams: InitParams = {
+    //   appId: '618352801888304',
+    //   xfbml: true,
+    //   version: 'v2.10'
+    // };
+    // fb.init(initParams);
+
   }
 
   ngOnInit() {
-    this.fb.login({
-      enable_profile_selector: true,
-      return_scopes: true,
-      scope: 'public_profile,user_friends,email,pages_show_list'
-    }).then(data => {
-
-    }).catch(err => {
-      console.log(err);
+    this.server.isLogin().subscribe(data => {
+      if (!data) {
+        this.router.navigate(['/login']);
+      }
     });
+    // this.fb.login({
+    //   enable_profile_selector: true,
+    //   return_scopes: true,
+    //   scope: 'public_profile,user_friends,email,pages_show_list'
+    // }).then(data => {
+
+    // }).catch(err => {
+    //   console.log(err);
+    // });
 
     this.manageShopService.getList().subscribe(data => {
       this.shopTableList = data;
@@ -66,6 +74,13 @@ export class ManageShopComponent implements OnInit {
     console.log(this.shops);
     this.shops.forEach(element => {
       this.loadingIdx[element.id] = true;
+      element.address = {
+        address: element.vicinity,
+        lat: element.lat,
+        lng: element.lng
+      };
+      element.tel = element.phone;
+      element.coverimage = element.img;
       element.importForm = this.importForm;
       this.manageShopService.save(element).subscribe(dataRes => {
         this.loadingIdx[element.id] = false;

@@ -32,6 +32,10 @@ import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 import { ManageShopService } from 'app/manage-shop/manage-shop.service';
 import { ServerConfig } from 'app/provider/server.config';
+import { CreateShopComponent } from './create-shop/create-shop.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
+import { Auth } from 'app/provider/auth';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,8 @@ import { ServerConfig } from 'app/provider/server.config';
     ManageDocumentComponent,
     CreateSellComponent,
     ManageShopComponent,
+    CreateShopComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -63,12 +69,14 @@ import { ServerConfig } from 'app/provider/server.config';
     ModalModule.forRoot(),
     FacebookModule.forRoot(),
     BootstrapModalModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [
     DashboardService,
     ManageShopService,
-    ServerConfig
+    ServerConfig,
+    Auth
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerConfig } from 'app/provider/server.config';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -8,16 +9,16 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: 'dashboard', title: 'ภาพราม',  icon: '', class: '' },
-    { path: 'sales', title: 'ยอดขาย',  icon: '', class: '' },
-    { path: 'purchase-order', title: 'ยอดซื้อ',  icon: '', class: '' },
-    { path: 'product', title: 'สินค้า',  icon: '', class: '' },
-    { path: 'customer', title: 'ลูกค้า',  icon: '', class: '' },
-    { path: 'manage-file', title: 'จัดการไฟล์',  icon: '', class: '' },
-    { path: 'manage-document', title: 'จัดการเอกสาร',  icon: '', class: '' },
-    { path: 'create-sell', title: 'สร้างรายการขาย',  icon: '', class: '' },
-    { path: 'manage-shop', title: 'จัดการร้านค้า',  icon: '', class: '' },
-    
+    { path: 'dashboard', title: 'ภาพราม', icon: '', class: '' },
+    { path: 'sales', title: 'ยอดขาย', icon: '', class: '' },
+    { path: 'purchase-order', title: 'ยอดซื้อ', icon: '', class: '' },
+    { path: 'product', title: 'สินค้า', icon: '', class: '' },
+    { path: 'customer', title: 'ลูกค้า', icon: '', class: '' },
+    { path: 'manage-file', title: 'จัดการไฟล์', icon: '', class: '' },
+    { path: 'manage-document', title: 'จัดการเอกสาร', icon: '', class: '' },
+    { path: 'create-sell', title: 'สร้างรายการขาย', icon: '', class: '' },
+    { path: 'manage-shop', title: 'จัดการร้านค้า', icon: '', class: '' },
+
     // { path: 'user-profile', title: 'รายการขาย',  icon: 'unarchive', class: '' },
     // { path: 'typography', title: 'สินค้า',  icon: 'inbox', class: '' },
     // { path: 'icons', title: 'ลูกค้า / คู่ค้า',  icon: 'assignment_ind', class: '' },
@@ -36,22 +37,26 @@ export const ROUTES: RouteInfo[] = [
 ];
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+    selector: 'app-sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  menuItems: any[];
+    menuItems: any[];
+    private isLogin: boolean;
 
-  constructor() { }
+    constructor(private server: ServerConfig) { }
 
-  ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
-  }
-  isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
-  };
+    ngOnInit() {
+        this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.server.isLogin().subscribe(data =>{
+            this.isLogin = data;
+        });
+    }
+    isMobileMenu() {
+        if ($(window).width() > 991) {
+            return false;
+        }
+        return true;
+    };
 }
