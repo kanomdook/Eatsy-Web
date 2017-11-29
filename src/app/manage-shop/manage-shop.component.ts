@@ -97,8 +97,8 @@ export class ManageShopComponent implements OnInit {
   }
 
   editShop(shop) {
-    this.action = 'แก้ไขร้านค้า';
-    this.shopForEdit = shop;
+    window.localStorage.setItem('selectShop',shop._id);
+    this.router.navigate(['/create-shop']);
   }
 
   convertLocalToGeo() {

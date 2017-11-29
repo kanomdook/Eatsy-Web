@@ -20,6 +20,8 @@ export class CreateShopComponent implements OnInit {
   private useSelectDate: Array<any> = [];
   private timeList: Array<any> = [];
   private times: any = {};
+  private address: string;
+  private latLng: any = {};
 
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService) { }
 
@@ -64,9 +66,22 @@ export class CreateShopComponent implements OnInit {
           animation: google.maps.Animation.DROP,
           position: places[0].geometry.location
         });
-        marker.addListener('click', function () {
-          alert(places[0].name);
-        });
+
+        let geocoder = new google.maps.Geocoder();
+        geocoder.geocode
+          ({
+            latLng: places[0].geometry.location
+          },
+          function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              window.localStorage.setItem('address', results[0].formatted_address);
+              window.localStorage.setItem('latLng', JSON.stringify(places[0].geometry.location));
+            }
+            else {
+              console.log(status);
+            }
+          }
+          );
 
         google.maps.event.addListener(marker, 'dragend', function () {
           let geocoder = new google.maps.Geocoder();
@@ -76,7 +91,8 @@ export class CreateShopComponent implements OnInit {
             },
             function (results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                console.log(results[0].formatted_address);
+                window.localStorage.setItem('address', results[0].formatted_address);
+                window.localStorage.setItem('latLng', JSON.stringify(marker.getPosition()));
               }
               else {
                 console.log(status);
@@ -108,8 +124,11 @@ export class CreateShopComponent implements OnInit {
 
   save() {
     this.shop.address = {
-      address: 'สีลม'
+      address: this.address,
+      lat: this.latLng.lat,
+      lng: this.latLng.lng
     };
+    this.shop.days = this.timeList;
     this.shopService.save(this.shop).subscribe(data => {
       console.log(data);
       this.showeMainShop = true;
@@ -119,6 +138,17 @@ export class CreateShopComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+  }
+
+  saveMap() {
+    this.address = window.localStorage.getItem('address');
+    let latLng = JSON.parse(window.localStorage.getItem('latLng'));
+    this.latLng = {
+      lat: latLng.lat,
+      lng: latLng.lng
+    };
+    this.showeditdiv = true;
+    this.showeMap = false;
   }
 
   openTime() {
