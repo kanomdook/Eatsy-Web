@@ -118,22 +118,18 @@
               <div class="col-md-3" (click)="openTime()">
                 <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
               </div>
-              <div class="col-md-3" *ngFor="let item of [1,2,3,4,5,6,7]">
+              <div class="col-md-3" *ngFor="let item of timeList;let i = index">
                 <div class="card">
-                  <span class="bin">
+                  <span class="bin" (click)="deleteTime(i)">
                     <i class="material-icons">delete</i>
                   </span>
                   <div class="card-block">
-                    <h4 class="card-title" style="text-align: center;">เปิดปกติ</h4>
-                    <p class="card-text">เวลาเปิด 08:00 น.</p>
-                    <p class="card-text">เวลาปิด 21:00 น.</p>
+                    <h4 class="card-title" style="text-align: center;">{{item.description}}</h4>
+                    <p class="card-text">เวลาเปิด {{item.timestart}} น.</p>
+                    <p class="card-text">เวลาปิด {{item.timeend}} น.</p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">วันจัทร์</li>
-                    <li class="list-group-item">วันอังคาร</li>
-                    <li class="list-group-item">วันพุธ</li>
-                    <li class="list-group-item">วันพฤหัสบดี</li>
-                    <li class="list-group-item">วันศุกร์</li>
+                    <li class="list-group-item" *ngFor="let item2 of item.days">{{item2}}</li>
                   </ul>
                 </div>
               </div>
@@ -142,7 +138,7 @@
             <div class="form-group">
               <textarea rows="6" class="form-control" placeholder="ที่อยู่"></textarea>
             </div>
-            <p class="pin">
+            <p class="pin" (click)="openSelectMap()">
               <i class="material-icons">room</i>
             </p>
           </div>
@@ -161,13 +157,13 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="รายละเอียด">
+              <input type="text" class="form-control" placeholder="รายละเอียด" name="timeDetail" [(ngModel)]="times.description">
             </div>
             <div class="form-group">
-              <input type="time" class="form-control" placeholder="เวลาเปิด">
+              <input type="time" class="form-control" placeholder="เวลาเปิด" name="start" [(ngModel)]="times.timestart">
             </div>
             <div class="form-group">
-              <input type="time" class="form-control" placeholder="เวลาปิด">
+              <input type="time" class="form-control" placeholder="เวลาปิด" name="end" [(ngModel)]="times.timeend">
             </div>
 
             <ul class="list-group list-group-flush">
@@ -210,6 +206,21 @@
             </ul>
           </div>
         </div>
+        <div class="ct">
+          <button class="btn btn-primary" (click)="saveTime()">บันทึก</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="card" *ngIf="showeMap">
+      <div class="card-header">
+        ที่อยู่ร้านค้า
+      </div>
+      <div class="card-block">
+        <input #pacinput id="pac-input" class="controls m2" type="text" placeholder="ค้นหาสถานที่">
+        <div #map class="map"></div>
         <div class="ct">
           <button class="btn btn-primary" (click)="saveTime()">บันทึก</button>
         </div>
