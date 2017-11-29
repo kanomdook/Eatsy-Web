@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="card" *ngIf="showeMainShop">
-      <img class="card-img-top" src="https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
+      <img class="card-img-top" [src]="coverimage ? coverimage:'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'"
         alt="Card image cap">
       <span class="fill"></span>
       <span class="camera">
@@ -12,10 +12,10 @@
         <i class="material-icons" (click)="openEditShopDetail()">create</i>
       </p>
       <p class="name2">
-        {{shop.detail}}
+        {{shop.detail ? shop.detail: '-'}}
       </p>
       <p class="name3">
-        {{address}} เวลาเปิดปิดร้าน 08:00 - 20:00
+        {{address ? address: '-'}} เวลาเปิดปิดร้าน 08:00 - 20:00
       </p>
       <div class="card-block">
 

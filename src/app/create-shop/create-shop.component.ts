@@ -23,6 +23,7 @@ export class CreateShopComponent implements OnInit {
   private address: string;
   private latLng: any = {};
   private shopID: string;
+  private coverimage: string = '';
 
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService) { }
 
@@ -35,17 +36,19 @@ export class CreateShopComponent implements OnInit {
 
     this.shopID = window.localStorage.getItem('selectShop');
 
-    this.shopService.getShopByID(this.shopID).subscribe(data => {
-      this.shop = data;
-      this.address = data.address.address;
-      this.latLng = {
-        lat: data.address.address ? data.address.address.lat : '',
-        lng: data.address.address ? data.address.address.lng : ''
-      };
-      this.timeList = data.times;
-    }, err => {
-      console.log(err);
-    });
+    if (this.shopID) {
+      this.shopService.getShopByID(this.shopID).subscribe(data => {
+        this.shop = data;
+        this.address = data.address.address;
+        this.latLng = {
+          lat: data.address ? data.address.lat : '',
+          lng: data.address ? data.address.lng : ''
+        };
+        this.timeList = data.times;
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 
   openSelectMap() {
@@ -145,8 +148,13 @@ export class CreateShopComponent implements OnInit {
         lng: this.latLng.lng
       };
       this.shop.times = this.timeList;
+      this.shop.coverimage = 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
       this.shopService.edit(this.shop).subscribe(data => {
         console.log(data);
+        this.showeMainShop = true;
+        this.showeditdiv = false;
+        this.showeditTime = false;
+        this.router.navigate(['/manage-shop']);
       }, err => {
         console.log(err);
       });
@@ -157,6 +165,8 @@ export class CreateShopComponent implements OnInit {
         lng: this.latLng.lng
       };
       this.shop.times = this.timeList;
+      this.shop.coverimage = 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
+
       this.shopService.save(this.shop).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;
