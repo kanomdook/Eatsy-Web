@@ -1,5 +1,5 @@
 <div class="main-content">
-  <div class="container-fluid">
+  <div class="container-fluid" style="text-align: center;">
     <div class="card" *ngIf="showeMainShop">
       <img class="card-img-top" [src]="coverimage ? coverimage:'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'"
         alt="Card image cap">
@@ -32,7 +32,7 @@
         <h3 class="h">Product</h3>
 
         <div class="row" [dragula]='"zone1"'>
-          <div class="col-md-2">
+          <div class="col-md-2" (click)="createCategory()">
             <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
           </div>
           <div class="col-md-2" *ngFor="let item of [1,2,3,4,5]">
@@ -44,11 +44,14 @@
         </div>
 
         <div class="row" [dragula]='"zone2"'>
-          <div class="col-md-2">
+          <div class="col-md-2" (click)="createProduct()">
             <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
           </div>
-          <div class="col-md-2" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
+          <div class="col-md-2" *ngFor="let item of products">
             <img class="img" src="http://homecookingadventure.com/images/recipes/Chocolate_Mirror_Cake_main.jpg" alt="image">
+            <span class="ca">
+              {{item.name}}
+            </span>
           </div>
         </div>
       </div>
@@ -213,6 +216,9 @@
     </div>
 
 
+    <!-- //////////////////add and edit address ////// -->
+
+
 
     <div class="card" *ngIf="showeMap">
       <div class="card-header">
@@ -228,6 +234,87 @@
     </div>
 
 
+    <!-- //////////////////add and edit product ////// -->
+
+    <div class="card" *ngIf="showAddProduct" style="width: 60%;padding: 26px;">
+      <div class="card-header">
+        เพิ่มสินค้า
+      </div>
+      <div class="card-block">
+
+        <div class="row">
+          <div class="col-md-4">
+            <span class="bin-2" (click)="deleteTime(i)">
+              <i class="material-icons">delete</i>
+            </span>
+            <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
+
+          </div>
+          <div class="col-md-4">
+            <span class="bin-2" (click)="deleteTime(i)">
+              <i class="material-icons">delete</i>
+            </span>
+            <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
+
+          </div>
+          <div class="col-md-4">
+            <span class="bin-2" (click)="deleteTime(i)">
+              <i class="material-icons">delete</i>
+            </span>
+            <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Category Name" name="cate" [(ngModel)]="product.categories">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Product Name" name="productname" [(ngModel)]="product.name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Price" name="price" [(ngModel)]="product.price">
+        </div>
+        <div class="ct">
+          <button class="btn btn-primary" (click)="saveProduct()">บันทึก</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- //////////////////add and edit category ////// -->
+
+    <div class="card" *ngIf="showAddCategory" style="width: 60%;padding: 26px;">
+      <div class="card-header">
+        เพิ่มหมวดหมู่
+      </div>
+      <div class="card-block">
+
+        <div class="row">
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4">
+            <span class="bin-2" (click)="deleteTime(i)">
+              <i class="material-icons">delete</i>
+            </span>
+            <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
+
+          </div>
+          <div class="col-md-4">
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Category Name" naem="categoryname" [(ngModel)]="category.name">
+        </div>
+        <div class="ct">
+          <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
+        </div>
+      </div>
+    </div>
 
 
   </div>

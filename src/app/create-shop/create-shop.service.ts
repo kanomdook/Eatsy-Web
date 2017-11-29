@@ -34,4 +34,32 @@ export class ShopService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
+    //////////////product
+
+    saveProduct(product): Observable<any> {
+        return this.http.post(this.server.url + 'api/products', product, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    getProductsByID(id): Observable<any> {
+        return this.http.get(this.server.url + 'api/productsbyshop/' + id, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    /////////////category
+
+    saveCategory(category): Observable<any> {
+        return this.http.post(this.server.url + 'api/categoryproducts', category, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    getCategoryByID(id): Observable<any> {
+        return this.http.get(this.server.url + 'api/categoryproducts/' + id, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
 }

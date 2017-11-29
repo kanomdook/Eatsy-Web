@@ -45,6 +45,7 @@
     color: #fff;
     font-size: 1.4em;
     padding-top: 5px;
+    margin-left: -48%;
 }
 
 .col-md-2 {
@@ -84,12 +85,21 @@
     background-color: rgba(0, 0, 0, 0.4);
     top: 0;
     width: 100%;
+    margin-left: -50%;
 }
 
 .bin {
     position: absolute;
     right: 0;
     cursor: pointer;
+}
+
+.bin-2 {
+    position: absolute;
+    right: 36px;
+    cursor: pointer;
+    color: #fff;
+    margin-top: 10px;
 }
 
 .check {

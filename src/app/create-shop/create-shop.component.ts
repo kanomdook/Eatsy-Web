@@ -15,7 +15,12 @@ export class CreateShopComponent implements OnInit {
   showeditdiv: boolean = false;
   showeditTime: boolean = false;
   showeMap: boolean = false;
+  showAddProduct: boolean = false;
+  showAddCategory: boolean = false;
   private shop: any = {};
+  private product: any = {};
+  private category: any = {};
+  private products: Array<any> = [];
   private selectDate: Array<any> = [];
   private useSelectDate: Array<any> = [];
   private timeList: Array<any> = [];
@@ -48,7 +53,56 @@ export class CreateShopComponent implements OnInit {
       }, err => {
         console.log(err);
       });
+
+      this.shopService.getProductsByID(this.shopID).subscribe(data => {
+        this.products = data.items;
+        console.log(data);
+      }, err => {
+        console.log(err);
+      });
+
+      // this.shopService.getCategoryByID(this.shopID).subscribe(data => {
+      //   this.category = data.items;
+      //   console.log(this.category);
+      // }, err => {
+      //   console.log(err);
+      // });
     }
+  }
+
+  createProduct() {
+    this.showeMainShop = false;
+    this.showAddProduct = true;
+  }
+
+  createCategory() {
+    this.showeMainShop = false;
+    this.showAddCategory = true;
+  }
+
+  saveCategory() {
+    this.category.shop = this.shopID;
+    this.shopService.saveCategory(this.category).subscribe(data => {
+      console.log(data);
+      this.showeMainShop = true;
+      this.showAddCategory = false;
+      location.reload();
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  saveProduct() {
+    this.product.shop = this.shopID;
+    this.product.images = ['http://www.gateauxhouse.co.th/uploads/800x600_52eb13b35c9d7.jpg'];
+    this.shopService.saveProduct(this.product).subscribe(data => {
+      console.log(data);
+      this.showeMainShop = true;
+      this.showAddProduct = false;
+      location.reload();
+    }, err => {
+      console.log(err);
+    });
   }
 
   openSelectMap() {
