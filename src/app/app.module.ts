@@ -26,7 +26,7 @@ import { ManageDocumentComponent } from './manage-document/manage-document.compo
 import { CreateSellComponent } from './create-sell/create-sell.component';
 import { DashboardService } from 'app/dashboard/dashboard.service';
 import { ManageShopComponent } from './manage-shop/manage-shop.component';
-
+import { DragulaModule } from 'ng2-dragula';
 import { FacebookModule } from 'ngx-facebook';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
@@ -36,6 +36,7 @@ import { CreateShopComponent } from './create-shop/create-shop.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { Auth } from 'app/provider/auth';
+import { ShopService } from 'app/create-shop/create-shop.service';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { Auth } from 'app/provider/auth';
   imports: [
     BrowserModule,
     FormsModule,
+    DragulaModule,
     HttpModule,
     ComponentsModule,
     RouterModule,
@@ -76,7 +78,8 @@ import { Auth } from 'app/provider/auth';
     DashboardService,
     ManageShopService,
     ServerConfig,
-    Auth
+    Auth,
+    ShopService
   ],
   bootstrap: [AppComponent]
 })

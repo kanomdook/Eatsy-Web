@@ -32,8 +32,13 @@ export class ServerConfig {
 
     AuthHeaders() {
         let headers = new Headers();
-        // headers.append('Authorization', 'Bearer ' + window.localStorage.getItem('token'));
-        headers.append('Authorization', 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRvb2siLCJsb2dpbkV4cGlyZXMiOiIyMDE3LTExLTIyVDA3OjE1OjI5LjYwNloiLCJpYXQiOjE1MTEzMjg1Mjl9.eFBp7O4V9a8CXiJqN5e1iN51WVu-kK-ZeVT3BUxJP44');
+        let user = window.localStorage.getItem('user');
+        let token = '';
+        if (user) {
+            token = JSON.parse(user).loginToken;
+        }
+        headers.append('Authorization', 'Bearer ' + token);
+        // headers.append('Authorization', 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRvb2siLCJsb2dpbkV4cGlyZXMiOiIyMDE3LTExLTIyVDA3OjE1OjI5LjYwNloiLCJpYXQiOjE1MTEzMjg1Mjl9.eFBp7O4V9a8CXiJqN5e1iN51WVu-kK-ZeVT3BUxJP44');
         return { headers: headers };
     }
 }
