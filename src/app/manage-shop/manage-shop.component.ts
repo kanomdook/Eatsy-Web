@@ -9,6 +9,7 @@ import { reject } from 'q';
 import { ManageShopService } from 'app/manage-shop/manage-shop.service';
 import { Router } from '@angular/router';
 import { ServerConfig } from 'app/provider/server.config';
+import { ShopService } from 'app/create-shop/create-shop.service';
 
 declare var google;
 
@@ -36,7 +37,7 @@ export class ManageShopComponent implements OnInit {
   private shopTableList: Array<any> = [];
   private shopForEdit: any = {};
   menuItems: any[];
-  constructor(private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
+  constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
     // let initParams: InitParams = {
     //   appId: '618352801888304',
     //   xfbml: true,
@@ -92,12 +93,22 @@ export class ManageShopComponent implements OnInit {
     });
   }
 
+  deleteShop(shopID) {
+    this.shopService.delete(shopID).subscribe(data => {
+      console.log(data);
+      location.reload();
+    }, err => {
+      console.log(err);
+    });
+  }
+
   createShop() {
-    this.action = 'เพิ่มร้านค้า';
+    window.localStorage.removeItem('selectShop');
+    this.router.navigate(['/create-shop']);
   }
 
   editShop(shop) {
-    window.localStorage.setItem('selectShop',shop._id);
+    window.localStorage.setItem('selectShop', shop._id);
     this.router.navigate(['/create-shop']);
   }
 

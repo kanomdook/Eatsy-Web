@@ -16,4 +16,22 @@ export class ShopService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
+    edit(shop): Observable<any> {
+        return this.http.put(this.server.url + 'api/shops/' + shop._id, shop, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    delete(id): Observable<any> {
+        return this.http.delete(this.server.url + 'api/shops/' + id, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    getShopByID(id): Observable<any> {
+        return this.http.get(this.server.url + 'api/shops/' + id, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
 }

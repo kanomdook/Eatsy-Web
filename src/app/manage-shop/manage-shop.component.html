@@ -38,7 +38,7 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li (click)="createShop()">
-              <a [routerLink]="['/create-shop']">เพิ่มข้อมูลเอง</a>
+              <a>เพิ่มข้อมูลเอง</a>
             </li>
             <li (click)="getShopFromGoogle()">
               <a data-toggle="modal" data-target="#modalGoogle">นำเข้าจาก Google</a>
@@ -95,8 +95,8 @@
                             <a>
                               <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
                           </li>
-                          <li>
-                            <a href="#">
+                          <li (click)="deleteShop(item._id)">
+                            <a>
                               <i class="material-icons">delete</i> ลบร้านค้า</a>
                           </li>
                         </ul>

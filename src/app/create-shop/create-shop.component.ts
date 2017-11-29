@@ -22,6 +22,7 @@ export class CreateShopComponent implements OnInit {
   private times: any = {};
   private address: string;
   private latLng: any = {};
+  private shopID: string;
 
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService) { }
 
@@ -30,6 +31,20 @@ export class CreateShopComponent implements OnInit {
       if (!data) {
         this.router.navigate(['/login']);
       }
+    });
+
+    this.shopID = window.localStorage.getItem('selectShop');
+
+    this.shopService.getShopByID(this.shopID).subscribe(data => {
+      this.shop = data;
+      this.address = data.address.address;
+      this.latLng = {
+        lat: data.address.address ? data.address.address.lat : '',
+        lng: data.address.address ? data.address.address.lng : ''
+      };
+      this.timeList = data.times;
+    }, err => {
+      console.log(err);
     });
   }
 
@@ -123,21 +138,36 @@ export class CreateShopComponent implements OnInit {
   }
 
   save() {
-    this.shop.address = {
-      address: this.address,
-      lat: this.latLng.lat,
-      lng: this.latLng.lng
-    };
-    this.shop.days = this.timeList;
-    this.shopService.save(this.shop).subscribe(data => {
-      console.log(data);
-      this.showeMainShop = true;
-      this.showeditdiv = false;
-      this.showeditTime = false;
-      this.router.navigate(['/manage-shop']);
-    }, err => {
-      console.log(err);
-    });
+    if (this.shopID) {
+      this.shop.address = {
+        address: this.address,
+        lat: this.latLng.lat,
+        lng: this.latLng.lng
+      };
+      this.shop.times = this.timeList;
+      this.shopService.edit(this.shop).subscribe(data => {
+        console.log(data);
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      this.shop.address = {
+        address: this.address,
+        lat: this.latLng.lat,
+        lng: this.latLng.lng
+      };
+      this.shop.times = this.timeList;
+      this.shopService.save(this.shop).subscribe(data => {
+        console.log(data);
+        this.showeMainShop = true;
+        this.showeditdiv = false;
+        this.showeditTime = false;
+        this.router.navigate(['/manage-shop']);
+      }, err => {
+        console.log(err);
+      });
+    }
+
   }
 
   saveMap() {
