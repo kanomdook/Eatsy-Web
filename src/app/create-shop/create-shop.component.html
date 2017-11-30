@@ -19,12 +19,18 @@
       </p>
       <div class="card-block">
 
-        <div class="row">
+        <div class="row" [dragula]='"zone0"'>
           <div class="col-md-2">
             <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
           </div>
           <div class="col-md-2" *ngFor="let item of shop.promoteimage">
+            <span class="bin-1">
+              <i class="material-icons">delete</i>
+            </span>
             <img class="img" [src]="item" alt="image">
+            <span class="pc-1">
+              <i class="material-icons">create</i>
+            </span>
           </div>
         </div>
 
@@ -39,14 +45,14 @@
           </div>
           <div class="col-md-2" *ngFor="let item of categoryList">
             <span class="bin-1">
-              <i class="material-icons">delete</i>
+              <i class="material-icons" (click)="deleteCategory(item._id)">delete</i>
             </span>
-            <img class="img" [src]="item.image" alt="image" width="500px" height="355px">
+            <img (click)="filterByCate()" class="img" [src]="item.image" alt="image" width="500px" height="355px">
             <span class="ca">
               {{item.name}}
             </span>
             <span class="pc-1">
-              <i class="material-icons">create</i>
+              <i class="material-icons" (click)="editCategory(item)">create</i>
             </span>
           </div>
         </div>
@@ -59,9 +65,15 @@
             <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
           </div>
           <div class="col-md-2" *ngFor="let item of products">
+            <span class="bin-1">
+              <i class="material-icons" (click)="deleteProduct(item._id)">delete</i>
+            </span>
             <img class="img" [src]="item.images" alt="image">
-            <span class="ca">
-              {{item.name}}
+            <span class="ca ovf">
+              {{item.name}} {{item.price | number}}
+            </span>
+            <span class="pc-1">
+              <i class="material-icons" (click)="editProduct(item)">create</i>
             </span>
           </div>
         </div>
@@ -236,7 +248,7 @@
 
     <div class="card" *ngIf="showAddProduct" style="width: 43.4%;padding: 26px;">
       <div class="card-header cw">
-        เพิ่มสินค้า
+        {{CE_action_product}}สินค้า
       </div>
       <div class="card-block">
 
@@ -266,6 +278,7 @@
 
         <div class="form-group">
           <select class="form-control" name="cate" [(ngModel)]="product.categories">
+            <option value="">เลือกหมวดหมู่อาหาร</option>
             <option *ngFor="let item of categoryList" [value]="item._id">{{item.name}}</option>
           </select>
         </div>
@@ -277,6 +290,7 @@
         </div>
         <div class="ct">
           <button class="btn btn-primary" (click)="saveProduct()">บันทึก</button>
+          <button class="btn btn-danger" (click)="canselSaveProduct()">ยกเลิก</button>
         </div>
       </div>
     </div>
@@ -286,7 +300,7 @@
 
     <div class="card" *ngIf="showAddCategory" style="width: 43.4%;padding: 26px;">
       <div class="card-header cw">
-        เพิ่มหมวดหมู่
+        {{CE_action_category}}หมวดหมู่
       </div>
       <div class="card-block">
 
@@ -312,6 +326,7 @@
         </div>
         <div class="ct">
           <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
+          <button class="btn btn-danger" (click)="cancelCategory()">ยกเลิก</button>
         </div>
       </div>
     </div>

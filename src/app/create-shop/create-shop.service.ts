@@ -43,6 +43,18 @@ export class ShopService {
             .catch((error: any) => Observable.throw(error));
     }
 
+    editProduct(product): Observable<any> {
+        return this.http.put(this.server.url + 'api/products/' + product._id, product, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    deleteProduct(id): Observable<any> {
+        return this.http.delete(this.server.url + 'api/products/' + id, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
     getProductsByID(id): Observable<any> {
         return this.http.get(this.server.url + 'api/productsbyshop/' + id, this.server.AuthHeaders())
             .map((res: Response) => res.json())
@@ -53,6 +65,18 @@ export class ShopService {
 
     saveCategory(category): Observable<any> {
         return this.http.post(this.server.url + 'api/categoryproducts', category, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    editCategory(category): Observable<any> {
+        return this.http.put(this.server.url + 'api/categoryproducts/' + category._id, category, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    deleteCategory(id): Observable<any> {
+        return this.http.delete(this.server.url + 'api/categoryproducts/' + id, this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }

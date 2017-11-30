@@ -24,7 +24,7 @@
     position: absolute;
     color: #fff;
     margin-left: 10px;
-    font-size: 1.8em;
+    font-size: 1.4em;
 }
 
 .name3 {
@@ -32,7 +32,7 @@
     position: absolute;
     color: #fff;
     margin-left: 10px;
-    font-size: 1.4em;
+    font-size: 1.0em;
 }
 
 .ca {
@@ -222,4 +222,10 @@
     cursor: pointer;
     color: #fff;
     margin-top: 10px;
+}
+
+.ovf {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

@@ -33,6 +33,11 @@ export class CreateShopComponent implements OnInit {
   private coverimage: string = '';
   private openTimeString: string = '';
 
+  private CE_action_product: string;
+  private CE_id_product: string;
+  private CE_action_category: string;
+  private CE_id_category: string;
+
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService) { }
 
   ngOnInit() {
@@ -79,23 +84,90 @@ export class CreateShopComponent implements OnInit {
     }
   }
 
+  filterByCate(){
+    
+  }
+
   createProduct() {
+    this.product = {};
+    this.product.categories = '';
     this.showeMainShop = false;
     this.showAddProduct = true;
+    this.CE_action_product = 'เพิ่ม';
+  }
+
+  canselSaveProduct() {
+    this.showeMainShop = true;
+    this.showAddProduct = false;
+  }
+
+  editProduct(product) {
+    this.showeMainShop = false;
+    this.showAddProduct = true;
+    this.product.name = product.name;
+    this.product.price = product.price;
+    this.product.categories = product.categories ? product.categories._id : '';
+    this.CE_action_product = 'แก้ไข';
+    this.CE_id_product = product._id;
+  }
+
+  deleteProduct(id) {
+    this.shopService.deleteProduct(id).subscribe(data => {
+      location.reload();
+    }, err => {
+      console.log(err);
+    });
   }
 
   createCategory() {
+    this.category = {};
     this.showeMainShop = false;
     this.showAddCategory = true;
+    this.CE_action_category = 'เพิ่ม';
+  }
+
+  editCategory(category) {
+    this.showeMainShop = false;
+    this.showAddCategory = true;
+    this.category.name = category.name;
+    this.CE_action_category = 'แก้ไข';
+    this.CE_id_category = category._id;
+  }
+
+  cancelCategory() {
+    this.showeMainShop = true;
+    this.showAddCategory = false;
   }
 
   saveCategory() {
-    this.category.shop = this.shopID;
-    this.category.image = 'http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg';
-    this.shopService.saveCategory(this.category).subscribe(data => {
-      console.log(data);
-      this.showeMainShop = true;
-      this.showAddCategory = false;
+    if (this.CE_action_category == 'เพิ่ม') {
+      this.category.shop = this.shopID;
+      this.category.image = 'http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg';
+      this.shopService.saveCategory(this.category).subscribe(data => {
+        console.log(data);
+        this.showeMainShop = true;
+        this.showAddCategory = false;
+        location.reload();
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      this.category._id = this.CE_id_category;
+      this.category.shop = this.shopID;
+      // this.category.image = 'http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg';
+      this.shopService.editCategory(this.category).subscribe(data => {
+        console.log(data);
+        this.showeMainShop = true;
+        this.showAddCategory = false;
+        location.reload();
+      }, err => {
+        console.log(err);
+      });
+    }
+  }
+
+  deleteCategory(id) {
+    this.shopService.deleteCategory(id).subscribe(data => {
       location.reload();
     }, err => {
       console.log(err);
@@ -103,16 +175,30 @@ export class CreateShopComponent implements OnInit {
   }
 
   saveProduct() {
-    this.product.shop = this.shopID;
-    this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
-    this.shopService.saveProduct(this.product).subscribe(data => {
-      console.log(data);
-      this.showeMainShop = true;
-      this.showAddProduct = false;
-      location.reload();
-    }, err => {
-      console.log(err);
-    });
+    if (this.CE_action_product == 'เพิ่ม') {
+      this.product.shop = this.shopID;
+      this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
+      this.shopService.saveProduct(this.product).subscribe(data => {
+        console.log(data);
+        this.showeMainShop = true;
+        this.showAddProduct = false;
+        location.reload();
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      this.product._id = this.CE_id_product;
+      this.product.shop = this.shopID;
+      // this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
+      this.shopService.editProduct(this.product).subscribe(data => {
+        console.log(data);
+        this.showeMainShop = true;
+        this.showAddProduct = false;
+        location.reload();
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 
   openSelectMap() {
