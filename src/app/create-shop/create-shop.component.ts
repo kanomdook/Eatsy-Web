@@ -21,6 +21,7 @@ export class CreateShopComponent implements OnInit {
   private product: any = {};
   private category: any = {};
   private products: Array<any> = [];
+  private oldsProducts: Array<any> = [];
   private selectDate: Array<any> = [];
   private categoryList: Array<any> = [];
   private categoryShopList: Array<any> = [];
@@ -84,8 +85,18 @@ export class CreateShopComponent implements OnInit {
     }
   }
 
-  filterByCate(){
-    
+  filterByCate(cateID) {
+    this.oldsProducts = this.oldsProducts.length == 0 ? this.products : this.oldsProducts;
+    console.log(cateID);
+    console.log(this.products);
+    console.log(this.oldsProducts);
+    let dataFilter: Array<any> = [];
+    this.oldsProducts.forEach((el, i) => {
+      if (el.categories._id == cateID) {
+        dataFilter.push(el);
+      }
+    });
+    this.products = dataFilter;
   }
 
   createProduct() {
@@ -276,6 +287,11 @@ export class CreateShopComponent implements OnInit {
     }, 300);
   }
 
+  cancelMap() {
+    this.showeditdiv = true;
+    this.showeMap = false;
+  }
+
   selectDay(day) {
     if (this.selectDate[day]) {
       this.selectDate[day] = false;
@@ -288,6 +304,11 @@ export class CreateShopComponent implements OnInit {
     this.showeMainShop = false;
     this.showeditdiv = true;
     this.showeditTime = false;
+  }
+
+  cancelEditShop() {
+    this.showeMainShop = true;
+    this.showeditdiv = false;
   }
 
   save() {
@@ -345,6 +366,12 @@ export class CreateShopComponent implements OnInit {
     this.showeMainShop = false;
     this.showeditdiv = false;
     this.showeditTime = true;
+  }
+
+  cancelTime() {
+    this.showeMainShop = false;
+    this.showeditdiv = true;
+    this.showeditTime = false;
   }
 
   saveTime() {
