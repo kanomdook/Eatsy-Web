@@ -80,7 +80,7 @@
 
 .fill {
     color: #fff;
-    height: 42.4%;
+    height: 43.4%;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.4);
     top: 0;
@@ -195,4 +195,8 @@
 .m2 {
     margin-top: 18px !important;
     left: 30% !important;
+}
+
+.cw {
+    color: #fff !important;
 }

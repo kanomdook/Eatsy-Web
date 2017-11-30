@@ -25,7 +25,7 @@
           <input type="text" class="form-control" placeholder="ค้นหา...">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button">
-                <i class="material-icons">search</i>
+              <i class="material-icons">search</i>
             </button>
           </span>
         </div>
@@ -81,33 +81,28 @@
                       <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
                       <td>{{item.address.address ? item.address.address: '-'}}</td>
                       <td class="text-center">{{item.importform}}</td>
-                      <td class="text-center dropdown pull-right">
-                        <button class="btn btn-success btn-simple btn-xs" type="button">
-                          <i class="material-icons" style="color:#2fff38">power_settings_new</i>
-                        </button>
+                      <td class="text-center">
+                        <div class="dropdown pull-right" style="margin-right: 46px;">
+                          <button class="btn btn-success btn-simple btn-xs" type="button">
+                            <i class="material-icons" style="color:#2fff38">power_settings_new</i>
+                          </button>
 
-                        <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="true">
-                          <i class="material-icons">more_horiz</i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                          <li (click)="editShop(item)">
-                            <a>
-                              <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
-                          </li>
-                          <li (click)="deleteShop(item._id)">
-                            <a>
-                              <i class="material-icons">delete</i> ลบร้านค้า</a>
-                          </li>
-                        </ul>
-                        <!-- 
-                      <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
-                        <i class="material-icons">edit</i>
-                      </button>
-  
-                      <button class="btn btn-danger btn-simple btn-xs" type="button">
-                        <i class="material-icons">delete</i>
-                      </button> -->
+                          <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                            <i class="material-icons">more_horiz</i>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li (click)="editShop(item)">
+                              <a>
+                                <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
+                            </li>
+                            <li (click)="deleteShop(item._id)">
+                              <a>
+                                <i class="material-icons">delete</i> ลบร้านค้า</a>
+                            </li>
+                          </ul>
+                        </div>
+
                       </td>
                     </tr>
                   </tbody>
@@ -191,7 +186,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                           <li (click)="editShop(item)">
-                            <a [routerLink]="['/create-shop']">
+                            <a>
                               <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
                           </li>
                           <li>
@@ -199,14 +194,6 @@
                               <i class="material-icons">delete</i> ลบร้านค้า</a>
                           </li>
                         </ul>
-                        <!-- 
-                                    <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
-                                      <i class="material-icons">edit</i>
-                                    </button>
-                
-                                    <button class="btn btn-danger btn-simple btn-xs" type="button">
-                                      <i class="material-icons">delete</i>
-                                    </button> -->
                       </td>
                     </tr>
                   </tbody>
@@ -291,7 +278,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                           <li (click)="editShop(item)">
-                            <a [routerLink]="['/create-shop']">
+                            <a>
                               <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
                           </li>
                           <li>
@@ -299,14 +286,6 @@
                               <i class="material-icons">delete</i> ลบร้านค้า</a>
                           </li>
                         </ul>
-                        <!-- 
-                                    <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
-                                      <i class="material-icons">edit</i>
-                                    </button>
-                
-                                    <button class="btn btn-danger btn-simple btn-xs" type="button">
-                                      <i class="material-icons">delete</i>
-                                    </button> -->
                       </td>
                     </tr>
                   </tbody>
@@ -392,22 +371,14 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                           <li (click)="editShop(item)">
-                            <a [routerLink]="['/create-shop']">
+                            <a>
                               <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
                           </li>
                           <li>
-                            <a href="#">
+                            <a>
                               <i class="material-icons">delete</i> ลบร้านค้า</a>
                           </li>
                         </ul>
-                        <!-- 
-                                    <button class="btn btn-primary btn-simple btn-xs" type="button" data-toggle="modal" data-target="#modalCEshop" (click)="editShop(item)">
-                                      <i class="material-icons">edit</i>
-                                    </button>
-                
-                                    <button class="btn btn-danger btn-simple btn-xs" type="button">
-                                      <i class="material-icons">delete</i>
-                                    </button> -->
                       </td>
                     </tr>
                   </tbody>

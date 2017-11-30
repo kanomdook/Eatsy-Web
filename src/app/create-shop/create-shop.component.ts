@@ -22,6 +22,7 @@ export class CreateShopComponent implements OnInit {
   private category: any = {};
   private products: Array<any> = [];
   private selectDate: Array<any> = [];
+  private categoryList: Array<any> = [];
   private useSelectDate: Array<any> = [];
   private timeList: Array<any> = [];
   private times: any = {};
@@ -56,17 +57,16 @@ export class CreateShopComponent implements OnInit {
 
       this.shopService.getProductsByID(this.shopID).subscribe(data => {
         this.products = data.items;
-        console.log(data);
       }, err => {
         console.log(err);
       });
 
-      // this.shopService.getCategoryByID(this.shopID).subscribe(data => {
-      //   this.category = data.items;
-      //   console.log(this.category);
-      // }, err => {
-      //   console.log(err);
-      // });
+      this.shopService.getCategoryByID(this.shopID).subscribe(data => {
+        this.categoryList = data.items;
+        this.product.categories = this.categoryList.length > 0 ? this.categoryList[0]._id : '';
+      }, err => {
+        console.log(err);
+      });
     }
   }
 
@@ -82,6 +82,7 @@ export class CreateShopComponent implements OnInit {
 
   saveCategory() {
     this.category.shop = this.shopID;
+    this.category.image = 'http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg';
     this.shopService.saveCategory(this.category).subscribe(data => {
       console.log(data);
       this.showeMainShop = true;
@@ -94,7 +95,7 @@ export class CreateShopComponent implements OnInit {
 
   saveProduct() {
     this.product.shop = this.shopID;
-    this.product.images = ['http://www.gateauxhouse.co.th/uploads/800x600_52eb13b35c9d7.jpg'];
+    this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
     this.shopService.saveProduct(this.product).subscribe(data => {
       console.log(data);
       this.showeMainShop = true;

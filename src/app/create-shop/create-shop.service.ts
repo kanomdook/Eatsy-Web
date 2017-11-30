@@ -58,7 +58,7 @@ export class ShopService {
     }
 
     getCategoryByID(id): Observable<any> {
-        return this.http.get(this.server.url + 'api/categoryproducts/' + id, this.server.AuthHeaders())
+        return this.http.get(this.server.url + 'api/categoryproductsbyshop/' + id, this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
