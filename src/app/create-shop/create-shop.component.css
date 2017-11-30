@@ -96,7 +96,7 @@
 
 .bin-2 {
     position: absolute;
-    right: 36px;
+    right: 4px;
     cursor: pointer;
     color: #fff;
     margin-top: 10px;
@@ -199,4 +199,27 @@
 
 .cw {
     color: #fff !important;
+}
+
+.pc-1 {
+    position: absolute;
+    right: 4px;
+    margin-top: -36px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.bin-1 {
+    position: absolute;
+    right: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.bin-3 {
+    position: absolute;
+    right: -6px;
+    cursor: pointer;
+    color: #fff;
+    margin-top: 10px;
 }

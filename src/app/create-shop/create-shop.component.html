@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="container-fluid" style="text-align: center;">
     <div class="card" *ngIf="showeMainShop" style="width: 68%;">
-      <img class="card-img-top" [src]="coverimage ? coverimage:'http://files.all-free-download.com//downloadfiles/wallpapers/3840_2160/mount_fuji_japan_highest_mountain_15753.jpg'"
+      <img class="card-img-top" [src]="shop.coverimage ? shop.coverimage : 'http://files.all-free-download.com//downloadfiles/wallpapers/3840_2160/mount_fuji_japan_highest_mountain_15753.jpg'"
         alt="Card image cap">
       <span class="fill"></span>
       <span class="camera">
@@ -15,7 +15,7 @@
         {{shop.detail ? shop.detail: '-'}}
       </p>
       <p class="name3">
-        {{address ? address: '-'}} เวลาเปิดปิดร้าน 08:00 - 20:00
+        {{address ? address: '-'}} เวลาเปิดปิดร้าน {{openTimeString}}
       </p>
       <div class="card-block">
 
@@ -38,9 +38,15 @@
             <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
           </div>
           <div class="col-md-2" *ngFor="let item of categoryList">
+            <span class="bin-1">
+              <i class="material-icons">delete</i>
+            </span>
             <img class="img" [src]="item.image" alt="image" width="500px" height="355px">
             <span class="ca">
               {{item.name}}
+            </span>
+            <span class="pc-1">
+              <i class="material-icons">create</i>
             </span>
           </div>
         </div>
@@ -76,8 +82,8 @@
         <div class="row">
           <div class="col-md-8">
             <select name="cateshop" class="form-control" [(ngModel)]="shop.categories">
-              <option value="ร้านอาหาร">ร้านอาหาร</option>
-              <option value="ร้านเครื่องดื่ม">ร้านเครื่องดื่ม</option>
+              <option value="">เลือกประเภทร้านค้า</option>
+              <option *ngFor="let item of categoryShopList" [value]="item._id">{{item.name}}</option>
             </select>
             <div class="form-group">
               <input type="text" class="form-control" placeholder="ชื่อร้าน" naem="shopName" [(ngModel)]="shop.name">
@@ -289,7 +295,7 @@
 
           </div>
           <div class="col-md-4">
-            <span class="bin-2" (click)="deleteTime(i)">
+            <span class="bin-3" (click)="deleteTime(i)">
               <i class="material-icons">delete</i>
             </span>
             <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">

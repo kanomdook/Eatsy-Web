@@ -62,4 +62,10 @@ export class ShopService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
+    getCategoryShop(): Observable<any> {
+        return this.http.get(this.server.url + 'api/categoryshops', this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
 }

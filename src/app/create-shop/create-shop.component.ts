@@ -23,6 +23,7 @@ export class CreateShopComponent implements OnInit {
   private products: Array<any> = [];
   private selectDate: Array<any> = [];
   private categoryList: Array<any> = [];
+  private categoryShopList: Array<any> = [];
   private useSelectDate: Array<any> = [];
   private timeList: Array<any> = [];
   private times: any = {};
@@ -30,6 +31,7 @@ export class CreateShopComponent implements OnInit {
   private latLng: any = {};
   private shopID: string;
   private coverimage: string = '';
+  private openTimeString: string = '';
 
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService) { }
 
@@ -41,6 +43,12 @@ export class CreateShopComponent implements OnInit {
     });
 
     this.shopID = window.localStorage.getItem('selectShop');
+    this.shop.categories = '';
+    this.shopService.getCategoryShop().subscribe(data => {
+      this.categoryShopList = data;
+    }, err => {
+      console.log(err);
+    });
 
     if (this.shopID) {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
@@ -51,6 +59,7 @@ export class CreateShopComponent implements OnInit {
           lng: data.address ? data.address.lng : ''
         };
         this.timeList = data.times;
+        this.openTimeString = this.timeList.length > 0 ? this.timeList[0].timestart + '-' + this.timeList[0].timeend : '-';
       }, err => {
         console.log(err);
       });
