@@ -72,6 +72,7 @@ export class ManageShopComponent implements OnInit {
   }
 
   saveShops() {
+
     console.log(this.shops);
     this.shops.forEach(element => {
       this.loadingIdx[element.id] = true;
@@ -83,9 +84,10 @@ export class ManageShopComponent implements OnInit {
       element.tel = element.phone;
       element.coverimage = element.img;
       element.importForm = this.importForm;
+      alert("WAY : " + this.importForm);
       this.manageShopService.save(element).subscribe(dataRes => {
         this.loadingIdx[element.id] = false;
-        console.log(dataRes);
+        console.log("Save shop : " ,dataRes);
       }, err => {
         this.loadingIdx[element.id] = false;
         console.log(err);
