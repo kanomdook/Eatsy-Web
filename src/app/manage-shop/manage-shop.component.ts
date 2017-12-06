@@ -98,7 +98,7 @@ export class ManageShopComponent implements OnInit {
         this.loadingIdx[element.id] = false;
         console.log(err);
         if(JSON.parse(err._body).message.toString() === 'Name already exists' ){
-        alert(element.name + ' บันทึกข้อมูลแล้ว');        
+        alert("มีข้อมูลร้าน " + element.name + "แล้วค่ะ");        
         }
       this.selectedShop[element.id] = false;      
       });
