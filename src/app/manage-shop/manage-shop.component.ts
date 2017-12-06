@@ -75,7 +75,13 @@ export class ManageShopComponent implements OnInit {
 
     console.log(this.shops);
     this.shops.forEach(element => {
-      this.loadingIdx[element.id] = true;
+      if(!this.loadingIdx[element.id] && !this.selectedShop[element.id]){
+
+      }else{
+        this.loadingIdx[element.id] = true;
+        this.selectedShop[element.id] = true;
+      }
+            
       element.address = {
         address: element.vicinity,
         lat: element.lat,
@@ -83,14 +89,18 @@ export class ManageShopComponent implements OnInit {
       };
       element.tel = element.phone;
       element.coverimage = element.img;
-      element.importForm = this.importForm;
-      alert("WAY : " + this.importForm);
+      element.importform = this.importForm;
       this.manageShopService.save(element).subscribe(dataRes => {
         this.loadingIdx[element.id] = false;
-        console.log("Save shop : " ,dataRes);
+      // this.selectedShop[element.id] = false;            
+        console.log(dataRes);
       }, err => {
         this.loadingIdx[element.id] = false;
         console.log(err);
+        if(JSON.parse(err._body).message.toString() === 'Name already exists' ){
+        alert("มีข้อมูลร้าน " + element.name + "แล้วค่ะ");        
+        }
+      this.selectedShop[element.id] = false;      
       });
     });
   }
