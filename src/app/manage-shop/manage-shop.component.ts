@@ -72,6 +72,7 @@ export class ManageShopComponent implements OnInit {
   }
 
   saveShops() {
+
     console.log(this.shops);
     this.shops.forEach(element => {
       if(!this.loadingIdx[element.id] && !this.selectedShop[element.id]){
@@ -96,7 +97,7 @@ export class ManageShopComponent implements OnInit {
       }, err => {
         this.loadingIdx[element.id] = false;
         console.log(err);
-        if(JSON.parse(err._body).message.toString() === 'Name already exits'){
+        if(JSON.parse(err._body).message.toString() === 'Name already exists' ){
         alert(element.name + ' บันทึกข้อมูลแล้ว');        
         }
       this.selectedShop[element.id] = false;      
