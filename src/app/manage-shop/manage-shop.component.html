@@ -75,13 +75,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of shopTableList; let i = index">
+                    <tr *ngFor="let item of shopTableList; let i = index ">
                       <td>{{i + 1}}</td>
                       <td>{{item.name}}</td>
                       <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
                       <td>{{item.address.address ? item.address.address: '-'}}</td>
                       <td class="text-center">{{item.importform}}
-                        <p>(by {{item.user.firstName}})</p>
+                        <p subText>by {{item.user.firstName}}</p>
                       </td>
                       <td class="text-center">
                         <div class="dropdown pull-right" style="margin-right: 46px;">
@@ -172,7 +172,7 @@
                   </thead>
                   <!-- menu1 -->
                   <tbody>
-                    <tr *ngFor="let item of shopTableListNew; let i = index">
+                    <tr *ngFor="let item of shopTableList; let i = index | orderBy : '-created'">
                       <td>{{i + 1}}</td>
                       <td>{{item.name}}</td>
                       <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
