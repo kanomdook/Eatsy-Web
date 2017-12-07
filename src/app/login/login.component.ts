@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.auth.sigin(this.credentials).subscribe(data => {
       window.localStorage.setItem('user', JSON.stringify(data));
       setTimeout(() => {
-        location.reload();
+        window.location.reload();
       }, 100);
     }, err => {
       console.log(err);

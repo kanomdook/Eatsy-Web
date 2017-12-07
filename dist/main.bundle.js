@@ -527,7 +527,7 @@ var NavbarComponent = (function () {
     NavbarComponent.prototype.logout = function () {
         this.server.logout().subscribe(function (data) {
             setTimeout(function () {
-                location.reload();
+                window.location.reload();
             }, 100);
         });
     };
@@ -1835,7 +1835,7 @@ var LoginComponent = (function () {
         this.auth.sigin(this.credentials).subscribe(function (data) {
             window.localStorage.setItem('user', JSON.stringify(data));
             setTimeout(function () {
-                location.reload();
+                window.location.reload();
             }, 100);
         }, function (err) {
             console.log(err);
