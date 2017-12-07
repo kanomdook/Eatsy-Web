@@ -38,6 +38,8 @@ import { LoginComponent } from './login/login.component';
 import { Auth } from 'app/provider/auth';
 import { ShopService } from 'app/create-shop/create-shop.service';
 
+import { Ng2MapModule} from 'ng2-map';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +74,8 @@ import { ShopService } from 'app/create-shop/create-shop.service';
     FacebookModule.forRoot(),
     BootstrapModalModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    Ng2MapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDcsyfUw4ToTjnU9i_IxfdaoQZKs8suBPc'})
   ],
   providers: [
     DashboardService,
