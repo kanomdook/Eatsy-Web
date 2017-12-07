@@ -525,8 +525,9 @@ var NavbarComponent = (function () {
         });
     };
     NavbarComponent.prototype.logout = function () {
+        var _this = this;
         this.server.logout().subscribe(function (data) {
-            location.reload();
+            _this.router.navigate(['/manage-shop']);
         });
     };
     NavbarComponent.prototype.sidebarOpen = function () {

@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
 
     logout(){
         this.server.logout().subscribe(data =>{
-            location.reload();
+            this.router.navigate(['/manage-shop']);
         });
     }
 
