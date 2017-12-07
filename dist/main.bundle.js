@@ -2058,6 +2058,20 @@ var ManageShopComponent = (function () {
             if (!data) {
                 _this.router.navigate(['/login']);
             }
+            else {
+                _this.manageShopService.getList().subscribe(function (data) {
+                    _this.shopTableList = data;
+                    console.log(_this.shopTableList);
+                }, function (err) {
+                    console.log(err);
+                });
+                _this.manageShopService.getListNewShop().subscribe(function (data) {
+                    _this.shopTableListNew = data;
+                    console.log(_this.shopTableListNew);
+                }, function (err) {
+                    console.log(err);
+                });
+            }
         });
         // this.fb.login({
         //   enable_profile_selector: true,
@@ -2067,18 +2081,6 @@ var ManageShopComponent = (function () {
         // }).catch(err => {
         //   console.log(err);
         // });
-        this.manageShopService.getList().subscribe(function (data) {
-            _this.shopTableList = data;
-            console.log(_this.shopTableList);
-        }, function (err) {
-            console.log(err);
-        });
-        this.manageShopService.getListNewShop().subscribe(function (data) {
-            _this.shopTableListNew = data;
-            console.log(_this.shopTableListNew);
-        }, function (err) {
-            console.log(err);
-        });
     };
     ManageShopComponent.prototype.saveShops = function () {
         var _this = this;
