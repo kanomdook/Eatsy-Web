@@ -525,9 +525,10 @@ var NavbarComponent = (function () {
         });
     };
     NavbarComponent.prototype.logout = function () {
-        var _this = this;
         this.server.logout().subscribe(function (data) {
-            _this.router.navigate(['/manage-shop']);
+            setTimeout(function () {
+                location.reload();
+            }, 100);
         });
     };
     NavbarComponent.prototype.sidebarOpen = function () {
@@ -1831,10 +1832,11 @@ var LoginComponent = (function () {
         });
     };
     LoginComponent.prototype.login = function () {
-        var _this = this;
         this.auth.sigin(this.credentials).subscribe(function (data) {
             window.localStorage.setItem('user', JSON.stringify(data));
-            _this.router.navigate(['/manage-shop']);
+            setTimeout(function () {
+                location.reload();
+            }, 100);
         }, function (err) {
             console.log(err);
         });

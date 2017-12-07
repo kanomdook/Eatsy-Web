@@ -34,9 +34,11 @@ export class NavbarComponent implements OnInit {
         });
     }
 
-    logout(){
-        this.server.logout().subscribe(data =>{
-            this.router.navigate(['/manage-shop']);
+    logout() {
+        this.server.logout().subscribe(data => {
+            setTimeout(() => {
+                location.reload();
+            }, 100);
         });
     }
 
