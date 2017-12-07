@@ -1,455 +1,462 @@
 <div class="main-content">
-    <div class="container-fluid">
+  <div class="container-fluid">
 
 
-        <!-- //////Apple/// -->
-        <div class="row">
-            <div class="col-md-6">
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a data-toggle="tab" href="#home">รายการร้านค้า</a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#menu1">ร้านค้าใหม่</a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#menu2">Official</a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#menu3">ร้านฝากซื้อ</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-4" style="margin-top: -14px">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="ค้นหา...">
-                    <span class="input-group-btn">
+    <!-- //////Apple/// -->
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a data-toggle="tab" href="#home">รายการร้านค้า</a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#menu1">ร้านค้าใหม่</a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#menu2">Official</a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#menu3">ร้านฝากซื้อ</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4" style="margin-top: -14px">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="ค้นหา...">
+          <span class="input-group-btn">
             <button class="btn btn-default" type="button">
               <i class="material-icons">search</i>
             </button>
           </span>
-                </div>
-            </div>
-            <div class="col-md-2" style="margin-top: -10px">
-                <div class="dropdown pull-right">
-                    <button class="btn btn-success pull-right dropdown-toggle" style="background-color:#2bea33" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        </div>
+      </div>
+      <div class="col-md-2" style="margin-top: -10px">
+        <div class="dropdown pull-right">
+          <button class="btn btn-success pull-right dropdown-toggle" style="background-color:#2bea33" type="button" id="dropdownMenu1"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="material-icons">add</i> เพิ่มร้านค้า
           </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li (click)="createShop()">
-                            <a>เพิ่มข้อมูลเอง</a>
-                        </li>
-                        <li (click)="getShopFromGoogle()">
-                            <a data-toggle="modal" data-target="#modalGoogle">นำเข้าจาก Google</a>
-                        </li>
-                        <li (click)="getShopFromFacebook()">
-                            <a data-toggle="modal" data-target="#modalGoogle">นำเข้าจาก Facebook</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li (click)="createShop()">
+              <a>เพิ่มข้อมูลเอง</a>
+            </li>
+            <li (click)="getShopFromGoogle()">
+              <a data-toggle="modal" data-target="#modalGoogle">นำเข้าจาก Google</a>
+            </li>
+            <li (click)="getShopFromFacebook()">
+              <a data-toggle="modal" data-target="#modalGoogle">นำเข้าจาก Facebook</a>
+            </li>
+          </ul>
         </div>
+      </div>
+    </div>
 
 
 
-        <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
 
-                <div class="row">
+        <div class="row">
 
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-content table-responsive">
-                                <table class="table">
-                                    <thead class="text-danger">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>ชื่อร้านค้า</th>
-                                            <th class="text-center col-md-2">เบอร์โทร</th>
-                                            <th>ที่อยู่</th>
-                                            <th class="text-center col-md-2">ช่องทางนำเข้า</th>
-                                            <th class="text-center col-md-2">
-                                                <span style="margin-right:-50px">Action</span>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let item of shopTableList; let i = index">
-                                            <td>{{i + 1}}</td>
-                                            <td>{{item.name}}</td>
-                                            <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
-                                            <td>{{item.address.address ? item.address.address: '-'}}</td>
-                                            <td class="text-center">{{item.importform}}
-                                                <p>(by {{item.user.firstName}})</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="dropdown pull-right" style="margin-right: 46px;">
-                                                    <button class="btn btn-success btn-simple btn-xs" type="button">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-danger">
+                    <tr>
+                      <th>#</th>
+                      <th>ชื่อร้านค้า</th>
+                      <th class="text-center col-md-2">เบอร์โทร</th>
+                      <th>ที่อยู่</th>
+                      <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                      <th class="text-center col-md-2">
+                        <span style="margin-right:-50px">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of shopTableList; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.name}}</td>
+                      <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
+                      <td>{{item.address.address ? item.address.address: '-'}}</td>
+                      <td class="text-center">{{item.importform}}
+                        <p>(by {{item.user.firstName}})</p>
+                      </td>
+                      <td class="text-center">
+                        <div class="dropdown pull-right" style="margin-right: 46px;">
+                          <button class="btn btn-success btn-simple btn-xs" type="button">
                             <i class="material-icons" style="color:#2fff38">power_settings_new</i>
                           </button>
 
-                                                    <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
                             <i class="material-icons">more_horiz</i>
                           </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                        <li (click)="editShop(item)">
-                                                            <a>
-                                                                <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
-                                                        </li>
-                                                        <li (click)="deleteShop(item._id)">
-                                                            <a>
-                                                                <i class="material-icons">delete</i> ลบร้านค้า</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <div class="pc">
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination">
-                                            <li>
-                                                <a href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            </li>
-                                            <li class="active">
-                                                <a href="#">1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">2</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">3</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">4</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">5</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
-                            </div>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li (click)="editShop(item)">
+                              <a>
+                                <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
+                            </li>
+                            <li (click)="deleteShop(item._id)">
+                              <a>
+                                <i class="material-icons">delete</i> ลบร้านค้า</a>
+                            </li>
+                          </ul>
                         </div>
-                    </div>
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="pc">
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                      <li>
+                        <a href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="#">1</a>
+                      </li>
+                      <li>
+                        <a href="#">2</a>
+                      </li>
+                      <li>
+                        <a href="#">3</a>
+                      </li>
+                      <li>
+                        <a href="#">4</a>
+                      </li>
+                      <li>
+                        <a href="#">5</a>
+                      </li>
+                      <li>
+                        <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
+
+              </div>
             </div>
-
-
-
-
-            <div id="menu1" class="tab-pane fade">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-content table-responsive">
-                                <table class="table">
-                                    <thead class="text-danger">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>ชื่อร้านค้า</th>
-                                            <th class="text-center col-md-2">เบอร์โทร</th>
-                                            <th>ที่อยู่</th>
-                                            <th class="text-center col-md-2">ช่องทางนำเข้า</th>
-                                            <th class="text-center col-md-2">
-                                                <span style="margin-right:-50px">Action</span>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>ไม่มีข้อมูล</tr>
-                                    </tbody>
-                                </table>
-
-                                <div class="pc">
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination">
-                                            <li>
-                                                <a href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            </li>
-                                            <li class="active">
-                                                <a href="#">1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">2</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">3</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">4</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">5</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-            <div id="menu2" class="tab-pane fade">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-content table-responsive">
-                                <table class="table">
-                                    <thead class="text-danger">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>ชื่อร้านค้า</th>
-                                            <th class="text-center col-md-2">เบอร์โทร</th>
-                                            <th>ที่อยู่</th>
-                                            <th class="text-center col-md-2">ช่องทางนำเข้า</th>
-                                            <th class="text-center col-md-2">
-                                                <span style="margin-right:-50px">Action</span>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>ไม่มีข้อมูล</tr>
-                                    </tbody>
-                                </table>
-
-                                <div class="pc">
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination">
-                                            <li>
-                                                <a href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            </li>
-                                            <li class="active">
-                                                <a href="#">1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">2</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">3</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">4</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">5</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-            <div id="menu3" class="tab-pane fade">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-content table-responsive">
-                                <table class="table">
-                                    <thead class="text-danger">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>ชื่อร้านค้า</th>
-                                            <th class="text-center col-md-2">เบอร์โทร</th>
-                                            <th>ที่อยู่</th>
-                                            <th class="text-center col-md-2">ช่องทางนำเข้า</th>
-                                            <th class="text-center col-md-2">
-                                                <span style="margin-right:-50px">Action</span>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>ไม่มีข้อมูล</tr>
-                                    </tbody>
-                                </table>
-
-                                <div class="pc">
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination">
-                                            <li>
-                                                <a href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            </li>
-                                            <li class="active">
-                                                <a href="#">1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">2</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">3</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">4</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">5</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
 
 
 
-        <!-- ////? -->
+
+      <div id="menu1" class="tab-pane fade">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-danger">
+                    <tr>
+                      <th>#</th>
+                      <th>ชื่อร้านค้า</th>
+                      <th class="text-center col-md-2">เบอร์โทร</th>
+                      <th>ที่อยู่</th>
+                      <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                      <th class="text-center col-md-2">
+                        <span style="margin-right:-50px">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>ไม่มีข้อมูล</tr>
+                  </tbody>
+                </table>
+
+                <div class="pc">
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                      <li>
+                        <a href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="#">1</a>
+                      </li>
+                      <li>
+                        <a href="#">2</a>
+                      </li>
+                      <li>
+                        <a href="#">3</a>
+                      </li>
+                      <li>
+                        <a href="#">4</a>
+                      </li>
+                      <li>
+                        <a href="#">5</a>
+                      </li>
+                      <li>
+                        <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
+
+
+
+      <div id="menu2" class="tab-pane fade">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-danger">
+                    <tr>
+                      <th>#</th>
+                      <th>ชื่อร้านค้า</th>
+                      <th class="text-center col-md-2">เบอร์โทร</th>
+                      <th>ที่อยู่</th>
+                      <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                      <th class="text-center col-md-2">
+                        <span style="margin-right:-50px">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>ไม่มีข้อมูล</tr>
+                  </tbody>
+                </table>
+
+                <div class="pc">
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                      <li>
+                        <a href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="#">1</a>
+                      </li>
+                      <li>
+                        <a href="#">2</a>
+                      </li>
+                      <li>
+                        <a href="#">3</a>
+                      </li>
+                      <li>
+                        <a href="#">4</a>
+                      </li>
+                      <li>
+                        <a href="#">5</a>
+                      </li>
+                      <li>
+                        <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div id="menu3" class="tab-pane fade">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-danger">
+                    <tr>
+                      <th>#</th>
+                      <th>ชื่อร้านค้า</th>
+                      <th class="text-center col-md-2">เบอร์โทร</th>
+                      <th>ที่อยู่</th>
+                      <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                      <th class="text-center col-md-2">
+                        <span style="margin-right:-50px">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>ไม่มีข้อมูล</tr>
+                  </tbody>
+                </table>
+
+                <div class="pc">
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                      <li>
+                        <a href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="#">1</a>
+                      </li>
+                      <li>
+                        <a href="#">2</a>
+                      </li>
+                      <li>
+                        <a href="#">3</a>
+                      </li>
+                      <li>
+                        <a href="#">4</a>
+                      </li>
+                      <li>
+                        <a href="#">5</a>
+                      </li>
+                      <li>
+                        <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+
+    <!-- ////? -->
+
+
+  </div>
 </div>
 
 <!-- /////////////////////////////////MODAL Google and Facebook import shop///////////////////////// -->
 
 <div class="modal fade" id="modalGoogle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-                <h4 class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก {{importForm}}</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row bd">
-                    <div class="col-md-4">
-                        <div class="form-group form-black label-floating is-empty">
-                            <label class="control-label">ระแวก (เช่น สยามพารากอน)</label>
-                            <input class="form-control" type="text" [(ngModel)]="local">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-control" [(ngModel)]="shopType">
+        <h4 class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก {{importForm}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row bd">
+          <!-- <div class="col-md-4">
+            <div class="form-group form-black is-empty"> -->
+          <div class="col-md-4 form-group form-black is-empty">
+            <!-- <div class=""> -->
+            <label class="control-label">ระแวก (เช่น สยามพารากอน)</label>
+            <input class="form-control" type="text" [(ngModel)]="local" placeholder="สยามพารากอน">
+          </div>
+          <!-- </div> -->
+          <div class="col-md-3">
+            <label class="control-label">หมวดหมู่ร้าน</label>
+            <select class="form-control" [(ngModel)]="shopType">
               <option *ngIf="importForm == 'Google'" value="">ทั้งหมด</option>
               <option *ngIf="importForm == 'Google'" value="restaurant">restaurant</option>
               <option *ngIf="importForm == 'Google'" value="store">store</option>
               <option *ngIf="importForm == 'Google'" value="cafe">cafe</option>
               <option *ngIf="importForm == 'Facebook'" value="place">place</option>
             </select>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group form-black label-floating is-empty">
-                            <label class="control-label">คำค้นหา (เช่น coffee)</label>
-                            <input class="form-control" type="text" [(ngModel)]="keyword">
-                        </div>
-                    </div>
-                    <div class="col-md-2 mt-10">
-                        <button class="btn btn-info" (click)="search()">ค้นหา</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3" *ngFor="let item of shopList" (click)="selectShops(item.id)">
-                        <div class="hv" *ngIf="loadingIdx[item.id]">
-                            <img src="../../assets/img/301.svg" alt="Loading..." class="mgt-148">
-                        </div>
-                        <div class="card" style="width: 20rem">
-                            <span class="lo" *ngIf="selectedShop[item.id]">
+          </div>
+          <!-- <div class="col-md-3">
+            <div class="form-group form-black  is-empty"> -->
+          <div class="col-md-3 form-group form-black  is-empty">
+            <!-- <div class=""> -->
+            <label class="control-label">คำค้นหา (เช่น coffee)</label>
+            <input class="form-control" type="text" [(ngModel)]="keyword" placeholder="coffee">
+            <!-- </div> -->
+          </div>
+          <div class="col-md-2 mt-10">
+            <button class="btn btn-info" (click)="search()">ค้นหา</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3" *ngFor="let item of shopList" (click)="selectShops(item.id)">
+            <div class="hv" *ngIf="loadingIdx[item.id]">
+              <img src="../../assets/img/301.svg" alt="Loading..." class="mgt-148">
+            </div>
+            <div class="card" style="width: 20rem">
+              <span class="lo" *ngIf="selectedShop[item.id]">
                 <img class="ic" src="https://i0.wp.com/triagelogic.com/wp-content/uploads/2016/02/successful-registration.png?resize=300%2C300&ssl=1">
               </span>
-                            <img class="card-img-top" [src]="item.img" alt="Card image" width="318" height="180">
-                            <div class="card-block pd-4">
-                                <h4 class="card-title ellipsis">
-                                    <b>{{item.name}}</b>
-                                </h4>
-                                <p class="card-text ellipsis">{{item.vicinity}}</p>
-                                <p class="card-text ellipsis">เบอร์โทรศัพท์ {{item.phone ? item.phone : '-'}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <img class="card-img-top" [src]="item.img" alt="Card image" width="318" height="180">
+              <div class="card-block pd-4">
+                <h4 class="card-title ellipsis">
+                  <b>{{item.name}}</b>
+                </h4>
+                <p class="card-text ellipsis">{{item.vicinity}}</p>
+                <p class="card-text ellipsis">เบอร์โทรศัพท์ {{item.phone ? item.phone : '-'}}</p>
+              </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="saveShops()">บันทึกข้อมูล</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveShops()">บันทึกข้อมูล</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- /////////////////////////////////MODAL create and edit shop///////////////////////// -->
 
 <div class="modal fade" id="modalCEshop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-                <h4 class="modal-title" id="exampleModalLabel2">{{action}}</h4>
+        <h4 class="modal-title" id="exampleModalLabel2">{{action}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <img class="im" src="{{shopForEdit.coverimage}}" alt="image">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-12 lo2"></div>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <img class="im" src="{{shopForEdit.coverimage}}" alt="image">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-12 lo2"></div>
-                        </div>
-                        <div class="row">
+            <div class="row">
 
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="saveShops()">บันทึกข้อมูล</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveShops()">บันทึกข้อมูล</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+      </div>
     </div>
+  </div>
 </div>
 
 
