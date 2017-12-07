@@ -21,6 +21,7 @@ import { CreateSellComponent } from 'app/create-sell/create-sell.component';
 import { ManageShopComponent } from 'app/manage-shop/manage-shop.component';
 import { CreateShopComponent } from 'app/create-shop/create-shop.component';
 import { LoginComponent } from 'app/login/login.component';
+import { AppComponent } from 'app/app.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },

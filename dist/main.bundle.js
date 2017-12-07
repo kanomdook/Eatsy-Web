@@ -1803,6 +1803,7 @@ module.exports = "<div class=\"main-content\">\r\n  <div class=\"container-fluid
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_provider_auth__ = __webpack_require__("../../../../../src/app/provider/auth.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1816,11 +1817,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = (function () {
-    function LoginComponent(server, auth, router) {
+    function LoginComponent(server, auth, router, location) {
         this.server = server;
         this.auth = auth;
         this.router = router;
+        this.location = location;
         this.credentials = {};
     }
     LoginComponent.prototype.ngOnInit = function () {
@@ -1832,10 +1835,12 @@ var LoginComponent = (function () {
         });
     };
     LoginComponent.prototype.login = function () {
-        var _this = this;
         this.auth.sigin(this.credentials).subscribe(function (data) {
             window.localStorage.setItem('user', JSON.stringify(data));
-            _this.router.navigate(['/manage-shop']);
+            // window.location.reload('/manage-shop');
+            // this.router.navigate(['/manage-shop']);
+            location.reload();
+            // this.location.go('/manage-shop');
         }, function (err) {
             console.log(err);
         });
@@ -1848,10 +1853,10 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/login/login.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_app_provider_server_config__["a" /* ServerConfig */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_provider_server_config__["a" /* ServerConfig */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_app_provider_auth__["a" /* Auth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_provider_auth__["a" /* Auth */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_app_provider_server_config__["a" /* ServerConfig */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_provider_server_config__["a" /* ServerConfig */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_app_provider_auth__["a" /* Auth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_provider_auth__["a" /* Auth */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common__["Location"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_common__["Location"]) === "function" && _d || Object])
 ], LoginComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
