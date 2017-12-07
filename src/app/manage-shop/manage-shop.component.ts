@@ -35,6 +35,7 @@ export class ManageShopComponent implements OnInit {
   }; //central world
   private customSearch: boolean = false;
   private shopTableList: Array<any> = [];
+  private shopTableListNew: Array<any> = [];
   private shopForEdit: any = {};
   menuItems: any[];
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
@@ -69,19 +70,26 @@ export class ManageShopComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+
+    this.manageShopService.getListNewShop().subscribe(data => {
+      this.shopTableListNew = data;
+      console.log(this.shopTableListNew);
+    }, err => {
+      console.log(err);
+    });
   }
 
   saveShops() {
 
     console.log(this.shops);
     this.shops.forEach(element => {
-      if(!this.loadingIdx[element.id] && !this.selectedShop[element.id]){
+      if (!this.loadingIdx[element.id] && !this.selectedShop[element.id]) {
 
-      }else{
+      } else {
         this.loadingIdx[element.id] = true;
         this.selectedShop[element.id] = true;
       }
-            
+
       element.address = {
         address: element.vicinity,
         lat: element.lat,
@@ -92,15 +100,15 @@ export class ManageShopComponent implements OnInit {
       element.importform = this.importForm;
       this.manageShopService.save(element).subscribe(dataRes => {
         this.loadingIdx[element.id] = false;
-      // this.selectedShop[element.id] = false;            
+        // this.selectedShop[element.id] = false;            
         console.log(dataRes);
       }, err => {
         this.loadingIdx[element.id] = false;
         console.log(err);
-        if(JSON.parse(err._body).message.toString() === 'Name already exists' ){
-        alert("มีข้อมูลร้าน " + element.name + "แล้วค่ะ");        
+        if (JSON.parse(err._body).message.toString() === 'Name already exists') {
+          alert("มีข้อมูลร้าน " + element.name + "แล้วค่ะ");
         }
-      this.selectedShop[element.id] = false;      
+        this.selectedShop[element.id] = false;
       });
     });
   }
