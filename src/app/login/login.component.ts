@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.sigin(this.credentials).subscribe(data => {
       window.localStorage.setItem('user', JSON.stringify(data));
-      window.location.reload();
       this.router.navigate(['/manage-shop']);
     }, err => {
       console.log(err);
