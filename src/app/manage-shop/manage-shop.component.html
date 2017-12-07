@@ -170,9 +170,42 @@
                       </th>
                     </tr>
                   </thead>
+                  <!-- menu1 -->
                   <tbody>
-                    <tr>ไม่มีข้อมูล</tr>
+                    <tr *ngFor="let item of shopTableListNew; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.name}}</td>
+                      <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
+                      <td>{{item.address.address ? item.address.address: '-'}}</td>
+                      <td class="text-center">{{item.importform}}
+                        <p>(by {{item.user.firstName}})</p>
+                      </td>
+                      <td class="text-center">
+                        <div class="dropdown pull-right" style="margin-right: 46px;">
+                          <button class="btn btn-success btn-simple btn-xs" type="button">
+                            <i class="material-icons" style="color:#2fff38">power_settings_new</i>
+                          </button>
+
+                          <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                            <i class="material-icons">more_horiz</i>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li (click)="editShop(item)">
+                              <a>
+                                <i class="material-icons">edit</i> แก้ไขร้านค้า</a>
+                            </li>
+                            <li (click)="deleteShop(item._id)">
+                              <a>
+                                <i class="material-icons">delete</i> ลบร้านค้า</a>
+                            </li>
+                          </ul>
+                        </div>
+
+                      </td>
+                    </tr>
                   </tbody>
+                  <!-- menu1 -->
                 </table>
 
                 <div class="pc">
@@ -368,16 +401,13 @@
       </div>
       <div class="modal-body">
         <div class="row bd">
-          <!-- <div class="col-md-4">
-            <div class="form-group form-black is-empty"> -->
-          <div class="col-md-4 form-group form-black is-empty">
-            <!-- <div class=""> -->
-            <label class="control-label">ระแวก (เช่น สยามพารากอน)</label>
-            <input class="form-control" type="text" [(ngModel)]="local" placeholder="สยามพารากอน">
+          <div class="col-md-4">
+            <div class="form-group form-black label-floating is-empty">
+              <label class="control-label">ระแวก (เช่น สยามพารากอน)</label>
+              <input class="form-control" type="text" [(ngModel)]="local">
+            </div>
           </div>
-          <!-- </div> -->
           <div class="col-md-3">
-            <label class="control-label">หมวดหมู่ร้าน</label>
             <select class="form-control" [(ngModel)]="shopType">
               <option *ngIf="importForm == 'Google'" value="">ทั้งหมด</option>
               <option *ngIf="importForm == 'Google'" value="restaurant">restaurant</option>
@@ -386,13 +416,11 @@
               <option *ngIf="importForm == 'Facebook'" value="place">place</option>
             </select>
           </div>
-          <!-- <div class="col-md-3">
-            <div class="form-group form-black  is-empty"> -->
-          <div class="col-md-3 form-group form-black  is-empty">
-            <!-- <div class=""> -->
-            <label class="control-label">คำค้นหา (เช่น coffee)</label>
-            <input class="form-control" type="text" [(ngModel)]="keyword" placeholder="coffee">
-            <!-- </div> -->
+          <div class="col-md-3">
+            <div class="form-group form-black label-floating is-empty">
+              <label class="control-label">คำค้นหา (เช่น coffee)</label>
+              <input class="form-control" type="text" [(ngModel)]="keyword">
+            </div>
           </div>
           <div class="col-md-2 mt-10">
             <button class="btn btn-info" (click)="search()">ค้นหา</button>

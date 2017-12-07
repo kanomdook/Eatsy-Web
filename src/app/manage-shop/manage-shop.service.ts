@@ -21,4 +21,9 @@ export class ManageShopService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+    getListNewShop(): Observable<any> {
+        return this.http.get(this.server.url + 'api/shopsnew', {})
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
 }
