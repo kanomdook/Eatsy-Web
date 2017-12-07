@@ -2032,12 +2032,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ManageShopComponent = (function () {
     function ManageShopComponent(shopService, server, router, fb, manageShopService) {
-        // let initParams: InitParams = {
-        //   appId: '618352801888304',
-        //   xfbml: true,
-        //   version: 'v2.10'
-        // };
-        // fb.init(initParams);
         this.shopService = shopService;
         this.server = server;
         this.router = router;
@@ -2055,6 +2049,13 @@ var ManageShopComponent = (function () {
         this.shopTableList = [];
         this.shopTableListNew = [];
         this.shopForEdit = {};
+        // let initParams: InitParams = {
+        //   appId: '618352801888304',
+        //   xfbml: true,
+        //   version: 'v2.10'
+        // };
+        // fb.init(initParams);
+        this.ngOnInit();
     }
     ManageShopComponent.prototype.ngOnInit = function () {
         var _this = this;
