@@ -34,9 +34,10 @@ export class NavbarComponent implements OnInit {
         });
     }
 
-    logout(){
-        this.server.logout().subscribe(data =>{
-            location.reload();
+    logout() {
+        this.server.logout().subscribe(data => {
+            this.isLogin = false;
+            this.router.navigate(['/']);
         });
     }
 
