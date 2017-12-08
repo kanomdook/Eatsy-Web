@@ -1,10 +1,11 @@
 <div class="main-content">
   <div class="container-fluid" style="text-align: center;">
     <div class="card" *ngIf="showeMainShop" style="width: 68%;">
-      <img class="card-img-top" [src]="shop.coverimage ? shop.coverimage : 'http://files.all-free-download.com//downloadfiles/wallpapers/3840_2160/mount_fuji_japan_highest_mountain_15753.jpg'"
-        alt="Card image cap">
+      <img class="card-img-top" [src]="shop.coverimage ? shop.coverimage : 'http://res.cloudinary.com/ha7s6qhcg/image/upload/v1512718072/uploadcover_wmvyr4.jpg'"
+        alt="Card image cap" height="315px">
       <span class="fill"></span>
-      <span class="camera">
+      <input type="file" #fileInput accept="image/*" [(ngModel)]="coverImg" (change)="onCoverChange($event)" style="visibility: hidden;"/>
+      <span class="camera" (click)="uploadCoverImage()">
         <i class="material-icons">photo_camera</i>
       </span>
       <p class="name">

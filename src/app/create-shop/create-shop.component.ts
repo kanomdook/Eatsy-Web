@@ -11,6 +11,7 @@ declare let google;
 export class CreateShopComponent implements OnInit {
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('pacinput') pacinput: ElementRef;
+  @ViewChild('fileInput') fileInput;
   showeMainShop: boolean = true;
   showeditdiv: boolean = false;
   showeditTime: boolean = false;
@@ -85,6 +86,42 @@ export class CreateShopComponent implements OnInit {
         console.log(err);
       });
     }
+  }
+
+  uploadCoverImage() {
+    this.fileInput.nativeElement.click();
+  }
+
+  onCoverChange(e) {
+    const fileBrowser = this.fileInput.nativeElement;
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBrowser.files[0]);
+    if (this.shopID) {
+      if (fileBrowser.files.length > 0) {
+        reader.onload = () => {
+          this.shop.coverimage = reader.result.replace(/\n/g, '');
+          this.shopService.uploadImage(this.shop).subscribe(data => {
+            this.shop.coverimage = data.imageURL;
+            this.shopService.edit(this.shop).subscribe(shopRes => {
+            }, err => {
+              console.log(err);
+            });
+          }, err => {
+            console.log(err);
+          });
+        };
+      }
+    } else {
+      reader.onload = () => {
+        this.shop.coverimage = reader.result.replace(/\n/g, '');
+        this.shopService.uploadImage(this.shop).subscribe(data => {
+          this.shop.coverimage = data.imageURL;
+        }, err => {
+          console.log(err);
+        });
+      };
+    }
+
   }
 
   filterByCate(cateID) {

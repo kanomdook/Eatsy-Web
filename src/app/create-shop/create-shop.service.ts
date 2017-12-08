@@ -17,6 +17,12 @@ export class ShopService {
             .catch((error: any) => Observable.throw(error));
     }
 
+    uploadImage(shop): Observable<any> {
+        return this.http.post(this.server.url + 'api/products_picture', { data: shop.coverimage.replace('data:image/jpeg;base64,', '') }, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
     edit(shop): Observable<any> {
         return this.http.put(this.server.url + 'api/shops/' + shop._id, shop, this.server.AuthHeaders())
             .map((res: Response) => res.json())
