@@ -41,12 +41,12 @@ export class ManageShopComponent implements OnInit {
   menuItems: any[];
   selectedTab: number = 0;
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
-    let initParams: InitParams = {
-      appId: '618352801888304',
-      xfbml: true,
-      version: 'v2.10'
-    };
-    fb.init(initParams);
+    // let initParams: InitParams = {
+    //   appId: '618352801888304',
+    //   xfbml: true,
+    //   version: 'v2.10'
+    // };
+    // fb.init(initParams);
     this.fb.login({
       enable_profile_selector: true,
       return_scopes: true,
@@ -93,7 +93,7 @@ export class ManageShopComponent implements OnInit {
   saveShops() {
 
     console.log(this.shops);
-    this.shops.forEach((element, i) => {
+    this.shops.forEach(element => {
       if (!this.loadingIdx[element.id] && !this.selectedShop[element.id]) {
 
       } else {
@@ -111,9 +111,6 @@ export class ManageShopComponent implements OnInit {
       element.importform = this.importForm;
       this.manageShopService.save(element).subscribe(dataRes => {
         this.loadingIdx[element.id] = false;
-        if (this.shops.length === i + 1) {
-          location.reload();
-        }
         // this.selectedShop[element.id] = false;            
         console.log(dataRes);
       }, err => {
@@ -302,11 +299,27 @@ export class ManageShopComponent implements OnInit {
     });
   }
 
-  activeChange($event){
-   if($event == true){
-console.log("ON");
-   }else if($event == false){
-console.log("OFF");
-   }
+  activeChange($event, shop) {
+    if ($event == true) {
+      shop.isactiveshop = true;
+      this.manageShopService.setActiveShop(shop).subscribe(succ => {
+        console.log("Update active shop : ", succ);
+        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Active เรียบร้อยแล้วค่ะ" );
+        // location.reload();
+      }, err => {
+        console.log("Update active shop ERROR : ", err);
+        // location.reload();
+      });
+    } else if ($event == false) {
+      shop.isactiveshop = false;
+      this.manageShopService.setActiveShop(shop).subscribe(succ => {
+        console.log("Update active shop : ", succ);
+        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Inactive เรียบร้อยแล้วค่ะ" );
+        // location.reload();
+      }, err => {
+        console.log("Update active shop ERROR : ", err);
+        // location.reload();
+      });
+    }
   }
 }
