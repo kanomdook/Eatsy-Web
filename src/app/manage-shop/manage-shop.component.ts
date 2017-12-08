@@ -41,12 +41,12 @@ export class ManageShopComponent implements OnInit {
   menuItems: any[];
   selectedTab: number = 0;
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
-    // let initParams: InitParams = {
-    //   appId: '618352801888304',
-    //   xfbml: true,
-    //   version: 'v2.10'
-    // };
-    // fb.init(initParams);
+    let initParams: InitParams = {
+      appId: '618352801888304',
+      xfbml: true,
+      version: 'v2.10'
+    };
+    fb.init(initParams);
     this.fb.login({
       enable_profile_selector: true,
       return_scopes: true,
