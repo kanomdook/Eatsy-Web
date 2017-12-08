@@ -29,6 +29,7 @@ export class ManageShopComponent implements OnInit {
   private shopType: string;
   private keyword: string;
   private action: string;
+  tab1
   private latLng: any = {
     lat: 13.7466532,
     lng: 100.5347222
@@ -37,7 +38,9 @@ export class ManageShopComponent implements OnInit {
   private shopTableList: Array<any> = [];
   private shopTableListNew: Array<any> = [];
   private shopForEdit: any = {};
+  private shopsL: Array<any> = [];
   menuItems: any[];
+  selectedTab: number = 0;
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
     // let initParams: InitParams = {
     //   appId: '618352801888304',
@@ -54,20 +57,28 @@ export class ManageShopComponent implements OnInit {
       if (!data) {
         this.router.navigate(['/login']);
       } else {
-
-        this.manageShopService.getList().subscribe(data => {
-          this.shopTableList = data;
-          console.log(this.shopTableList);
-        }, err => {
-          console.log(err);
+        this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
+          this.shopsL = jso;
+          console.log("JSON : ", this.shopsL);
         });
+        // this.manageShopService.getListShop().subscribe(data => {
+        //   this.shopsL = data;
+        //   console.log("SHOP List : ", this.shopsL);
+        // });
 
-        this.manageShopService.getListNewShop().subscribe(data => {
-          this.shopTableListNew = data;
-          console.log(this.shopTableListNew);
-        }, err => {
-          console.log(err);
-        });
+        // this.manageShopService.getList().subscribe(data => {
+        //   this.shopTableList = data;
+        //   console.log(this.shopTableList);
+        // }, err => {
+        //   console.log(err);
+        // });
+
+        // this.manageShopService.getListNewShop().subscribe(data => {
+        //   this.shopTableListNew = data;
+        //   console.log(this.shopTableListNew);
+        // }, err => {
+        //   console.log(err);
+        // });
       }
 
     });

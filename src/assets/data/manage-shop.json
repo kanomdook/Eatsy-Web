@@ -1,6 +1,6 @@
 {
     "categories": [{
-            "name": "all",
+            "name": "รายการร้านค้า",
             "items": [{
                     "address": {
                         "address": "2B-19 อาคาร MBK ชั้น 2 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน",
@@ -112,7 +112,7 @@
         },
 
         {
-            "name": "new",
+            "name": "ร้านค้าใหม่",
             "items": [{
                     "address": {
                         "address": "2B-19 อาคาร MBK ชั้น 2 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน",
@@ -128,7 +128,7 @@
                     "isactiveshop": false,
                     "issendmail": true,
                     "line": "",
-                    "name": "Coffee World",
+                    "name": "Coffee World NEW",
                     "name_eng": "",
                     "promoteimage": [],
                     "tel": "0899999999",
@@ -223,7 +223,7 @@
             ]
         },
         {
-            "name": "official",
+            "name": "OFFICIAL",
             "items": [{
                     "address": {
                         "address": "2B-19 อาคาร MBK ชั้น 2 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน",
@@ -239,7 +239,7 @@
                     "isactiveshop": false,
                     "issendmail": true,
                     "line": "",
-                    "name": "Coffee World",
+                    "name": "1",
                     "name_eng": "",
                     "promoteimage": [],
                     "tel": "0899999999",
@@ -266,7 +266,7 @@
                     "isactiveshop": false,
                     "issendmail": false,
                     "line": "",
-                    "name": "ร้านพี่อ้อ",
+                    "name": "ร้22222",
                     "name_eng": "",
                     "promoteimage": [],
                     "tel": "+66 2 612 9013",
@@ -293,7 +293,7 @@
                     "isactiveshop": false,
                     "issendmail": false,
                     "line": "",
-                    "name": "ร้าน ก๋วยเตี๋ยวดู๋ดี๋สยาม",
+                    "name": "ร้าน 333",
                     "name_eng": "",
                     "tel": "",
                     "times": [],
@@ -334,7 +334,7 @@
             ]
         },
         {
-            "name": "consignment",
+            "name": "ร้านฝากซื้อ",
             "items": [{
                     "address": {
                         "address": "2B-19 อาคาร MBK ชั้น 2 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน",
@@ -353,7 +353,7 @@
                     "name": "Coffee World",
                     "name_eng": "",
                     "promoteimage": [],
-                    "tel": "0899999999",
+                    "tel": "0899ss",
                     "times": [],
                     "user": {
                         "_id": "5a2913402a8be6130029036d",

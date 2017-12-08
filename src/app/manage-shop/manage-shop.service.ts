@@ -21,9 +21,16 @@ export class ManageShopService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
-    getListNewShop(): Observable<any> {
-        return this.http.get(this.server.url + 'api/shopsnew', {})
+    getListShop(): Observable<any> {
+        return this.http.get(this.server.url + 'api/shops/categorie', {})
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
+    getLocalJSONshoplist(): Observable<any> {
+        return this.http.get('./assets/data/manage-shop.json', {})
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
 }
