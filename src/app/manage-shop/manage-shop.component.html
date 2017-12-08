@@ -69,7 +69,9 @@
                       <th class="text-center col-md-2">เบอร์โทร</th>
                       <th>ที่อยู่</th>
                       <th class="text-center col-md-2">ช่องทางนำเข้า</th>
+                      <th class="text-center col-md-2">Official</th>
                       <th class="text-center col-md-2">
+
                         <span style="margin-right:-50px">Action</span>
                       </th>
                     </tr>
@@ -84,10 +86,16 @@
                         <p subText>by {{item.user.firstName}}</p>
                       </td>
                       <td class="text-center">
+
+                        <button class="btn btn-success btn-simple btn-xs btn-border" type="button">
+                          SEND USER
+                        </button>
+
+                      </td>
+                      <td class="text-center">
+                          <ui-switch [(ngModel)]="enable" labelOn="✔" labelOff="|"></ui-switch>
+
                         <div class="dropdown pull-right" style="margin-right: 46px;">
-                          <button class="btn btn-success btn-simple btn-xs" type="button">
-                            <i class="material-icons" style="color:#2fff38">power_settings_new</i>
-                          </button>
 
                           <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true">

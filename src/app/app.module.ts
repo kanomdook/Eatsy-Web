@@ -39,7 +39,7 @@ import { Auth } from 'app/provider/auth';
 import { ShopService } from 'app/create-shop/create-shop.service';
 
 import { Ng2MapModule} from 'ng2-map';
-
+import { UiSwitchModule } from 'ngx-toggle-switch/src'
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +74,7 @@ import { Ng2MapModule} from 'ng2-map';
     FacebookModule.forRoot(),
     BootstrapModalModule,
     AppRoutingModule,
+    UiSwitchModule,
     NgbModule.forRoot(),
     Ng2MapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDcsyfUw4ToTjnU9i_IxfdaoQZKs8suBPc'})
   ],
