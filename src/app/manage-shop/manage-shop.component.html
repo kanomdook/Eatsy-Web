@@ -85,18 +85,18 @@
                       <td class="text-center">{{item.importform}}
                         <p subText>by {{item.user.firstName}}</p>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center ">
 
-                        <button class="btn btn-success btn-simple btn-xs btn-border" type="button">
+                        <button class="btn btn-success btn-simple btn-xs btn-border" type="button" a-ng *ngIf="!item.issendmail">
                           SEND USER
                         </button>
-
+                        <p *ngIf="item.issendmail">Joined</p>
                       </td>
                       <td class="text-center">
-                          <ui-switch [(ngModel)]="enable" labelOn="✔" labelOff="|"></ui-switch>
+                        <ui-switch [(ngModel)]="item.isactiveshop"></ui-switch>
 
-                        <div class="dropdown pull-right" style="margin-right: 46px;">
-
+                        <!-- <div class="dropdown pull-right" style="margin-right: 46px;"> -->
+                        <div class="dropdown pull-right">
                           <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true">
                             <i class="material-icons">more_horiz</i>
