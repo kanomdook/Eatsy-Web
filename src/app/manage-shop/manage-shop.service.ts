@@ -22,13 +22,18 @@ export class ManageShopService {
             .catch((error: any) => Observable.throw(error));
     }
     getListShop(): Observable<any> {
-        return this.http.get(this.server.url + 'api/shops/categorie', {})
+        return this.http.get(this.server.url + 'api/shops/categories', {})
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
 
     getLocalJSONshoplist(): Observable<any> {
         return this.http.get('./assets/data/manage-shop.json', {})
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+    sendMail(shop): Observable<any> {
+        return this.http.put(this.server.url + 'api/shops/createusershop/' + shop._id, shop, this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }

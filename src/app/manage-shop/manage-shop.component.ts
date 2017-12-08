@@ -57,14 +57,14 @@ export class ManageShopComponent implements OnInit {
       if (!data) {
         this.router.navigate(['/login']);
       } else {
-        this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
-          this.shopsL = jso;
-          console.log("JSON : ", this.shopsL);
-        });
-        // this.manageShopService.getListShop().subscribe(data => {
-        //   this.shopsL = data;
-        //   console.log("SHOP List : ", this.shopsL);
+        // this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
+        //   this.shopsL = jso;
+        //   console.log("JSON : ", this.shopsL);
         // });
+        this.manageShopService.getListShop().subscribe(data => {
+          this.shopsL = data;
+          console.log("SHOP List : ", this.shopsL);
+        });
 
         // this.manageShopService.getList().subscribe(data => {
         //   this.shopTableList = data;
@@ -82,15 +82,15 @@ export class ManageShopComponent implements OnInit {
       }
 
     });
-    // this.fb.login({
-    //   enable_profile_selector: true,
-    //   return_scopes: true,
-    //   scope: 'public_profile,user_friends,email,pages_show_list'
-    // }).then(data => {
+    this.fb.login({
+      enable_profile_selector: true,
+      return_scopes: true,
+      scope: 'public_profile,user_friends,email,pages_show_list'
+    }).then(data => {
 
-    // }).catch(err => {
-    //   console.log(err);
-    // });
+    }).catch(err => {
+      console.log(err);
+    });
 
 
   }
@@ -294,5 +294,13 @@ export class ManageShopComponent implements OnInit {
 
     this.customSearch = false;
   }
-
+  isSendMail(shopID) {
+    console.log('id' + shopID);
+    this.manageShopService.sendMail(shopID).subscribe(data => {
+      console.log(data);
+      location.reload();
+    }, err => {
+      console.log(err);
+    });
+  }
 }

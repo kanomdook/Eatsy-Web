@@ -33,7 +33,7 @@ export class CreateShopComponent implements OnInit {
   private shopID: string;
   private coverimage: string = '';
   private openTimeString: string = '';
-
+  private currentGEO: any = { lat: null, lng: null };
   private CE_action_product: string;
   private CE_id_product: string;
   private CE_action_category: string;
@@ -47,7 +47,9 @@ export class CreateShopComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     });
-
+    this.getCurrentGeolocation().then((geo) => {
+    this.currentGEO = geo;
+    })
     this.shopID = window.localStorage.getItem('selectShop');
     this.shop.categories = '';
     this.shopService.getCategoryShop().subscribe(data => {
@@ -211,14 +213,30 @@ export class CreateShopComponent implements OnInit {
       });
     }
   }
+  getCurrentGeolocation(): Promise<any> {
+    return new Promise((resolve, reject) => {
 
+      navigator.geolocation.getCurrentPosition(function (position) {
+        resolve({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+        reject("GEO Error");
+
+      })
+
+    })
+  }
   openSelectMap() {
     this.showeditdiv = false;
     this.showeMap = true;
 
+
+
     setTimeout(() => {
+      let latLng = { lat: this.currentGEO.lat, lng: this.currentGEO.lng };
       let map = new google.maps.Map(this.mapElement.nativeElement, {
-        center: { lat: 13.7274116, lng: 100.5397122 },
+        center: latLng,
         zoom: 18,
         mapTypeId: 'roadmap'
       });
@@ -226,6 +244,8 @@ export class CreateShopComponent implements OnInit {
       let input = this.pacinput.nativeElement;
       let searchBox = new google.maps.places.SearchBox(input);
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+      // this.addMarker(map,latLng);      
 
       map.addListener('bounds_changed', function () {
         searchBox.setBounds(map.getBounds());
@@ -237,14 +257,6 @@ export class CreateShopComponent implements OnInit {
         if (places.length == 0) {
           return;
         }
-
-        let marker = new google.maps.Marker({
-          map: map,
-          title: places[0].name,
-          draggable: true,
-          animation: google.maps.Animation.DROP,
-          position: places[0].geometry.location
-        });
 
         let geocoder = new google.maps.Geocoder();
         geocoder.geocode
@@ -262,29 +274,41 @@ export class CreateShopComponent implements OnInit {
           }
           );
 
-        google.maps.event.addListener(marker, 'dragend', function () {
-          let geocoder = new google.maps.Geocoder();
-          geocoder.geocode
-            ({
-              latLng: marker.getPosition()
-            },
-            function (results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                window.localStorage.setItem('address', results[0].formatted_address);
-                window.localStorage.setItem('latLng', JSON.stringify(marker.getPosition()));
-              }
-              else {
-                console.log(status);
-              }
-            }
-            );
-        });
         let bounds = new google.maps.LatLngBounds();
         bounds.union(places[0].geometry.viewport);
         map.fitBounds(bounds);
       });
 
     }, 300);
+  }
+
+  addMarker(map,position){
+
+    let marker = new google.maps.Marker({
+      map: map,
+      draggable: true,
+      animation: google.maps.Animation.DROP,
+      position: position
+    });
+    
+
+    google.maps.event.addListener(marker, 'dragend', function () {
+      let geocoder = new google.maps.Geocoder();
+      geocoder.geocode
+        ({
+          latLng: marker.getPosition()
+        },
+        function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            window.localStorage.setItem('address', results[0].formatted_address);
+            window.localStorage.setItem('latLng', JSON.stringify(marker.getPosition()));
+          }
+          else {
+            console.log(status);
+          }
+        }
+        );
+    });
   }
 
   cancelMap() {

@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-6">
         <ul class="nav nav-tabs">
-          <li *ngFor="let tab of shopsL.categories; let i = index" class="{{ selectedTab === i ? 'active':''}}">
+          <li *ngFor="let tab of shopsL.filtercate; let i = index" class="{{ selectedTab === i ? 'active':''}}">
             <a data-toggle="tab" href="#tab{{i}}">{{tab.name}}</a>
           </li>
         </ul>
@@ -59,7 +59,7 @@
 
 
     <div class="tab-content">
-      <div id="tab{{k}}" *ngFor="let item of shopsL.categories; let k = index" class="tab-pane fade in {{ k === 0 ? 'active':''}}">
+      <div id="tab{{k}}" *ngFor="let item of shopsL.filtercate; let k = index" class="tab-pane fade in {{ k === 0 ? 'active':''}}">
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -90,7 +90,7 @@
                       </td>
                       <td class="text-center ">
 
-                        <button class="btn btn-success btn-simple btn-xs btn-border" type="button" a-ng *ngIf="!item.issendmail">
+                        <button class="btn btn-success btn-simple btn-xs btn-border" type="button" a-ng *ngIf="!item.issendmail" (click)="isSendMail(item)">
                           SEND USER
                         </button>
                         <p *ngIf="item.issendmail">Joined</p>
@@ -171,7 +171,7 @@
 
 <!-- /////////////////////////////////MODAL Google and Facebook import shop///////////////////////// -->
 
-<!-- <div class="modal fade" id="modalGoogle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="modalGoogle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -234,7 +234,7 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- /////////////////////////////////MODAL create and edit shop///////////////////////// -->
 
