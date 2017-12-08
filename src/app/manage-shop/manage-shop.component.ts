@@ -93,7 +93,7 @@ export class ManageShopComponent implements OnInit {
   saveShops() {
 
     console.log(this.shops);
-    this.shops.forEach(element => {
+    this.shops.forEach((element, i) => {
       if (!this.loadingIdx[element.id] && !this.selectedShop[element.id]) {
 
       } else {
@@ -111,6 +111,9 @@ export class ManageShopComponent implements OnInit {
       element.importform = this.importForm;
       this.manageShopService.save(element).subscribe(dataRes => {
         this.loadingIdx[element.id] = false;
+        if (this.shops.length === i + 1) {
+          location.reload();
+        }
         // this.selectedShop[element.id] = false;            
         console.log(dataRes);
       }, err => {
