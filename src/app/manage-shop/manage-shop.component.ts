@@ -41,12 +41,12 @@ export class ManageShopComponent implements OnInit {
   menuItems: any[];
   selectedTab: number = 0;
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
-    // let initParams: InitParams = {
-    //   appId: '618352801888304',
-    //   xfbml: true,
-    //   version: 'v2.10'
-    // };
-    // fb.init(initParams);
+    let initParams: InitParams = {
+      appId: '618352801888304',
+      xfbml: true,
+      version: 'v2.10'
+    };
+    fb.init(initParams);
     this.fb.login({
       enable_profile_selector: true,
       return_scopes: true,
@@ -93,7 +93,7 @@ export class ManageShopComponent implements OnInit {
   saveShops() {
 
     console.log(this.shops);
-    this.shops.forEach(element => {
+    this.shops.forEach((element, i) => {
       if (!this.loadingIdx[element.id] && !this.selectedShop[element.id]) {
 
       } else {
@@ -111,6 +111,9 @@ export class ManageShopComponent implements OnInit {
       element.importform = this.importForm;
       this.manageShopService.save(element).subscribe(dataRes => {
         this.loadingIdx[element.id] = false;
+        if (this.shops.length === i + 1) {
+          location.reload();
+        }
         // this.selectedShop[element.id] = false;            
         console.log(dataRes);
       }, err => {
