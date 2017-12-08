@@ -80,12 +80,16 @@
 
 .fill {
     color: #fff;
-    height: 43.4%;
+    height: 234px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.4);
     top: 0;
     width: 100%;
     margin-left: -50%;
+}
+
+.card img {
+    height: 234px !important;
 }
 
 .bin {
