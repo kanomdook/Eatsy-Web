@@ -29,7 +29,6 @@ export class ManageShopComponent implements OnInit {
   private shopType: string;
   private keyword: string;
   private action: string;
-  tab1
   private latLng: any = {
     lat: 13.7466532,
     lng: 100.5347222
@@ -48,8 +47,16 @@ export class ManageShopComponent implements OnInit {
     //   version: 'v2.10'
     // };
     // fb.init(initParams);
-    this.ngOnInit();
+    this.fb.login({
+      enable_profile_selector: true,
+      return_scopes: true,
+      scope: 'public_profile,user_friends,email,pages_show_list'
+    }).then(data => {
 
+    }).catch(err => {
+      console.log(err);
+    });
+    this.ngOnInit();
   }
 
   ngOnInit() {
@@ -63,7 +70,6 @@ export class ManageShopComponent implements OnInit {
         // });
         this.manageShopService.getListShop().subscribe(data => {
           this.shopsL = data;
-          console.log("SHOP List : ", this.shopsL);
         });
 
         // this.manageShopService.getList().subscribe(data => {
@@ -82,17 +88,6 @@ export class ManageShopComponent implements OnInit {
       }
 
     });
-    this.fb.login({
-      enable_profile_selector: true,
-      return_scopes: true,
-      scope: 'public_profile,user_friends,email,pages_show_list'
-    }).then(data => {
-
-    }).catch(err => {
-      console.log(err);
-    });
-
-
   }
 
   saveShops() {
