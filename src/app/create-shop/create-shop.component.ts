@@ -282,7 +282,16 @@ export class CreateShopComponent implements OnInit {
       let searchBox = new google.maps.places.SearchBox(input);
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-      // this.addMarker(map,latLng);      
+
+
+      let marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: latLng
+      });
+
+      this.addMarker(map,latLng,marker);      
 
       map.addListener('bounds_changed', function () {
         searchBox.setBounds(map.getBounds());
@@ -294,7 +303,14 @@ export class CreateShopComponent implements OnInit {
         if (places.length == 0) {
           return;
         }
+         marker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          position: places[0].geometry.location
+        });
 
+        console.log(marker);
         let geocoder = new google.maps.Geocoder();
         geocoder.geocode
           ({
@@ -319,16 +335,8 @@ export class CreateShopComponent implements OnInit {
     }, 300);
   }
 
-  addMarker(map,position){
-
-    let marker = new google.maps.Marker({
-      map: map,
-      draggable: true,
-      animation: google.maps.Animation.DROP,
-      position: position
-    });
+  addMarker(map,position,marker){
     
-
     google.maps.event.addListener(marker, 'dragend', function () {
       let geocoder = new google.maps.Geocoder();
       geocoder.geocode

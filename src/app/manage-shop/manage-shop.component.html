@@ -90,13 +90,13 @@
                       </td>
                       <td class="text-center ">
 
-                        <button class="btn btn-success btn-simple btn-xs btn-border" type="button" a-ng *ngIf="!item.issendmail" (click)="isSendMail(item)">
+                        <button class="btn btn-success btn-simple btn-xs btn-border" type="button" *ngIf="!item.issendmail && item.email" (click)="isSendMail(item)">
                           SEND USER
                         </button>
                         <p *ngIf="item.issendmail">Joined</p>
                       </td>
                       <td class="text-center">
-                        <ui-switch [(ngModel)]="item.isactiveshop"></ui-switch>
+                        <ui-switch [(ngModel)]="item.isactiveshop" (change)="activeChange($event,item)"></ui-switch>
 
                         <!-- <div class="dropdown pull-right" style="margin-right: 46px;"> -->
                         <div class="dropdown pull-right">

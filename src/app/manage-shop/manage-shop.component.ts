@@ -298,4 +298,12 @@ export class ManageShopComponent implements OnInit {
       console.log(err);
     });
   }
+
+  activeChange($event){
+   if($event == true){
+console.log("ON");
+   }else if($event == false){
+console.log("OFF");
+   }
+  }
 }
