@@ -10,7 +10,6 @@ import { ManageShopService } from 'app/manage-shop/manage-shop.service';
 import { Router } from '@angular/router';
 import { ServerConfig } from 'app/provider/server.config';
 import { ShopService } from 'app/create-shop/create-shop.service';
-
 declare var google;
 
 @Component({
@@ -40,7 +39,6 @@ export class ManageShopComponent implements OnInit {
   private shopsL: Array<any> = [];
   menuItems: any[];
   private selectedTab = 0;
-
   private searchKeyword: string = null;
   private typeTab = 'รายการร้านค้า';
 

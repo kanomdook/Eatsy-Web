@@ -28,7 +28,7 @@ export class ManageShopService {
     }
 
     getLocalJSONshoplist(): Observable<any> {
-        return this.http.get('./assets/data/manage-shop.json', {})
+        return this.http.get(this.server.url + 'api/adminhome', this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }

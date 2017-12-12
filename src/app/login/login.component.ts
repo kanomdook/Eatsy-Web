@@ -27,14 +27,14 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.sigin(this.credentials).subscribe(data => {
       window.localStorage.setItem('user', JSON.stringify(data));
-      if (data.roles[0] === 'admin') {
-        this.router.navigate(['/manage-shop']);
-      } else if (data.roles[0] === 'shop') {
-        this.router.navigate(['/create-shop']);
-      }
+      // if (data.roles[0] === 'admin') {
+      //   this.router.navigate(['/manage-shop']);
+      // } else if (data.roles[0] === 'shop') {
+      //   this.router.navigate(['/create-shop']);
+      // }
       // window.location.reload('/manage-shop');
       // this.router.navigate(['/manage-shop']);
-      // location.reload();
+      location.reload();
       // this.location.go('/manage-shop');
     }, err => {
       console.log(err);
