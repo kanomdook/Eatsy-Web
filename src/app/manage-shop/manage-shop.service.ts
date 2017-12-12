@@ -46,7 +46,7 @@ export class ManageShopService {
     }
 
     searchShop(typeTab, currentPage, keyword): Observable<any> {
-        return this.http.post(this.server.url + 'api/shops',
+        return this.http.post(this.server.url + './assets/data/manage-shop.json',
             {
                 typeTab: typeTab,
                 currentPage: currentPage,

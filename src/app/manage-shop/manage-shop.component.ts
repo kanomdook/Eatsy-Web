@@ -60,9 +60,27 @@ export class ManageShopComponent implements OnInit {
       if (!data) {
         this.router.navigate(['/login']);
       } else {
-        this.manageShopService.getListShop().subscribe(data => {
-          this.shopsL = data;
+        this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
+          this.shopsL = jso;
+          console.log("JSON : ", this.shopsL);
         });
+        // this.manageShopService.getListShop().subscribe(data => {
+        //   this.shopsL = data;
+        // });
+
+        // this.manageShopService.getList().subscribe(data => {
+        //   this.shopTableList = data;
+        //   console.log(this.shopTableList);
+        // }, err => {
+        //   console.log(err);
+        // });
+
+        // this.manageShopService.getListNewShop().subscribe(data => {
+        //   this.shopTableListNew = data;
+        //   console.log(this.shopTableListNew);
+        // }, err => {
+        //   console.log(err);
+        // });
       }
     });
   }
