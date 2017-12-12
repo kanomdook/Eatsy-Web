@@ -46,13 +46,7 @@ export class ManageShopService {
     }
 
     searchShop(typeTab, currentPage, keyword): Observable<any> {
-        return this.http.post(this.server.url + './assets/data/manage-shop.json',
-            {
-                typeTab: typeTab,
-                currentPage: currentPage,
-                keyword: keyword
-            },
-            this.server.AuthHeaders())
+        return this.http.get('./assets/data/manage-shop.json', this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }

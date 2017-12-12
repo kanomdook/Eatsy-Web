@@ -39,8 +39,10 @@ export class ManageShopComponent implements OnInit {
   private shopForEdit: any = {};
   private shopsL: Array<any> = [];
   menuItems: any[];
-  selectedTab: number = 0;
+  private selectedTab = 0;
+
   private searchKeyword: string = null;
+  private typeTab = 'รายการร้านค้า';
 
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
     this.fb.login({
@@ -62,35 +64,24 @@ export class ManageShopComponent implements OnInit {
       } else {
         this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
           this.shopsL = jso;
-          console.log("JSON : ", this.shopsL);
         });
-        // this.manageShopService.getListShop().subscribe(data => {
-        //   this.shopsL = data;
-        // });
-
-        // this.manageShopService.getList().subscribe(data => {
-        //   this.shopTableList = data;
-        //   console.log(this.shopTableList);
-        // }, err => {
-        //   console.log(err);
-        // });
-
-        // this.manageShopService.getListNewShop().subscribe(data => {
-        //   this.shopTableListNew = data;
-        //   console.log(this.shopTableListNew);
-        // }, err => {
-        //   console.log(err);
-        // });
       }
     });
   }
 
   searchShop() {
-    this.manageShopService.searchShop('', '', '').subscribe(data => {
-      console.log(data);
+    console.log(this.searchKeyword);
+    console.log(this.typeTab);
+    this.manageShopService.searchShop(this.typeTab, '', this.searchKeyword).subscribe(data => {
+      this.shopsL = data;
+      console.log(this.shopsL);
     }, err => {
       console.log(err);
     });
+  }
+
+  selectTab(name) {
+    this.typeTab = name;
   }
 
   saveShops() {
