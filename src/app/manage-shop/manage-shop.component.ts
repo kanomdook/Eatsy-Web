@@ -40,13 +40,9 @@ export class ManageShopComponent implements OnInit {
   private shopsL: Array<any> = [];
   menuItems: any[];
   selectedTab: number = 0;
+  private searchKeyword: string = null;
+
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
-    // let initParams: InitParams = {
-    //   appId: '618352801888304',
-    //   xfbml: true,
-    //   version: 'v2.10'
-    // };
-    // fb.init(initParams);
     this.fb.login({
       enable_profile_selector: true,
       return_scopes: true,
@@ -64,35 +60,22 @@ export class ManageShopComponent implements OnInit {
       if (!data) {
         this.router.navigate(['/login']);
       } else {
-        // this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
-        //   this.shopsL = jso;
-        //   console.log("JSON : ", this.shopsL);
-        // });
         this.manageShopService.getListShop().subscribe(data => {
           this.shopsL = data;
         });
-
-        // this.manageShopService.getList().subscribe(data => {
-        //   this.shopTableList = data;
-        //   console.log(this.shopTableList);
-        // }, err => {
-        //   console.log(err);
-        // });
-
-        // this.manageShopService.getListNewShop().subscribe(data => {
-        //   this.shopTableListNew = data;
-        //   console.log(this.shopTableListNew);
-        // }, err => {
-        //   console.log(err);
-        // });
       }
+    });
+  }
 
+  searchShop() {
+    this.manageShopService.searchShop('', '', '').subscribe(data => {
+      console.log(data);
+    }, err => {
+      console.log(err);
     });
   }
 
   saveShops() {
-
-    console.log(this.shops);
     this.shops.forEach(element => {
       if (!this.loadingIdx[element.id] && !this.selectedShop[element.id]) {
 
@@ -111,7 +94,6 @@ export class ManageShopComponent implements OnInit {
       element.importform = this.importForm;
       this.manageShopService.save(element).subscribe(dataRes => {
         this.loadingIdx[element.id] = false;
-        // this.selectedShop[element.id] = false;            
         console.log(dataRes);
       }, err => {
         this.loadingIdx[element.id] = false;
@@ -304,7 +286,7 @@ export class ManageShopComponent implements OnInit {
       shop.isactiveshop = true;
       this.manageShopService.setActiveShop(shop).subscribe(succ => {
         console.log("Update active shop : ", succ);
-        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Active เรียบร้อยแล้วค่ะ" );
+        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Active เรียบร้อยแล้วค่ะ");
         // location.reload();
       }, err => {
         console.log("Update active shop ERROR : ", err);
@@ -314,7 +296,7 @@ export class ManageShopComponent implements OnInit {
       shop.isactiveshop = false;
       this.manageShopService.setActiveShop(shop).subscribe(succ => {
         console.log("Update active shop : ", succ);
-        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Inactive เรียบร้อยแล้วค่ะ" );
+        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Inactive เรียบร้อยแล้วค่ะ");
         // location.reload();
       }, err => {
         console.log("Update active shop ERROR : ", err);

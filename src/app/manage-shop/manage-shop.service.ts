@@ -32,13 +32,27 @@ export class ManageShopService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
     sendMail(shop): Observable<any> {
         return this.http.put(this.server.url + 'api/shops/createusershop/' + shop._id, shop, this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
     setActiveShop(shop): Observable<any> {
         return this.http.put(this.server.url + 'api/shops/' + shop._id, shop, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    searchShop(typeTab, currentPage, keyword): Observable<any> {
+        return this.http.post(this.server.url + 'api/shops',
+            {
+                typeTab: typeTab,
+                currentPage: currentPage,
+                keyword: keyword
+            },
+            this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }

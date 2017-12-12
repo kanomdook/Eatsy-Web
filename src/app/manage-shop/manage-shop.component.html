@@ -27,9 +27,9 @@
       </div>
       <div class="col-md-4" style="margin-top: -14px">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="ค้นหา...">
+          <input type="text" class="form-control" placeholder="ค้นหา..." [(ngModel)]="searchKeyword">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
+            <button class="btn btn-default" type="button" (click)="searchShop()">
               <i class="material-icons">search</i>
             </button>
           </span>
