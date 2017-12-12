@@ -1,15 +1,44 @@
 .card img {
-    height: 180px;
+    /* height: 180px; */
 }
-[subText]{
+
+.tel-col-size {
+    width: 12rem;
+}
+
+.input-col-size {
+    width: 11rem;
+}
+
+[name-col-size] {
+    width: 17rem;
+}
+[index-col-size]{
+    width: 2rem;
+}
+.action-col-size{
+    width: 12rem;
+    text-align: center;
+    vertical-align: text-top;
+}
+
+[subText] {
     font-size: 1.2rem;
 }
-.btn-border{
+
+[adr-column-width] {
+    width: 27rem;
+    word-break: keep-all;
+}
+
+.btn-border {
     /* background-color: white; */
     /* color: black; */
-    border: 2px solid #4CAF50; /* Green */
+    border: 2px solid #4CAF50;
+    /* Green */
     border-radius: 10rem;
 }
+
 .ellipsis {
     text-overflow: ellipsis;
     white-space: nowrap;
