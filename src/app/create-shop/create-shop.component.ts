@@ -12,6 +12,7 @@ export class CreateShopComponent implements OnInit {
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('pacinput') pacinput: ElementRef;
   @ViewChild('fileInput') fileInput;
+  @ViewChild('promoteimgInput') promoteimgInput;
   showeMainShop: boolean = true;
   showeditdiv: boolean = false;
   showeditTime: boolean = false;
@@ -39,6 +40,7 @@ export class CreateShopComponent implements OnInit {
   private CE_id_product: string;
   private CE_action_category: string;
   private CE_id_category: string;
+  promoteIsEdit: boolean = false;
 
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService) { }
 
@@ -49,7 +51,7 @@ export class CreateShopComponent implements OnInit {
       }
     });
     this.getCurrentGeolocation().then((geo) => {
-    this.currentGEO = geo;
+      this.currentGEO = geo;
     })
     this.shopID = window.localStorage.getItem('selectShop');
     this.shop.categories = '';
@@ -91,6 +93,45 @@ export class CreateShopComponent implements OnInit {
   uploadCoverImage() {
     this.fileInput.nativeElement.click();
   }
+  uploadPromoteImage() {
+    this.promoteimgInput.nativeElement.click();
+  }
+
+  onPromoteImgChange(e) {
+    const fileBrowser = this.promoteimgInput.nativeElement;
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBrowser.files[0]);
+    if (this.shopID) {
+      if (fileBrowser.files.length > 0) {
+        reader.onload = () => {
+          let promteImgStr = reader.result.replace(/\n/g, '');
+          this.shop.newpromoteimage = promteImgStr;
+          this.shopService.uploadPromoteImage(this.shop).subscribe(data => {
+            this.shop.promoteimage.push(data.imageURL);
+            this.shopService.edit(this.shop).subscribe(shopRes => {
+              alert("เพิ่มรูปภาพโปรโมทร้านเรียบร้อยแล้วค่ะ");
+              this.shop.promoteimage.push(shopRes.imageURL);
+            }, err => {
+              alert("เกิดข้อผิดพลาดในการเพิ่มรูปภาพโปรโมทร้าน กรุณาลองใหม่อีกครั้งค่ะ");
+              console.log(err);
+            });
+          }, err => {
+            console.log(err);
+          });
+        };
+      }
+    } else {
+      reader.onload = () => {
+        let promteImgStr = reader.result.replace(/\n/g, '');
+        this.shop.newpromoteimage = promteImgStr;
+        this.shopService.uploadPromoteImage(this.shop).subscribe(data => {
+          this.shop.promoteimage.push(data.imageURL);
+        }, err => {
+          console.log(err);
+        });
+      };
+    }
+  }
 
   onCoverChange(e) {
     const fileBrowser = this.fileInput.nativeElement;
@@ -122,6 +163,27 @@ export class CreateShopComponent implements OnInit {
       };
     }
 
+  }
+  onLongPress() {
+    alert("xxx");
+  }
+
+  deletePromoteImage(image) {
+    var isDuplicate = false;
+    for (var i = 0; i < this.shop.promoteimage.length; i++) {
+      if (image == this.shop.promoteimage[i]) {
+        this.shop.promoteimage.splice(i, 1);
+        this.shopService.edit(this.shop).subscribe(shopRes => {
+          
+        })
+        break;
+      }
+    }
+  }
+  prmEdit() {
+    if (this.promoteIsEdit == false) {
+      this.promoteIsEdit = true;
+    } else { this.promoteIsEdit = false; }
   }
 
   filterByCate(cateID) {
@@ -291,7 +353,7 @@ export class CreateShopComponent implements OnInit {
         position: latLng
       });
 
-      this.addMarker(map,latLng,marker);      
+      this.addMarker(map, latLng, marker);
 
       map.addListener('bounds_changed', function () {
         searchBox.setBounds(map.getBounds());
@@ -303,7 +365,7 @@ export class CreateShopComponent implements OnInit {
         if (places.length == 0) {
           return;
         }
-         marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
           map: map,
           draggable: true,
           animation: google.maps.Animation.DROP,
@@ -335,8 +397,8 @@ export class CreateShopComponent implements OnInit {
     }, 300);
   }
 
-  addMarker(map,position,marker){
-    
+  addMarker(map, position, marker) {
+
     google.maps.event.addListener(marker, 'dragend', function () {
       let geocoder = new google.maps.Geocoder();
       geocoder.geocode

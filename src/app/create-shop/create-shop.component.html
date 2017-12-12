@@ -4,7 +4,8 @@
       <img class="card-img-top" [src]="shop.coverimage ? shop.coverimage : 'http://res.cloudinary.com/ha7s6qhcg/image/upload/v1512718072/uploadcover_wmvyr4.jpg'"
         alt="Card image cap" height="315px">
       <span class="fill"></span>
-      <input type="file" #fileInput accept="image/*" [(ngModel)]="coverImg" (change)="onCoverChange($event)" style="visibility: hidden;"/>
+      <input type="file" #fileInput accept="image/*" [(ngModel)]="coverImg" (change)="onCoverChange($event)" style="visibility: hidden;"
+      />
       <span class="camera" (click)="uploadCoverImage()">
         <i class="material-icons">photo_camera</i>
       </span>
@@ -22,16 +23,17 @@
 
         <div class="row" [dragula]='"zone0"'>
           <div class="col-md-2">
-            <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
+            <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image" (click)="uploadPromoteImage()">
+            <input type="file" #promoteimgInput accept="image/*" [(ngModel)]="promoteImg" (change)="onPromoteImgChange($event)" style="visibility: hidden;"
+            />
           </div>
-          <div class="col-md-2" *ngFor="let item of shop.promoteimage">
-            <span class="bin-1">
+
+     
+          <div class="col-md-2" *ngFor="let item of shop.promoteimage" (dblclick)="prmEdit()">
+            <span class="bin-1" *ngIf="promoteIsEdit == true" (click)="deletePromoteImage(item)">
               <i class="material-icons">delete</i>
             </span>
             <img class="img" [src]="item" alt="image">
-            <span class="pc-1">
-              <i class="material-icons">create</i>
-            </span>
           </div>
         </div>
 
@@ -159,7 +161,7 @@
         </div>
         <div class="ct">
           <button class="btn btn-primary" (click)="save()">บันทึก</button>
-          <button class="btn btn-danger" (click)="cancelEditShop()">ยกเลิก</button>          
+          <button class="btn btn-danger" (click)="cancelEditShop()">ยกเลิก</button>
         </div>
       </div>
     </div>
@@ -242,7 +244,7 @@
         <div #map class="map"></div>
         <div class="ct">
           <button class="btn btn-primary" (click)="saveMap()">บันทึก</button>
-          <button class="btn btn-danger" (click)="cancelMap()">ยกเลิก</button>          
+          <button class="btn btn-danger" (click)="cancelMap()">ยกเลิก</button>
         </div>
       </div>
     </div>
