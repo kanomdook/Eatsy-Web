@@ -6,8 +6,8 @@
     <div class="row">
       <div class="col-md-6">
         <ul class="nav nav-tabs">
-          <li *ngFor="let tab of shopsL.filtercate; let i = index" class="{{ selectedTab === i ? 'active':''}}">
-            <a data-toggle="tab" href="#tab{{i}}">{{tab.name}}</a>
+          <li *ngFor="let tab of shopsL.name; let i = index" class="{{ selectedTab === i ? 'active':''}}">
+            <a data-toggle="tab" href="#tab{{i}}">{{tab}}</a>
           </li>
         </ul>
         <!-- <ul class="nav nav-tabs">
@@ -59,7 +59,7 @@
 
 
     <div class="tab-content">
-      <div id="tab{{k}}" *ngFor="let item of shopsL.filtercate; let k = index" class="tab-pane fade in {{ k === 0 ? 'active':''}}">
+      <div id="tab{{k}}" *ngFor="let item of shopsL.name; let k = index" class="tab-pane fade in {{ k === 0 ? 'active':''}}">
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -72,15 +72,15 @@
                       <th class="text-center col-md-2">เบอร์โทร</th>
                       <th>ที่อยู่</th>
                       <th class="text-center col-md-2">ช่องทางนำเข้า</th>
-                      <th class="text-center col-md-2">Official</th>
-                      <th class="text-center col-md-2">
+                      <th class="text-center col-md-1">Official</th>
+                      <th class="text-center col-md-1">
 
                         <span style="margin-right:-50px">Action</span>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of item.items; let i = index ">
+                    <tr *ngFor="let item of shopsL.items; let i = index ">
                       <td>{{i + 1}}</td>
                       <td>{{item.name}}</td>
                       <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
