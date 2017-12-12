@@ -36,11 +36,12 @@ export class ManageShopComponent implements OnInit {
   private shopTableList: Array<any> = [];
   private shopTableListNew: Array<any> = [];
   private shopForEdit: any = {};
-  private shopsL: Array<any> = [];
+  private shopsL: any = {};
   menuItems: any[];
   private selectedTab = 0;
   private searchKeyword: string = null;
   private typeTab = 'รายการร้านค้า';
+  private curentPage: Array<any> = [];
 
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
     this.fb.login({
@@ -55,6 +56,11 @@ export class ManageShopComponent implements OnInit {
     this.ngOnInit();
   }
 
+  onRightClick() {
+    console.log('Right Click');
+    return false;
+  }
+
   ngOnInit() {
     this.server.isLogin().subscribe(data => {
       if (!data) {
@@ -62,6 +68,7 @@ export class ManageShopComponent implements OnInit {
       } else {
         this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
           this.shopsL = jso;
+          this.curentPage[1] = 'active';
         });
       }
     });
@@ -70,8 +77,22 @@ export class ManageShopComponent implements OnInit {
   searchShop() {
     console.log(this.searchKeyword);
     console.log(this.typeTab);
-    this.manageShopService.searchShop(this.typeTab, '', this.searchKeyword).subscribe(data => {
-      this.shopsL = data;
+    this.manageShopService.searchShop(this.typeTab, 2, null).subscribe(data => {
+      this.shopsL.items = data.items;
+      console.log(this.shopsL);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  pageing(page: number) {
+    this.curentPage = [];
+    this.curentPage[page] = 'active';
+    console.log(page);
+    console.log(this.typeTab);
+    console.log(this.searchKeyword);
+    this.manageShopService.searchShop(this.typeTab, page, this.searchKeyword).subscribe(data => {
+      this.shopsL.items = data.items;
       console.log(this.shopsL);
     }, err => {
       console.log(err);
