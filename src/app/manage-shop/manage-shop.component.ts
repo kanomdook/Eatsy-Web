@@ -10,7 +10,6 @@ import { ManageShopService } from 'app/manage-shop/manage-shop.service';
 import { Router } from '@angular/router';
 import { ServerConfig } from 'app/provider/server.config';
 import { ShopService } from 'app/create-shop/create-shop.service';
-
 declare var google;
 
 @Component({
@@ -37,16 +36,14 @@ export class ManageShopComponent implements OnInit {
   private shopTableList: Array<any> = [];
   private shopTableListNew: Array<any> = [];
   private shopForEdit: any = {};
-  private shopsL: Array<any> = [];
+  private shopsL: any = {};
   menuItems: any[];
-  selectedTab: number = 0;
+  private selectedTab = 0;
+  private searchKeyword: string = null;
+  private typeTab = 'รายการร้านค้า';
+  private curentPage: Array<any> = [];
+
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
-    // let initParams: InitParams = {
-    //   appId: '618352801888304',
-    //   xfbml: true,
-    //   version: 'v2.10'
-    // };
-    // fb.init(initParams);
     this.fb.login({
       enable_profile_selector: true,
       return_scopes: true,
@@ -59,6 +56,11 @@ export class ManageShopComponent implements OnInit {
     this.ngOnInit();
   }
 
+  onRightClick() {
+    console.log('Right Click');
+    return false;
+  }
+
   ngOnInit() {
     this.server.isLogin().subscribe(data => {
       if (!data) {
@@ -66,33 +68,42 @@ export class ManageShopComponent implements OnInit {
       } else {
         this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
           this.shopsL = jso;
-          console.log("JSON : ", this.shopsL);
+          this.curentPage[1] = 'active';
         });
-        // this.manageShopService.getListShop().subscribe(data => {
-        //   this.shopsL = data;
-        // });
-
-        // this.manageShopService.getList().subscribe(data => {
-        //   this.shopTableList = data;
-        //   console.log(this.shopTableList);
-        // }, err => {
-        //   console.log(err);
-        // });
-
-        // this.manageShopService.getListNewShop().subscribe(data => {
-        //   this.shopTableListNew = data;
-        //   console.log(this.shopTableListNew);
-        // }, err => {
-        //   console.log(err);
-        // });
       }
-
     });
   }
 
-  saveShops() {
+  searchShop() {
+    console.log(this.searchKeyword);
+    console.log(this.typeTab);
+    this.manageShopService.searchShop(this.typeTab, 2, null).subscribe(data => {
+      this.shopsL.items = data.items;
+      console.log(this.shopsL);
+    }, err => {
+      console.log(err);
+    });
+  }
 
-    console.log(this.shops);
+  pageing(page: number) {
+    this.curentPage = [];
+    this.curentPage[page] = 'active';
+    console.log(page);
+    console.log(this.typeTab);
+    console.log(this.searchKeyword);
+    this.manageShopService.searchShop(this.typeTab, page, this.searchKeyword).subscribe(data => {
+      this.shopsL.items = data.items;
+      console.log(this.shopsL);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  selectTab(name) {
+    this.typeTab = name;
+  }
+
+  saveShops() {
     this.shops.forEach(element => {
       if (!this.loadingIdx[element.id] && !this.selectedShop[element.id]) {
 
@@ -111,7 +122,6 @@ export class ManageShopComponent implements OnInit {
       element.importform = this.importForm;
       this.manageShopService.save(element).subscribe(dataRes => {
         this.loadingIdx[element.id] = false;
-        // this.selectedShop[element.id] = false;            
         console.log(dataRes);
       }, err => {
         this.loadingIdx[element.id] = false;
@@ -304,7 +314,7 @@ export class ManageShopComponent implements OnInit {
       shop.isactiveshop = true;
       this.manageShopService.setActiveShop(shop).subscribe(succ => {
         console.log("Update active shop : ", succ);
-        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Active เรียบร้อยแล้วค่ะ" );
+        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Active เรียบร้อยแล้วค่ะ");
         // location.reload();
       }, err => {
         console.log("Update active shop ERROR : ", err);
@@ -314,7 +324,7 @@ export class ManageShopComponent implements OnInit {
       shop.isactiveshop = false;
       this.manageShopService.setActiveShop(shop).subscribe(succ => {
         console.log("Update active shop : ", succ);
-        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Inactive เรียบร้อยแล้วค่ะ" );
+        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Inactive เรียบร้อยแล้วค่ะ");
         // location.reload();
       }, err => {
         console.log("Update active shop ERROR : ", err);

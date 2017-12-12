@@ -37,7 +37,8 @@ export class NavbarComponent implements OnInit {
     logout() {
         this.server.logout().subscribe(data => {
             this.isLogin = false;
-            this.router.navigate(['/']);
+            location.reload();
+            // this.router.navigate(['/']);
         });
     }
 

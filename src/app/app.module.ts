@@ -40,6 +40,7 @@ import { ShopService } from 'app/create-shop/create-shop.service';
 
 import { Ng2MapModule} from 'ng2-map';
 import { UiSwitchModule } from 'ngx-toggle-switch/src'
+import { Pager } from 'app/provider/pager';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +84,8 @@ import { UiSwitchModule } from 'ngx-toggle-switch/src'
     ManageShopService,
     ServerConfig,
     Auth,
-    ShopService
+    ShopService,
+    Pager
   ],
   bootstrap: [AppComponent]
 })

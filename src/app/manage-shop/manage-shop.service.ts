@@ -28,17 +28,29 @@ export class ManageShopService {
     }
 
     getLocalJSONshoplist(): Observable<any> {
-        return this.http.get('./assets/data/manage-shop.json', {})
+        return this.http.get(this.server.url + 'api/adminhome', this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
     sendMail(shop): Observable<any> {
         return this.http.put(this.server.url + 'api/shops/createusershop/' + shop._id, shop, this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
     setActiveShop(shop): Observable<any> {
         return this.http.put(this.server.url + 'api/shops/' + shop._id, shop, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    searchShop(typeTab, currentPage, keyword): Observable<any> {
+        return this.http.post(this.server.url + 'api/filtershop', {
+            typename: typeTab,
+            currentpage: currentPage,
+            keyword: keyword
+        }, this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
