@@ -42,7 +42,7 @@ export class ManageShopComponent implements OnInit {
   private searchKeyword: string = null;
   private typeTab = 'รายการร้านค้า';
   private curentPage: Array<any> = [];
-
+  private pageSelect: number = 0;
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
     this.fb.login({
       enable_profile_selector: true,
@@ -75,25 +75,21 @@ export class ManageShopComponent implements OnInit {
   }
 
   searchShop() {
-    console.log(this.searchKeyword);
-    console.log(this.typeTab);
     this.manageShopService.searchShop(this.typeTab, 2, null).subscribe(data => {
       this.shopsL.items = data.items;
-      console.log(this.shopsL);
+      this.shopsL.pagings = data.pagings;
     }, err => {
       console.log(err);
     });
   }
 
   pageing(page: number) {
+    this.pageSelect = 0;
     this.curentPage = [];
     this.curentPage[page] = 'active';
-    console.log(page);
-    console.log(this.typeTab);
-    console.log(this.searchKeyword);
+    this.pageSelect = (page - 1) * 10;
     this.manageShopService.searchShop(this.typeTab, page, this.searchKeyword).subscribe(data => {
       this.shopsL.items = data.items;
-      console.log(this.shopsL);
     }, err => {
       console.log(err);
     });
