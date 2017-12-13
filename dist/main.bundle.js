@@ -1257,8 +1257,13 @@ var CreateShopComponent = (function () {
         this.showeditTime = false;
     };
     CreateShopComponent.prototype.cancelEditShop = function () {
-        this.showeMainShop = true;
-        this.showeditdiv = false;
+        if (this.shopID) {
+            this.showeMainShop = true;
+            this.showeditdiv = false;
+        }
+        else {
+            this.router.navigate(['/manage-shop']);
+        }
     };
     CreateShopComponent.prototype.save = function () {
         var _this = this;
