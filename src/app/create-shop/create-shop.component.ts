@@ -518,8 +518,13 @@ export class CreateShopComponent implements OnInit {
   }
 
   cancelEditShop() {
-    this.showeMainShop = true;
-    this.showeditdiv = false;
+    if (this.shopID) {
+      this.showeMainShop = true;
+      this.showeditdiv = false;
+    } else {
+      this.router.navigate(['/manage-shop']);
+    }
+
   }
 
   save() {
