@@ -13,6 +13,8 @@ export class CreateShopComponent implements OnInit {
   @ViewChild('pacinput') pacinput: ElementRef;
   @ViewChild('fileInput') fileInput;
   @ViewChild('promoteimgInput') promoteimgInput;
+  @ViewChild('cateimgInput') cateimgInput;
+  @ViewChild('prdimgInput') prdimgInput;
   showeMainShop: boolean = true;
   showeditdiv: boolean = false;
   showeditTime: boolean = false;
@@ -41,7 +43,8 @@ export class CreateShopComponent implements OnInit {
   private CE_action_category: string;
   private CE_id_category: string;
   promoteIsEdit: boolean = false;
-
+  updateOrEditCateImg: any;
+  limitPrdImg = 3;
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService) { }
 
   ngOnInit() {
@@ -95,6 +98,36 @@ export class CreateShopComponent implements OnInit {
   }
   uploadPromoteImage() {
     this.promoteimgInput.nativeElement.click();
+  }
+  updateCateImg() {
+    this.cateimgInput.nativeElement.click();
+  }
+
+  onCateImgChange(e) {
+    const fileBrowser = this.cateimgInput.nativeElement;
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBrowser.files[0]);
+    if (this.shopID) {
+      if (fileBrowser.files.length > 0) {
+        reader.onload = () => {
+          this.category.image = reader.result.replace(/\n/g, '');
+          this.shopService.uploadCateImage(this.category.image).subscribe(data => {
+            this.updateOrEditCateImg = data.imageURL;
+          }, err => {
+            console.log(err);
+          });
+        };
+      }
+    } else {
+      reader.onload = () => {
+        this.category.image = reader.result.replace(/\n/g, '');
+        this.shopService.uploadCateImage(this.category.image).subscribe(data => {
+          this.updateOrEditCateImg = data.imageURL;
+        }, err => {
+          console.log(err);
+        });
+      };
+    }
   }
 
   onPromoteImgChange(e) {
@@ -174,7 +207,7 @@ export class CreateShopComponent implements OnInit {
       if (image == this.shop.promoteimage[i]) {
         this.shop.promoteimage.splice(i, 1);
         this.shopService.edit(this.shop).subscribe(shopRes => {
-          
+
         })
         break;
       }
@@ -254,11 +287,12 @@ export class CreateShopComponent implements OnInit {
   saveCategory() {
     if (this.CE_action_category == 'เพิ่ม') {
       this.category.shop = this.shopID;
-      this.category.image = 'http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg';
+      // this.category.image = 'http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg';
       this.shopService.saveCategory(this.category).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;
         this.showAddCategory = false;
+
         location.reload();
       }, err => {
         console.log(err);
@@ -285,11 +319,53 @@ export class CreateShopComponent implements OnInit {
       console.log(err);
     });
   }
+  deletePrdImg(i) {
+
+  }
+
+  uploadPrdImage() {
+    this.prdimgInput.nativeElement.click();
+  }
+  onPrdImgChange(e) {
+    const fileBrowser = this.prdimgInput.nativeElement;
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBrowser.files[0]);
+    if (this.shopID) {
+      if (fileBrowser.files.length > 0) {
+        reader.onload = () => {
+          let prdImgStr = reader.result.replace(/\n/g, '');
+          this.product.images = prdImgStr;
+          this.shopService.uploadPromoteImage(this.shop).subscribe(data => {
+            this.shop.promoteimage.push(data.imageURL);
+            this.shopService.edit(this.shop).subscribe(shopRes => {
+              alert("เพิ่มรูปภาพโปรโมทร้านเรียบร้อยแล้วค่ะ");
+              this.shop.promoteimage.push(shopRes.imageURL);
+            }, err => {
+              alert("เกิดข้อผิดพลาดในการเพิ่มรูปภาพโปรโมทร้าน กรุณาลองใหม่อีกครั้งค่ะ");
+              console.log(err);
+            });
+          }, err => {
+            console.log(err);
+          });
+        };
+      }
+    } else {
+      reader.onload = () => {
+        let promteImgStr = reader.result.replace(/\n/g, '');
+        this.shop.newpromoteimage = promteImgStr;
+        this.shopService.uploadPromoteImage(this.shop).subscribe(data => {
+          this.shop.promoteimage.push(data.imageURL);
+        }, err => {
+          console.log(err);
+        });
+      };
+    }
+  }
 
   saveProduct() {
     if (this.CE_action_product == 'เพิ่ม') {
       this.product.shop = this.shopID;
-      this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
+      // this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
       this.shopService.saveProduct(this.product).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;

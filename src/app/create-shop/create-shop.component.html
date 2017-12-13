@@ -28,7 +28,7 @@
             />
           </div>
 
-     
+
           <div class="col-md-2" *ngFor="let item of shop.promoteimage" (dblclick)="prmEdit()">
             <span class="bin-1" *ngIf="promoteIsEdit == true" (click)="deletePromoteImage(item)">
               <i class="material-icons">delete</i>
@@ -259,27 +259,24 @@
       <div class="card-block">
 
         <div class="row" style="margin-left: -66px;">
-          <div class="col-md-4">
-            <span class="bin-2" (click)="deleteTime(i)">
+          <div class="col-md-4" *ngIf="addPrdImg !== 3">
+            <!-- <span class="bin-2" (click)="deleteTime(i)">
+              <i class="material-icons">delete</i>
+            </span> -->
+
+            <!-- <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" (click)="uploadPrdImage()" alt="image"> -->
+            <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
+            <!-- <input type="file" #prdimgInput accept="image/*" [(ngModel)]="prdImg" (change)="onPrdImgChange($event)" style="visibility: hidden;"
+            /> -->
+          </div>
+          <div class="col-md-4" *ngFor="let item of product.images; let i = index">
+            <span class="bin-2" (click)="deletePrdImg(i)">
               <i class="material-icons">delete</i>
             </span>
-            <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
+            <img class="img-2" [src]="item" alt="image">
 
           </div>
-          <div class="col-md-4">
-            <span class="bin-2" (click)="deleteTime(i)">
-              <i class="material-icons">delete</i>
-            </span>
-            <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
 
-          </div>
-          <div class="col-md-4">
-            <span class="bin-2" (click)="deleteTime(i)">
-              <i class="material-icons">delete</i>
-            </span>
-            <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
-
-          </div>
         </div>
 
         <div class="form-group">
@@ -318,8 +315,11 @@
             <span class="bin-3" (click)="deleteTime(i)">
               <i class="material-icons">delete</i>
             </span>
-            <img class="img-2" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image">
-
+            <img class="img-2" *ngIf="!updateOrEditCateImg" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png"
+              (click)="updateCateImg()" alt="image">
+            <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image">
+            <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event)" style="visibility: hidden;"
+            />
           </div>
           <div class="col-md-4">
 
