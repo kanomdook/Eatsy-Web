@@ -15,8 +15,8 @@ export class CreateShopComponent implements OnInit {
   @ViewChild('promoteimgInput') promoteimgInput;
   @ViewChild('cateimgInput') cateimgInput;
   @ViewChild('prdimgInput') prdimgInput;
-  showeMainShop: boolean = true;
-  showeditdiv: boolean = false;
+  showeMainShop: boolean = false;
+  showeditdiv: boolean = true;
   showeditTime: boolean = false;
   showeMap: boolean = false;
   showAddProduct: boolean = false;
@@ -57,6 +57,10 @@ export class CreateShopComponent implements OnInit {
       this.currentGEO = geo;
     })
     this.shopID = window.localStorage.getItem('selectShop');
+    if (this.shopID) {
+      this.showeMainShop = true;
+      this.showeditdiv = false;
+    }
     this.shop.categories = '';
     this.shopService.getCategoryShop().subscribe(data => {
       this.categoryShopList = data;
