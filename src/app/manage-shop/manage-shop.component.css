@@ -164,3 +164,21 @@
 .dropdown-menu {
     min-width: 90px;
 }
+
+.btn-success {
+    background-color: #ffffff00;
+}
+
+.btn,
+.btn:hover,
+.btn:focus .open>.btn.dropdown-toggle:hover,
+.btn.btn-default,
+.btn.btn-default:hover {
+    background-color: #ffffff00 !important;
+    border-color: rgb(34, 143, 34);
+    color: rgb(34, 143, 34) !important;
+}
+
+.toggle-color{
+    color: rgb(78, 78, 78) !important;
+}

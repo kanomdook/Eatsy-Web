@@ -1,17 +1,19 @@
+<ng4-loading-spinner> </ng4-loading-spinner>
 <div class="main-content">
+    
   <div class="container-fluid">
 
 
     <!-- //////Apple/// -->
     <div class="row vcenter">
-      <div class="col-lg-6 col-md-5 col-sm-6 col-xs-12 ">
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
         <ul class="nav nav-tabs">
           <li *ngFor="let tab of shopsL.name; let i = index" class="{{ selectedTab === i ? 'active':''}}">
             <a data-toggle="tab" href="#tab{{i}}" (click)="selectTab(tab)">{{tab}}</a>
           </li>
         </ul>
       </div>
-      <div class="col-lg-4 col-md-5 col-sm-4 col-xs-8">
+      <div class="col-lg-4 col-md-8 col-sm-8 col-xs-8">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="ค้นหา..." [(ngModel)]="searchKeyword">
           <span class="input-group-btn">
@@ -21,10 +23,10 @@
           </span>
         </div>
       </div>
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+      <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
         <div class="dropdown pull-right">
-          <button class="btn btn-success pull-right dropdown-toggle addBTN" type="button" id="dropdownMenu1" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="true">
+          <button class="btn  pull-right dropdown-toggle addBTN" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="true">
             <i class="material-icons">add</i> เพิ่มร้านค้า
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -86,14 +88,14 @@
 
 
                         <div class="dropdown pull-right">
-                          <button class="btn btn-simple btn-xs pull-right dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                          <button class="btn btn-simple btn-xs pull-right dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true">
-                            <i class="material-icons">more_horiz</i>
+                            <i class="material-icons toggle-color">more_horiz</i>
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <span (click)="editShop(item)">
                               <i class="material-icons edit-color">border_color</i>
-                            </span> 
+                            </span>
                             <span (click)="deleteShop(item._id)">
                               <i class="material-icons del-color">delete</i>
                             </span>
@@ -146,7 +148,7 @@
         <div class="row bd">
           <div class="col-md-4">
             <div class="form-group form-black label-floating is-empty">
-              <label class="control-label">ระแวก (เช่น สยามพารากอน)</label>
+              <label class="control-label">ละแวก (เช่น สยามพารากอน)</label>
               <input class="form-control" type="text" [(ngModel)]="local">
             </div>
           </div>
