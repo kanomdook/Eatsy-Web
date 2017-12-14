@@ -1,6 +1,6 @@
-<ng4-loading-spinner> </ng4-loading-spinner>
+<!-- <ngx-loading [show]="loading"></ngx-loading> -->
 <div class="main-content">
-    
+
   <div class="container-fluid">
 
 
@@ -68,6 +68,12 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <tr *ngIf="!shopsL.items" >
+                      <td colspan="7" class="text-center">
+                        ยังไม่มีข้อมูลร้านค้าในระบบค่ะ
+                      </td>
+
+                    </tr>
                     <tr *ngFor="let item of shopsL.items; let i = index ">
                       <td>{{i + pageSelect + 1}}</td>
                       <td>{{item.name}}</td>
@@ -105,6 +111,7 @@
 
                       </td>
                     </tr>
+
                   </tbody>
                 </table>
 

@@ -10,7 +10,7 @@ import { ManageShopService } from 'app/manage-shop/manage-shop.service';
 import { Router } from '@angular/router';
 import { ServerConfig } from 'app/provider/server.config';
 import { ShopService } from 'app/create-shop/create-shop.service';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 declare var google;
 
 @Component({
@@ -47,9 +47,9 @@ export class ManageShopComponent implements OnInit {
   private pageSelect: number = 0;
   private currentPageSelected: number = 1;
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService,
-    private spinnerService: Ng4LoadingSpinnerService) {
-    this.ngOnInit();
-    this.spinnerService.show();
+  
+  ) {
+  
   }
 
   onRightClick() {
@@ -61,9 +61,11 @@ export class ManageShopComponent implements OnInit {
     this.server.isLogin().subscribe(data => {
       if (!data) {
         this.router.navigate(['/login']);
+      
       } else {
         this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
-          this.spinnerService.hide();
+          
+
           this.shopsL = jso;
           this.curentPage[1] = 'active';
         });
@@ -309,12 +311,14 @@ export class ManageShopComponent implements OnInit {
     this.customSearch = false;
   }
   isSendMail(shopID) {
-    this.spinnerService.show();
+
+
     console.log('id' + shopID);
     this.manageShopService.sendMail(shopID).subscribe(data => {
       console.log(data);
       this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
-        this.spinnerService.hide();
+
+
         alert("ระบบได้ทำการส่ง User ไปให้ร้านเรียบร้อยแล้วค่ะ");
 
         this.shopsL = jso;
@@ -324,8 +328,8 @@ export class ManageShopComponent implements OnInit {
 
     }, err => {
       console.log(err);
-      this.spinnerService.hide();
       alert("ระบบไม่สามารถส่ง User ไปให้ร้านได้ค่ะ กรุณาติดต่อทางทีมงานค่ะ");
+
 
     });
   }
