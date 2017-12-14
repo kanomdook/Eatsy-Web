@@ -2097,7 +2097,7 @@ var LoginComponent = (function () {
         var _this = this;
         this.server.isLogin().subscribe(function (data) {
             if (data) {
-                _this.router.navigate(['/dashboard']);
+                _this.router.navigate(['/manage-shop']);
             }
         });
     };

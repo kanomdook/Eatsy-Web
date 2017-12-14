@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   getUser() {
     this.server.isLogin().subscribe(data => {
       if (data) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/manage-shop']);
       }
     });
   }
