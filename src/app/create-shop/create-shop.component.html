@@ -21,8 +21,8 @@
       </p>
       <div class="card-block">
 
-        <div class="row" [dragula]='"zone0"'>
-          <div class="col-md-2">
+        <div class="row col-md-4 col-sm-4 col-lg-4" [dragula]='"zone0"'>
+          <div class="">
             <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png" alt="image" (click)="uploadPromoteImage()">
             <input type="file" #promoteimgInput accept="image/*" [(ngModel)]="promoteImg" (change)="onPromoteImgChange($event)" style="visibility: hidden;"
             />
@@ -316,8 +316,10 @@
               <i class="material-icons">delete</i>
             </span>
             <img class="img-2" *ngIf="!updateOrEditCateImg" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png"
+            (click)="updateCateImg()" alt="image">
+            <img class="img-2" *ngIf="!updateOrEditCateImg && !category.image" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511519960/camera_bkdxf8.png"
               (click)="updateCateImg()" alt="image">
-            <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image">
+            <img class="img-2" *ngIf="updateOrEditCateImg " [src]="updateOrEditCateImg" (click)="updateCateImg()" alt="image">
             <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event)" style="visibility: hidden;"
             />
           </div>

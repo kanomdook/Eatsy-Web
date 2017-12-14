@@ -4,7 +4,7 @@
 
     <!-- //////Apple/// -->
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 col-xs-12">
         <ul class="nav nav-tabs">
           <li *ngFor="let tab of shopsL.name; let i = index" class="{{ selectedTab === i ? 'active':''}}">
             <a data-toggle="tab" href="#tab{{i}}" (click)="selectTab(tab)">{{tab}}</a>
@@ -25,7 +25,7 @@
           </li>
         </ul> -->
       </div>
-      <div class="col-md-4" style="margin-top: -14px">
+      <div class="col-md-4 col-xs-12" >
         <div class="input-group">
           <input type="text" class="form-control" placeholder="ค้นหา..." [(ngModel)]="searchKeyword">
           <span class="input-group-btn">
@@ -73,7 +73,7 @@
                       <th adr-column-width>ที่อยู่</th>
                       <th class="text-center col-md-2 input-col-size">ช่องทางนำเข้า</th>
                       <th class="text-center col-md-1">Official</th>
-                      <th class="text-center col-md-1 action-col-size">
+                      <th class="text-center col-md-1 col-lg-1 action-col-size">
                         Action
                         <!-- <span style="margin-right:-50px"></span> -->
                       </th>
@@ -193,7 +193,7 @@
               <span class="lo" *ngIf="selectedShop[item.id]">
                 <img class="ic" src="https://i0.wp.com/triagelogic.com/wp-content/uploads/2016/02/successful-registration.png?resize=300%2C300&ssl=1">
               </span>
-              <img class="card-img-top" [src]="item.img" alt="Card image" width="318" height="180">
+              <img class="card-img-top" [src]="item.img" alt="Card image">
               <div class="card-block pd-4">
                 <h4 class="card-title ellipsis">
                   <b>{{item.name}}</b>

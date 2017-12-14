@@ -278,6 +278,7 @@ export class CreateShopComponent implements OnInit {
   editCategory(category) {
     this.showeMainShop = false;
     this.showAddCategory = true;
+    this.updateOrEditCateImg = category.image;
     this.category.name = category.name;
     this.CE_action_category = 'แก้ไข';
     this.CE_id_category = category._id;
