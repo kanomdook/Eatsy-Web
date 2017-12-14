@@ -1,4 +1,6 @@
-<!-- <ngx-loading [show]="loading"></ngx-loading> -->
+<!-- <div class="loader" #loadingControl>
+    <img src="./assets/img/Spin.gif" alt="">
+  </div>-->
 <div class="main-content">
 
   <div class="container-fluid">
@@ -9,7 +11,9 @@
       <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
         <ul class="nav nav-tabs">
           <li *ngFor="let tab of shopsL.name; let i = index" class="{{ selectedTab === i ? 'active':''}}">
-            <a data-toggle="tab" href="#tab{{i}}" (click)="selectTab(tab)">{{tab}}</a>
+            <a data-toggle="tab" href="#tab{{i}}" (click)="selectTab(tab)">
+              <h4 style="font-family: 'Kanit', sans-serif;">{{tab}}</h4>
+            </a>
           </li>
         </ul>
       </div>
@@ -68,7 +72,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngIf="!shopsL.items" >
+                    <tr *ngIf="shopsL.items.length <=0">
                       <td colspan="7" class="text-center">
                         ยังไม่มีข้อมูลร้านค้าในระบบค่ะ
                       </td>

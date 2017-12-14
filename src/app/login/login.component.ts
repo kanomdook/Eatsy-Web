@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
       // }
       // window.location.reload('/manage-shop');
       // this.router.navigate(['/manage-shop']);
+      // this.getUser();
+      location.reload();
       this.getUser();
       // this.location.go('/manage-shop');
     }, err => {
