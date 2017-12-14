@@ -522,13 +522,15 @@ var NavbarComponent = (function () {
         this.listTitles = __WEBPACK_IMPORTED_MODULE_1__sidebar_sidebar_component__["a" /* ROUTES */].filter(function (listTitle) { return listTitle; });
         var navbar = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-        this.getLogin();
-        this.getUser();
+        // this.getLogin();
     };
     NavbarComponent.prototype.getLogin = function () {
         var _this = this;
         this.server.isLogin().subscribe(function (data) {
             _this.isLogin = data;
+            if (_this.isLogin) {
+                _this.getUser();
+            }
             console.log(_this.isLogin);
         });
     };

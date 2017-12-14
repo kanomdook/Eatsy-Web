@@ -26,13 +26,15 @@ export class NavbarComponent implements OnInit {
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-        this.getLogin();
-        this.getUser();
+        // this.getLogin();
     }
 
     getLogin() {
         this.server.isLogin().subscribe(data => {
             this.isLogin = data;
+            if (this.isLogin) {
+                this.getUser();
+            }
             console.log(this.isLogin);
         });
     }
