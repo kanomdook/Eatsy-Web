@@ -14,12 +14,16 @@ export class LoginComponent implements OnInit {
   private credentials: any = {};
 
   constructor(private server: ServerConfig, private auth: Auth, private router: Router, private location: Location
-) {
+  ) {
 
   }
 
   ngOnInit() {
-
+    this.server.isLogin().subscribe(data => {
+      if (data) {
+        this.router.navigate(['/manage-shop']);
+      }
+    });
   }
 
   login() {
@@ -34,7 +38,7 @@ export class LoginComponent implements OnInit {
       // this.router.navigate(['/manage-shop']);
       // this.getUser();
       location.reload();
-      this.getUser();
+      // this.getUser();
       // this.location.go('/manage-shop');
     }, err => {
       console.log(err);

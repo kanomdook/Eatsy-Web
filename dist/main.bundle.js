@@ -2075,9 +2075,14 @@ var LoginComponent = (function () {
         this.credentials = {};
     }
     LoginComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.server.isLogin().subscribe(function (data) {
+            if (data) {
+                _this.router.navigate(['/manage-shop']);
+            }
+        });
     };
     LoginComponent.prototype.login = function () {
-        var _this = this;
         this.auth.sigin(this.credentials).subscribe(function (data) {
             window.localStorage.setItem('user', JSON.stringify(data));
             // if (data.roles[0] === 'admin') {
@@ -2089,7 +2094,7 @@ var LoginComponent = (function () {
             // this.router.navigate(['/manage-shop']);
             // this.getUser();
             location.reload();
-            _this.getUser();
+            // this.getUser();
             // this.location.go('/manage-shop');
         }, function (err) {
             console.log(err);
