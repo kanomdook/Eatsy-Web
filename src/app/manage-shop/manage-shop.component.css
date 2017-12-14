@@ -13,10 +13,12 @@
 [name-col-size] {
     width: 17rem;
 }
-[index-col-size]{
+
+[index-col-size] {
     width: 2rem;
 }
-.action-col-size{
+
+.action-col-size {
     width: 12rem;
     text-align: center;
     vertical-align: text-top;
@@ -112,9 +114,53 @@
 }
 
 .nav-tabs {
-    background: #afafaf;
+    background: #ffffff00;
+    /* height: 4rem; */
 }
 
-.card-img-top{
+.nav-tabs>li>a,
+.nav-tabs>li>a:hover,
+.nav-tabs>li>a:focus {
+    color: black !important;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+    border-bottom: 3px solid rgb(14, 156, 14) !important;
+}
+
+.card-img-top {
     height: 180px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.addBTN {
+    background-color: #ffffff00;
+    color: rgb(34, 143, 34);
+    border-color: rgb(34, 143, 34);
+    border-radius: 4rem;
+    border: 3px solid;
+    font-size: 1.5rem;
+}
+
+.edit-color {
+    padding: 0rem 0.8rem 0rem 0.8rem;
+    color: orange;
+    font-size: 2.3rem;
+}
+
+.del-color {
+    padding: 0rem 0.8rem 0rem 0.8rem;
+    color: red;
+    font-size: 2.3rem;
+}
+
+.dropdown-menu {
+    min-width: 90px;
 }
