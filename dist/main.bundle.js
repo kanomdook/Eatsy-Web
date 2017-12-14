@@ -655,11 +655,8 @@ var SidebarComponent = (function () {
         this.server = server;
     }
     SidebarComponent.prototype.ngOnInit = function () {
-        this.menuItems = ROUTES.filter(function (menuItem) { return menuItem; });
-        this.getUser();
-    };
-    SidebarComponent.prototype.getUser = function () {
         var _this = this;
+        this.menuItems = ROUTES.filter(function (menuItem) { return menuItem; });
         this.server.isLogin().subscribe(function (data) {
             _this.isLogin = data;
         });
@@ -2092,20 +2089,10 @@ var LoginComponent = (function () {
             // }
             // window.location.reload('/manage-shop');
             // this.router.navigate(['/manage-shop']);
-            // this.getUser();
             location.reload();
-            // this.getUser();
             // this.location.go('/manage-shop');
         }, function (err) {
             console.log(err);
-        });
-    };
-    LoginComponent.prototype.getUser = function () {
-        var _this = this;
-        this.server.isLogin().subscribe(function (data) {
-            if (data) {
-                _this.router.navigate(['/manage-shop']);
-            }
         });
     };
     return LoginComponent;
