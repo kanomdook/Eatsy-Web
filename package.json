@@ -5,15 +5,17 @@
   "main": "app.js",
   "scripts": {
     "ng": "ng",
-    "start": "node app.js",
     "build": "ng build",
+    "preinstall": "npm i typings -g",
+    "gitbuild": "ng build --prod --base /start-angular/SB-Admin-BS4-Angular-4/master/dist/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start": "node app.js"
   },
   "engines": {
-    "node": "~6.10.3",
-    "npm": "~3.10.5"
+    "node": "6.10.3",
+    "npm": "3.10.10"
   },
   "private": true,
   "dependencies": {
