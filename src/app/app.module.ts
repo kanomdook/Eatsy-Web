@@ -42,9 +42,6 @@ import { Ng2MapModule } from 'ng2-map';
 import { UiSwitchModule } from 'ngx-toggle-switch/src'
 import { Pager } from 'app/provider/pager';
 
-
-import { LoadingModule,ANIMATION_TYPES } from 'ngx-loading';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +87,6 @@ import { LoadingModule,ANIMATION_TYPES } from 'ngx-loading';
     Auth,
     ShopService,
     Pager,
-
   ],
   bootstrap: [AppComponent]
 })
