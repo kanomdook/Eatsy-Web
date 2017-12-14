@@ -44,15 +44,6 @@ export class ManageShopComponent implements OnInit {
   private curentPage: Array<any> = [];
   private pageSelect: number = 0;
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
-    this.fb.login({
-      enable_profile_selector: true,
-      return_scopes: true,
-      scope: 'public_profile,user_friends,email,pages_show_list'
-    }).then(data => {
-
-    }).catch(err => {
-      console.log(err);
-    });
     this.ngOnInit();
   }
 
@@ -269,10 +260,15 @@ export class ManageShopComponent implements OnInit {
       this.shopType = 'place';
     }
 
-    this.fb.api('/search?center=' + this.latLng.lat + ',' + this.latLng.lng + '&distance=1000&q=' + this.keyword + '&type=' + this.shopType, 'get').then(stores => {
-      this.dataStore(stores.data);
-    }).catch(error => {
-      console.log(error);
+    this.fb.login().then(user => {
+      console.log(user);
+      this.fb.api('/search?center=' + this.latLng.lat + ',' + this.latLng.lng + '&distance=1000&q=' + this.keyword + '&type=' + this.shopType, 'get').then(stores => {
+        this.dataStore(stores.data);
+      }).catch(error => {
+        console.log(error);
+      });
+    }).catch(err => {
+      console.log(err);
     });
   }
 
