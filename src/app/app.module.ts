@@ -42,7 +42,6 @@ import { Ng2MapModule} from 'ng2-map';
 import { UiSwitchModule } from 'ngx-toggle-switch/src'
 import { Pager } from 'app/provider/pager';
 
-import { Ng4LoadingSpinnerModule,Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +77,6 @@ import { Ng4LoadingSpinnerModule,Ng4LoadingSpinnerService } from 'ng4-loading-sp
     BootstrapModalModule,
     AppRoutingModule,
     UiSwitchModule,
-    Ng4LoadingSpinnerModule.forRoot(),
     NgbModule.forRoot(),
     Ng2MapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDcsyfUw4ToTjnU9i_IxfdaoQZKs8suBPc'})
   ],
@@ -89,7 +87,6 @@ import { Ng4LoadingSpinnerModule,Ng4LoadingSpinnerService } from 'ng4-loading-sp
     Auth,
     ShopService,
     Pager,
-    Ng4LoadingSpinnerService
   ],
   bootstrap: [AppComponent]
 })
