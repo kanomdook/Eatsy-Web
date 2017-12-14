@@ -19,6 +19,7 @@ declare var google;
 })
 export class ManageShopComponent implements OnInit {
   @ViewChild('map') mapElement: ElementRef;
+  @ViewChild('dissmissBtn') dissmissBtn;
   private shopList: Array<any> = [];
   private importForm: string;
   private selectedShop: Array<any> = [];
@@ -43,16 +44,8 @@ export class ManageShopComponent implements OnInit {
   private typeTab = 'รายการร้านค้า';
   private curentPage: Array<any> = [];
   private pageSelect: number = 0;
+  private currentPageSelected: number = 1;
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
-    this.fb.login({
-      enable_profile_selector: true,
-      return_scopes: true,
-      scope: 'public_profile,user_friends,email,pages_show_list'
-    }).then(data => {
-
-    }).catch(err => {
-      console.log(err);
-    });
     this.ngOnInit();
   }
 
@@ -75,7 +68,7 @@ export class ManageShopComponent implements OnInit {
   }
 
   searchShop() {
-    this.manageShopService.searchShop(this.typeTab, 2, null).subscribe(data => {
+    this.manageShopService.searchShop(this.typeTab, this.currentPageSelected, this.searchKeyword).subscribe(data => {
       this.shopsL.items = data.items;
       this.shopsL.pagings = data.pagings;
     }, err => {
@@ -88,6 +81,7 @@ export class ManageShopComponent implements OnInit {
     this.curentPage = [];
     this.curentPage[page] = 'active';
     this.pageSelect = (page - 1) * 10;
+    this.currentPageSelected = page;
     this.manageShopService.searchShop(this.typeTab, page, this.searchKeyword).subscribe(data => {
       this.shopsL.items = data.items;
     }, err => {
@@ -96,11 +90,13 @@ export class ManageShopComponent implements OnInit {
   }
 
   selectTab(name) {
+    this.currentPageSelected = 1;
     this.typeTab = name;
+    this.searchShop();
   }
 
   saveShops() {
-    this.shops.forEach(element => {
+    this.shops.forEach((element, i) => {
       if (!this.loadingIdx[element.id] && !this.selectedShop[element.id]) {
 
       } else {
@@ -127,6 +123,14 @@ export class ManageShopComponent implements OnInit {
         }
         this.selectedShop[element.id] = false;
       });
+
+      if (this.shops.length === i + 1) {
+        this.dissmissBtn.nativeElement.click();
+        this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
+          this.shopsL = jso;
+          this.curentPage[1] = 'active';
+        });
+      }
     });
   }
 
@@ -269,10 +273,15 @@ export class ManageShopComponent implements OnInit {
       this.shopType = 'place';
     }
 
-    this.fb.api('/search?center=' + this.latLng.lat + ',' + this.latLng.lng + '&distance=1000&q=' + this.keyword + '&type=' + this.shopType, 'get').then(stores => {
-      this.dataStore(stores.data);
-    }).catch(error => {
-      console.log(error);
+    this.fb.login().then(user => {
+      console.log(user);
+      this.fb.api('/search?center=' + this.latLng.lat + ',' + this.latLng.lng + '&distance=1000&q=' + this.keyword + '&type=' + this.shopType, 'get').then(stores => {
+        this.dataStore(stores.data);
+      }).catch(error => {
+        console.log(error);
+      });
+    }).catch(err => {
+      console.log(err);
     });
   }
 
