@@ -33,12 +33,12 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 import { ManageShopService } from 'app/manage-shop/manage-shop.service';
 import { ServerConfig } from 'app/provider/server.config';
 import { CreateShopComponent } from './create-shop/create-shop.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { Auth } from 'app/provider/auth';
 import { ShopService } from 'app/create-shop/create-shop.service';
 
-import { Ng2MapModule} from 'ng2-map';
+import { Ng2MapModule } from 'ng2-map';
 import { UiSwitchModule } from 'ngx-toggle-switch/src'
 import { Pager } from 'app/provider/pager';
 
@@ -78,7 +78,7 @@ import { Pager } from 'app/provider/pager';
     AppRoutingModule,
     UiSwitchModule,
     NgbModule.forRoot(),
-    Ng2MapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDcsyfUw4ToTjnU9i_IxfdaoQZKs8suBPc'})
+    Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDcsyfUw4ToTjnU9i_IxfdaoQZKs8suBPc' })
   ],
   providers: [
     DashboardService,

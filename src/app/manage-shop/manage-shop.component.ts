@@ -20,6 +20,7 @@ declare var google;
 export class ManageShopComponent implements OnInit {
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('dissmissBtn') dissmissBtn;
+  // @ViewChild('loadingControl') loadingControl;
   private shopList: Array<any> = [];
   private importForm: string;
   private selectedShop: Array<any> = [];
@@ -47,8 +48,9 @@ export class ManageShopComponent implements OnInit {
   private currentPageSelected: number = 1;
   loading: boolean = true;
   constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService,
+
   ) {
-    // this.ngOnInit();
+
   }
 
   onRightClick() {
@@ -330,6 +332,7 @@ export class ManageShopComponent implements OnInit {
       alert("ระบบไม่สามารถส่ง User ไปให้ร้านได้ค่ะ กรุณาติดต่อทางทีมงานค่ะ");
       this.getListShop();
       this.loading = false;
+
 
     });
   }

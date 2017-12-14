@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ServerConfig } from 'app/provider/server.config';
 import { Location } from '@angular/common';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,8 @@ import { Location } from '@angular/common';
 export class LoginComponent implements OnInit {
   private credentials: any = {};
 
-  constructor(private server: ServerConfig, private auth: Auth, private router: Router, private location: Location) {
+  constructor(private server: ServerConfig, private auth: Auth, private router: Router, private location: Location
+) {
 
   }
 
@@ -30,6 +32,8 @@ export class LoginComponent implements OnInit {
       // }
       // window.location.reload('/manage-shop');
       // this.router.navigate(['/manage-shop']);
+      // this.getUser();
+      location.reload();
       this.getUser();
       // this.location.go('/manage-shop');
     }, err => {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { enableProdMode } from '@angular/core';
+
 enableProdMode();
 declare const $: any;
 
@@ -11,9 +12,12 @@ declare const $: any;
 })
 export class AppComponent implements OnInit {
 
-  constructor(public location: Location) { }
+  constructor(public location: Location) {
+
+  }
 
   ngOnInit() {
+
     $.material.options.autofill = true;
     $.material.init();
   }

@@ -150,15 +150,28 @@
 }
 
 .edit-color {
-    padding: 0rem 0.8rem 0rem 0.8rem;
+    padding: 0 0.8rem 0 0.8rem;
     color: orange;
     font-size: 2.3rem;
+    cursor: pointer;
+    margin-top: 0.8rem;
 }
 
 .del-color {
-    padding: 0rem 0.8rem 0rem 0.8rem;
+    padding: 0 0.8rem 0 0.8rem;
     color: red;
     font-size: 2.3rem;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    
+}
+
+.del-color:hover {
+    background-color: #928f8f5d;
+}
+
+.edit-color:hover {
+    background-color: #928f8f5d;
 }
 
 .dropdown-menu {
@@ -179,6 +192,6 @@
     color: rgb(34, 143, 34) !important;
 }
 
-.toggle-color{
+.toggle-color {
     color: rgb(78, 78, 78) !important;
 }
