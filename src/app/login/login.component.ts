@@ -17,11 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.server.isLogin().subscribe(data => {
-      if (data) {
-        this.router.navigate(['/manage-shop']);
-      }
-    });
+
   }
 
   login() {
@@ -34,10 +30,18 @@ export class LoginComponent implements OnInit {
       // }
       // window.location.reload('/manage-shop');
       // this.router.navigate(['/manage-shop']);
-      location.reload();
+      this.getUser();
       // this.location.go('/manage-shop');
     }, err => {
       console.log(err);
+    });
+  }
+
+  getUser() {
+    this.server.isLogin().subscribe(data => {
+      if (data) {
+        this.router.navigate(['/manage-shop']);
+      }
     });
   }
 
