@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
     getLogin() {
         this.server.isLogin().subscribe(data => {
             this.isLogin = data;
+            console.log(this.isLogin);
         });
     }
     getUser() {
