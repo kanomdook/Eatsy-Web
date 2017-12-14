@@ -2080,6 +2080,7 @@ var LoginComponent = (function () {
         });
     };
     LoginComponent.prototype.login = function () {
+        var _this = this;
         this.auth.sigin(this.credentials).subscribe(function (data) {
             window.localStorage.setItem('user', JSON.stringify(data));
             // if (data.roles[0] === 'admin') {
@@ -2089,7 +2090,8 @@ var LoginComponent = (function () {
             // }
             // window.location.reload('/manage-shop');
             // this.router.navigate(['/manage-shop']);
-            location.reload();
+            _this.router.navigate(['/manage-shop']);
+            // location.reload();
             // this.location.go('/manage-shop');
         }, function (err) {
             console.log(err);
