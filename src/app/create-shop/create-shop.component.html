@@ -1,4 +1,11 @@
 <div class="main-content">
+  <div class="row" *ngIf="shop.coverimage">
+    <div class="col-xs-12">
+      <img class="card-img-top" [src]="shop.coverimage ? shop.coverimage : 'http://res.cloudinary.com/ha7s6qhcg/image/upload/v1512718072/uploadcover_wmvyr4.jpg'"
+        alt="Card image cap">
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-xl-6 col-md-6 col-sm-6 col-xs-12">
       <div class="card">
@@ -182,9 +189,13 @@
     </div>
   </div> -->
 
-
+  <!-- <div class="row">
+      <div class="col-md-3" *ngFor="let item of shop.promoteimage">
+        <img class="promotionimage" [src]="item ? item : 'http://res.cloudinary.com/ha7s6qhcg/image/upload/v1512718072/uploadcover_wmvyr4.jpg'" alt="Card image cap">
+      </div>
+    </div> -->
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="card">
         <div class="card-block">
           <div class="ct">
