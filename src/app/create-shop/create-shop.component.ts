@@ -539,7 +539,7 @@ export class CreateShopComponent implements OnInit {
         lng: this.latLng.lng
       };
       this.shop.times = this.timeList;
-      this.shop.coverimage = 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
+      // this.shop.coverimage = 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
       this.shopService.edit(this.shop).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;
@@ -556,7 +556,7 @@ export class CreateShopComponent implements OnInit {
         lng: this.latLng.lng
       };
       this.shop.times = this.timeList;
-      this.shop.coverimage = 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
+      // this.shop.coverimage = this.shop.coverimage ? this.shop.coverimage : 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
 
       this.shopService.save(this.shop).subscribe(data => {
         console.log(data);
