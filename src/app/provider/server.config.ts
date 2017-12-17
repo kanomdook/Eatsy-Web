@@ -5,7 +5,7 @@ import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class ServerConfig {
-    public url: string = 'https://eatsyd.herokuapp.com/';
+    public url: string = 'https://eatsyd-test.herokuapp.com/';
 
     constructor() {
 
