@@ -71,6 +71,8 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
         this.shop = data;
+        console.log(this.shop);
+        this.shop.categories = this.shop.categories ? this.shop.categories._id : '';
         this.address = data.address.address;
         this.latLng = {
           lat: data.address ? data.address.lat : '',
@@ -522,6 +524,7 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.showeMainShop = true;
       this.showeditdiv = false;
+      this.router.navigate(['/manage-shop']);
     } else {
       this.router.navigate(['/manage-shop']);
     }
