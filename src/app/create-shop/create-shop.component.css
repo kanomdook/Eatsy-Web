@@ -245,3 +245,6 @@
     height: 200px;
     padding: 2px;
 }
+.padding-all{
+    padding: 1rem 1rem 1rem 1rem;
+}

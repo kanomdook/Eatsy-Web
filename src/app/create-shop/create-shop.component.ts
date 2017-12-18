@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ShopService } from 'app/create-shop/create-shop.service';
 import { ServerConfig } from 'app/provider/server.config';
 import { Router } from '@angular/router';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+
 declare let google;
 @Component({
   selector: 'app-create-shop',
@@ -9,6 +11,8 @@ declare let google;
   styleUrls: ['./create-shop.component.css']
 })
 export class CreateShopComponent implements OnInit {
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: Array<NgxGalleryImage> = [];
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('pacinput') pacinput: ElementRef;
   @ViewChild('fileInput') fileInput;
@@ -48,6 +52,32 @@ export class CreateShopComponent implements OnInit {
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService) { }
 
   ngOnInit() {
+    this.galleryOptions = [
+      {
+        width: '100%',
+        height: '500px',
+        thumbnailsColumns: 5,
+        imageAnimation: NgxGalleryAnimation.Slide,
+        preview: false,
+        imageSwipe: true
+      },
+      // max-width 800
+      {
+        breakpoint: 800,
+        width: '100%',
+        height: '800px',
+        imagePercent: 80,
+        thumbnailsPercent: 20,
+        thumbnailsMargin: 20,
+        thumbnailMargin: 20,
+        thumbnailsSwipe: true
+      },
+      // max-width 400
+      {
+        breakpoint: 400,
+        preview: false
+      }
+    ];
     this.server.isLogin().subscribe(data => {
       if (!data) {
         this.router.navigate(['/login']);
@@ -71,7 +101,22 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
         this.shop = data;
-        console.log(this.shop);
+        let imgs: Array<any> = data.promoteimage;
+
+        imgs.forEach((el, i) => {
+          this.galleryImages.push({
+            big: el,
+            medium: el,
+            small: el
+          });
+        });
+
+        console.log(this.galleryImages);
+
+        // for (let index = 0; index < this.shop.promoteimage.length; index++) {
+        //   this.galleryImages[index].medium = this.shop.promoteimage[index];
+
+        // }
         this.shop.categories = this.shop.categories ? this.shop.categories._id : '';
         this.address = data.address.address;
         this.latLng = {
