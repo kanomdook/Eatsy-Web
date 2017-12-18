@@ -55,8 +55,8 @@ export class CreateShopComponent implements OnInit {
     this.galleryOptions = [
       {
         width: '100%',
-        height: '500px',
-        thumbnailsColumns: 5,
+        height: '60vh',
+        thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
         preview: false,
         imageSwipe: true
@@ -65,7 +65,7 @@ export class CreateShopComponent implements OnInit {
       {
         breakpoint: 800,
         width: '100%',
-        height: '800px',
+        height: '80vh',
         imagePercent: 80,
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
