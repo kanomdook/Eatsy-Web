@@ -188,11 +188,23 @@
     </div>
   </div> -->
 
-  <!-- <div class="row">
-      <div class="col-md-3" *ngFor="let item of shop.promoteimage">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+      <div class="card">
+        <div class="card-header cw text-left">
+          รูปภาพโปรโมทร้าน
+        </div>
+        <div class="card-block text-center padding-all">
+          <ngx-gallery *ngIf="shop.promoteimage" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+          <h4 *ngIf="!shop.promoteimage">ร้านนี้ยังไม่มีรูปภาพโปรโมทร้านค่ะ</h4>
+          <!-- <div class="col-md-3" *ngFor="let item of shop.promoteimage">
         <img class="promotionimage" [src]="item ? item : 'http://res.cloudinary.com/ha7s6qhcg/image/upload/v1512718072/uploadcover_wmvyr4.jpg'" alt="Card image cap">
+      </div> -->
+        </div>
       </div>
-    </div> -->
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="card">
