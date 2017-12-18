@@ -7,7 +7,7 @@
         </div> -->
         <div class="card-block text-center padding-all">
           <ngx-gallery *ngIf="shop.promoteimage.length > 0" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-          <h4 *ngIf="!shop.promoteimage.length">ร้านนี้ยังไม่มีรูปภาพโปรโมทร้านค่ะ</h4>
+          <h4 *ngIf="!shop.promoteimage.length" style="font-family: 'Kanit', sans-serif;">ร้านนี้ยังไม่มีรูปภาพโปรโมทร้านค่ะ</h4>
           <!-- <div class="col-md-3" *ngFor="let item of shop.promoteimage">
             <img class="promotionimage" [src]="item ? item : 'http://res.cloudinary.com/ha7s6qhcg/image/upload/v1512718072/uploadcover_wmvyr4.jpg'" alt="Card image cap">
           </div> -->
