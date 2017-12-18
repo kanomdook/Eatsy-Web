@@ -158,28 +158,36 @@
       <div class="modal-body">
         <div class="row bd">
           <div class="col-md-4">
-            <div class="form-group form-black label-floating is-empty">
-              <label class="control-label">ละแวก (เช่น สยามพารากอน)</label>
+            <div class="form-group form-black is-empty">
+              ละแวก (เช่น สยามพารากอน)
+              <!-- <label class="control-label">ละแวก (เช่น สยามพารากอน)</label> -->
               <input class="form-control" type="text" [(ngModel)]="local">
             </div>
           </div>
           <div class="col-md-3">
-            <select class="form-control" [(ngModel)]="shopType">
-              <option *ngIf="importForm == 'Google'" value="">ทั้งหมด</option>
-              <option *ngIf="importForm == 'Google'" value="restaurant">restaurant</option>
-              <option *ngIf="importForm == 'Google'" value="store">store</option>
-              <option *ngIf="importForm == 'Google'" value="cafe">cafe</option>
-              <option *ngIf="importForm == 'Facebook'" value="place">place</option>
-            </select>
+            <div class="form-group form-black is-empty">
+
+              ค้นหาประเภทร้านค้า
+              <select class="form-control" [(ngModel)]="shopType">
+                <option *ngIf="importForm == 'Google'" value="">ทั้งหมด</option>
+                <option *ngIf="importForm == 'Google'" value="restaurant">restaurant</option>
+                <option *ngIf="importForm == 'Google'" value="store">store</option>
+                <option *ngIf="importForm == 'Google'" value="cafe">cafe</option>
+                <option *ngIf="importForm == 'Facebook'" value="place">place</option>
+              </select>
+            </div>
           </div>
           <div class="col-md-3">
-            <div class="form-group form-black label-floating is-empty">
-              <label class="control-label">คำค้นหา (เช่น coffee)</label>
+            <div class="form-group form-black is-empty">
+              คำค้นหา (เช่น coffee)
+              <!-- <label class="control-label">คำค้นหา (เช่น coffee)</label> -->
               <input class="form-control" type="text" [(ngModel)]="keyword">
             </div>
           </div>
           <div class="col-md-2 mt-10">
-            <button class="btn btn-info" (click)="search()">ค้นหา</button>
+            <div class="form-group form-black is-empty">
+              <button class="btn btn-info" (click)="search()">ค้นหา</button>
+            </div>
           </div>
         </div>
         <div class="row">
