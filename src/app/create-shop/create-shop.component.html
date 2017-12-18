@@ -1,14 +1,19 @@
 <div class="main-content">
-  <div class="card">
-    <div class="card-block">
-      <div class="row" *ngIf="shop.coverimage">
-        <div class="col-xs-12">
-          <img class="card-img-top" [src]="shop.coverimage ? shop.coverimage : 'http://res.cloudinary.com/ha7s6qhcg/image/upload/v1512718072/uploadcover_wmvyr4.jpg'"
-            alt="Card image cap">
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 col-xl-offset-2 col-lg-offset-2">
+      <div class="card">
+        <div class="card-block">
+          <div class="row" *ngIf="shop.coverimage">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+              <img class="card-img-top" [src]="shop.coverimage ? shop.coverimage : 'http://res.cloudinary.com/ha7s6qhcg/image/upload/v1512718072/uploadcover_wmvyr4.jpg'"
+                alt="Card image cap">
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 
   <div class="row">
     <div class="col-xl-6 col-md-6 col-sm-6 col-xs-12">
