@@ -3,6 +3,8 @@ import { ShopService } from 'app/create-shop/create-shop.service';
 import { ServerConfig } from 'app/provider/server.config';
 import { Router } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 declare let google;
 @Component({
@@ -11,6 +13,7 @@ declare let google;
   styleUrls: ['./create-shop.component.css']
 })
 export class CreateShopComponent implements OnInit {
+  modalRef: BsModalRef;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: Array<NgxGalleryImage> = [];
   @ViewChild('map') mapElement: ElementRef;
@@ -49,7 +52,9 @@ export class CreateShopComponent implements OnInit {
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
-  constructor(private server: ServerConfig, private router: Router, private shopService: ShopService) { }
+  constructor(private server: ServerConfig, private router: Router, private shopService: ShopService,
+    private modalService: BsModalService
+  ) { }
 
   ngOnInit() {
     this.galleryOptions = [
@@ -58,15 +63,16 @@ export class CreateShopComponent implements OnInit {
         height: '60vh',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
-        preview: false,
-        imageSwipe: true
+        preview: true,
+        imageSwipe: true,
+        thumbnailsSwipe: true
       },
       // max-width 800
       {
         breakpoint: 800,
         width: '100%',
         height: '80vh',
-        imagePercent: 80,
+        imagePercent: 100,
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
         thumbnailMargin: 20,
@@ -151,10 +157,13 @@ export class CreateShopComponent implements OnInit {
     this.promoteimgInput.nativeElement.click();
   }
   updateCateImg() {
+    this.updateOrEditCateImg = null;
     this.cateimgInput.nativeElement.click();
   }
 
-  onCateImgChange(e) {
+  onCateImgChange(e,modal) {
+    this.CE_action_category = 'เพิ่ม';
+    this.openModal(modal);
     const fileBrowser = this.cateimgInput.nativeElement;
     const reader = new FileReader();
     reader.readAsDataURL(fileBrowser.files[0]);
@@ -248,9 +257,6 @@ export class CreateShopComponent implements OnInit {
     }
 
   }
-  onLongPress() {
-    alert("xxx");
-  }
 
   deletePromoteImage(image) {
     var isDuplicate = false;
@@ -315,32 +321,36 @@ export class CreateShopComponent implements OnInit {
     });
   }
 
-  createCategory() {
-    this.category = {};
-    this.showeMainShop = false;
-    this.showAddCategory = true;
-    this.CE_action_category = 'เพิ่ม';
+  createEditCategory(ref,templete,category) {
+    if(ref == "create"){
+      this.category = {};
+      this.showeMainShop = false;
+      this.showAddCategory = true;
+      this.CE_action_category = 'เพิ่ม';
+    }
   }
-
-  editCategory(category) {
+  editCategory(edit,modal,category){
     this.showeMainShop = false;
     this.showAddCategory = true;
     this.updateOrEditCateImg = category.image;
     this.category.name = category.name;
     this.CE_action_category = 'แก้ไข';
     this.CE_id_category = category._id;
+    this.openModal(modal);
   }
 
-  cancelCategory() {
+
+  cancelCategory(modal) {
     this.showeMainShop = true;
     this.showAddCategory = false;
+    this.updateOrEditCateImg = null;
+    this.hideModal(modal);
   }
 
   saveCategory() {
     if (this.CE_action_category == 'เพิ่ม') {
       this.category.shop = this.shopID;
-      // this.category.image = 'http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg';
-      this.shopService.saveCategory(this.category).subscribe(data => {
+      this.shopService.saveCategory(this.category,this.shopID).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;
         this.showAddCategory = false;
@@ -352,7 +362,6 @@ export class CreateShopComponent implements OnInit {
     } else {
       this.category._id = this.CE_id_category;
       this.category.shop = this.shopID;
-      // this.category.image = 'http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg';
       this.shopService.editCategory(this.category).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;
@@ -667,5 +676,14 @@ export class CreateShopComponent implements OnInit {
       }
     }
   }
+  openModal(template) {
+    this.modalRef = this.modalService.show(template);
+  }
+  hideModal(template) {
+    this.modalRef.hide();
+  }
+
+
+
 
 }

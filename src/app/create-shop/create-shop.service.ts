@@ -81,14 +81,14 @@ export class ShopService {
 
     /////////////category
 
-    saveCategory(category): Observable<any> {
-        return this.http.post(this.server.url + 'api/categoryproducts', category, this.server.AuthHeaders())
+    saveCategory(category,shopID): Observable<any> {
+        return this.http.put(this.server.url + 'api/createcate/' + shopID, category, this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
 
     editCategory(category): Observable<any> {
-        return this.http.put(this.server.url + 'api/categoryproducts/' + category._id, category, this.server.AuthHeaders())
+        return this.http.put(this.server.url + 'api/createcate/' + category._id, category, this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }

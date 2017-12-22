@@ -28,7 +28,7 @@ import { DashboardService } from 'app/dashboard/dashboard.service';
 import { ManageShopComponent } from './manage-shop/manage-shop.component';
 import { DragulaModule } from 'ng2-dragula';
 import { FacebookModule } from 'ngx-facebook';
-import { ModalModule } from 'ngx-modialog';
+// import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 import { ManageShopService } from 'app/manage-shop/manage-shop.service';
 import { ServerConfig } from 'app/provider/server.config';
@@ -42,6 +42,9 @@ import { Ng2MapModule } from 'ng2-map';
 import { UiSwitchModule } from 'ngx-toggle-switch/src'
 import { Pager } from 'app/provider/pager';
 import { NgxGalleryModule } from 'ngx-gallery';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 import 'hammerjs';
 @NgModule({
   declarations: [

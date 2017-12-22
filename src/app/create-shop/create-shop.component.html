@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="row text-center">
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "></div>
-    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ">
+    <div class="col-sm-2 col-md-2 col-lg-2 "></div>
+    <div class="col-sm-8 col-md-8 col-lg-8 ">
       <div class="card">
         <!-- <div class="card-header cw text-left">
           รูปภาพโปรโมทร้าน
@@ -9,14 +9,10 @@
         <div class="card-block text-center padding-all">
           <ngx-gallery *ngIf="shop.promoteimage && shop.promoteimage.length > 0" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
           <h4 *ngIf="!shop.promoteimage || shop.promoteimage.length == 0" style="font-family: 'Kanit', sans-serif;">ร้านนี้ยังไม่มีรูปภาพโปรโมทร้านค่ะ</h4>
-
-          <!-- <div class="col-md-3" *ngFor="let item of shop.promoteimage">
-            <img class="promotionimage" [src]="item ? item : 'http://res.cloudinary.com/ha7s6qhcg/image/upload/v1512718072/uploadcover_wmvyr4.jpg'" alt="Card image cap">
-          </div> -->
         </div>
       </div>
     </div>
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "></div>
+    <div class=" col-sm-2 col-md-2 col-lg-2 "></div>
   </div>
   <!-- <div class="row">
     <div class="col-xl-8 col-lg-8 col-xl-offset-2 col-lg-offset-2">
@@ -92,38 +88,7 @@
       </div>
     </div>
   </div>
-
   <div class="row">
-    <div class="col-xs-12">
-      <div class="card">
-        <div class="card-header cw">
-          ที่อยู่ร้านค้า
-        </div>
-        <div class="card-block">
-          <div class="form-group">
-            <textarea rows="1" class="form-control ct" placeholder="ที่อยู่" name="addr" [(ngModel)]="address"></textarea>
-            <!-- <input type="text" class="form-control" placeholder="ที่อยู่" [(ngModel)]="address"> -->
-          </div>
-          <p class="pin" (click)="openSelectMap()">
-            <i class="material-icons">room</i>
-          </p>
-        </div>
-        <div *ngIf="showeMap">
-          <input #pacinput id="pac-input" class="controls m2" type="text" placeholder="ค้นหาสถานที่">
-          <div #map class="map"></div>
-          <div class="ct">
-            <button class="btn btn-info" (click)="saveMap()">ยืนยัน</button>
-            <!-- <button class="btn btn-danger" (click)="cancelMap()">ยกเลิก</button> -->
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-
-  <!-- <div class="row">
     <div class="col-xs-12">
       <div class="card">
         <div class="card-header cw">
@@ -134,19 +99,23 @@
             <div class="col-md-3" (click)="openTime()">
               <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
             </div>
-            <div class="col-md-3" *ngFor="let item of timeList;let i = index">
-              <div class="card" style="margin: 0px 0;">
+            <div class="col-md-2" *ngFor="let item of timeList;let i = index">
+              <div class="card card-time-size" style="margin: 0px 0;">
                 <span class="bin" (click)="deleteTime(i)">
                   <i class="material-icons">delete</i>
                 </span>
-                <div class="card-block">
+                <div class="card-block text-center">
                   <h4 class="card-title" style="text-align: center;">{{item.description}}</h4>
                   <p class="card-text">เวลาเปิด {{item.timestart}} น.</p>
                   <p class="card-text">เวลาปิด {{item.timeend}} น.</p>
+                  <div class="time-elaspe">
+                    <span *ngFor="let item2 of item.days">{{item2}} </span>
+                  </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item" *ngFor="let item2 of item.days">{{item2}}</li>
-                </ul>
+                <!-- <ul class="list-group list-group-flush"> -->
+
+                <!-- <li class="list-group-item" *ngFor="let item2 of item.days"></li> -->
+                <!-- </ul> -->
               </div>
             </div>
           </div>
@@ -215,7 +184,117 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card">
+        <div class="card-header cw">
+          ที่อยู่ร้านค้า
+        </div>
+        <div class="card-block">
+          <div class="form-group">
+            <textarea rows="1" class="form-control ct" placeholder="ที่อยู่" name="addr" [(ngModel)]="address"></textarea>
+            <!-- <input type="text" class="form-control" placeholder="ที่อยู่" [(ngModel)]="address"> -->
+          </div>
+          <p class="pin" (click)="openSelectMap()">
+            <i class="material-icons">room</i>
+          </p>
+        </div>
+        <div *ngIf="showeMap">
+          <input #pacinput id="pac-input" class="controls m2" type="text" placeholder="ค้นหาสถานที่">
+          <div #map class="map"></div>
+          <div class="ct">
+            <button class="btn btn-info" (click)="saveMap()">ยืนยัน</button>
+            <!-- <button class="btn btn-danger" (click)="cancelMap()">ยกเลิก</button> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row" *ngIf="shopID">
+    <div class="col-xs-12">
+      <div class="card">
+        <div class="card-header cw">
+          จัดการสินค้า
+        </div>
+        <div class="card-block">
+          <div class="row">
+            <h3 class="h" style="border-bottom: none;">Category</h3>
+          </div>
+
+          <div class="row" [dragula]='"zone1"'>
+
+            <!-- ADD CATE -->
+            <div class="col-md-2" (click)="updateCateImg()">
+              <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
+            </div>
+            <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
+            />
+            <!-- ADD CATE -->
+
+            <!-- <div class="container testimonial-group"> -->
+            <div class="col-md-2 col-over" *ngFor="let item of categoryList">
+              <span class="bin-1">
+                <i class="material-icons" (click)="deleteCategory(item._id)">delete</i>
+              </span>
+              <div class="container">
+                <img (click)="filterByCate(item._id)" [src]="item.image" alt="image">
+              </div>
+              <span class="ca ovf">
+                {{item.name}}
+              </span>
+              <span class="pc-1">
+                <i class="material-icons" (click)="editCategory('edit',cateModal,item)">create</i>
+              </span>
+            </div>
+            <!-- </div> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------------------- ADD OR EDIT CATEGORY ---------------------- -->
+  <ng-template #cateModal>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left"> {{CE_action_category}}หมวดหมู่</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal(cateModal)">
+        <i class="material-icons" (click)="deleteCategory(item._id)">close</i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
+          <img class="img-2" *ngIf="updateOrEditCateImg " [src]="updateOrEditCateImg" alt="image">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-left">
+          <div class="form-group">
+            <h5>ชื่อหมวดหมู่</h5>
+            <input type="text" class="form-control" placeholder="Category Name" name="categoryname" [(ngModel)]="category.name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
+
+          <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
+          <button class="btn btn-danger" (click)="cancelCategory(cateModal)">ยกเลิก</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- ---------------------- ADD OR EDIT CATEGORY ---------------------- -->
+
+
+
+
 
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">

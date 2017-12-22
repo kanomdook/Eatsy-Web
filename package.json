@@ -46,6 +46,7 @@
     "moment": "2.18.1",
     "ng2-dragula": "^1.5.0",
     "ng2-map": "^0.16.5",
+    "ngx-bootstrap": "^2.0.0-rc.0",
     "ngx-facebook": "^2.4.0",
     "ngx-gallery": "^4.1.1",
     "ngx-loading": "^1.0.9",

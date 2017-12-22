@@ -74,7 +74,12 @@ export class ManageShopComponent implements OnInit {
       this.loading = false;
       this.shopsL = jso;
       this.curentPage[1] = 'active';
-    });
+    }, err => { 
+      let msgERR = JSON.parse(err._body);
+      if(msgERR.message == "Token is incorrect or has expired. Please login again"){
+        alert("หมดระยะเวลาการเชื่อมต่อกับระบบบริหารร้านค้า \nกรุณาเข้าสู่ระบบใหม่อีกครั้ง");
+        window.localStorage.clear();
+      }})
   }
 
   searchShop() {
@@ -311,16 +316,17 @@ export class ManageShopComponent implements OnInit {
 
     this.customSearch = false;
   }
-  isSendMail(shopID) {
+  isSendMail(shop) {
     this.loading = true;
 
-    console.log('id' + shopID);
-    this.manageShopService.sendMail(shopID).subscribe(data => {
+    console.log('id' + shop);
+    let sendShop = shop;
+    sendShop.isactiveshop = true;
+    this.manageShopService.sendMail(sendShop).subscribe(data => {
       console.log(data);
+      alert("ระบบได้ทำการส่ง User ไปให้ร้านเรียบร้อยแล้วค่ะ");
       this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
         this.loading = false;
-
-        alert("ระบบได้ทำการส่ง User ไปให้ร้านเรียบร้อยแล้วค่ะ");
         this.getListShop();
         this.shopsL = jso;
         this.curentPage[1] = 'active';

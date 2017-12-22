@@ -166,6 +166,11 @@
     
 }
 
+/* .search-box{
+    border-radius: 5rem;
+    border: solid 0.3rem black; 
+} */
+
 .del-color:hover {
     background-color: #928f8f5d;
 }
@@ -195,3 +200,5 @@
 .toggle-color {
     color: rgb(78, 78, 78) !important;
 }
+
+
