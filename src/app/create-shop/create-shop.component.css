@@ -10,12 +10,11 @@
     font-size: 34px;
 }
 
-.card-time-size{
+.card-time-size {
     height: 27.5vh;
-
 }
 
-.time-elaspe{
+.time-elaspe {
     text-overflow: ellipsis;
 }
 
@@ -51,12 +50,12 @@
     background-color: rgba(0, 0, 0, 0.4);
     width: 10.4vw;
     height: 5vh;
-    
     color: #fff;
     font-size: 1em;
     /* padding-top: 4vh; */
     /* margin-left: -63%; */
 }
+
 
 /* .col-md-2 {
     padding: 4px !important;
@@ -72,9 +71,9 @@
     min-height: 5vh;
      max-height: 5vh; 
     background-size:cover; */
-    width:150px !important;
-    height:150px !important;
-    overflow:hidden;
+    width: 150px !important;
+    height: 150px !important;
+    overflow: hidden;
 }
 
 .img-2 {
@@ -104,24 +103,31 @@
     width: 100%;
     margin-left: -50%;
 }
+
 .container {
     position: relative;
-    width: 100%; /* whatever width you want. I was implementing this in a 4 tile grid pattern. I used javascript to set height equal to width */
-    border: 2px solid #fff; /* just to separate the images */
-    overflow: hidden; /* "crop" the image */
-    background: #000; /* incase the image is wider than tall/taller than wide */
+    width: 100%;
+    /* whatever width you want. I was implementing this in a 4 tile grid pattern. I used javascript to set height equal to width */
+    border: 2px solid #fff;
+    /* just to separate the images */
+    overflow: hidden;
+    /* "crop" the image */
+    background: #000;
+    /* incase the image is wider than tall/taller than wide */
 }
 
 .container img {
     position: absolute;
     display: block;
-    height: 100%; /* all images at least fill the height */
-    top: 50%; /* top, left, transform trick to vertically and horizontally center image */
+    height: 100%;
+    /* all images at least fill the height */
+    top: 50%;
+    /* top, left, transform trick to vertically and horizontally center image */
     left: 50%;
-    transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%, -50%, 0);
 }
 
-input[type=file]{
+input[type=file] {
     display: none;
 }
 
@@ -240,7 +246,7 @@ input[type=file]{
 
 .pc-1 {
     position: absolute;
-top:0px;
+    top: 0px;
     /* margin-top: -36px; */
     color: #fff;
     cursor: pointer;
@@ -286,5 +292,26 @@ top:0px;
 .cate-padding-left {
     padding: 1rem;
     font-family: 'Kanit', sans-serif;
+}
 
+.b-red {
+    font-size: 0.9em;
+    color: red;
+    margin-top: -8px;
+}
+
+.s-cont {
+    height: 120px;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.check_icon {
+    width: 22px;
+    height: 22px;
+}
+
+.check_po {
+    position: absolute;
+    right: 8px;
 }
