@@ -3,8 +3,7 @@ import { ShopService } from 'app/create-shop/create-shop.service';
 import { ServerConfig } from 'app/provider/server.config';
 import { Router } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+
 
 declare let google;
 @Component({
@@ -13,7 +12,7 @@ declare let google;
   styleUrls: ['./create-shop.component.css']
 })
 export class CreateShopComponent implements OnInit {
-  modalRef: BsModalRef;
+
   galleryOptions: Array<NgxGalleryOptions> = [];
   galleryImages: Array<NgxGalleryImage> = [];
   @ViewChild('map') mapElement: ElementRef;
@@ -55,7 +54,7 @@ export class CreateShopComponent implements OnInit {
   updateOrEditCateImg: any;
   limitPrdImg = 3;
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService,
-    private modalService: BsModalService
+    // private modalService: BsModalService
   ) {
     this.galleryOptions = [
       {
@@ -170,7 +169,7 @@ export class CreateShopComponent implements OnInit {
 
   onCateImgChange(e, modal) {
     this.CE_action_category = 'เพิ่ม';
-    this.openModal(modal);
+
     const fileBrowser = this.cateimgInput.nativeElement;
     const reader = new FileReader();
     reader.readAsDataURL(fileBrowser.files[0]);
@@ -344,7 +343,7 @@ export class CreateShopComponent implements OnInit {
     this.category.name = category.name;
     this.CE_action_category = 'แก้ไข';
     this.CE_id_category = category._id;
-    this.openModal(modal);
+
   }
 
 
@@ -352,7 +351,7 @@ export class CreateShopComponent implements OnInit {
     this.showeMainShop = true;
     this.showAddCategory = false;
     this.updateOrEditCateImg = null;
-    this.hideModal(modal);
+
   }
 
   saveCategory() {
@@ -708,12 +707,7 @@ export class CreateShopComponent implements OnInit {
       }
     }
   }
-  openModal(template) {
-    this.modalRef = this.modalService.show(template);
-  }
-  hideModal(template) {
-    this.modalRef.hide();
-  }
+
 
 
 
