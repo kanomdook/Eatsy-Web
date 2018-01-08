@@ -225,28 +225,21 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก {{importForm}}</h4>
+        <h4 class="modal-title" id="exampleModalLabel">แก้ไขบัญชีผู้ใช้</h4>
       </div>
       <div class="modal-body">
         <div class="row bd">
           <div class="col-md-4">
             <div class="form-group form-black is-empty">
-              ละแวก (เช่น สยามพารากอน)
+              ชื่อที่แสดง :
               <!-- <label class="control-label">ละแวก (เช่น สยามพารากอน)</label> -->
-              <input class="form-control" type="text" [(ngModel)]="local">
+              <input class="form-control" type="text" [(ngModel)]="displayname">
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group form-black is-empty">
-
-              ค้นหาประเภทร้านค้า
-              <select class="form-control" [(ngModel)]="shopType">
-                <option *ngIf="importForm == 'Google'" value="">ทั้งหมด</option>
-                <option *ngIf="importForm == 'Google'" value="restaurant">restaurant</option>
-                <option *ngIf="importForm == 'Google'" value="store">store</option>
-                <option *ngIf="importForm == 'Google'" value="cafe">cafe</option>
-                <option *ngIf="importForm == 'Facebook'" value="place">place</option>
-              </select>
+              ชื่อ :
+              <input class="form-control" type="text" [(ngModel)]="firstName">
             </div>
           </div>
           <div class="col-md-3">
