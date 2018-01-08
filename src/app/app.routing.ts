@@ -47,6 +47,7 @@ const routes: Routes = [
       component: CreateShopComponent
     }]
   },
+  
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

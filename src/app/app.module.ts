@@ -46,6 +46,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import 'hammerjs';
+import { ManageUserComponent } from './manage-user/manage-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +68,7 @@ import 'hammerjs';
     ManageShopComponent,
     CreateShopComponent,
     LoginComponent,
+    ManageUserComponent,
 
   ],
   imports: [

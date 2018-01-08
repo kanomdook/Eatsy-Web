@@ -308,6 +308,13 @@
                 </a>
             </li>
 
+            <li *ngIf="isLogin">
+                <a [routerLink]="['manage-user']">
+                    <i class="material-icons">people</i>
+                    <p>จัดการบัญชีผู้ใช้</p>
+                </a>
+            </li>
+
 
 
 
