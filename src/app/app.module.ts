@@ -26,6 +26,7 @@ import { ManageDocumentComponent } from './manage-document/manage-document.compo
 import { CreateSellComponent } from './create-sell/create-sell.component';
 import { DashboardService } from 'app/dashboard/dashboard.service';
 import { ManageShopComponent } from './manage-shop/manage-shop.component';
+import { ManageUserComponent } from './manage-user/manage-user.component';
 import { DragulaModule } from 'ng2-dragula';
 import { FacebookModule } from 'ngx-facebook';
 // import { ModalModule } from 'ngx-modialog';
@@ -46,7 +47,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import 'hammerjs';
-import { ManageUserComponent } from './manage-user/manage-user.component';
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,3 +1,116 @@
-<p>
-  manage-user works!
-</p>
+<!-- <div class="loader" *ngIf="!shopsL" #loadingControl>
+  <img src="./assets/img/Infinity.gif" alt="">
+</div> -->
+<div class="main-content">
+
+  <div class="container-fluid">
+    <div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#customer" aria-controls="customer" role="tab" data-toggle="tab">ลูกค้า</a></li>
+        <li role="presentation"><a href="#shopowner" aria-controls="shopowner" role="tab" data-toggle="tab">เจ้าของร้าน</a></li>
+        <li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab">แอดมิน</a></li>
+      </ul>
+    
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="customer">
+          <div class="tab-content">
+            <!-- <div id="tab{{k}}" *ngFor="let item of shopsL.name; let k = index" class="tab-pane fade in {{ k === 0 ? 'active':''}}"> -->
+              <div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-content table-responsive">
+                      <table class="table">
+                        <thead class="text-danger">
+                          <tr>
+                            <th index-col-size>#</th>
+                            <th name-col-size>ชื่อที่แสดง</th>
+                            <th name-col-size>ชื่อ</th>
+                            <th name-col-size>นามสกุล</th>
+                            <th class="text-center col-md-2 tel-col-size">เบอร์โทร</th>
+                            <th name-col-size>อีเมล์</th>
+                            <th name-col-size>วันที่บันทึก</th>
+                           
+                            <th class="text-center col-md-1 col-lg-1 action-col-size">
+                              Action
+                              <!-- <span style="margin-right:-50px"></span> -->
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- <tr *ngIf="shopsL.items.length <=0"> -->
+                              <tr >
+                            <td colspan="7" class="text-center">
+                              ยังไม่มีข้อมูลร้านค้าในระบบค่ะ
+                            </td>
+      
+                          </tr>
+                          <!-- <tr *ngFor="let item of shopsL.items; let i = index ">
+                            <td>{{i + pageSelect + 1}}</td>
+                            <td>{{item.name}}</td>
+                            <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
+                            <td *ngIf="!item.address">ไม่ปรากฎที่อยู่ร้าน</td>
+                            <td *ngIf="item.address">{{item.address.address ? item.address.address: '-'}}</td>
+                            <td class="text-center">{{item.importform}}
+                              <p subText>by {{item.user.firstName}}</p>
+                            </td>
+                            <td class="text-center ">
+      
+                              <button class="btn btn-success btn-simple btn-xs btn-border" type="button" *ngIf="!item.issendmail && item.email" (click)="isSendMail(item)">
+                                SEND USER
+                              </button>
+                              <p *ngIf="item.issendmail">Joined</p>
+                            </td>
+                            <td class="text-center">
+                              <ui-switch [(ngModel)]="item.isactiveshop" (change)="activeChange($event,item)"></ui-switch>
+      
+      
+                              <div class="dropdown pull-right">
+                                <button class="btn btn-simple btn-xs pull-right dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="true">
+                                  <i class="material-icons toggle-color">more_horiz</i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                  <span (click)="editShop(item)">
+                                    <i class="material-icons edit-color">border_color</i>
+                                  </span>
+                                  <span (click)="deleteShop(item._id)">
+                                    <i class="material-icons del-color">delete</i>
+                                  </span>
+      
+                                </ul>
+                              </div>
+      
+                            </td>
+                          </tr> -->
+      
+                        </tbody>
+                      </table>
+      
+                      <div class="pc">
+                        <nav aria-label="Page navigation">
+                          <ul class="pagination">
+                            <li [class]="curentPage[item]" *ngFor="let item of shopsL.pagings">
+                              <a (click)="pageing(item)">{{item}}</a>
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+          </div></div>
+        <div role="tabpanel" class="tab-pane" id="shopowner">.sdfdfdsfdsfdsfd.</div>
+        <div role="tabpanel" class="tab-pane" id="admin">.sdsdsds.</div>
+      </div>
+    
+    </div>
+    
+  </div>
+</div>

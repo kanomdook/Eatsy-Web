@@ -20,6 +20,7 @@ import { ManageDocumentComponent } from 'app/manage-document/manage-document.com
 import { CreateSellComponent } from 'app/create-sell/create-sell.component';
 import { ManageShopComponent } from 'app/manage-shop/manage-shop.component';
 import { CreateShopComponent } from 'app/create-shop/create-shop.component';
+import { ManageUserComponent } from 'app/manage-user/manage-user.component';
 import { LoginComponent } from 'app/login/login.component';
 import { AppComponent } from 'app/app.component';
 
@@ -47,7 +48,7 @@ const routes: Routes = [
       component: CreateShopComponent
     }]
   },
-  
+  { path: 'manage-user', component: ManageUserComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
