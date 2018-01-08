@@ -33,7 +33,7 @@
             aria-expanded="true">
             <i class="material-icons">add</i> เพิ่มร้านค้า
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <ul id="#dropdown" class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li (click)="createShop()">
               <a>เพิ่มข้อมูลเอง</a>
             </li>
@@ -154,7 +154,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก {{importForm}}</h4>
+        <h4  style="font-family: 'Kanit', sans-serif;" class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก {{importForm}}</h4>
       </div>
       <div class="modal-body">
         <div class="row bd">
@@ -229,7 +229,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="exampleModalLabel2">{{action}}</h4>
+        <h4 style="font-family: 'Kanit', sans-serif;" class="modal-title" id="exampleModalLabel2">{{action}}</h4>
       </div>
       <div class="modal-body">
         <div class="row">

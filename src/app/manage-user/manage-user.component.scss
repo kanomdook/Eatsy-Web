@@ -22,9 +22,44 @@
 [email-col-size]{
     width: 13rem;
 }
-
+.edit-color{
+    color: #f75251;
+    font-size: 3.5rem;
+}
+.edit-btn{
+    font-size: 2.5rem;
+color: orange;
+}
 .action-col-size {
     width: 12rem;
+    text-align: center;
+    vertical-align: text-top;
+}
+.close{
+    font-size: 4rem;
+}
+
+.form-control[disabled], fieldset[disabled] .form-control, .form-group .form-control[disabled], fieldset[disabled] .form-group .form-control {
+    background-image: none;
+    border-bottom: 1px dotted #565656;
+}
+.dropdown-menu {
+    min-width: 90px;
+}
+
+[modal-text-1]{
+    position: absolute;
+    margin-left: 4.5rem;
+    top: 3rem;
+}
+[modal-icon-1]{
+    position: absolute;
+}
+.switch{
+    background-color: #4caf50 !important;
+}
+.action-col-size {
+    width: 4rem;
     text-align: center;
     vertical-align: text-top;
 }

@@ -47,6 +47,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import 'hammerjs';
+import { ManageUserService } from 'app/manage-user/manage-user.service';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import 'hammerjs';
   providers: [
     DashboardService,
     ManageShopService,
+    ManageUserService,
     ServerConfig,
     Auth,
     ShopService,
