@@ -40,21 +40,21 @@
         <div class="card-block">
           <div class="row">
             <div class="col-md-12">
-              <select name="cateshop" class="form-control" [(ngModel)]="shop.categories">
-                <option value="">เลือกประเภทร้านค้า</option>
+              <select name="cateshop" class="form-control" [(ngModel)]="shop.categories" multiple>
+                <option value="" disabled>เลือกประเภทร้านค้า</option>
                 <option *ngFor="let item of categoryShopList" [value]="item._id">{{item.name}}</option>
               </select>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="ชื่อร้าน" naem="shopName" [(ngModel)]="shop.name">
+                <input type="text" class="form-control" placeholder="ชื่อร้าน" name="shopName" [(ngModel)]="shop.name">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="ชื่อร้าน (ภาษาอังกฤษ)" naem="shopNameEn" [(ngModel)]="shop.name_eng">
+                <input type="text" class="form-control" placeholder="ชื่อร้าน (ภาษาอังกฤษ)" name="shopNameEn" [(ngModel)]="shop.name_eng">
               </div>
 
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="รายละเอียดร้าน" naem="detail" [(ngModel)]="shop.detail">
+                <input type="text" class="form-control" placeholder="รายละเอียดร้าน" name="detail" [(ngModel)]="shop.detail">
               </div>
             </div>
           </div>
