@@ -40,10 +40,15 @@
         <div class="card-block">
           <div class="row">
             <div class="col-md-12">
-              <select name="cateshop" class="form-control" [(ngModel)]="shop.categories" multiple>
+              <div class="s-cont">
+                <p style="color:#c0c0c0">เลือกประเภทร้านค้า</p>
+                <p *ngFor="let item of categoryShopList" (click)="selectCate(item._id)">{{item.name}} <img *ngIf="checkeds[item._id]" class="check_po check_icon" src="https://image.flaticon.com/icons/svg/189/189677.svg" alt="icon"></p>
+              </div>
+              <!-- <select name="cateshop" class="form-control" [(ngModel)]="shop.categories" multiple>
                 <option value="" disabled>เลือกประเภทร้านค้า</option>
                 <option *ngFor="let item of categoryShopList" [value]="item._id">{{item.name}}</option>
               </select>
+              <div class="b-red">* กรณีเลือกหลายประเภทให้กด Ctrl ค้าง</div> -->
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="ชื่อร้าน" name="shopName" [(ngModel)]="shop.name">
               </div>

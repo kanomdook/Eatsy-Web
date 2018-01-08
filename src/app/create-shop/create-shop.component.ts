@@ -49,6 +49,8 @@ export class CreateShopComponent implements OnInit {
   private CE_id_product: string;
   private CE_action_category: string;
   private CE_id_category: string;
+  private selectList: Array<string> = [];
+  private checkeds: Array<any> = [];
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
@@ -57,31 +59,31 @@ export class CreateShopComponent implements OnInit {
   ) {
     this.galleryOptions = [
       {
-      width: '100%',
-      height: '65vh',
-      thumbnailsColumns: 4,
-      imageAnimation: NgxGalleryAnimation.Slide,
-      preview: false,
-      imageSwipe: true,
-      // imageInfinityMove: true
-    },
-    // max-width 800
-    {
-      breakpoint: 800,
-      width: '100%',
-      height: '80vh',
-      imagePercent: 100,
-      thumbnailsPercent: 20,
-      thumbnailsMargin: 20,
-      thumbnailMargin: 20,
-      thumbnailsSwipe: true,
-      // thumbnailsRemainingCount: true
-    },
-    // max-width 400
-    {
-      breakpoint: 400,
-      preview: false
-    }
+        width: '100%',
+        height: '65vh',
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide,
+        preview: false,
+        imageSwipe: true,
+        // imageInfinityMove: true
+      },
+      // max-width 800
+      {
+        breakpoint: 800,
+        width: '100%',
+        height: '80vh',
+        imagePercent: 100,
+        thumbnailsPercent: 20,
+        thumbnailsMargin: 20,
+        thumbnailMargin: 20,
+        thumbnailsSwipe: true,
+        // thumbnailsRemainingCount: true
+      },
+      // max-width 400
+      {
+        breakpoint: 400,
+        preview: false
+      }
     ];
 
   }
@@ -357,8 +359,8 @@ export class CreateShopComponent implements OnInit {
     if (this.CE_action_category == 'เพิ่ม') {
       this.category.shop = this.shopID;
       let sendCate = {
-          shopid: this.shop._id,
-          img: this.updateOrEditCateImg
+        shopid: this.shop._id,
+        img: this.updateOrEditCateImg
       }
       this.shopService.saveCategory(sendCate, this.shopID).subscribe(data => {
         console.log(data);
@@ -593,6 +595,26 @@ export class CreateShopComponent implements OnInit {
       this.router.navigate(['/manage-shop']);
     }
 
+  }
+
+  selectCate(cate_id) {
+    const inArr = this.selectList.indexOf(cate_id);
+    if (this.selectList.length < 3) {
+      if (inArr === -1) {
+        this.selectList.push(cate_id);
+        this.checkeds[cate_id] = true;
+      } else {
+        this.selectList.splice(inArr, 1);
+        this.checkeds[cate_id] = false;
+      }
+    } else {
+      if (inArr !== -1) {
+        this.selectList.splice(inArr, 1);
+        this.checkeds[cate_id] = false;
+      }
+    }
+
+    this.shop.categories = this.selectList;
   }
 
   save() {
