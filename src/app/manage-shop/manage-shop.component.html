@@ -1,6 +1,6 @@
-<!-- <div class="loader" #loadingControl>
+<div class="loader" *ngIf="!shopsL" #loadingControl>
     <img src="./assets/img/Spin.gif" alt="">
-  </div>-->
+  </div>
 <div class="main-content">
 
   <div class="container-fluid">
@@ -82,7 +82,8 @@
                       <td>{{i + pageSelect + 1}}</td>
                       <td>{{item.name}}</td>
                       <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
-                      <td>{{item.address.address ? item.address.address: '-'}}</td>
+                      <td *ngIf="!item.address">ไม่ปรากฎที่อยู่ร้าน</td>
+                      <td *ngIf="item.address">{{item.address.address ? item.address.address: '-'}}</td>
                       <td class="text-center">{{item.importform}}
                         <p subText>by {{item.user.firstName}}</p>
                       </td>

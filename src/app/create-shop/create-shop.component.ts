@@ -14,7 +14,7 @@ declare let google;
 })
 export class CreateShopComponent implements OnInit {
   modalRef: BsModalRef;
-  galleryOptions: NgxGalleryOptions[];
+  galleryOptions: Array<NgxGalleryOptions> = [];
   galleryImages: Array<NgxGalleryImage> = [];
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('pacinput') pacinput: ElementRef;
@@ -54,36 +54,39 @@ export class CreateShopComponent implements OnInit {
   limitPrdImg = 3;
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService,
     private modalService: BsModalService
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.galleryOptions = [
       {
-        width: '100%',
-        height: '60vh',
-        thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide,
-        preview: true,
-        imageSwipe: true,
-        thumbnailsSwipe: true
-      },
-      // max-width 800
-      {
-        breakpoint: 800,
-        width: '100%',
-        height: '80vh',
-        imagePercent: 100,
-        thumbnailsPercent: 20,
-        thumbnailsMargin: 20,
-        thumbnailMargin: 20,
-        thumbnailsSwipe: true
-      },
-      // max-width 400
-      {
-        breakpoint: 400,
-        preview: false
-      }
+      width: '100%',
+      height: '65vh',
+      thumbnailsColumns: 4,
+      imageAnimation: NgxGalleryAnimation.Slide,
+      preview: false,
+      imageSwipe: true,
+      // imageInfinityMove: true
+    },
+    // max-width 800
+    {
+      breakpoint: 800,
+      width: '100%',
+      height: '80vh',
+      imagePercent: 100,
+      thumbnailsPercent: 20,
+      thumbnailsMargin: 20,
+      thumbnailMargin: 20,
+      thumbnailsSwipe: true,
+      // thumbnailsRemainingCount: true
+    },
+    // max-width 400
+    {
+      breakpoint: 400,
+      preview: false
+    }
     ];
+
+  }
+
+  ngOnInit() {
     this.server.isLogin().subscribe(data => {
       if (!data) {
         this.router.navigate(['/login']);
@@ -103,7 +106,11 @@ export class CreateShopComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+    this.InitialData();
+  }
 
+
+  InitialData() {
     if (this.shopID) {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
         this.shop = data;
@@ -116,8 +123,6 @@ export class CreateShopComponent implements OnInit {
             small: el
           });
         });
-
-        console.log(this.galleryImages);
 
         // for (let index = 0; index < this.shop.promoteimage.length; index++) {
         //   this.galleryImages[index].medium = this.shop.promoteimage[index];
@@ -161,7 +166,7 @@ export class CreateShopComponent implements OnInit {
     this.cateimgInput.nativeElement.click();
   }
 
-  onCateImgChange(e,modal) {
+  onCateImgChange(e, modal) {
     this.CE_action_category = 'เพิ่ม';
     this.openModal(modal);
     const fileBrowser = this.cateimgInput.nativeElement;
@@ -203,7 +208,8 @@ export class CreateShopComponent implements OnInit {
             this.shop.promoteimage.push(data.imageURL);
             this.shopService.edit(this.shop).subscribe(shopRes => {
               alert("เพิ่มรูปภาพโปรโมทร้านเรียบร้อยแล้วค่ะ");
-              this.shop.promoteimage.push(shopRes.imageURL);
+              this.galleryImages = [];
+              this.InitialData();
             }, err => {
               alert("เกิดข้อผิดพลาดในการเพิ่มรูปภาพโปรโมทร้าน กรุณาลองใหม่อีกครั้งค่ะ");
               console.log(err);
@@ -321,15 +327,15 @@ export class CreateShopComponent implements OnInit {
     });
   }
 
-  createEditCategory(ref,templete,category) {
-    if(ref == "create"){
+  createEditCategory(ref, templete, category) {
+    if (ref == "create") {
       this.category = {};
       this.showeMainShop = false;
       this.showAddCategory = true;
       this.CE_action_category = 'เพิ่ม';
     }
   }
-  editCategory(edit,modal,category){
+  editCategory(edit, modal, category) {
     this.showeMainShop = false;
     this.showAddCategory = true;
     this.updateOrEditCateImg = category.image;
@@ -350,7 +356,11 @@ export class CreateShopComponent implements OnInit {
   saveCategory() {
     if (this.CE_action_category == 'เพิ่ม') {
       this.category.shop = this.shopID;
-      this.shopService.saveCategory(this.category,this.shopID).subscribe(data => {
+      let sendCate = {
+          shopid: this.shop._id,
+          img: this.updateOrEditCateImg
+      }
+      this.shopService.saveCategory(sendCate, this.shopID).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;
         this.showAddCategory = false;
