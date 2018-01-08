@@ -1,0 +1,15 @@
+{
+    "name": [
+        "customer",
+        "shopowner",
+        "admin",
+        "biker"
+    ],
+    "pagings": [
+        1,
+        2
+    ],
+    "items": [
+        {}
+    ]
+}

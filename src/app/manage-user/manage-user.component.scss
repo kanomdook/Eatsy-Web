@@ -2,7 +2,7 @@
     background: #f75251;
 }
 .tel-col-size {
-    width: 12rem;
+    width: 8rem;
 }
 
 .input-col-size {
@@ -12,9 +12,15 @@
 [name-col-size] {
     width: 17rem;
 }
+[displayname-col-size]{
+    width: 13rem;
+}
 
 [index-col-size] {
     width: 2rem;
+}
+[email-col-size]{
+    width: 13rem;
 }
 
 .action-col-size {
