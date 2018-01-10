@@ -42,7 +42,10 @@
             <div class="col-md-12">
               <div class="s-cont">
                 <p style="color:#c0c0c0">เลือกประเภทร้านค้า</p>
-                <p *ngFor="let item of categoryShopList" (click)="selectCate(item._id)">{{item.name}} <img *ngIf="checkeds[item._id]" class="check_po check_icon" src="https://image.flaticon.com/icons/svg/189/189677.svg" alt="icon"></p>
+                <p *ngFor="let item of categoryShopList" (click)="selectCate(item._id)">{{item.name}}
+                  <img *ngIf="checkeds[item._id]" class="check_po check_icon" src="https://image.flaticon.com/icons/svg/189/189677.svg"
+                    alt="icon">
+                </p>
               </div>
               <!-- <select name="cateshop" class="form-control" [(ngModel)]="shop.categories" multiple>
                 <option value="" disabled>เลือกประเภทร้านค้า</option>
@@ -246,12 +249,13 @@
               <span class="bin-1">
                 <i class="material-icons" (click)="deleteCategory(item._id)">delete</i>
               </span>
-              <div class="container">
-                <img (click)="filterByCate(item._id)" [src]="item.image" alt="image">
+              <div>
+                <img (click)="filterByCate(item._id)" [src]="item.image" alt="image" cate-img>
+                <span class="ca ovf">
+                  <p class="text-cate">{{item.name}}</p>
+                </span>
               </div>
-              <span class="ca ovf">
-                {{item.name}}
-              </span>
+
               <span class="pc-1">
                 <i class="material-icons" (click)="editCategory('edit',cateModal,item)">create</i>
               </span>
@@ -265,36 +269,45 @@
   </div>
 
   <!-- ---------------------- ADD OR EDIT CATEGORY ---------------------- -->
-  <ng-template #cateModal>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left"> {{CE_action_category}}หมวดหมู่</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal(cateModal)">
-        <i class="material-icons" (click)="deleteCategory(item._id)">close</i>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-          <img class="img-2" *ngIf="updateOrEditCateImg " [src]="updateOrEditCateImg" alt="image">
+  <div class="modal fade" #modal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left"> {{CE_action_category}}หมวดหมู่</h4>
+          <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal(cateModal)">
+            <i class="material-icons" (click)="deleteCategory(item._id)">close</i>
+          </button> -->
         </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-left">
-          <div class="form-group">
-            <h5>ชื่อหมวดหมู่</h5>
-            <input type="text" class="form-control" placeholder="Category Name" name="categoryname" [(ngModel)]="category.name">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
+              <div class="loader" *ngIf="!updateOrEditCateImg" #loadingControl>
+                <img src="./assets/img/Infinity.gif" alt="">
+              </div>
+              <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-left">
+              <div class="form-group">
+                <h5>ชื่อหมวดหมู่</h5>
+                <input type="text" class="form-control" placeholder="Category Name" name="categoryname" [(ngModel)]="category.name">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
+
+              <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
+              <button class="btn btn-danger" (click)="cancelCategory(cateModal)">ยกเลิก</button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-
-          <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
-          <button class="btn btn-danger" (click)="cancelCategory(cateModal)">ยกเลิก</button>
-        </div>
-      </div>
     </div>
-  </ng-template>
+  </div>
+
+
 
   <!-- ---------------------- ADD OR EDIT CATEGORY ---------------------- -->
 

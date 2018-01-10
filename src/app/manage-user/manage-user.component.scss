@@ -2,7 +2,7 @@
     background: #f75251;
 }
 .tel-col-size {
-    width: 8rem;
+    width: 7.8rem;
 }
 
 .input-col-size {
@@ -62,4 +62,14 @@ color: orange;
     width: 4rem;
     text-align: center;
     vertical-align: text-top;
+}
+.btn-border{
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 10rem;
+    width: 8rem;
+}
+.btn-color{
+    border-radius: 10rem;
+    background-color: rgb(255, 0, 0);
+    width: 8rem;
 }

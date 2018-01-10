@@ -6,13 +6,14 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 
 
 declare let google;
+declare let $: any;
 @Component({
   selector: 'app-create-shop',
   templateUrl: './create-shop.component.html',
   styleUrls: ['./create-shop.component.css']
 })
 export class CreateShopComponent implements OnInit {
-
+  @ViewChild('modal') modal:ElementRef;
   galleryOptions: Array<NgxGalleryOptions> = [];
   galleryImages: Array<NgxGalleryImage> = [];
   @ViewChild('map') mapElement: ElementRef;
@@ -168,8 +169,8 @@ export class CreateShopComponent implements OnInit {
   }
 
   onCateImgChange(e, modal) {
+    $(this.modal.nativeElement).modal('show');
     this.CE_action_category = 'เพิ่ม';
-
     const fileBrowser = this.cateimgInput.nativeElement;
     const reader = new FileReader();
     reader.readAsDataURL(fileBrowser.files[0]);
@@ -358,8 +359,8 @@ export class CreateShopComponent implements OnInit {
     if (this.CE_action_category == 'เพิ่ม') {
       this.category.shop = this.shopID;
       let sendCate = {
-        shopid: this.shop._id,
-        img: this.updateOrEditCateImg
+        name: this.category.name,
+        image: this.updateOrEditCateImg
       }
       this.shopService.saveCategory(sendCate, this.shopID).subscribe(data => {
         console.log(data);

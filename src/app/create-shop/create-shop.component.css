@@ -48,14 +48,16 @@
     position: absolute;
     margin-top: -5vh;
     background-color: rgba(0, 0, 0, 0.4);
-    width: 10.4vw;
+    width: 10.5vw;
     height: 5vh;
     color: #fff;
     font-size: 1em;
-    /* padding-top: 4vh; */
-    /* margin-left: -63%; */
 }
-
+.ovf {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 /* .col-md-2 {
     padding: 4px !important;
@@ -267,11 +269,7 @@ input[type=file] {
     margin-top: 10px;
 }
 
-.ovf {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+
 
 .card-img-top {
     object-fit: cover;
@@ -314,4 +312,15 @@ input[type=file] {
 .check_po {
     position: absolute;
     right: 8px;
+}
+[cate-img] {
+    min-height: 14.8rem;
+}
+.text-cate{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
 }

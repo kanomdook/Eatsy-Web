@@ -43,12 +43,11 @@
                             <th class="text-center col-md-2 tel-col-size">เบอร์โทร</th>
                             <th class="text-center" email-col-size>อีเมล์</th>
                             <th class="text-center col-md-1">สถานะ</th>
-                            <th class="text-center col-md-1">วันที่บันทึก</th>
-
                             <th class="text-center col-md-1 col-lg-1 action-col-size">
                               Action
                               <!-- <span style="margin-right:-50px"></span> -->
                             </th>
+                            <th class="text-center col-md-1 col-lg-1"></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -59,23 +58,28 @@
                             </td>
 
                           </tr>
-                          <tr *ngFor="let item of listCust[0]; let i = index ">
-                            <td>{{i + pageSelect + 1}}</td>
-                            <td>{{item.displayName}}</td>
-                            <td>{{item.firstName}} {{item.lastName}}</td>
-                            <td class="text-center">{{item.mobile ? item.mobile: '-'}}</td>
-                            <td class="text-center">{{item.email}}</td>
-                            <td class="text-center">Active</td>
-                            <td class="text-center">{{item.created | date: 'dd/MM/yyyy'}}</td>
+                          <tr *ngFor="let item of listCust[0]; let i = index " >
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{i + pageSelect + 1}}</td>
+                            <td data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.displayName}}</td>
+                            <td data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.firstName}} {{item.lastName}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.mobile ? item.mobile: '-'}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.email}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">Active</td>
+
 
                             <td class="text-center">
-                                <span>
-                                    <i class="material-icons edit-btn" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">border_color</i>
-                
-                                  <ui-switch size="small" color="red" class="switch-bg" (change)="activeChange($event,item)"></ui-switch>
-                                </span>
-
-
+                              <span>
+                                <!-- <i class="material-icons edit-btn" >border_color</i> -->
+                                <ui-switch size="small" color="green"  (change)="activeChange($event,item)"></ui-switch>
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <button class="btn btn-danger  btn-xs btn-color" type="button" (click)="unbanUser(item)">
+                                UNBAN
+                              </button>
+                              <button class="btn btn-danger btn-simple btn-xs btn-border" type="button" (click)="banUser(item)">
+                                Ban User
+                              </button>
                             </td>
                           </tr>
 
@@ -115,7 +119,7 @@
                             <th class="text-center" index-col-size>#</th>
                             <th class="text-center" displayname-col-size>ชื่อที่แสดง</th>
                             <th class="text-center" name-col-size>ชื่อ - นามสกุล</th>
-                            <th class="text-center col-md-2 tel-col-size">เบอร์โทร</th>
+                            <th class="text-center tel-col-size">เบอร์โทร</th>
                             <th class="text-center" email-col-size>อีเมล์</th>
                             <th class="text-center col-md-1">สถานะ</th>
                             <th class="text-center col-md-1">วันที่บันทึก</th>
@@ -144,11 +148,11 @@
                             <td class="text-center">{{item.created | date: 'dd/MM/yyyy'}}</td>
 
                             <td class="text-center">
-                                <span>
-                                    <i class="material-icons edit-btn" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">border_color</i>
-                
-                                  <ui-switch size="small" color="red" (change)="activeChange($event,item)"></ui-switch>
-                                </span>
+                              <span>
+                                <i class="material-icons edit-btn" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">border_color</i>
+
+                                <ui-switch size="small" color="red" (change)="activeChange($event,item)"></ui-switch>
+                              </span>
 
                             </td>
                           </tr>
@@ -217,11 +221,11 @@
                             <td class="text-center">{{item.created | date: 'dd/MM/yyyy'}}</td>
 
                             <td class="text-center">
-                                <span>
-                                    <i class="material-icons edit-btn" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">border_color</i>
-                
-                                  <ui-switch size="small" color="red" (change)="activeChange($event,item)"></ui-switch>
-                                </span>
+                              <span>
+                                <i class="material-icons edit-btn" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">border_color</i>
+
+                                <ui-switch size="small" color="red" (change)="activeChange($event,item)"></ui-switch>
+                              </span>
 
 
                             </td>
@@ -292,8 +296,8 @@
 
                             <td class="text-center">
                               <span>
-                                  <i class="material-icons edit-btn" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">border_color</i>
-              
+                                <i class="material-icons edit-btn" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">border_color</i>
+
                                 <ui-switch size="small" color="red" (change)="activeChange($event,item)"></ui-switch>
                               </span>
 
@@ -333,9 +337,6 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
         <div>
           <span modal-icon-1>
             <i class="material-icons edit-color">people</i>
