@@ -131,6 +131,7 @@ export class CreateShopComponent implements OnInit {
         //   this.galleryImages[index].medium = this.shop.promoteimage[index];
 
         // }
+        console.log(data);
         this.shop.categories = this.shop.categories ? this.shop.categories._id : '';
         this.address = data.address.address;
         this.latLng = {
@@ -287,7 +288,6 @@ export class CreateShopComponent implements OnInit {
 
   filterByCate(cateID, cateIndex) {
     this.selectedCate = cateIndex;
-    alert("Select Cate : " + this.selectedCate);
     this.oldsProducts = this.oldsProducts.length == 0 ? this.products : this.oldsProducts;
     console.log(cateID);
     console.log(this.products);
@@ -299,6 +299,7 @@ export class CreateShopComponent implements OnInit {
       }
     });
     this.products = dataFilter;
+    console.log("Pro : " + this.products);
   }
 
   createProduct() {
@@ -370,7 +371,8 @@ export class CreateShopComponent implements OnInit {
         this.showeMainShop = true;
         this.showAddCategory = false;
 
-        location.reload();
+    // this.InitialData();
+   
       }, err => {
         console.log(err);
       });
@@ -381,7 +383,7 @@ export class CreateShopComponent implements OnInit {
         console.log(data);
         this.showeMainShop = true;
         this.showAddCategory = false;
-        location.reload();
+    // this.InitialData();
       }, err => {
         console.log(err);
       });
