@@ -2,6 +2,16 @@
     /* height: 180px; */
 }
 
+.nav-tabs {
+    background: #f75251 !important;
+}
+
+.btn-color {
+    border-radius: 10rem;
+    background-color: rgb(255, 0, 0);
+    width: 8rem;
+}
+
 .tel-col-size {
     width: 12rem;
 }
@@ -118,7 +128,7 @@
     /* height: 4rem; */
 }
 
-.nav-tabs>li>a,
+/* .nav-tabs>li>a,
 .nav-tabs>li>a:hover,
 .nav-tabs>li>a:focus {
     color: black !important;
@@ -128,7 +138,7 @@
 .nav-tabs>li.active>a:hover,
 .nav-tabs>li.active>a:focus {
     border-bottom: 3px solid rgb(14, 156, 14) !important;
-}
+} */
 
 .card-img-top {
     height: 180px;

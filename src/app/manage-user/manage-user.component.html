@@ -61,6 +61,7 @@
                             <th class="text-center">อีเมล์</th>
                             <th class="text-center">สถานะ</th>
                             <th class="text-center">Action</th>
+                            <th class="text-center"></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -79,10 +80,15 @@
                             <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">Active</td>
                             <td style="text-align: center">
                               <ui-switch size="small" color="green" (change)="activeChange($event,item)"></ui-switch>
-                              <button class="btn btn-danger btn-simple btn-xs btn-border" style="margin-top: -8px" type="button" (click)="banUser(item)">
+                              <!-- <button class="btn btn-danger btn-simple btn-xs btn-border" style="margin-top: -8px" type="button" (click)="banUser(item)">
                                 Ban User
-                              </button>
-                              <i class="material-icons del-color" style="color:red">delete</i>
+                              </button> -->
+                              <!-- <i class="material-icons del-color" style="color:red">delete</i> -->
+                            </td>
+                            <td style="text-align: center">
+                                <button class="btn btn-danger btn-simple btn-xs btn-border" type="button" (click)="banUser(item)">
+                                    Ban User
+                                  </button>
                             </td>
                           </tr>
                         </tbody>
