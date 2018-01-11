@@ -55,6 +55,12 @@ export class ShopService {
 
     //////////////product
 
+    createProduct(product,shop): Observable<any> {
+        return this.http.put(this.server.url + 'api/createproduct/' + shop._id , product, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
     saveProduct(product): Observable<any> {
         return this.http.post(this.server.url + 'api/products', product, this.server.AuthHeaders())
             .map((res: Response) => res.json())

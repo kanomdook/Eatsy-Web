@@ -51,7 +51,7 @@ export class CreateShopComponent implements OnInit {
   private CE_id_category: string;
   private selectList: Array<string> = [];
   private checkeds: Array<any> = [];
-  private selectedCate: number;
+  private selectedCate: number = 0;
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
@@ -289,9 +289,9 @@ export class CreateShopComponent implements OnInit {
   filterByCate(cateID, cateIndex) {
     this.selectedCate = cateIndex;
     this.oldsProducts = this.oldsProducts.length == 0 ? this.products : this.oldsProducts;
-    console.log(cateID);
-    console.log(this.products);
-    console.log(this.oldsProducts);
+    console.log("CATE : " + cateID);
+    console.log("1 Product : " + this.products);
+    console.log("Old Product : " + this.oldsProducts);
     let dataFilter: Array<any> = [];
     this.oldsProducts.forEach((el, i) => {
       if (el.categories._id == cateID) {
@@ -302,12 +302,22 @@ export class CreateShopComponent implements OnInit {
     console.log("Pro : " + this.products);
   }
 
-  createProduct() {
-    this.product = {};
-    this.product.categories = '';
+  createProduct(index, CateIndex) {
     this.showeMainShop = false;
     this.showAddProduct = true;
     this.CE_action_product = 'เพิ่ม';
+    alert("Select prd index : " + index + "\nSelect Cate : " + CateIndex);
+  
+      // let createPRD = {
+      //   name: ,
+      //   images,
+      //   price: ,
+      //   categories: ,
+      //   index: ,
+      //   cateindex:
+      // }
+      // this.shopService.createProduct()
+  
   }
 
   canselSaveProduct() {
@@ -368,12 +378,15 @@ export class CreateShopComponent implements OnInit {
       }
       this.shopService.saveCategory(sendCate, this.shopID).subscribe(data => {
         console.log(data);
+        alert("ระบบได้ทำการเพิ่มหมวดหมู่สินค้าเรียบร้อยแล้ว");
+        this.categoryList[this.categoryList.length] = data;
         this.showeMainShop = true;
         this.showAddCategory = false;
 
-    // this.InitialData();
-   
+        // this.InitialData();
+
       }, err => {
+        alert("ระบบไม่สามารถเพิ่มหมวดหมู่ร้านค้าได้ กรุณาลองใหม่อีกครั้ง");
         console.log(err);
       });
     } else {
@@ -383,7 +396,7 @@ export class CreateShopComponent implements OnInit {
         console.log(data);
         this.showeMainShop = true;
         this.showAddCategory = false;
-    // this.InitialData();
+        // this.InitialData();
       }, err => {
         console.log(err);
       });
@@ -714,9 +727,4 @@ export class CreateShopComponent implements OnInit {
       }
     }
   }
-
-
-
-
-
 }

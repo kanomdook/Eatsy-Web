@@ -258,7 +258,7 @@
             <!-- SHOW CATEGOY ZONE -->
             <div class="col-md-2 col-over" *ngFor="let item of categoryList;let i = index">
               <span class="bin-1">
-                <i class="material-icons" (click)="deleteCategory(item._id)">delete</i>
+                <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
               </span>
               <div>
                 <img (click)="filterByCate(item._id,i)" [src]="item.image" alt="image" cate-img>
@@ -268,26 +268,39 @@
               </div>
 
               <span class="pc-1">
-                <i class="material-icons" (click)="editCategory('edit',cateModal,item)">create</i>
+                <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
               </span>
             </div>
             <!-- SHOW CATEGOY ZONE -->
           </div>
 
-            <!-- SHOW PRODUCT IN CATE ZONE -->
-        <div class="row" >
-          <div class="col-md-12">
-            <h4 class="h" >Products</h4>
-            <div [sortablejs]="products">
-                <div *ngFor="let item of products">{{ item }}</div>
+          <!-- SHOW PRODUCT IN CATE ZONE -->
+          <div class="row" *ngIf="shop.items && shop.items.length > 0">
+            <div class="col-md-12">
+              <h4 class="h">Products</h4>
+              <div [sortablejs]="shop.items">
+                <div class="row">
+                  <div class="col-md-2 col-over col-bottom" *ngFor="let item of shop.items[selectedCate].products; let i = index">
+                    <div *ngIf="item.name == 'default'">
+                      <img class="img" (click)="createProduct(i,selectedCate)" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image"
+                        cate-img>
+                    </div>
+                    <div *ngIf="item.name !== 'default'">
+                        <img class="img" (click)="editProduct(i,selectedCate)" [src]="item.images[0]" alt="image"
+                          cate-img>
+                      </div>
+                  </div>
+                </div>
               </div>
-          </div>
-        </div>
 
-        <!-- SHOW PRODUCT IN CATE ZONE -->
+
+            </div>
+          </div>
+
+          <!-- SHOW PRODUCT IN CATE ZONE -->
         </div>
         <!-- MANAGE CATE & PRODUCT ZONE -->
-      
+
       </div>
     </div>
   </div>
@@ -334,6 +347,51 @@
 
 
   <!-- ---------------------- ADD OR EDIT CATEGORY ---------------------- -->
+
+
+
+  <!-- ---------------------- ADD OR EDIT PRODUCT ---------------------- -->
+  <div class="modal fade" #modal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title pull-left"> {{CE_action_product}}สินค้า</h4>
+            <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal(cateModal)">
+              <i class="material-icons" (click)="deleteCategory(item._id)">close</i>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
+                <div class="loader" *ngIf="!updateOrEditCateImg" #loadingControl>
+                  <img src="./assets/img/Infinity.gif" alt="">
+                </div>
+                <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-left">
+                <div class="form-group">
+                  <h5>ชื่อหมวดหมู่</h5>
+                  <input type="text" class="form-control" placeholder="Category Name" name="categoryname" [(ngModel)]="category.name">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
+  
+                <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
+                <button class="btn btn-danger" #dissmissBtn data-dismiss="modal" (click)="cancelCategory(cateModal)">ยกเลิก</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+    <!-- ---------------------- ADD OR EDIT PRODUCT ---------------------- -->
 
 
 
