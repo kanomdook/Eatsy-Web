@@ -2,6 +2,16 @@
     /* height: 180px; */
 }
 
+/* .nav-tabs {
+    background: #f75251 !important;
+} */
+
+.btn-color {
+    border-radius: 10rem;
+    background-color: rgb(255, 0, 0);
+    width: 8rem;
+}
+
 .tel-col-size {
     width: 12rem;
 }
