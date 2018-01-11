@@ -48,6 +48,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 
 import 'hammerjs';
 import { ManageUserService } from 'app/manage-user/manage-user.service';
+import { ManageAdsComponent } from './manage-ads/manage-ads.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ManageUserService } from 'app/manage-user/manage-user.service';
     CreateShopComponent,
     LoginComponent,
     ManageUserComponent,
+    ManageAdsComponent,
 
   ],
   imports: [
