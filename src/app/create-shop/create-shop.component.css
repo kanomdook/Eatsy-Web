@@ -324,3 +324,10 @@ input[type=file] {
     margin-right: -50%;
     transform: translate(-50%, -50%)
 }
+.col-bottom{
+    padding-bottom: 3rem;
+}
+.add-dropShadow{
+    /* box-shadow:0.4rem 0.4rem 1rem grey;   */
+    filter: drop-shadow(0.2rem 0.2rem 0.5rem grey);
+}
