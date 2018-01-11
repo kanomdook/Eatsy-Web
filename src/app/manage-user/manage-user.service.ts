@@ -15,4 +15,22 @@ export class ManageUserService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
+    add(user): Observable<any> {
+        return this.http.post(this.server.url + 'api/auth/signup', user, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    edit(user): Observable<any> {
+        return this.http.put(this.server.url + 'api/users/' + user._id, user, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    delete(user_id): Observable<any> {
+        return this.http.delete(this.server.url + 'api/users/' + user_id, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
 }

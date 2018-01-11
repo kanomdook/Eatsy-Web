@@ -2,6 +2,7 @@
     /* height: 180px; */
 }
 
+
 /* .nav-tabs {
     background: #f75251 !important;
 } */
@@ -132,6 +133,7 @@
 .nav-tabs>li>a:hover,
 .nav-tabs>li>a:focus {
     color: black !important;
+    font-size: 1.2em;
 }
 
 .nav-tabs>li.active>a,
