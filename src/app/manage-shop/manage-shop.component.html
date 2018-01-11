@@ -1,13 +1,13 @@
 <div class="loader" *ngIf="!shopsL" #loadingControl>
-    <img src="./assets/img/Infinity.gif" alt="">
-  </div>
+  <img src="./assets/img/Infinity.gif" alt="">
+</div>
 <div class="main-content">
 
   <div class="container-fluid">
 
 
     <!-- //////Apple/// -->
-    <div class="row vcenter">
+    <div class="row">
       <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
         <ul class="nav nav-tabs">
           <li *ngFor="let tab of shopsL.name; let i = index" class="{{ selectedTab === i ? 'active':''}}">
@@ -17,16 +17,33 @@
           </li>
         </ul>
       </div>
-      <div class="col-lg-4 col-md-8 col-sm-8 col-xs-8">
-        <div class="input-group search-box">
+
+
+
+      <div class="col-lg-4 col-md-8 col-sm-8 col-xs-8" style="margin-top: 10px">
+        <div class="sb">
+          <span class="inner-sb">
+            <span class="txb">
+              ค้นหา
+            </span>
+          </span>
+
+          <span>
+              <input type="text" class="form-control tb" [(ngModel)]="searchKeyword" (keyup.enter)="searchShop()">
+          </span>
+        </div>
+        <!-- <div class="input-group search-box">
           <input type="text" class="form-control" placeholder="ค้นหา..." [(ngModel)]="searchKeyword">
           <span class="input-group-btn">
               <button class="btn btn-default" type="button" (click)="searchShop()">
                 <i class="material-icons">search</i>
               </button>
             </span>
-        </div>
+        </div> -->
       </div>
+
+
+
       <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
         <div class="dropdown pull-right">
           <button class="btn  pull-right dropdown-toggle addBTN" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
@@ -154,7 +171,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4  style="font-family: 'Kanit', sans-serif;" class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก {{importForm}}</h4>
+        <h4 style="font-family: 'Kanit', sans-serif;" class="modal-title" id="exampleModalLabel">นำเข้าข้อมูลจาก {{importForm}}</h4>
       </div>
       <div class="modal-body">
         <div class="row bd">
