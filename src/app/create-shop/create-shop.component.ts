@@ -409,10 +409,11 @@ export class CreateShopComponent implements OnInit {
           let prdImgStr = reader.result.replace(/\n/g, '');
           this.product.images = prdImgStr;
           this.shopService.uploadPromoteImage(this.shop).subscribe(data => {
-            this.shop.promoteimage.push(data.imageURL);
+            // this.shop.promoteimage.push(data.imageURL);
             this.shopService.edit(this.shop).subscribe(shopRes => {
               alert("เพิ่มรูปภาพโปรโมทร้านเรียบร้อยแล้วค่ะ");
-              this.shop.promoteimage.push(shopRes.imageURL);
+              this.shop.promoteimage[this.shop.promoteimage.length] = shopRes.imageURL;
+              // this.shop.promoteimage.push(shopRes.imageURL);
             }, err => {
               alert("เกิดข้อผิดพลาดในการเพิ่มรูปภาพโปรโมทร้าน กรุณาลองใหม่อีกครั้งค่ะ");
               console.log(err);

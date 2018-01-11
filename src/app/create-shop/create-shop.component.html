@@ -1,5 +1,6 @@
 <div class="main-content">
   <div class="row text-center">
+
     <div class="col-sm-2 col-md-2 col-lg-2 "></div>
     <div class="col-sm-8 col-md-8 col-lg-8 ">
       <div class="card">
@@ -12,9 +13,15 @@
         </div>
         <!-- <h4 *ngIf="!shop.promoteimage" style="font-family: 'Kanit', sans-serif;">ร้านนี้ยังไม่มีรูปภาพโปรโมทร้านค่ะ</h4> -->
       </div>
+      <button class="btn" type="button" (click)="uploadPromoteImage()">
+        <i class="material-icons">add_a_photo</i> เพิ่มรูปโปรโมทร้าน
+      </button>
+      <input type="file" #promoteimgInput accept="image/*" [(ngModel)]="promoteImg" (change)="onPromoteImgChange($event)" style="visibility: hidden;"
+     />
     </div>
     <div class=" col-sm-2 col-md-2 col-lg-2 "></div>
   </div>
+
   <!-- <div class="row">
     <div class="col-xl-8 col-lg-8 col-xl-offset-2 col-lg-offset-2">
       <div class="card">
@@ -43,8 +50,7 @@
               <div class="s-cont">
                 <p style="color:#c0c0c0">เลือกประเภทร้านค้า</p>
                 <p *ngFor="let item of categoryShopList" (click)="selectCate(item._id)">{{item.name}}
-                  <img *ngIf="checkeds[item._id]" class="check_po check_icon" src="https://image.flaticon.com/icons/svg/189/189677.svg"
-                    alt="icon">
+                  <img *ngIf="checkeds[item._id]" class="check_po check_icon" src="https://image.flaticon.com/icons/svg/189/189677.svg" alt="icon">
                 </p>
               </div>
               <!-- <select name="cateshop" class="form-control" [(ngModel)]="shop.categories" multiple>
