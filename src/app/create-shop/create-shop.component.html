@@ -17,7 +17,7 @@
         <i class="material-icons">add_a_photo</i> เพิ่มรูปโปรโมทร้าน
       </button>
       <input type="file" #promoteimgInput accept="image/*" [(ngModel)]="promoteImg" (change)="onPromoteImgChange($event)" style="visibility: hidden;"
-     />
+      />
     </div>
     <div class=" col-sm-2 col-md-2 col-lg-2 "></div>
   </div>
@@ -235,9 +235,13 @@
         <div class="card-header cw">
           จัดการสินค้า
         </div>
+
+        <!-- MANAGE CATE & PRODUCT ZONE -->
         <div class="card-block">
           <div class="row">
-            <h3 class="h" style="border-bottom: none;">Category</h3>
+            <div class="col-md-12">
+              <h4 class="h" style="border-bottom: none;">Category</h4>
+            </div>
           </div>
 
           <div class="row" [dragula]='"zone1"'>
@@ -250,13 +254,14 @@
             />
             <!-- ADD CATE -->
 
-            <!-- <div class="container testimonial-group"> -->
-            <div class="col-md-2 col-over" *ngFor="let item of categoryList">
+
+            <!-- SHOW CATEGOY ZONE -->
+            <div class="col-md-2 col-over" *ngFor="let item of categoryList;let i = index">
               <span class="bin-1">
                 <i class="material-icons" (click)="deleteCategory(item._id)">delete</i>
               </span>
               <div>
-                <img (click)="filterByCate(item._id)" [src]="item.image" alt="image" cate-img>
+                <img (click)="filterByCate(item._id,i)" [src]="item.image" alt="image" cate-img>
                 <span class="ca ovf">
                   <p class="text-cate">{{item.name}}</p>
                 </span>
@@ -266,10 +271,23 @@
                 <i class="material-icons" (click)="editCategory('edit',cateModal,item)">create</i>
               </span>
             </div>
-            <!-- </div> -->
+            <!-- SHOW CATEGOY ZONE -->
           </div>
 
+            <!-- SHOW PRODUCT IN CATE ZONE -->
+        <div class="row" >
+          <div class="col-md-12">
+            <h4 class="h" >Products</h4>
+            <div [sortablejs]="products">
+                <div *ngFor="let item of products">{{ item }}</div>
+              </div>
+          </div>
         </div>
+
+        <!-- SHOW PRODUCT IN CATE ZONE -->
+        </div>
+        <!-- MANAGE CATE & PRODUCT ZONE -->
+      
       </div>
     </div>
   </div>
@@ -305,7 +323,7 @@
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
 
               <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
-              <button class="btn btn-danger" (click)="cancelCategory(cateModal)">ยกเลิก</button>
+              <button class="btn btn-danger" #dissmissBtn data-dismiss="modal" (click)="cancelCategory(cateModal)">ยกเลิก</button>
             </div>
           </div>
         </div>

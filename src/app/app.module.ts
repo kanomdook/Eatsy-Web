@@ -49,7 +49,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import 'hammerjs';
 import { ManageUserService } from 'app/manage-user/manage-user.service';
 import { ManageAdsComponent } from './manage-ads/manage-ads.component';
-
+import { SortablejsModule } from 'angular-sortablejs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +89,8 @@ import { ManageAdsComponent } from './manage-ads/manage-ads.component';
     UiSwitchModule,
     NgxGalleryModule,
     NgbModule.forRoot(),
-    Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDcsyfUw4ToTjnU9i_IxfdaoQZKs8suBPc' })
+    Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyDcsyfUw4ToTjnU9i_IxfdaoQZKs8suBPc' }),
+    SortablejsModule.forRoot({ animation: 150 })
   ],
   providers: [
     DashboardService,

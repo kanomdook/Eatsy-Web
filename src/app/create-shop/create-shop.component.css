@@ -92,7 +92,7 @@
 .h {
     font-weight: bold;
     margin-left: 6px;
-    border-bottom: 2px #ed3840 solid;
+    /* border-bottom: 2px #ed3840 solid; */
     width: 100px;
 }
 

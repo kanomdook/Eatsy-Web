@@ -13,7 +13,7 @@ declare let $: any;
   styleUrls: ['./create-shop.component.css']
 })
 export class CreateShopComponent implements OnInit {
-  @ViewChild('modal') modal:ElementRef;
+  @ViewChild('modal') modal: ElementRef;
   galleryOptions: Array<NgxGalleryOptions> = [];
   galleryImages: Array<NgxGalleryImage> = [];
   @ViewChild('map') mapElement: ElementRef;
@@ -51,6 +51,7 @@ export class CreateShopComponent implements OnInit {
   private CE_id_category: string;
   private selectList: Array<string> = [];
   private checkeds: Array<any> = [];
+  private selectedCate: number;
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
@@ -284,7 +285,9 @@ export class CreateShopComponent implements OnInit {
     } else { this.promoteIsEdit = false; }
   }
 
-  filterByCate(cateID) {
+  filterByCate(cateID, cateIndex) {
+    this.selectedCate = cateIndex;
+    alert("Select Cate : " + this.selectedCate);
     this.oldsProducts = this.oldsProducts.length == 0 ? this.products : this.oldsProducts;
     console.log(cateID);
     console.log(this.products);
