@@ -1,26 +1,43 @@
-<!-- <div class="loader" *ngIf="!shopsL" #loadingControl>
-  <img src="./assets/img/Infinity.gif" alt="">
-</div> -->
 <div class="main-content">
-
   <div class="container-fluid">
     <div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#customer" aria-controls="customer" role="tab" data-toggle="tab">ลูกค้า</a>
+            </li>
+            <li role="presentation">
+              <a href="#shopowner" aria-controls="shopowner" role="tab" data-toggle="tab">เจ้าของร้าน</a>
+            </li>
+            <li role="presentation">
+              <a href="#admin" aria-controls="admin" role="tab" data-toggle="tab">แอดมิน</a>
+            </li>
+            <li role="presentation">
+              <a href="#biker" aria-controls="biker" role="tab" data-toggle="tab">ไบค์เกอร์</a>
+            </li>
+          </ul>
+        </div>
 
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
-          <a href="#customer" aria-controls="customer" role="tab" data-toggle="tab">ลูกค้า</a>
-        </li>
-        <li role="presentation">
-          <a href="#shopowner" aria-controls="shopowner" role="tab" data-toggle="tab">เจ้าของร้าน</a>
-        </li>
-        <li role="presentation">
-          <a href="#admin" aria-controls="admin" role="tab" data-toggle="tab">แอดมิน</a>
-        </li>
-        <li role="presentation">
-          <a href="#biker" aria-controls="biker" role="tab" data-toggle="tab">ไบค์เกอร์</a>
-        </li>
-      </ul>
+        <div class="col-lg-4 col-md-8 col-sm-8 col-xs-8" style="margin-top: 10px">
+          <div class="sb">
+            <span class="inner-sb">
+              <span class="txb">
+                ค้นหา
+              </span>
+            </span>
+            <span>
+              <input type="text" class="form-control tb" [(ngModel)]="searchKeyword" (keyup.enter)="searchShop()">
+            </span>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+          <button class="btn addBTN" type="button">
+            <i class="material-icons">add</i> เพิ่มผู้ใช้งาน
+          </button>
+        </div>
+      </div>
 
       <!-- Tab panes -->
       <div class="tab-content">
@@ -38,63 +55,38 @@
                         <thead class="text-danger">
                           <tr>
                             <th class="text-center" index-col-size>#</th>
-                            <th class="text-center" displayname-col-size>ชื่อที่แสดง</th>
-                            <th class="text-center" name-col-size>ชื่อ - นามสกุล</th>
-                            <th class="text-center col-md-2 tel-col-size">เบอร์โทร</th>
-                            <th class="text-center" email-col-size>อีเมล์</th>
-                            <th class="text-center col-md-1">สถานะ</th>
-                            <th class="text-center col-md-1 col-lg-1 action-col-size">
-                              Action
-                              <!-- <span style="margin-right:-50px"></span> -->
-                            </th>
-                            <th class="text-center col-md-1 col-lg-1"></th>
+                            <th class="text-center">ชื่อที่แสดง</th>
+                            <th class="text-center">ชื่อ - นามสกุล</th>
+                            <th class="text-center">เบอร์โทร</th>
+                            <th class="text-center">อีเมล์</th>
+                            <th class="text-center">สถานะ</th>
+                            <th class="text-center">Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngIf="listCust.length <=0">
-                            <!-- <tr> -->
                             <td colspan="8" class="text-center">
                               ยังไม่มีข้อมูลผู้ใช้ในระบบค่ะ
                             </td>
 
                           </tr>
-                          <tr *ngFor="let item of listCust[0]; let i = index " >
+                          <tr *ngFor="let item of listCust[0]; let i = index ">
                             <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{i + pageSelect + 1}}</td>
-                            <td data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.displayName}}</td>
-                            <td data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.firstName}} {{item.lastName}}</td>
+                            <td style="text-align: center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.displayName}}</td>
+                            <td style="text-align: center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.firstName}} {{item.lastName}}</td>
                             <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.mobile ? item.mobile: '-'}}</td>
                             <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.email}}</td>
                             <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">Active</td>
-
-
-                            <td class="text-center">
-                              <span>
-                                <!-- <i class="material-icons edit-btn" >border_color</i> -->
-                                <ui-switch size="small" color="green"  (change)="activeChange($event,item)"></ui-switch>
-                              </span>
-                            </td>
-                            <td class="text-center">
-                              <!-- <button class="btn btn-danger  btn-xs btn-color" type="button" (click)="unbanUser(item)">
-                                UNBAN
-                              </button> -->
-                              <button class="btn btn-danger btn-simple btn-xs btn-border" type="button" (click)="banUser(item)">
+                            <td style="text-align: center">
+                              <ui-switch size="small" color="green" (change)="activeChange($event,item)"></ui-switch>
+                              <button class="btn btn-danger btn-simple btn-xs btn-border" style="margin-top: -8px" type="button" (click)="banUser(item)">
                                 Ban User
                               </button>
+                              <i class="material-icons del-color" style="color:red">delete</i>
                             </td>
                           </tr>
-
                         </tbody>
                       </table>
-
-                      <!-- <div class="pc">
-                        <nav aria-label="Page navigation">
-                          <ul class="pagination">
-                            <li [class]="curentPage[item]" *ngFor="let item of shopsL.pagings">
-                              <a (click)="pageing(item)">{{item}}</a>
-                            </li>
-                          </ul>
-                        </nav>
-                      </div> -->
                     </div>
                   </div>
                 </div>
