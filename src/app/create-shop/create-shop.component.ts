@@ -701,43 +701,50 @@ export class CreateShopComponent implements OnInit {
   }
 
   save() {
-    if (this.shopID) {
-      this.shop.address = {
-        address: this.address,
-        lat: this.latLng.lat,
-        lng: this.latLng.lng
-      };
-      this.shop.times = this.timeList;
-      this.shop.coverimage = this.shop.coverimage ? this.shop.coverimage : 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
-      this.shopService.edit(this.shop).subscribe(data => {
-        this.isEditshopMode == false;
-        console.log(data);
-        this.showeMainShop = true;
-        this.showeditdiv = false;
-        this.showeditTime = false;
-        this.router.navigate(['/manage-shop']);
-      }, err => {
-        console.log(err);
-      });
+    if (this.shop.categories.length <= 0) {
+      alert("กรุณาเลือกประเภทของร้านค้าก่อนทำการบันทึก");
     } else {
-      this.shop.address = {
-        address: this.address,
-        lat: this.latLng.lat,
-        lng: this.latLng.lng
-      };
-      this.shop.times = this.timeList;
-      this.shop.coverimage = this.shop.coverimage ? this.shop.coverimage : 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
+      if (this.shopID) {
+        this.shop.address = {
+          address: this.address,
+          lat: this.latLng.lat,
+          lng: this.latLng.lng
+        };
+        this.shop.times = this.timeList;
+        this.shop.coverimage = this.shop.coverimage ? this.shop.coverimage : 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
+        this.shopService.edit(this.shop).subscribe(data => {
+          this.isEditshopMode == false;
+          console.log(data);
+          this.showeMainShop = true;
+          this.showeditdiv = false;
+          this.showeditTime = false;
+          alert("ระบบทำการบันทึกข้อมูลร้านค้าเรียบร้อยแล้วค่ะ");
+          this.router.navigate(['/manage-shop']);
+        }, err => {
+          console.log(err);
+        });
+      } else {
+        this.shop.address = {
+          address: this.address,
+          lat: this.latLng.lat,
+          lng: this.latLng.lng
+        };
+        this.shop.times = this.timeList;
+        this.shop.coverimage = this.shop.coverimage ? this.shop.coverimage : 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
 
-      this.shopService.save(this.shop).subscribe(data => {
-        console.log(data);
-        this.showeMainShop = true;
-        this.showeditdiv = false;
-        this.showeditTime = false;
-        this.router.navigate(['/manage-shop']);
-      }, err => {
-        console.log(err);
-      });
+        this.shopService.save(this.shop).subscribe(data => {
+          console.log(data);
+          this.showeMainShop = true;
+          this.showeditdiv = false;
+          this.showeditTime = false;
+          alert("ระบบทำการบันทึกข้อมูลร้านค้าใหม่เรียบร้อยแล้วค่ะ");
+          this.router.navigate(['/manage-shop']);
+        }, err => {
+          console.log(err);
+        });
+      }
     }
+
 
   }
 

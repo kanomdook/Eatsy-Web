@@ -366,11 +366,21 @@ label {
     margin: 0px !important;
     font-size: 22px;
 }
-.no-padding{
+
+.no-padding {
     padding-top: 0px !important;
     margin-top: 0px !important;
 }
 
-.btn-group.open > .dropdown-toggle.btn, .btn-group.open > .dropdown-toggle.btn.btn-default, .btn-group-vertical.open > .dropdown-toggle.btn, .btn-group-vertical.open > .dropdown-toggle.btn.btn-default {
+.btn-group.open>.dropdown-toggle.btn,
+.btn-group.open>.dropdown-toggle.btn.btn-default,
+.btn-group-vertical.open>.dropdown-toggle.btn,
+.btn-group-vertical.open>.dropdown-toggle.btn.btn-default {
     background-color: #9a9999a8;
+}
+
+.scroll-x {
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: inherit !important;
 }

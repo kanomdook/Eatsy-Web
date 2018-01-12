@@ -281,19 +281,21 @@
             </div>
           </div>
 
-          <div class="row" [dragula]='"zone1"'>
+          <div class="row">
+              <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
 
             <!-- ADD CATE -->
             <div class="col-md-2" (click)="updateCateImg()">
               <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
+              <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
+              />
             </div>
-            <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
-            />
+            
             <!-- ADD CATE -->
 
 
             <!-- SHOW CATEGOY ZONE -->
-            <div class="col-md-2 col-over" *ngFor="let item of categoryList;let i = index">
+            <div class="col-md-2 scroll-x" *ngFor="let item of categoryList;let i = index">
               <span class="bin-1">
                 <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
               </span>
