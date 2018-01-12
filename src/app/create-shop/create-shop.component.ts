@@ -66,6 +66,7 @@ export class CreateShopComponent implements OnInit {
   private selectTabs: number = 0;
   private isEditshopMode: boolean = false;
   private blockInput: boolean = true;
+  private prdName: string = '';
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
@@ -326,24 +327,16 @@ export class CreateShopComponent implements OnInit {
   }
 
   filterByCate(cateID, cateIndex) {
-    this.selectedCate = cateIndex;
-    this.oldsProducts = this.oldsProducts.length == 0 ? this.products : this.oldsProducts;
-    console.log("CATE : " + cateID);
-    console.log("1 Product : " + this.products);
-    console.log("Old Product : " + this.oldsProducts);
-    let dataFilter: Array<any> = [];
-    this.oldsProducts.forEach((el, i) => {
-      if (el.categories._id == cateID) {
-        dataFilter.push(el);
-      }
-    });
-    this.products = dataFilter;
-    console.log("Pro : " + this.products);
+    
   }
 
-  createProduct(index, CateIndex) {
+  createProduct(index, CateIndex, item) {
+    this.product = item;
+    
+    console.log(this.product);
     this.CE_action_product = 'เพิ่ม';
     $(this.modalproduct.nativeElement).modal('show');
+
     // this.modalproduct.nativeElement.click();
     alert("Select prd index : " + index + "\nSelect Cate : " + CateIndex);
 
@@ -365,9 +358,10 @@ export class CreateShopComponent implements OnInit {
   }
 
   editProduct(product) {
+    this.prdName = product.name;
     this.showeMainShop = false;
     this.showAddProduct = true;
-    this.product.name = product.name;
+    // this.product.name = product.name;
     this.product.price = product.price;
     this.product.categories = product.categories ? product.categories._id : '';
     this.CE_action_product = 'แก้ไข';

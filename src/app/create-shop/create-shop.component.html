@@ -281,12 +281,12 @@
               <h4 class="h">Products</h4>
               <div [sortablejs]="shop.items">
                 <div class="row">
-                  <div class="col-md-2 col-over col-bottom" *ngFor="let item of shop.items[selectedCate].products; let i = index">
+                  <div class="col-md-2 col-over col-bottom" *ngFor="let item of shop.items[0].products; let i = index">
                     <div *ngIf="item.name == 'default'">
-                      <img class="img" data-toggle="modal" data-target="#modalproduct" (click)="createProduct(i,selectedCate)" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg"
+                      <img class="img" data-toggle="modal" data-target="#modalproduct" (click)="createProduct(i,selectedCate,item)" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg"
                         alt="image" cate-img>
                     </div>
-                    <div *ngIf="item.name !== 'default'">
+                    <div *ngIf="item.name != 'default'">
                       <img class="img" (click)="editProduct(i,selectedCate)" [src]="item.images[0]" alt="image" cate-img>
                     </div>
                   </div>
@@ -363,17 +363,22 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-              <div class="loader" *ngIf="!updateOrEditCateImg" #loadingControl>
-                <img src="./assets/img/Infinity.gif" alt="">
-              </div>
-              <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image">
+                <div class="col-md-2 " *ngFor="let item of oldsProducts;let i = index">
+                    <span class="bin-1">
+                      <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
+                    </span>
+                    <div>
+                      <img  [src]="item.image" alt="image" cate-img>
+                    </div>
+                  </div>
+              <!-- <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image"> -->
             </div>
           </div>
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-left">
               <div class="form-group">
-                <h5>ชื่อหมวดหมู่</h5>
-                <input type="text" class="form-control" placeholder="Product name" name="productname" [(ngModel)]="product.name">
+                <h5>ชื่อสินค้า</h5>
+                <input type="text" class="form-control" placeholder="Product name" name="productname" [(ngModel)]="prdName">
               </div>
             </div>
           </div>
