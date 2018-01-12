@@ -342,8 +342,8 @@ export class CreateShopComponent implements OnInit {
 
   createProduct(index, CateIndex) {
     this.CE_action_product = 'เพิ่ม';
-    // $(this.modal.nativeElement).modalproduct('show');
-    this.modalproduct.nativeElement.click();
+    $(this.modalproduct.nativeElement).modal('show');
+    // this.modalproduct.nativeElement.click();
     alert("Select prd index : " + index + "\nSelect Cate : " + CateIndex);
 
     // let createPRD = {
@@ -402,13 +402,14 @@ export class CreateShopComponent implements OnInit {
 
 
   cancelCategory(modal) {
+    $(this.modalproduct.nativeElement).modal('hide');
     this.showeMainShop = true;
     this.showAddCategory = false;
     this.updateOrEditCateImg = null;
     this.category.name = '';
   }
 
-  saveCategory() {
+  saveCategory(data, ) {
     if (this.CE_action_category == 'เพิ่ม') {
       this.category.shop = this.shopID;
       let sendCate = {
@@ -433,26 +434,39 @@ export class CreateShopComponent implements OnInit {
         console.log(err);
       });
     } else {
-      this.category._id = this.CE_id_category;
-      this.category.shop = this.shopID;
-      this.shopService.editCategory(this.category).subscribe(data => {
+      let sendCate = {
+        name: this.category.name,
+        image: this.updateOrEditCateImg
+      }
+      // this.category.shop = this.shopID;
+      this.shopService.editCategory(sendCate, this.CE_id_category).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;
         this.showAddCategory = false;
-        // this.InitialData();
+        this.galleryImages = [];
+        alert("ระบบได้ทำการแก้ไขหมวดหมู่สินค้าเรียบร้อยแล้ว");
+        this.InitialData();
+        $(this.modal.nativeElement).modal('hide');
       }, err => {
         console.log(err);
+        alert("ระบบไม่สามารถทำการแก้ไขหมวดหมู่สินค้าได้ค่ะ");
+
       });
     }
   }
 
   deleteCategory(id) {
+    const cfDelete = confirm('ยืนยันการลบหมวดหมู่สินค้า');
+    if (cfDelete) {
+      this.shopService.deleteCategory(id).subscribe(data => {
+        location.reload();
+        alert("ระบบได้ทำการลบหมวดหมู่สินค้าเรียบร้อยแล้วค่ะ");
+      }, err => {
+        alert("ระบบไม่สามารถทำการลบหมวดหมู่สินค้าได้ค่ะ");
+        console.log(err);
+      });
+    }
 
-    this.shopService.deleteCategory(id).subscribe(data => {
-      location.reload();
-    }, err => {
-      console.log(err);
-    });
   }
   deletePrdImg(i) {
 

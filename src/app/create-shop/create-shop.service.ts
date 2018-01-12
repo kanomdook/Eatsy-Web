@@ -93,8 +93,8 @@ export class ShopService {
             .catch((error: any) => Observable.throw(error));
     }
 
-    editCategory(category): Observable<any> {
-        return this.http.put(this.server.url + 'api/createcate/' + category._id, category, this.server.AuthHeaders())
+    editCategory(category, cateID): Observable<any> {
+        return this.http.put(this.server.url + 'api/categoryproducts/' + cateID, category, this.server.AuthHeaders())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
