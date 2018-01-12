@@ -16,6 +16,7 @@ declare let $: any;
 export class CreateShopComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
   @ViewChild('modalproduct') modalproduct: ElementRef;
+  @ViewChild('confirmCate') confrimCate: ElementRef;
 
   @ViewChild('shopinfoTab') shopinfo;
   @ViewChild('shopcontactTab') shopcontact;
@@ -167,7 +168,10 @@ export class CreateShopComponent implements OnInit {
 
         // }
         // this.shop.categories = this.shop.categories ? this.shop.categories._id : '';
-        this.address = data.address.address;
+        if (data.address) {
+          this.address = data.address.address;
+        }
+
         this.latLng = {
           lat: data.address ? data.address.lat : '',
           lng: data.address ? data.address.lng : ''
@@ -386,6 +390,7 @@ export class CreateShopComponent implements OnInit {
     }
   }
   editCategory(edit, modal, category) {
+    $(this.modal.nativeElement).modal('show');
     this.showeMainShop = false;
     this.showAddCategory = true;
     this.updateOrEditCateImg = category.image;
@@ -400,7 +405,7 @@ export class CreateShopComponent implements OnInit {
     this.showeMainShop = true;
     this.showAddCategory = false;
     this.updateOrEditCateImg = null;
-
+    this.category.name = '';
   }
 
   saveCategory() {
@@ -442,6 +447,7 @@ export class CreateShopComponent implements OnInit {
   }
 
   deleteCategory(id) {
+
     this.shopService.deleteCategory(id).subscribe(data => {
       location.reload();
     }, err => {
