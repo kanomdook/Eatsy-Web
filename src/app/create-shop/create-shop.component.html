@@ -187,7 +187,7 @@
                       </div>
                     </div>
 
-                
+
                   </div>
                   <div class="ct">
                     <button class="btn btn-primary" (click)="saveTime()">เพิ่ม</button>
@@ -257,14 +257,14 @@
 
 
             <!-- SHOW CATEGOY ZONE -->
-            <div class="col-md-2 scroll-x" *ngFor="let item of categoryList;let i = index">
+            <div class="col-md-2 scroll-x" *ngFor="let item of categorys;let i = index">
               <span class="bin-1">
-                <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
+                <i class="material-icons add-dropShadow" (click)="deleteCategory(item.cate._id)">delete</i>
               </span>
               <div>
-                <img (click)="filterByCate(item._id,i)" [src]="item.image" alt="image" cate-img>
+                <img (click)="filterByCate(item.cate._id)" [src]="item.cate.image" alt="image" cate-img>
                 <span class="ca ovf">
-                  <p class="text-cate">{{item.name}}</p>
+                  <p class="text-cate">{{item.cate.name}}</p>
                 </span>
               </div>
 
@@ -281,13 +281,13 @@
               <h4 class="h">Products</h4>
               <div [sortablejs]="shop.items">
                 <div class="row">
-                  <div class="col-md-2 col-over col-bottom" *ngFor="let item of shop.items[0].products; let i = index">
+                  <div class="col-md-2 col-over col-bottom" *ngFor="let item of products; let i = index">
                     <div *ngIf="item.name == 'default'">
                       <img class="img" data-toggle="modal" data-target="#modalproduct" (click)="createProduct(i,selectedCate,item)" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg"
                         alt="image" cate-img>
                     </div>
                     <div *ngIf="item.name != 'default'">
-                      <img class="img" (click)="editProduct(i,selectedCate)" [src]="item.images[0]" alt="image" cate-img>
+                      <img class="img" (click)="editProduct(i,selectedCate)" [src]="item.images ? item.images[0] : 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg'" alt="image" cate-img>
                     </div>
                   </div>
                 </div>
@@ -321,7 +321,7 @@
               <div class="loader" *ngIf="!updateOrEditCateImg" #loadingControl>
                 <img src="./assets/img/Infinity.gif" alt="">
               </div>
-              <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg"  alt="image">
+              <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image">
             </div>
           </div>
           <div class="row">
@@ -363,14 +363,14 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-                <div class="col-md-2 " *ngFor="let item of oldsProducts;let i = index">
-                    <span class="bin-1">
-                      <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
-                    </span>
-                    <div>
-                      <img  [src]="item.image" alt="image" cate-img>
-                    </div>
-                  </div>
+              <div class="col-md-2 " *ngFor="let item of oldsProducts;let i = index">
+                <span class="bin-1">
+                  <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
+                </span>
+                <div>
+                  <img [src]="item.image" alt="image" cate-img>
+                </div>
+              </div>
               <!-- <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image"> -->
             </div>
           </div>

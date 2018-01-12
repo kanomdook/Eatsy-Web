@@ -17,13 +17,10 @@ export class CreateShopComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
   @ViewChild('modalproduct') modalproduct: ElementRef;
   @ViewChild('confirmCate') confrimCate: ElementRef;
-
   @ViewChild('shopinfoTab') shopinfo;
   @ViewChild('shopcontactTab') shopcontact;
   @ViewChild('shoptimecloseTab') shoptimeclose;
   @ViewChild('shopaddressTab') shopaddress;
-
-
   galleryOptions: Array<NgxGalleryOptions> = [];
   galleryImages: Array<NgxGalleryImage> = [];
   @ViewChild('map') mapElement: ElementRef;
@@ -42,9 +39,7 @@ export class CreateShopComponent implements OnInit {
   private product: any = {};
   private category: any = {};
   private products: Array<any> = [];
-  private oldsProducts: Array<any> = [];
   private selectDate: Array<any> = [];
-  private categoryList: Array<any> = [];
   private categoryShopList: Array<any> = [];
   private useSelectDate: Array<any> = [];
   private timeList: Array<any> = [];
@@ -62,8 +57,10 @@ export class CreateShopComponent implements OnInit {
   private selectList: Array<any> = [];
   private shopCateSelected: Array<any> = [];
   private checkeds: Array<any> = [];
+  private categorys: Array<any> = [];
   private selectedCate: number = 0;
   private selectTabs: number = 0;
+  private cateID: number = 0;
   private isEditshopMode: boolean = false;
   private blockInput: boolean = true;
   private prdName: string = '';
@@ -112,7 +109,7 @@ export class CreateShopComponent implements OnInit {
     });
     this.getCurrentGeolocation().then((geo) => {
       this.currentGEO = geo;
-    })
+    });
     this.shopID = window.localStorage.getItem('selectShop');
     if (this.shopID) {
       this.showeMainShop = true;
@@ -138,12 +135,13 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
         this.shop = data;
-        console.log(data);
+        this.categorys = this.shop.items;
+        this.products = this.categorys ? this.categorys[0].products : [];
+        console.log(this.categorys);
+        console.log(this.products);
         data.categories.forEach(element => {
           this.selectList.push(element._id);
         });
-
-        console.log(this.selectList);
 
         for (let i = 0; i < this.categoryShopList.length; i++) {
           for (let j = 0; j < this.selectList.length; j++) {
@@ -154,7 +152,6 @@ export class CreateShopComponent implements OnInit {
         }
 
         this.shop.categories = data.categories;
-        console.log(data.categories);
         let imgs: Array<any> = data.promoteimage;
 
         imgs.forEach((el, i) => {
@@ -180,19 +177,6 @@ export class CreateShopComponent implements OnInit {
         };
         this.timeList = data.times;
         this.openTimeString = this.timeList.length > 0 ? this.timeList[0].timestart + '-' + this.timeList[0].timeend : '-';
-      }, err => {
-        console.log(err);
-      });
-
-      this.shopService.getProductsByID(this.shopID).subscribe(data => {
-        this.products = data.items;
-      }, err => {
-        console.log(err);
-      });
-
-      this.shopService.getCategoryByID(this.shopID).subscribe(data => {
-        this.categoryList = data.items;
-        this.product.categories = this.categoryList.length > 0 ? this.categoryList[0]._id : '';
       }, err => {
         console.log(err);
       });
@@ -326,13 +310,18 @@ export class CreateShopComponent implements OnInit {
     } else { this.promoteIsEdit = false; }
   }
 
-  filterByCate(cateID, cateIndex) {
-    
+  filterByCate(cateID) {
+    this.cateID = cateID;
+    for (let i = 0; i < this.categorys.length; i++) {
+      if (this.categorys[i].cate._id === cateID) {
+        this.products = this.categorys[i].products;
+        break;
+      }
+    }
   }
 
   createProduct(index, CateIndex, item) {
     this.product = item;
-    
     console.log(this.product);
     this.CE_action_product = 'เพิ่ม';
     $(this.modalproduct.nativeElement).modal('show');
