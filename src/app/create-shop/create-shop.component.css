@@ -380,7 +380,7 @@ label {
 }
 
 .scroll-x {
-    overflow-x: auto;
+    /* overflow-x: auto;
     white-space: nowrap;
-    flex-wrap: inherit !important;
+    flex-wrap: inherit !important; */
 }

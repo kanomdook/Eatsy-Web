@@ -16,6 +16,7 @@ declare let $: any;
 export class CreateShopComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
   @ViewChild('modalproduct') modalproduct: ElementRef;
+  @ViewChild('confirmCate') confrimCate: ElementRef;
 
   @ViewChild('shopinfoTab') shopinfo;
   @ViewChild('shopcontactTab') shopcontact;
@@ -167,7 +168,10 @@ export class CreateShopComponent implements OnInit {
 
         // }
         // this.shop.categories = this.shop.categories ? this.shop.categories._id : '';
-        this.address = data.address.address;
+        if (data.address) {
+          this.address = data.address.address;
+        }
+
         this.latLng = {
           lat: data.address ? data.address.lat : '',
           lng: data.address ? data.address.lng : ''
@@ -338,8 +342,8 @@ export class CreateShopComponent implements OnInit {
 
   createProduct(index, CateIndex) {
     this.CE_action_product = 'เพิ่ม';
-    // $(this.modal.nativeElement).modalproduct('show');
-    this.modalproduct.nativeElement.click();
+    $(this.modalproduct.nativeElement).modal('show');
+    // this.modalproduct.nativeElement.click();
     alert("Select prd index : " + index + "\nSelect Cate : " + CateIndex);
 
     // let createPRD = {
@@ -386,6 +390,7 @@ export class CreateShopComponent implements OnInit {
     }
   }
   editCategory(edit, modal, category) {
+    $(this.modal.nativeElement).modal('show');
     this.showeMainShop = false;
     this.showAddCategory = true;
     this.updateOrEditCateImg = category.image;
@@ -397,13 +402,14 @@ export class CreateShopComponent implements OnInit {
 
 
   cancelCategory(modal) {
+    $(this.modalproduct.nativeElement).modal('hide');
     this.showeMainShop = true;
     this.showAddCategory = false;
     this.updateOrEditCateImg = null;
-
+    this.category.name = '';
   }
 
-  saveCategory() {
+  saveCategory(data, ) {
     if (this.CE_action_category == 'เพิ่ม') {
       this.category.shop = this.shopID;
       let sendCate = {
@@ -428,25 +434,39 @@ export class CreateShopComponent implements OnInit {
         console.log(err);
       });
     } else {
-      this.category._id = this.CE_id_category;
-      this.category.shop = this.shopID;
-      this.shopService.editCategory(this.category).subscribe(data => {
+      let sendCate = {
+        name: this.category.name,
+        image: this.updateOrEditCateImg
+      }
+      // this.category.shop = this.shopID;
+      this.shopService.editCategory(sendCate, this.CE_id_category).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;
         this.showAddCategory = false;
-        // this.InitialData();
+        this.galleryImages = [];
+        alert("ระบบได้ทำการแก้ไขหมวดหมู่สินค้าเรียบร้อยแล้ว");
+        this.InitialData();
+        $(this.modal.nativeElement).modal('hide');
       }, err => {
         console.log(err);
+        alert("ระบบไม่สามารถทำการแก้ไขหมวดหมู่สินค้าได้ค่ะ");
+
       });
     }
   }
 
   deleteCategory(id) {
-    this.shopService.deleteCategory(id).subscribe(data => {
-      location.reload();
-    }, err => {
-      console.log(err);
-    });
+    const cfDelete = confirm('ยืนยันการลบหมวดหมู่สินค้า');
+    if (cfDelete) {
+      this.shopService.deleteCategory(id).subscribe(data => {
+        location.reload();
+        alert("ระบบได้ทำการลบหมวดหมู่สินค้าเรียบร้อยแล้วค่ะ");
+      }, err => {
+        alert("ระบบไม่สามารถทำการลบหมวดหมู่สินค้าได้ค่ะ");
+        console.log(err);
+      });
+    }
+
   }
   deletePrdImg(i) {
 
