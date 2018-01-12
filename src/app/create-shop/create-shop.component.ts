@@ -412,12 +412,15 @@ export class CreateShopComponent implements OnInit {
       this.shopService.saveCategory(sendCate, this.shopID).subscribe(data => {
         console.log(data);
         alert("ระบบได้ทำการเพิ่มหมวดหมู่สินค้าเรียบร้อยแล้ว");
-        this.categoryList[this.categoryList.length] = data;
+        
+        // this.categoryList[this.categoryList.length] = data;
+      this.InitialData();
+        
         this.showeMainShop = true;
         this.showAddCategory = false;
 
         // this.InitialData();
-
+        $(this.modal.nativeElement).modal('hide');
       }, err => {
         alert("ระบบไม่สามารถเพิ่มหมวดหมู่ร้านค้าได้ กรุณาลองใหม่อีกครั้ง");
         console.log(err);
