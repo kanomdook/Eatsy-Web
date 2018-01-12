@@ -664,15 +664,14 @@ export class CreateShopComponent implements OnInit {
   }
 
   selectCate(cate_id) {
-
+    this.shop.categories = this.shop.categories ? this.shop.categories : [];
     const inArr = this.selectList.indexOf(cate_id);
 
     if (this.selectList.length < 3) {
       if (inArr === -1) {
         this.selectList.push(cate_id);
-        this.shop.categories.push({ _id: cate_id });
         this.checkeds[cate_id] = true;
-
+        this.shop.categories.push({ _id: cate_id });
         for (let i = 0; i < this.shop.categories.length; i++) {
           for (let j = 0; j < this.categoryShopList.length; j++) {
             if (this.categoryShopList[j]._id === this.shop.categories[i]._id) {
@@ -684,6 +683,7 @@ export class CreateShopComponent implements OnInit {
             }
           }
         }
+
       } else {
         this.selectList.splice(inArr, 1);
         this.shop.categories.splice(inArr, 1);
