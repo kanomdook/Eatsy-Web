@@ -384,3 +384,11 @@ label {
     white-space: nowrap;
     flex-wrap: inherit !important; */
 }
+
+.active-select {
+    border-bottom: red solid 4px;
+}
+
+.inactive-select {
+    border-bottom: rgb(21, 255, 0) solid 4px;
+}

@@ -59,6 +59,7 @@ export class CreateShopComponent implements OnInit {
   private shopCateSelected: Array<any> = [];
   private checkeds: Array<any> = [];
   private categorys: Array<any> = [];
+  private selectedStyle: Array<any> = [];
   private selectedCate: number = 0;
   private selectTabs: number = 0;
   private cateID: number = 0;
@@ -314,8 +315,9 @@ export class CreateShopComponent implements OnInit {
 
   filterByCate(cateID) {
     this.cateID = cateID;
+    this.selectedStyle = [];
+    this.selectedStyle[cateID] = 'active-select';
     if (this.cateID) {
-      console.log(this.categorys);
       for (let i = 0; i < this.categorys.length; i++) {
         if (this.categorys[i].cate._id === cateID) {
           this.products = this.categorys[i].products;

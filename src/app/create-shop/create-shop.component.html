@@ -261,7 +261,7 @@
               <span class="bin-1" *ngIf="item && item._id">
                 <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
               </span>
-              <div *ngIf="item && item._id">
+              <div *ngIf="item && item._id" [class]="selectedStyle[item._id]">
                 <img (click)="filterByCate(item._id)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'"
                   alt="image" cate-img>
                 <span class="ca ovf">
