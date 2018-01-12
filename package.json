@@ -34,6 +34,7 @@
     "@ng-bootstrap/ng-bootstrap": "1.0.0-beta.5",
     "@types/google-maps": "^3.2.0",
     "angular-sortablejs": "^2.5.0",
+    "angular2-pubsub": "^4.0.0",
     "arrive": "2.4.1",
     "bootstrap": "3.3.7",
     "bootstrap-material-design": "0.5.10",
