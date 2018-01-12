@@ -138,7 +138,7 @@ export class CreateShopComponent implements OnInit {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
         this.shop = data;
         this.categorys = this.shop.items;
-        this.products = this.categorys ? this.categorys[0].products : [];
+        this.products = this.categorys.length > 0 ? this.categorys[0].products ? this.categorys[0].products : [] : [];
         this.categorys.forEach((el, i) => {
           this.cateList.push(el.cate);
         });
