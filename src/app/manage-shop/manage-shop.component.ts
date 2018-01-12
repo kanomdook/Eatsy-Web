@@ -73,6 +73,7 @@ export class ManageShopComponent implements OnInit {
     this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
       this.loading = false;
       this.shopsL = jso;
+      console.log(this.shopsL.items);
       this.curentPage[1] = 'active';
     }, err => {
       let msgERR = JSON.parse(err._body);
