@@ -137,6 +137,7 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
         this.shop = data;
+        console.log(data);
         data.categories.forEach(element => {
           this.selectList.push(element._id);
         });
