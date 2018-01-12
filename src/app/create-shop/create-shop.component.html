@@ -33,7 +33,7 @@
                 <i class="material-icons edit-size">edit</i>
               </button>
               <button class="btn btn-success" *ngIf="isEditshopMode == true" (click)="save()">บันทึก</button>
-              <button class="btn btn-success" *ngIf="!shop._id" (click)="save()">บันทึก</button>
+              <!-- <button class="btn btn-success" *ngIf="!shop._id" (click)="save()">บันทึก</button> -->
               <button class="btn btn-danger" *ngIf="shop._id && isEditshopMode == true" (click)="changeEditShopMode()">ยกเลิก</button>
               <button class="btn btn-danger" *ngIf="!shop._id" (click)="cancelEditShop()">กลับสู่หน้าจัดการร้านค้า</button>
             </div>
