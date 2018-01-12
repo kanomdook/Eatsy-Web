@@ -119,6 +119,7 @@ export class CreateShopComponent implements OnInit {
     }
     if (!this.shopID) {
       this.blockInput = false;
+      this.isEditshopMode = true;
     }
     this.shop.categories = '';
     this.shopService.getCategoryShop().subscribe(data => {
@@ -412,10 +413,10 @@ export class CreateShopComponent implements OnInit {
       this.shopService.saveCategory(sendCate, this.shopID).subscribe(data => {
         console.log(data);
         alert("ระบบได้ทำการเพิ่มหมวดหมู่สินค้าเรียบร้อยแล้ว");
-        
+
         // this.categoryList[this.categoryList.length] = data;
-      this.InitialData();
-        
+        this.InitialData();
+
         this.showeMainShop = true;
         this.showAddCategory = false;
 
