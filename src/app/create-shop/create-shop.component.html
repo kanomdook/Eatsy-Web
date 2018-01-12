@@ -285,7 +285,7 @@
               <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
 
             <!-- ADD CATE -->
-            <div class="col-md-2" (click)="updateCateImg()">
+            <div class="col-md-2"  (click)="updateCateImg()">
               <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
               <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
               />
