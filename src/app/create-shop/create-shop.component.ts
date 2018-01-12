@@ -415,6 +415,7 @@ export class CreateShopComponent implements OnInit {
         alert("ระบบได้ทำการเพิ่มหมวดหมู่สินค้าเรียบร้อยแล้ว");
 
         // this.categoryList[this.categoryList.length] = data;
+        this.galleryImages = [];
         this.InitialData();
 
         this.showeMainShop = true;
