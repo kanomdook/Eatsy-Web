@@ -54,4 +54,10 @@ export class ManageShopService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+
+    checkShopByName(shopList): Observable<any> {
+        return this.http.post(this.server.url + 'api/checkshopbyname', shopList, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
 }

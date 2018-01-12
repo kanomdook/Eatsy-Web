@@ -74,12 +74,13 @@ export class ManageShopComponent implements OnInit {
       this.loading = false;
       this.shopsL = jso;
       this.curentPage[1] = 'active';
-    }, err => { 
+    }, err => {
       let msgERR = JSON.parse(err._body);
-      if(msgERR.message == "Token is incorrect or has expired. Please login again"){
+      if (msgERR.message == "Token is incorrect or has expired. Please login again") {
         alert("หมดระยะเวลาการเชื่อมต่อกับระบบบริหารร้านค้า \nกรุณาเข้าสู่ระบบใหม่อีกครั้ง");
         window.localStorage.clear();
-      }})
+      }
+    })
   }
 
   searchShop() {
@@ -200,13 +201,15 @@ export class ManageShopComponent implements OnInit {
     }
   }
 
-  selectShops(id) {
-    if (this.selectedShop[id]) {
-      this.selectedShop[id] = false;
-      this.processSelectShop(id);
-    } else {
-      this.selectedShop[id] = true;
-      this.processSelectShop(id);
+  selectShops(id, ishave) {
+    if (!ishave) {
+      if (this.selectedShop[id]) {
+        this.selectedShop[id] = false;
+        this.processSelectShop(id);
+      } else {
+        this.selectedShop[id] = true;
+        this.processSelectShop(id);
+      }
     }
   }
 
@@ -267,9 +270,25 @@ export class ManageShopComponent implements OnInit {
           }, 300 * i);
         });
 
-        this.shopList = results;
         this.customSearch = false;
+        this.checkDuplicateShop(results).then(data => {
+          const newShopList: any = data;
+          this.shopList = newShopList;
+        }).catch(err => {
+          console.log(err);
+        });
       }
+    });
+  }
+
+  checkDuplicateShop(importShopList) {
+    return new Promise((resolve, reject) => {
+      this.manageShopService.checkShopByName(importShopList).subscribe(data => {
+        console.log(data);
+        resolve(data.shopfind);
+      }, err => {
+        reject(err);
+      });
     });
   }
 
@@ -298,7 +317,8 @@ export class ManageShopComponent implements OnInit {
   }
 
   dataStore(stores: Array<any>) {
-    stores.forEach(element => {
+    const dataShops: Array<any> = [];
+    stores.forEach((element, i) => {
       this.fb.api('/' + element.id + '?fields=photos{images},name,category,location,phone', 'get').then(storeData => {
         let shopNewScema: any = {};
         shopNewScema.img = storeData.photos ? storeData.photos.data[0].images[0].source : 'http://www.freeiconspng.com/uploads/no-image-icon-15.png';
@@ -308,7 +328,15 @@ export class ManageShopComponent implements OnInit {
         shopNewScema.phone = storeData.phone;
         shopNewScema.lat = storeData.location.latitude;
         shopNewScema.lng = storeData.location.longitude;
-        this.shopList.push(shopNewScema);
+        dataShops.push(shopNewScema);
+        if (stores.length === i + 1) {
+          this.checkDuplicateShop(dataShops).then(data => {
+            const newShopList: any = data;
+            this.shopList = newShopList;
+          }).catch(err => {
+            console.log(err);
+          });
+        }
       }).catch(err2 => {
         console.log(err2);
       });
@@ -324,7 +352,7 @@ export class ManageShopComponent implements OnInit {
     sendShop.isactiveshop = true;
     this.manageShopService.sendMail(sendShop).subscribe(data => {
       console.log(data);
-      alert("ระบบได้ทำการส่ง User ไปให้ร้านเรียบร้อยแล้วค่ะ");
+      alert('ระบบได้ทำการส่ง User ไปให้ร้านเรียบร้อยแล้วค่ะ');
       this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
         this.loading = false;
         this.getListShop();
@@ -335,7 +363,7 @@ export class ManageShopComponent implements OnInit {
 
     }, err => {
       console.log(err);
-      alert("ระบบไม่สามารถส่ง User ไปให้ร้านได้ค่ะ กรุณาติดต่อทางทีมงานค่ะ");
+      alert('ระบบไม่สามารถส่ง User ไปให้ร้านได้ค่ะ กรุณาติดต่อทางทีมงานค่ะ');
       this.getListShop();
       this.loading = false;
 
