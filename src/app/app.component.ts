@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { enableProdMode } from '@angular/core';
+import { PubSubService } from 'angular2-pubsub';
 
 enableProdMode();
 declare const $: any;
@@ -11,15 +12,17 @@ declare const $: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-  constructor(public location: Location) {
+  public loading: boolean = false;
+  constructor(public location: Location, private pubsub: PubSubService) {
 
   }
 
   ngOnInit() {
-
     $.material.options.autofill = true;
     $.material.init();
+    this.pubsub.$sub('loading', data => {
+      this.loading = data;
+    });
   }
 
   isMaps(path) {

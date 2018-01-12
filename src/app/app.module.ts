@@ -50,6 +50,8 @@ import 'hammerjs';
 import { ManageUserService } from 'app/manage-user/manage-user.service';
 import { ManageAdsComponent } from './manage-ads/manage-ads.component';
 import { SortablejsModule } from 'angular-sortablejs';
+import { PubSubModule } from 'angular2-pubsub';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +86,7 @@ import { SortablejsModule } from 'angular-sortablejs';
     RouterModule,
     ModalModule.forRoot(),
     FacebookModule.forRoot(),
+    PubSubModule.forRoot(),
     BootstrapModalModule,
     AppRoutingModule,
     UiSwitchModule,

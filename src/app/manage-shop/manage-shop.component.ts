@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { ServerConfig } from 'app/provider/server.config';
 import { ShopService } from 'app/create-shop/create-shop.service';
 declare var google;
-
+import { PubSubService } from 'angular2-pubsub';
 @Component({
   selector: 'app-manage-shop',
   templateUrl: './manage-shop.component.html',
@@ -47,9 +47,7 @@ export class ManageShopComponent implements OnInit {
   private pageSelect: number = 0;
   private currentPageSelected: number = 1;
   loading: boolean = true;
-  constructor(public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService,
-
-  ) {
+  constructor(private pubsub: PubSubService, public shopService: ShopService, private server: ServerConfig, private router: Router, private fb: FacebookService, public manageShopService: ManageShopService) {
 
   }
 
@@ -64,6 +62,7 @@ export class ManageShopComponent implements OnInit {
         this.router.navigate(['/login']);
         this.loading = false;
       } else {
+        this.pubsub.$pub('loading', true);
         this.getListShop();
       }
     });
@@ -73,27 +72,30 @@ export class ManageShopComponent implements OnInit {
     this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
       this.loading = false;
       this.shopsL = jso;
-      console.log(this.shopsL.items);
+      this.pubsub.$pub('loading', false);
       this.curentPage[1] = 'active';
     }, err => {
       let msgERR = JSON.parse(err._body);
-      if (msgERR.message == "Token is incorrect or has expired. Please login again") {
-        alert("หมดระยะเวลาการเชื่อมต่อกับระบบบริหารร้านค้า \nกรุณาเข้าสู่ระบบใหม่อีกครั้ง");
+      if (msgERR.message === 'Token is incorrect or has expired. Please login again') {
+        alert('หมดระยะเวลาการเชื่อมต่อกับระบบบริหารร้านค้า \nกรุณาเข้าสู่ระบบใหม่อีกครั้ง');
         window.localStorage.clear();
       }
     })
   }
 
   searchShop() {
+    this.pubsub.$pub('loading', true);
     this.manageShopService.searchShop(this.typeTab, this.currentPageSelected, this.searchKeyword).subscribe(data => {
       this.shopsL.items = data.items;
       this.shopsL.pagings = data.pagings;
+      this.pubsub.$pub('loading', false);
     }, err => {
       console.log(err);
     });
   }
 
   pageing(page: number) {
+    this.pubsub.$pub('loading', true);
     this.pageSelect = 0;
     this.curentPage = [];
     this.curentPage[page] = 'active';
@@ -101,6 +103,7 @@ export class ManageShopComponent implements OnInit {
     this.currentPageSelected = page;
     this.manageShopService.searchShop(this.typeTab, page, this.searchKeyword).subscribe(data => {
       this.shopsL.items = data.items;
+      this.pubsub.$pub('loading', false);
     }, err => {
       console.log(err);
     });
@@ -149,12 +152,15 @@ export class ManageShopComponent implements OnInit {
   }
 
   deleteShop(shopID) {
-    this.shopService.delete(shopID).subscribe(data => {
-      console.log(data);
-      this.getListShop();
-    }, err => {
-      console.log(err);
-    });
+    const cfDelete = confirm('ยืนยันการลบร้านค้า');
+    if (cfDelete) {
+      this.pubsub.$pub('loading', true);
+      this.shopService.delete(shopID).subscribe(data => {
+        this.getListShop();
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 
   createShop() {
@@ -346,56 +352,46 @@ export class ManageShopComponent implements OnInit {
     this.customSearch = false;
   }
   isSendMail(shop) {
-    this.loading = true;
-
-    console.log('id' + shop);
-    let sendShop = shop;
-    sendShop.isactiveshop = true;
-    this.manageShopService.sendMail(sendShop).subscribe(data => {
-      console.log(data);
-      alert('ระบบได้ทำการส่ง User ไปให้ร้านเรียบร้อยแล้วค่ะ');
-      this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
-        this.loading = false;
+    const cf = confirm('ยืนยันการส่งอีเมล');
+    if (cf) {
+      this.loading = true;
+      let sendShop = shop;
+      sendShop.isactiveshop = true;
+      this.manageShopService.sendMail(sendShop).subscribe(data => {
+        alert('ระบบได้ทำการส่ง User ไปให้ร้านเรียบร้อยแล้วค่ะ');
+        this.manageShopService.getLocalJSONshoplist().subscribe(jso => {
+          this.loading = false;
+          this.getListShop();
+          this.shopsL = jso;
+          this.curentPage[1] = 'active';
+        });
+      }, err => {
+        console.log(err);
+        alert('ระบบไม่สามารถส่ง User ไปให้ร้านได้ค่ะ กรุณาติดต่อทางทีมงานค่ะ');
         this.getListShop();
-        this.shopsL = jso;
-        this.curentPage[1] = 'active';
+        this.loading = false;
       });
-
-
-    }, err => {
-      console.log(err);
-      alert('ระบบไม่สามารถส่ง User ไปให้ร้านได้ค่ะ กรุณาติดต่อทางทีมงานค่ะ');
-      this.getListShop();
-      this.loading = false;
-
-
-    });
+    }
   }
 
   activeChange($event, shop) {
-    if ($event == true) {
+    if ($event === true) {
       shop.isactiveshop = true;
       this.manageShopService.setActiveShop(shop).subscribe(succ => {
-        console.log("Update active shop : ", succ);
-        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Active เรียบร้อยแล้วค่ะ");
+        alert('ระบบเปลี่ยนสถานะของร้าน ' + shop.name + ' เป็น Active เรียบร้อยแล้วค่ะ');
         this.getListShop();
-        // location.reload();
       }, err => {
-        console.log("Update active shop ERROR : ", err);
+        console.log('Update active shop ERROR : ', err);
         this.getListShop();
-        // location.reload();
       });
-    } else if ($event == false) {
+    } else if ($event === false) {
       shop.isactiveshop = false;
       this.manageShopService.setActiveShop(shop).subscribe(succ => {
-        console.log("Update active shop : ", succ);
-        alert("ระบบเปลี่ยนสถานะของร้าน " + shop.name + " เป็น Inactive เรียบร้อยแล้วค่ะ");
+        alert('ระบบเปลี่ยนสถานะของร้าน ' + shop.name + ' เป็น Inactive เรียบร้อยแล้วค่ะ');
         this.getListShop();
-        // location.reload();
       }, err => {
-        console.log("Update active shop ERROR : ", err);
+        console.log('Update active shop ERROR : ', err);
         this.getListShop();
-        // location.reload();
       });
     }
   }
