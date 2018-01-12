@@ -1,4 +1,5 @@
 <div class="main-content">
+
   <div class="row text-center" *ngIf="shop._id">
 
     <div class="col-sm-2 col-md-2 col-lg-2 "></div>
@@ -187,7 +188,7 @@
                       </div>
                     </div>
 
-                
+
                   </div>
                   <div class="ct">
                     <button class="btn btn-primary" (click)="saveTime()">เพิ่ม</button>
@@ -243,11 +244,12 @@
             </div>
           </div>
 
-          <div class="row">
+
+          <div class="row scrollmenu">
             <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
 
             <!-- ADD CATE -->
-            <div class="col-md-2" (click)="updateCateImg()">
+            <div class="col-md-2 col-scroll" (click)="updateCateImg()">
               <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
               <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
               />
@@ -257,20 +259,33 @@
 
 
             <!-- SHOW CATEGOY ZONE -->
-            <div class="col-md-2 scroll-x" *ngFor="let item of categoryList;let i = index">
-              <span class="bin-1">
-                <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
-              </span>
-              <div>
-                <img (click)="filterByCate(item._id,i)" [src]="item.image" alt="image" cate-img>
-                <span class="ca ovf">
-                  <p class="text-cate">{{item.name}}</p>
-                </span>
+            <div class="col-2 col-scroll" *ngFor="let item of categoryList;let i = index">
+              <div style="margin-right:20px;">
+                <div class="deleteCateClass">
+                  <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
+                </div>
+                <div class="addEditClass">
+                  <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
+                </div>
+                <div class="imgEditClass">
+                  <img style="width:150px;height:150px;" (click)="filterByCate(item._id,i)" [src]="item.image" alt="image" cate-img>
+                </div>
+                <div style="margin-bottom: -31px;">
+                  <span class="ca ovf">
+                    <p class="textClass">{{item.name}}</p>
+                  </span>
+                </div>
+                <div>
+                  <span style="text-align: center;color: #ffffff;">
+                    <p>{{item.name}}</p>
+                  </span>
+                </div>
+
               </div>
 
-              <span class="pc-1">
+              <!-- <span class="pc-1">
                 <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
-              </span>
+              </span> -->
             </div>
             <!-- SHOW CATEGOY ZONE -->
           </div>
@@ -321,7 +336,7 @@
               <div class="loader" *ngIf="!updateOrEditCateImg" #loadingControl>
                 <img src="./assets/img/Infinity.gif" alt="">
               </div>
-              <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg"  alt="image">
+              <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image">
             </div>
           </div>
           <div class="row">
@@ -363,14 +378,14 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-                <div class="col-md-2 " *ngFor="let item of oldsProducts;let i = index">
-                    <span class="bin-1">
-                      <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
-                    </span>
-                    <div>
-                      <img  [src]="item.image" alt="image" cate-img>
-                    </div>
-                  </div>
+              <div class="col-md-2 " *ngFor="let item of oldsProducts;let i = index">
+                <span class="bin-1">
+                  <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
+                </span>
+                <div>
+                  <img [src]="item.image" alt="image" cate-img>
+                </div>
+              </div>
               <!-- <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image"> -->
             </div>
           </div>
