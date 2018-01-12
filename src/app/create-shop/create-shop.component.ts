@@ -667,18 +667,16 @@ export class CreateShopComponent implements OnInit {
     if (this.selectList.length < 3) {
       if (inArr === -1) {
         this.selectList.push(cate_id);
-        this.shop.categories.push(cate_id);
+        this.shop.categories.push({ _id: cate_id });
         this.checkeds[cate_id] = true;
 
         for (let i = 0; i < this.shop.categories.length; i++) {
           for (let j = 0; j < this.categoryShopList.length; j++) {
             if (this.categoryShopList[j]._id === this.shop.categories[i]._id) {
-              console.log('Change');
               this.shop.categories[i] = {
                 _id: this.categoryShopList[j]._id,
                 name: this.categoryShopList[j].name
               };
-              console.log(this.shop.categories[i]);
               break;
             }
           }
