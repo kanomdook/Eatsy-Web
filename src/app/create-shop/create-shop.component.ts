@@ -43,6 +43,7 @@ export class CreateShopComponent implements OnInit {
   private categoryShopList: Array<any> = [];
   private useSelectDate: Array<any> = [];
   private timeList: Array<any> = [];
+  private cateList: Array<any> = [];
   private times: any = {};
   private address: string;
   private latLng: any = {};
@@ -137,8 +138,9 @@ export class CreateShopComponent implements OnInit {
         this.shop = data;
         this.categorys = this.shop.items;
         this.products = this.categorys ? this.categorys[0].products : [];
-        console.log(this.categorys);
-        console.log(this.products);
+        this.categorys.forEach((el, i) => {
+          this.cateList.push(el.cate);
+        });
         data.categories.forEach(element => {
           this.selectList.push(element._id);
         });
@@ -312,10 +314,13 @@ export class CreateShopComponent implements OnInit {
 
   filterByCate(cateID) {
     this.cateID = cateID;
-    for (let i = 0; i < this.categorys.length; i++) {
-      if (this.categorys[i].cate._id === cateID) {
-        this.products = this.categorys[i].products;
-        break;
+    if (this.cateID) {
+      console.log(this.categorys);
+      for (let i = 0; i < this.categorys.length; i++) {
+        if (this.categorys[i].cate._id === cateID) {
+          this.products = this.categorys[i].products;
+          break;
+        }
       }
     }
   }

@@ -257,14 +257,15 @@
 
 
             <!-- SHOW CATEGOY ZONE -->
-            <div class="col-md-2 scroll-x" *ngFor="let item of categorys;let i = index">
-              <span class="bin-1">
-                <i class="material-icons add-dropShadow" (click)="deleteCategory(item.cate._id)">delete</i>
+            <div class="col-md-2 scroll-x" *ngFor="let item of cateList;let i = index">
+              <span class="bin-1" *ngIf="item && item._id">
+                <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
               </span>
-              <div>
-                <img (click)="filterByCate(item.cate._id)" [src]="item.cate.image" alt="image" cate-img>
+              <div *ngIf="item && item._id">
+                <img (click)="filterByCate(item._id)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'"
+                  alt="image" cate-img>
                 <span class="ca ovf">
-                  <p class="text-cate">{{item.cate.name}}</p>
+                  <p class="text-cate">{{item.name ? item.name : ''}}</p>
                 </span>
               </div>
 
@@ -287,13 +288,12 @@
                         alt="image" cate-img>
                     </div>
                     <div *ngIf="item.name != 'default'">
-                      <img class="img" (click)="editProduct(i,selectedCate)" [src]="item.images ? item.images[0] : 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg'" alt="image" cate-img>
+                      <img class="img" (click)="editProduct(i,selectedCate)" [src]="item.images ? item.images[0] : 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg'"
+                        alt="image" cate-img>
                     </div>
                   </div>
                 </div>
               </div>
-
-
             </div>
           </div>
 
