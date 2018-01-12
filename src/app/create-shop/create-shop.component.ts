@@ -667,29 +667,35 @@ export class CreateShopComponent implements OnInit {
     if (this.selectList.length < 3) {
       if (inArr === -1) {
         this.selectList.push(cate_id);
-        this.shop.categories.push({ _id: cate_id });
         this.checkeds[cate_id] = true;
-
-        for (let i = 0; i < this.shop.categories.length; i++) {
-          for (let j = 0; j < this.categoryShopList.length; j++) {
-            if (this.categoryShopList[j]._id === this.shop.categories[i]._id) {
-              this.shop.categories[i] = {
-                _id: this.categoryShopList[j]._id,
-                name: this.categoryShopList[j].name
-              };
-              break;
+        if (this.shop.categories) {
+          this.shop.categories.push({ _id: cate_id });
+          for (let i = 0; i < this.shop.categories.length; i++) {
+            for (let j = 0; j < this.categoryShopList.length; j++) {
+              if (this.categoryShopList[j]._id === this.shop.categories[i]._id) {
+                this.shop.categories[i] = {
+                  _id: this.categoryShopList[j]._id,
+                  name: this.categoryShopList[j].name
+                };
+                break;
+              }
             }
           }
         }
+
       } else {
         this.selectList.splice(inArr, 1);
-        this.shop.categories.splice(inArr, 1);
+        if (this.shop.categories) {
+          this.shop.categories.splice(inArr, 1);
+        }
         this.checkeds[cate_id] = false;
       }
     } else {
       if (inArr !== -1) {
         this.selectList.splice(inArr, 1);
-        this.shop.categories.splice(inArr, 1);
+        if (this.shop.categories) {
+          this.shop.categories.splice(inArr, 1);
+        }
         this.checkeds[cate_id] = false;
       }
     }
