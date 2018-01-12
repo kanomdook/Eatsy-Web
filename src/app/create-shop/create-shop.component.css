@@ -12,6 +12,7 @@
 
 .card-time-size {
     height: 27.5vh;
+    border: 0.2rem solid black;
 }
 
 .time-elaspe {
@@ -53,11 +54,13 @@
     color: #fff;
     font-size: 1em;
 }
+
 .ovf {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 
 /* .col-md-2 {
     padding: 4px !important;
@@ -269,8 +272,6 @@ input[type=file] {
     margin-top: 10px;
 }
 
-
-
 .card-img-top {
     object-fit: cover;
     width: 100%;
@@ -302,6 +303,7 @@ input[type=file] {
     height: 120px;
     overflow-y: scroll;
     position: relative;
+    border-bottom: 0.2rem solid grey;
 }
 
 .check_icon {
@@ -313,10 +315,12 @@ input[type=file] {
     position: absolute;
     right: 8px;
 }
+
 [cate-img] {
     min-height: 14.8rem;
 }
-.text-cate{
+
+.text-cate {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -324,10 +328,49 @@ input[type=file] {
     margin-right: -50%;
     transform: translate(-50%, -50%)
 }
-.col-bottom{
+
+.col-bottom {
     padding-bottom: 3rem;
 }
-.add-dropShadow{
+
+.add-dropShadow {
     /* box-shadow:0.4rem 0.4rem 1rem grey;   */
     filter: drop-shadow(0.2rem 0.2rem 0.5rem grey);
+}
+
+.fix-height {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.add-padding-left input {
+    margin-left: 50px !important;
+    font-size: 110%;
+}
+
+label {
+    color: black;
+}
+
+.btn-size-small {
+    padding: 0px !important;
+    margin: 0px !important;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: orange;
+}
+
+.edit-size {
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 22px;
+}
+.no-padding{
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+}
+
+.btn-group.open > .dropdown-toggle.btn, .btn-group.open > .dropdown-toggle.btn.btn-default, .btn-group-vertical.open > .dropdown-toggle.btn, .btn-group-vertical.open > .dropdown-toggle.btn.btn-default {
+    background-color: #9a9999a8;
 }

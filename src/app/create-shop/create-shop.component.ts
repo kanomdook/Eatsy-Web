@@ -3,6 +3,7 @@ import { ShopService } from 'app/create-shop/create-shop.service';
 import { ServerConfig } from 'app/provider/server.config';
 import { Router } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { element } from 'protractor';
 
 
 declare let google;
@@ -14,6 +15,14 @@ declare let $: any;
 })
 export class CreateShopComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
+  @ViewChild('modalproduct') modalproduct: ElementRef;
+
+  @ViewChild('shopinfoTab') shopinfo;
+  @ViewChild('shopcontactTab') shopcontact;
+  @ViewChild('shoptimecloseTab') shoptimeclose;
+  @ViewChild('shopaddressTab') shopaddress;
+
+
   galleryOptions: Array<NgxGalleryOptions> = [];
   galleryImages: Array<NgxGalleryImage> = [];
   @ViewChild('map') mapElement: ElementRef;
@@ -49,9 +58,13 @@ export class CreateShopComponent implements OnInit {
   private CE_id_product: string;
   private CE_action_category: string;
   private CE_id_category: string;
-  private selectList: Array<string> = [];
+  private selectList: Array<any> = [];
+  private shopCateSelected: Array<any> = [];
   private checkeds: Array<any> = [];
   private selectedCate: number = 0;
+  private selectTabs: number = 0;
+  private isEditshopMode: boolean = false;
+  private blockInput: boolean = true;
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
@@ -102,14 +115,19 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.showeMainShop = true;
       this.showeditdiv = false;
+      // this.shopCateSelected.forEach(element => this.shopCateSelected[this.shopCateSelected.length]._id = )
+    }
+    if (!this.shopID) {
+      this.blockInput = false;
     }
     this.shop.categories = '';
     this.shopService.getCategoryShop().subscribe(data => {
       this.categoryShopList = data;
+      this.InitialData();
     }, err => {
       console.log(err);
     });
-    this.InitialData();
+
   }
 
 
@@ -117,6 +135,22 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
         this.shop = data;
+        data.categories.forEach(element => {
+          this.selectList.push(element._id);
+        });
+
+        console.log(this.selectList);
+
+        for (let i = 0; i < this.categoryShopList.length; i++) {
+          for (let j = 0; j < this.selectList.length; j++) {
+            if (this.categoryShopList[i]._id === this.selectList[j]) {
+              this.checkeds[this.categoryShopList[i]._id] = true;
+            }
+          }
+        }
+
+        this.shop.categories = data.categories;
+        console.log(data.categories);
         let imgs: Array<any> = data.promoteimage;
 
         imgs.forEach((el, i) => {
@@ -131,8 +165,7 @@ export class CreateShopComponent implements OnInit {
         //   this.galleryImages[index].medium = this.shop.promoteimage[index];
 
         // }
-        console.log(data);
-        this.shop.categories = this.shop.categories ? this.shop.categories._id : '';
+        // this.shop.categories = this.shop.categories ? this.shop.categories._id : '';
         this.address = data.address.address;
         this.latLng = {
           lat: data.address ? data.address.lat : '',
@@ -303,21 +336,21 @@ export class CreateShopComponent implements OnInit {
   }
 
   createProduct(index, CateIndex) {
-    this.showeMainShop = false;
-    this.showAddProduct = true;
     this.CE_action_product = 'เพิ่ม';
+    // $(this.modal.nativeElement).modalproduct('show');
+    this.modalproduct.nativeElement.click();
     alert("Select prd index : " + index + "\nSelect Cate : " + CateIndex);
-  
-      // let createPRD = {
-      //   name: ,
-      //   images,
-      //   price: ,
-      //   categories: ,
-      //   index: ,
-      //   cateindex:
-      // }
-      // this.shopService.createProduct()
-  
+
+    // let createPRD = {
+    //   name: ,
+    //   images,
+    //   price: ,
+    //   categories: ,
+    //   index: ,
+    //   cateindex:
+    // }
+    // this.shopService.createProduct()
+
   }
 
   canselSaveProduct() {
@@ -586,6 +619,17 @@ export class CreateShopComponent implements OnInit {
     });
   }
 
+  changeEditShopMode() {
+    if (this.isEditshopMode == false) {
+      this.isEditshopMode = true;
+      this.blockInput = false;
+    } else {
+      this.isEditshopMode = false;
+      this.blockInput = true;
+    }
+
+  }
+
   cancelMap() {
     this.showeditdiv = true;
     this.showeMap = false;
@@ -617,23 +661,40 @@ export class CreateShopComponent implements OnInit {
   }
 
   selectCate(cate_id) {
+
     const inArr = this.selectList.indexOf(cate_id);
+
     if (this.selectList.length < 3) {
       if (inArr === -1) {
         this.selectList.push(cate_id);
+        this.shop.categories.push(cate_id);
         this.checkeds[cate_id] = true;
+
+        for (let i = 0; i < this.shop.categories.length; i++) {
+          for (let j = 0; j < this.categoryShopList.length; j++) {
+            if (this.categoryShopList[j]._id === this.shop.categories[i]._id) {
+              console.log('Change');
+              this.shop.categories[i] = {
+                _id: this.categoryShopList[j]._id,
+                name: this.categoryShopList[j].name
+              };
+              console.log(this.shop.categories[i]);
+              break;
+            }
+          }
+        }
       } else {
         this.selectList.splice(inArr, 1);
+        this.shop.categories.splice(inArr, 1);
         this.checkeds[cate_id] = false;
       }
     } else {
       if (inArr !== -1) {
         this.selectList.splice(inArr, 1);
+        this.shop.categories.splice(inArr, 1);
         this.checkeds[cate_id] = false;
       }
     }
-
-    this.shop.categories = this.selectList;
   }
 
   save() {
@@ -646,6 +707,7 @@ export class CreateShopComponent implements OnInit {
       this.shop.times = this.timeList;
       this.shop.coverimage = this.shop.coverimage ? this.shop.coverimage : 'https://images.unsplash.com/photo-1470219556762-1771e7f9427d?auto=format&fit=crop&w=889&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D';
       this.shopService.edit(this.shop).subscribe(data => {
+        this.isEditshopMode == false;
         console.log(data);
         this.showeMainShop = true;
         this.showeditdiv = false;
@@ -723,6 +785,37 @@ export class CreateShopComponent implements OnInit {
     for (let i = 0; i < this.timeList.length; i++) {
       if (id == i) {
         this.timeList.splice(i, 1);
+        break;
+      }
+    }
+  }
+  selectTab(tab) {
+
+    switch (tab) {
+      case 0: {
+        this.selectTabs = 0;
+        this.showeMap = false;
+
+        break;
+      }
+      case 1: {
+        this.selectTabs = 1;
+        this.showeMap = false;
+
+        break;
+      }
+      case 2: {
+        this.selectTabs = 2;
+        this.showeMap = false;
+        break;
+      }
+      case 3: {
+        this.selectTabs = 3;
+
+        break;
+      }
+      default: {
+        this.selectTabs = 0;
         break;
       }
     }
