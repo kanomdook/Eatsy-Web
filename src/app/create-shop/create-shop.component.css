@@ -389,6 +389,46 @@ label {
     border-bottom: red solid 4px;
 }
 
-.inactive-select {
-    border-bottom: rgb(21, 255, 0) solid 4px;
+.scrollmenu {
+    overflow: auto;
+    white-space: nowrap !important;
+    width: 98.5%;
+    margin-left: 0.5%;
+    margin-right: 3.5%;
 }
+
+.col-scroll {
+    display: inline-block;
+}
+
+div.scrollmenu2 {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu2 p {
+    display: inline-block;
+}
+
+.xxx {
+    display: inline-block;
+}
+
+img {
+    object-fit: cover;
+}
+
+.addEditClass {
+    text-align: right;
+    margin-bottom: -40px;
+}
+
+.deleteCateClass{
+    text-align: left;
+    margin-bottom: -40px;
+}
+
+.imgEditClass {
+    margin-bottom: -20px;
+}
+

@@ -247,17 +247,17 @@
             <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
 
             <!-- ADD CATE -->
-            <div class="col-md-2" (click)="updateCateImg()">
+            <!-- <div class="col-md-2" (click)="updateCateImg()">
               <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
               <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
               />
-            </div>
+            </div> -->
 
             <!-- ADD CATE -->
 
 
             <!-- SHOW CATEGOY ZONE -->
-            <div class="col-md-2 scroll-x" *ngFor="let item of cateList;let i = index">
+            <!-- <div class="col-md-2 scroll-x" *ngFor="let item of cateList;let i = index">
               <span class="bin-1" *ngIf="item && item._id">
                 <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
               </span>
@@ -272,7 +272,65 @@
               <span class="pc-1">
                 <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
               </span>
-            </div>
+            </div> -->
+
+
+            <div class="row scrollmenu">
+                <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
+    
+                <!-- ADD CATE -->
+                <div class="col-md-2 col-scroll" (click)="updateCateImg()">
+                  <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
+                  <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
+                  />
+                </div>
+    
+                <!-- ADD CATE -->
+    
+    
+                <!-- SHOW CATEGOY ZONE -->
+                <div class="col-2 col-scroll" *ngFor="let item of cateList;let i = index">
+                  <div style="margin-right:20px;" *ngIf="item && item._id">
+                    <div class="deleteCateClass">
+                      <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
+                    </div>
+                    <div class="addEditClass">
+                      <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
+                    </div>
+                    <div class="imgEditClass" [class]="selectedStyle[item._id]">
+                      <img style="width:150px;height:150px;" (click)="filterByCate(item._id)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'" alt="image" cate-img>
+                    </div>
+                    <div style="margin-bottom: -31px;">
+                      <span class="ca ovf">
+                        <p class="textClass">{{item.name}}</p>
+                      </span>
+                    </div>
+                    <div>
+                      <span style="text-align: center;color: #ffffff;">
+                        <p>{{item.name}}</p>
+                      </span>
+                    </div>
+    
+                  </div>
+    
+                  <!-- <span class="pc-1">
+                    <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
+                  </span> -->
+                </div>
+                <!-- SHOW CATEGOY ZONE -->
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+            
             <!-- SHOW CATEGOY ZONE -->
           </div>
 
