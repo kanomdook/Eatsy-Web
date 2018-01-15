@@ -4,6 +4,7 @@ import { ServerConfig } from 'app/provider/server.config';
 import { Router } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { element } from 'protractor';
+import { PubSubService } from 'angular2-pubsub';
 
 
 declare let google;
@@ -73,7 +74,7 @@ export class CreateShopComponent implements OnInit {
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
-  constructor(private server: ServerConfig, private router: Router, private shopService: ShopService,
+  constructor(private server: ServerConfig, private router: Router, private shopService: ShopService, private pubsub: PubSubService
     // private modalService: BsModalService
   ) {
     this.galleryOptions = [
@@ -113,7 +114,7 @@ export class CreateShopComponent implements OnInit {
 
   onProductImgChange(event) {
     const fileBrowser = this.uploadImgProduct.nativeElement;
-    if (fileBrowser.files.length > 0) {
+    if (fileBrowser.files.length > 0 && this.productImgPreSaves.length < 3) {
       for (let i = 0; i < fileBrowser.files.length; i++) {
         const reader = new FileReader();
         reader.readAsDataURL(fileBrowser.files[i]);
@@ -274,7 +275,9 @@ export class CreateShopComponent implements OnInit {
   }
 
   onPromoteImgChange(e) {
+    this.pubsub.$pub('loading', true);
     const fileBrowser = this.promoteimgInput.nativeElement;
+
     const reader = new FileReader();
     reader.readAsDataURL(fileBrowser.files[0]);
     if (this.shopID) {
@@ -285,28 +288,21 @@ export class CreateShopComponent implements OnInit {
           this.shopService.uploadPromoteImage(this.shop).subscribe(data => {
             this.shop.promoteimage.push(data.imageURL);
             this.shopService.edit(this.shop).subscribe(shopRes => {
+              this.pubsub.$pub('loading', false);
               alert("เพิ่มรูปภาพโปรโมทร้านเรียบร้อยแล้วค่ะ");
               this.galleryImages = [];
               this.InitialData();
             }, err => {
+              this.pubsub.$pub('loading', false);
               alert("เกิดข้อผิดพลาดในการเพิ่มรูปภาพโปรโมทร้าน กรุณาลองใหม่อีกครั้งค่ะ");
               console.log(err);
             });
           }, err => {
+            this.pubsub.$pub('loading', false);
             console.log(err);
           });
         };
       }
-    } else {
-      reader.onload = () => {
-        let promteImgStr = reader.result.replace(/\n/g, '');
-        this.shop.newpromoteimage = promteImgStr;
-        this.shopService.uploadPromoteImage(this.shop).subscribe(data => {
-          this.shop.promoteimage.push(data.imageURL);
-        }, err => {
-          console.log(err);
-        });
-      };
     }
   }
 
@@ -382,7 +378,7 @@ export class CreateShopComponent implements OnInit {
     $(this.modalproduct.nativeElement).modal('show');
 
     // this.modalproduct.nativeElement.click();
-    alert("Select prd index : " + index + "\nSelect Cate : " + CateIndex);
+    // alert("Select prd index : " + index + "\nSelect Cate : " + CateIndex);
 
     // let createPRD = {
     //   name: ,
@@ -462,10 +458,12 @@ export class CreateShopComponent implements OnInit {
         this.galleryImages = [];
         this.products = [];
         this.cateList = [];
-        window.location.reload();
         $(this.modal.nativeElement).modal('hide');
+        window.location.reload();
+        
       }, err => {
         alert("ระบบไม่สามารถเพิ่มหมวดหมู่ร้านค้าได้ กรุณาลองใหม่อีกครั้ง");
+        $(this.modal.nativeElement).modal('hide');
         window.location.reload();
         console.log(err);
       });
@@ -773,7 +771,8 @@ export class CreateShopComponent implements OnInit {
           this.showeditdiv = false;
           this.showeditTime = false;
           alert("ระบบทำการบันทึกข้อมูลร้านค้าเรียบร้อยแล้วค่ะ");
-          this.router.navigate(['/manage-shop']);
+          // this.router.navigate(['/manage-shop']);
+          location.reload();
         }, err => {
           console.log(err);
         });
@@ -792,7 +791,8 @@ export class CreateShopComponent implements OnInit {
           this.showeditdiv = false;
           this.showeditTime = false;
           alert("ระบบทำการบันทึกข้อมูลร้านค้าใหม่เรียบร้อยแล้วค่ะ");
-          this.router.navigate(['/manage-shop']);
+          // this.router.navigate(['/manage-shop']);
+          location.reload();
         }, err => {
           console.log(err);
         });
