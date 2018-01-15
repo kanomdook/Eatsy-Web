@@ -63,7 +63,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.textClass{
+
+.textClass {
     opacity: 0.4;
     background-color: black;
 }
@@ -421,7 +422,7 @@ img {
     margin-bottom: -40px;
 }
 
-.deleteCateClass{
+.deleteCateClass {
     text-align: left;
     margin-bottom: -40px;
 }
@@ -434,15 +435,30 @@ img {
     border-bottom: red solid 4px;
 }
 
+
 /* .inactive-select {
     border-bottom: rgb(21, 255, 0) solid 4px;
 } */
 
-.box-text{
+.box-text {
     text-align: center;
     background-color: #36363673;
     bottom: 3rem;
     height: 3rem;
     position: relative;
     vertical-align: middle;
+}
+
+.name-label {
+    position: absolute;
+    margin-top: -24px;
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 92%;
+    color: #fff;
+}
+
+.price-label {
+    right: 4px;
+    position: absolute;
 }

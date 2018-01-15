@@ -252,7 +252,7 @@
                   <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
                 </div>
                 <div class="imgEditClass" [class]="selectedStyle[item._id]">
-                  <img style="width:150px;height:150px;" (click)="filterByCate(item._id)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'"
+                  <img style="width:150px;height:150px;" (click)="filterByCate(item._id, i)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'"
                     alt="image" cate-img>
                 </div>
                 <div class="box-text">
@@ -276,11 +276,12 @@
                 <div class="row">
                   <div class="col-md-2 col-over col-bottom" *ngFor="let item of products; let i = index">
                     <div *ngIf="item.name == 'default'">
-                      <img class="img" data-toggle="modal" data-target="#modalproduct" (click)="createProduct(i,selectedCate,item)" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg"
+                      <img class="img" data-toggle="modal" data-target="#modalproduct" (click)="createProduct(i,item)" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg"
                         alt="image" cate-img>
                     </div>
                     <div *ngIf="item.name != 'default'">
                       <img class="img" (click)="editProduct(i,selectedCate)" [src]="item.images[0]" alt="image" cate-img>
+                      <p class="name-label">{{item.name}} <span class="price-label">{{item.price}}.-</span></p>
                     </div>
                   </div>
                 </div>
@@ -354,10 +355,10 @@
               <div *ngIf="productImgPreSaves.length < 3" class="col-md-2" style="background-color: #c0c0c0;height: 128px; cursor:pointer"
                 (click)="selectProductImg()">
                 <i class="material-icons" style="margin-top: 4rem">add_a_photo</i>
-                <input #uploadImgProduct type="file"  accept="image/x-png,image/jpeg" multiple (change)="onProductImgChange($event)">
+                <input #uploadImgProduct type="file"  accept="image/x-png,image/jpeg" (change)="onProductImgChange($event)">
               </div>
               <div class="col-md-2" *ngFor="let item of productImgPreSaves">
-                <span class="bin-3">
+                <span class="bin-3" *ngIf="isDelete">
                   <i class="material-icons add-dropShadow" style="font-size: 26px" (click)="deleteImgProduct(item.id)">delete</i>
                 </span>
                 <img [src]="item.base64" alt="" width="128px" height="128px">
@@ -369,15 +370,20 @@
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-left">
               <div class="form-group">
                 <h5>ชื่อสินค้า</h5>
-                <input type="text" class="form-control" placeholder="Product name" name="productname" [(ngModel)]="prdName">
+                <input type="text" class="form-control" placeholder="Product name" name="productname" [(ngModel)]="productModel.name">
               </div>
+
+                <div class="form-group">
+                    <h5>ราคา</h5>
+                    <input type="number" class="form-control" placeholder="Product price" name="productprice" [(ngModel)]="productModel.price">
+                  </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
 
-              <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
+              <button class="btn btn-primary" (click)="saveProduct()">บันทึก</button>
               <button class="btn btn-danger" #dissmissBtn data-dismiss="modalproduct" (click)="cancelCategory(cateModal)">ยกเลิก</button>
             </div>
           </div>
