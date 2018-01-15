@@ -44,6 +44,9 @@ export class CreateShopComponent implements OnInit {
   private products: Array<any> = [];
   private oldsProducts: Array<any> = [];
   private selectDate: Array<any> = [];
+  private categorys: Array<any> = [];
+  private cateID: number = 0;
+  private cateList: Array<any> = [];
   private categoryList: Array<any> = [];
   private categoryShopList: Array<any> = [];
   private useSelectDate: Array<any> = [];
@@ -56,6 +59,7 @@ export class CreateShopComponent implements OnInit {
   private openTimeString: string = '';
   private currentGEO: any = { lat: null, lng: null };
   private CE_action_product: string;
+  private selectedStyle: Array<any> = [];
   private CE_id_product: string;
   private CE_action_category: string;
   private CE_id_category: string;
@@ -117,7 +121,6 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.showeMainShop = true;
       this.showeditdiv = false;
-      // this.shopCateSelected.forEach(element => this.shopCateSelected[this.shopCateSelected.length]._id = )
     }
     if (!this.shopID) {
       this.blockInput = false;
@@ -138,12 +141,30 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
         this.shop = data;
-        console.log(data);
+        this.categorys = this.shop.items;
+        this.products = this.categorys.length > 0 ? this.categorys[0].products : [];
+        console.log(this.products);
+        this.categorys.forEach((el, i) => {
+          if (el !== null) {
+            this.cateList.push(el.cate);
+          }
+        });
+
+        this.cateList.length > 0 ? this.selectedStyle[this.cateList[0]._id] = 'active-select' : null;
+
+        // for (let i = 0; i < this.categorys.length; i++) {
+        //   if (this.categorys[i].cate._id === this.cateList[0]._id._id) {
+        //     this.products = this.categorys[i].products;
+        //     break;
+        //   }
+        // }
+
+
+
+
         data.categories.forEach(element => {
           this.selectList.push(element._id);
         });
-
-        console.log(this.selectList);
 
         for (let i = 0; i < this.categoryShopList.length; i++) {
           for (let j = 0; j < this.selectList.length; j++) {
@@ -154,7 +175,6 @@ export class CreateShopComponent implements OnInit {
         }
 
         this.shop.categories = data.categories;
-        console.log(data.categories);
         let imgs: Array<any> = data.promoteimage;
 
         imgs.forEach((el, i) => {
@@ -165,11 +185,6 @@ export class CreateShopComponent implements OnInit {
           });
         });
 
-        // for (let index = 0; index < this.shop.promoteimage.length; index++) {
-        //   this.galleryImages[index].medium = this.shop.promoteimage[index];
-
-        // }
-        // this.shop.categories = this.shop.categories ? this.shop.categories._id : '';
         if (data.address) {
           this.address = data.address.address;
         }
@@ -326,14 +341,26 @@ export class CreateShopComponent implements OnInit {
     } else { this.promoteIsEdit = false; }
   }
 
-  filterByCate(cateID, cateIndex) {
-    
+  filterByCate(cateID) {
+    this.cateID = cateID;
+    this.selectedStyle = [];
+    this.selectedStyle[cateID] = 'active-select';
+    if (this.cateID) {
+      for (let i = 0; i < this.categorys.length; i++) {
+        if (this.categorys[i].cate._id === cateID) {
+          this.products = this.categorys[i].products;
+          break;
+        }
+      }
+    }
+
+    console.log(this.products);
   }
 
   createProduct(index, CateIndex, item) {
     this.product = item;
-    
-    console.log(this.product);
+
+    console.log(CateIndex);
     this.CE_action_product = 'เพิ่ม';
     $(this.modalproduct.nativeElement).modal('show');
 
@@ -384,6 +411,8 @@ export class CreateShopComponent implements OnInit {
       this.CE_action_category = 'เพิ่ม';
     }
   }
+
+
   editCategory(edit, modal, category) {
     $(this.modal.nativeElement).modal('show');
     this.showeMainShop = false;
@@ -392,7 +421,6 @@ export class CreateShopComponent implements OnInit {
     this.category.name = category.name;
     this.CE_action_category = 'แก้ไข';
     this.CE_id_category = category._id;
-
   }
 
 
@@ -404,7 +432,7 @@ export class CreateShopComponent implements OnInit {
     this.category.name = '';
   }
 
-  saveCategory(data, ) {
+  saveCategory(data) {
     if (this.CE_action_category == 'เพิ่ม') {
       this.category.shop = this.shopID;
       let sendCate = {
@@ -414,18 +442,14 @@ export class CreateShopComponent implements OnInit {
       this.shopService.saveCategory(sendCate, this.shopID).subscribe(data => {
         console.log(data);
         alert("ระบบได้ทำการเพิ่มหมวดหมู่สินค้าเรียบร้อยแล้ว");
-
-        // this.categoryList[this.categoryList.length] = data;
         this.galleryImages = [];
-        this.InitialData();
-
-        this.showeMainShop = true;
-        this.showAddCategory = false;
-
-        // this.InitialData();
+        this.products = [];
+        this.cateList = [];
+        window.location.reload();
         $(this.modal.nativeElement).modal('hide');
       }, err => {
         alert("ระบบไม่สามารถเพิ่มหมวดหมู่ร้านค้าได้ กรุณาลองใหม่อีกครั้ง");
+        window.location.reload();
         console.log(err);
       });
     } else {
@@ -433,19 +457,17 @@ export class CreateShopComponent implements OnInit {
         name: this.category.name,
         image: this.updateOrEditCateImg
       }
-      // this.category.shop = this.shopID;
       this.shopService.editCategory(sendCate, this.CE_id_category).subscribe(data => {
         console.log(data);
         this.showeMainShop = true;
         this.showAddCategory = false;
         this.galleryImages = [];
         alert("ระบบได้ทำการแก้ไขหมวดหมู่สินค้าเรียบร้อยแล้ว");
-        this.InitialData();
+        window.location.reload();
         $(this.modal.nativeElement).modal('hide');
       }, err => {
         console.log(err);
         alert("ระบบไม่สามารถทำการแก้ไขหมวดหมู่สินค้าได้ค่ะ");
-
       });
     }
   }

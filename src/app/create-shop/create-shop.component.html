@@ -12,7 +12,6 @@
           <ngx-gallery *ngIf="shop.promoteimage && shop.promoteimage.length > 0" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
           <h4 *ngIf="!shop.promoteimage || shop.promoteimage.length == 0" style="font-family: 'Kanit', sans-serif;">ร้านนี้ยังไม่มีรูปภาพโปรโมทร้านค่ะ</h4>
         </div>
-        <!-- <h4 *ngIf="!shop.promoteimage" style="font-family: 'Kanit', sans-serif;">ร้านนี้ยังไม่มีรูปภาพโปรโมทร้านค่ะ</h4> -->
       </div>
       <button class="btn" type="button" (click)="uploadPromoteImage()">
         <i class="material-icons">add_a_photo</i> เพิ่มรูปโปรโมทร้าน
@@ -69,16 +68,6 @@
                       </ul>
                     </div>
                     <span *ngFor="let cateSelect of shop.categories"> {{cateSelect.name}} </span>
-
-
-
-                    <!-- <p style="color:#000000">เลือกประเภทร้านค้า</p>
-                    <div class="s-cont">
-                      
-                      <p class="text-select-cate" *ngFor="let item of categoryShopList" (click)="selectCate(item._id)">{{item.name}}
-                        <img *ngIf="checkeds[item._id]" class="check_po check_icon" src="https://image.flaticon.com/icons/svg/189/189677.svg" alt="icon">
-                      </p>
-                    </div> -->
 
                     <div class="form-group">
                       <input type="text" class="form-control" [disabled]="blockInput" placeholder="ชื่อร้าน" name="shopName" [(ngModel)]="shop.name">
@@ -149,8 +138,6 @@
 
                 <div class="row no-padding" *ngIf="showeditTime">
                   <div class="col-xs-12">
-                    <!-- <div class="card">
-                      <div class="card-block"> -->
                     <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">
@@ -205,7 +192,6 @@
               <div class="card-block" *ngIf="selectTabs == 3">
                 <div class="form-group">
                   <textarea rows="1" class="form-control ct" placeholder="ที่อยู่" name="addr" [(ngModel)]="address"></textarea>
-                  <!-- <input type="text" class="form-control" placeholder="ที่อยู่" [(ngModel)]="address"> -->
                 </div>
                 <p class="pin" (click)="openSelectMap()">
                   <i class="material-icons">room</i>
@@ -216,7 +202,6 @@
                 <div #map class="map"></div>
                 <div class="ct">
                   <button class="btn btn-info" (click)="saveMap()">ยืนยัน</button>
-                  <!-- <button class="btn btn-danger" (click)="cancelMap()">ยกเลิก</button> -->
                 </div>
               </div>
 
@@ -244,38 +229,6 @@
             </div>
           </div>
 
-          <!-- <div class="row scrollmenu"> -->
-            <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
-
-            <!-- ADD CATE -->
-            <!-- <div class="col-md-2" (click)="updateCateImg()">
-              <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
-              <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
-              />
-            </div> -->
-
-            <!-- ADD CATE -->
-
-
-            <!-- SHOW CATEGOY ZONE -->
-            <!-- <div class="col-md-2 scroll-x" *ngFor="let item of cateList;let i = index">
-              <span class="bin-1" *ngIf="item && item._id">
-                <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
-              </span>
-              <div *ngIf="item && item._id" [class]="selectedStyle[item._id]">
-                <img (click)="filterByCate(item._id)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'"
-                  alt="image" cate-img>
-                <span class="ca ovf">
-                  <p class="text-cate">{{item.name ? item.name : ''}}</p>
-                </span>
-              </div>
-
-              <!-- <span class="pc-1">
-                <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
-              </span>
-            </div> -->
-
-
             <div class="row scrollmenu">
                 <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
     
@@ -301,36 +254,15 @@
                     <div class="imgEditClass" [class]="selectedStyle[item._id]">
                       <img style="width:150px;height:150px;" (click)="filterByCate(item._id)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'" alt="image" cate-img>
                     </div>
-                    <div style="margin-bottom: -31px;">
-                      <span class="ca ovf">
-                        <p class="textClass">{{item.name}}</p>
+                    <div class="box-text">
+                      <span style="text-align: center;color: #ffffff;height: 3rem;vertical-align: -webkit-baseline-middle;">
+                       {{item.name}}
                       </span>
                     </div>
-                    <div>
-                      <span style="text-align: center;color: #ffffff;">
-                        <p>{{item.name}}</p>
-                      </span>
-                    </div>
-    
                   </div>
-    
-                  <!-- <span class="pc-1">
-                    <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
-                  </span> -->
                 </div>
                 <!-- SHOW CATEGOY ZONE -->
               </div>
-
-
-
-
-
-
-
-
-
-
-
             
             <!-- SHOW CATEGOY ZONE -->
           <!-- </div> -->
@@ -341,7 +273,7 @@
               <h4 class="h">Products</h4>
               <div [sortablejs]="shop.items">
                 <div class="row">
-                  <div class="col-md-2 col-over col-bottom" *ngFor="let item of shop.items[0].products; let i = index">
+                  <div class="col-md-2 col-over col-bottom" *ngFor="let item of products; let i = index">
                     <div *ngIf="item.name == 'default'">
                       <img class="img" data-toggle="modal" data-target="#modalproduct" (click)="createProduct(i,selectedCate,item)" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg"
                         alt="image" cate-img>
@@ -352,8 +284,6 @@
                   </div>
                 </div>
               </div>
-
-
             </div>
           </div>
 
@@ -371,9 +301,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title pull-left"> {{CE_action_category}}หมวดหมู่</h4>
-          <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal(cateModal)">
-            <i class="material-icons" (click)="deleteCategory(item._id)">close</i>
-          </button> -->
         </div>
         <div class="modal-body">
           <div class="row">
@@ -394,7 +321,6 @@
           </div>
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-
               <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
               <button class="btn btn-danger" #dissmissBtn data-dismiss="modal" (click)="cancelCategory(cateModal)">ยกเลิก</button>
             </div>
@@ -422,16 +348,16 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-              <div class="col-md-2 " *ngFor="let item of oldsProducts;let i = index">
-                <span class="bin-1">
+            <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center" *ngIf="CE_action_product == 'เพิ่ม'">
+                <div class="col-md-2"></div>
+              <div class="col-md-2" style="background-color: #c0c0c0;height: 12rem">
+                <!-- <span class="bin-1">
                   <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
-                </span>
-                <div>
-                  <img [src]="item.image" alt="image" cate-img>
-                </div>
+                </span> -->
+                  <i class="material-icons" style="margin-top: 4rem">add_a_photo</i>
               </div>
-              <!-- <img class="img-2" *ngIf="updateOrEditCateImg" [src]="updateOrEditCateImg" alt="image"> -->
+              <div class="col-md-2"></div>
+              
             </div>
           </div>
           <div class="row">
