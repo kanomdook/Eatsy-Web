@@ -79,7 +79,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-content table-responsive">
-                <table class="table">
+                <table class="table table-hover">
                   <thead class="text-danger">
                     <tr>
                       <th index-col-size>#</th>
@@ -102,12 +102,12 @@
 
                     </tr>
                     <tr *ngFor="let item of shopsL.items; let i = index ">
-                      <td>{{i + pageSelect + 1}}</td>
-                      <td>{{item.name}}</td>
-                      <td class="text-center">{{item.tel ? item.tel: '-'}}</td>
-                      <td *ngIf="!item.address">ไม่ปรากฎที่อยู่ร้าน</td>
-                      <td *ngIf="item.address">{{item.address.address ? item.address.address: '-'}}</td>
-                      <td class="text-center">{{item.importform}}
+                      <td (click)="editShop(item)">{{i + pageSelect + 1}}</td>
+                      <td (click)="editShop(item)">{{item.name}}</td>
+                      <td class="text-center" (click)="editShop(item)">{{item.tel ? item.tel: '-'}}</td>
+                      <td *ngIf="!item.address" (click)="editShop(item)">ไม่ปรากฎที่อยู่ร้าน</td>
+                      <td *ngIf="item.address" (click)="editShop(item)"  class="adr-ovf">{{item.address.address ? item.address.address: '-'}}</td>
+                      <td class="text-center" (click)="editShop(item)">{{item.importform}}
                         <p subText>by {{item.user.firstName}}</p>
                       </td>
                       <td class="text-center ">

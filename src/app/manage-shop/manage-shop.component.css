@@ -17,6 +17,10 @@
     width: 12rem;
 }
 
+.adr-col-size{
+    width: 14rem;
+}
+
 .input-col-size {
     width: 11rem;
 }
@@ -40,7 +44,7 @@
 }
 
 [adr-column-width] {
-    width: 27rem;
+    width: 20rem;
     word-break: keep-all;
 }
 
@@ -252,4 +256,10 @@
     margin-top: -22px;
     width: 220px;
     margin-left: 68px;
+}
+.adr-ovf{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 30rem;
 }
