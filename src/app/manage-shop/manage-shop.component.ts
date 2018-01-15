@@ -238,7 +238,7 @@ export class ManageShopComponent implements OnInit {
     this.shops = [];
     this.selectedShop = [];
     this.shopList = [];
-
+    this.pubsub.$pub('loading', true);
     let map = new google.maps.Map(this.mapElement.nativeElement, {
       zoom: 18
     });
@@ -278,10 +278,12 @@ export class ManageShopComponent implements OnInit {
         });
 
         this.customSearch = false;
+        this.pubsub.$pub('loading', false);
         this.checkDuplicateShop(results).then(data => {
           const newShopList: any = data;
           this.shopList = newShopList;
         }).catch(err => {
+          this.pubsub.$pub('loading', false);
           console.log(err);
         });
       }
@@ -300,6 +302,7 @@ export class ManageShopComponent implements OnInit {
   }
 
   getShopFromFacebook() {
+    this.pubsub.$pub('loading', true);
     this.importForm = 'Facebook';
     this.shopList = [];
     this.shops = [];
@@ -315,10 +318,13 @@ export class ManageShopComponent implements OnInit {
       console.log(user);
       this.fb.api('/search?center=' + this.latLng.lat + ',' + this.latLng.lng + '&distance=1000&q=' + this.keyword + '&type=' + this.shopType, 'get').then(stores => {
         this.dataStore(stores.data);
+        this.pubsub.$pub('loading', false);
       }).catch(error => {
+        this.pubsub.$pub('loading', false);
         console.log(error);
       });
     }).catch(err => {
+      this.pubsub.$pub('loading', false);
       console.log(err);
     });
   }
