@@ -63,7 +63,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.textClass{
+
+.textClass {
     opacity: 0.4;
     background-color: black;
 }
@@ -352,7 +353,7 @@ input[type=file] {
 }
 
 .add-padding-left input {
-    margin-left: 50px !important;
+    margin-left: 40px !important;
     font-size: 110%;
 }
 
@@ -421,7 +422,7 @@ img {
     margin-bottom: -40px;
 }
 
-.deleteCateClass{
+.deleteCateClass {
     text-align: left;
     margin-bottom: -40px;
 }
@@ -434,15 +435,26 @@ img {
     border-bottom: red solid 4px;
 }
 
+
 /* .inactive-select {
     border-bottom: rgb(21, 255, 0) solid 4px;
 } */
 
-.box-text{
+.box-text {
     text-align: center;
     background-color: #36363673;
     bottom: 3rem;
     height: 3rem;
     position: relative;
     vertical-align: middle;
+}
+
+.btn-select {
+    background-color: transparent;
+    color: red;
+    text-align: left;
+    
+}
+.btn-select :focus :target {
+    border-left: red solid 4px;
 }
