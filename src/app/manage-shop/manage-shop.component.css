@@ -173,6 +173,19 @@
     font-size: 1.5rem;
 }
 
+.addBTN :focus{
+    background-color: #ffffff00;
+}
+
+.addBTN :active{
+    background-color: #f72222fb !important;
+}
+/* .btn .btn:hover .btn:focus .open > .btn.dropdown-toggle .open > .btn.dropdown-toggle:focus .open > .btn.dropdown-toggle:hover {
+    background-color: #ff1515fa;
+} */
+
+
+
 .edit-color {
     padding: 0 0.8rem 0 0.8rem;
     color: orange;
@@ -222,7 +235,7 @@
 }
 
 .toggle-color {
-    color: rgb(78, 78, 78) !important;
+    /* color: rgb(78, 78, 78) !important; */
 }
 
 .close {
