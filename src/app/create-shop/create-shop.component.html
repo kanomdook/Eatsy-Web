@@ -229,42 +229,43 @@
             </div>
           </div>
 
-            <div class="row scrollmenu">
-                <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
-    
-                <!-- ADD CATE -->
-                <div class="col-md-2 col-scroll" (click)="updateCateImg()">
-                  <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
-                  <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
-                  />
-                </div>
-    
-                <!-- ADD CATE -->
-    
-    
-                <!-- SHOW CATEGOY ZONE -->
-                <div class="col-2 col-scroll" *ngFor="let item of cateList;let i = index">
-                  <div style="margin-right:20px;" *ngIf="item && item._id">
-                    <div class="deleteCateClass">
-                      <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
-                    </div>
-                    <div class="addEditClass">
-                      <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
-                    </div>
-                    <div class="imgEditClass" [class]="selectedStyle[item._id]">
-                      <img style="width:150px;height:150px;" (click)="filterByCate(item._id)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'" alt="image" cate-img>
-                    </div>
-                    <div class="box-text">
-                      <span style="text-align: center;color: #ffffff;height: 3rem;vertical-align: -webkit-baseline-middle;">
-                       {{item.name}}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <!-- SHOW CATEGOY ZONE -->
-              </div>
-            
+          <div class="row scrollmenu">
+            <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
+
+            <!-- ADD CATE -->
+            <div class="col-md-2 col-scroll" (click)="updateCateImg()">
+              <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
+              <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
+              />
+            </div>
+
+            <!-- ADD CATE -->
+
+
             <!-- SHOW CATEGOY ZONE -->
+            <div class="col-2 col-scroll" *ngFor="let item of cateList;let i = index">
+              <div style="margin-right:20px;" *ngIf="item && item._id">
+                <div class="deleteCateClass">
+                  <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
+                </div>
+                <div class="addEditClass">
+                  <i class="material-icons add-dropShadow" (click)="editCategory('edit',cateModal,item)">create</i>
+                </div>
+                <div class="imgEditClass" [class]="selectedStyle[item._id]">
+                  <img style="width:150px;height:150px;" (click)="filterByCate(item._id)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'"
+                    alt="image" cate-img>
+                </div>
+                <div class="box-text">
+                  <span style="text-align: center;color: #ffffff;height: 3rem;vertical-align: -webkit-baseline-middle;">
+                    {{item.name}}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- SHOW CATEGOY ZONE -->
+          </div>
+
+          <!-- SHOW CATEGOY ZONE -->
           <!-- </div> -->
 
           <!-- SHOW PRODUCT IN CATE ZONE -->
@@ -348,16 +349,20 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center" *ngIf="CE_action_product == 'เพิ่ม'">
-                <div class="col-md-2"></div>
-              <div class="col-md-2" style="background-color: #c0c0c0;height: 12rem">
-                <!-- <span class="bin-1">
-                  <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
-                </span> -->
-                  <i class="material-icons" style="margin-top: 4rem">add_a_photo</i>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" *ngIf="CE_action_product == 'เพิ่ม'">
+              <div class="col-md-2"></div>
+              <div *ngIf="productImgPreSaves.length < 3" class="col-md-2" style="background-color: #c0c0c0;height: 128px; cursor:pointer"
+                (click)="selectProductImg()">
+                <i class="material-icons" style="margin-top: 4rem">add_a_photo</i>
+                <input #uploadImgProduct type="file"  accept="image/x-png,image/jpeg" multiple (change)="onProductImgChange($event)">
+              </div>
+              <div class="col-md-2" *ngFor="let item of productImgPreSaves">
+                <span class="bin-3">
+                  <i class="material-icons add-dropShadow" style="font-size: 26px" (click)="deleteImgProduct(item.id)">delete</i>
+                </span>
+                <img [src]="item.base64" alt="" width="128px" height="128px">
               </div>
               <div class="col-md-2"></div>
-              
             </div>
           </div>
           <div class="row">

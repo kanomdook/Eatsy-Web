@@ -17,13 +17,11 @@ export class CreateShopComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
   @ViewChild('modalproduct') modalproduct: ElementRef;
   @ViewChild('confirmCate') confrimCate: ElementRef;
-
   @ViewChild('shopinfoTab') shopinfo;
   @ViewChild('shopcontactTab') shopcontact;
   @ViewChild('shoptimecloseTab') shoptimeclose;
   @ViewChild('shopaddressTab') shopaddress;
-
-
+  @ViewChild('uploadImgProduct') uploadImgProduct;
   galleryOptions: Array<NgxGalleryOptions> = [];
   galleryImages: Array<NgxGalleryImage> = [];
   @ViewChild('map') mapElement: ElementRef;
@@ -71,6 +69,7 @@ export class CreateShopComponent implements OnInit {
   private isEditshopMode: boolean = false;
   private blockInput: boolean = true;
   private prdName: string = '';
+  private productImgPreSaves: Array<any> = [];
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
@@ -106,6 +105,37 @@ export class CreateShopComponent implements OnInit {
       }
     ];
 
+  }
+
+  selectProductImg() {
+    this.uploadImgProduct.nativeElement.click();
+  }
+
+  onProductImgChange(event) {
+    const fileBrowser = this.uploadImgProduct.nativeElement;
+    if (fileBrowser.files.length > 0) {
+      for (let i = 0; i < fileBrowser.files.length; i++) {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileBrowser.files[i]);
+        reader.onload = () => {
+          this.productImgPreSaves.push({
+            id: Date.now(),
+            base64: reader.result.replace(/\n/g, '')
+          });
+        };
+      }
+
+      fileBrowser.value = [];
+    }
+  }
+
+  deleteImgProduct(id) {
+    for (let i = 0; i < this.productImgPreSaves.length; i++) {
+      if (id === this.productImgPreSaves[i].id) {
+        this.productImgPreSaves.splice(i, 1);
+        break;
+      }
+    }
   }
 
   ngOnInit() {
@@ -151,17 +181,6 @@ export class CreateShopComponent implements OnInit {
         });
 
         this.cateList.length > 0 ? this.selectedStyle[this.cateList[0]._id] = 'active-select' : null;
-
-        // for (let i = 0; i < this.categorys.length; i++) {
-        //   if (this.categorys[i].cate._id === this.cateList[0]._id._id) {
-        //     this.products = this.categorys[i].products;
-        //     break;
-        //   }
-        // }
-
-
-
-
         data.categories.forEach(element => {
           this.selectList.push(element._id);
         });
@@ -359,8 +378,6 @@ export class CreateShopComponent implements OnInit {
 
   createProduct(index, CateIndex, item) {
     this.product = item;
-
-    console.log(CateIndex);
     this.CE_action_product = 'เพิ่ม';
     $(this.modalproduct.nativeElement).modal('show');
 

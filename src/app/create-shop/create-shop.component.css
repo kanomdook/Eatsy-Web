@@ -157,6 +157,14 @@ input[type=file] {
     margin-top: 10px;
 }
 
+.bin-3 {
+    position: absolute;
+    right: -8px;
+    cursor: pointer;
+    color: #fff;
+    margin-top: 2px;
+}
+
 .check {
     position: absolute;
     right: 10px;
@@ -269,14 +277,6 @@ input[type=file] {
     right: 1.5rem;
     color: #fff;
     cursor: pointer;
-}
-
-.bin-3 {
-    position: absolute;
-    right: -6px;
-    cursor: pointer;
-    color: #fff;
-    margin-top: 10px;
 }
 
 .card-img-top {
