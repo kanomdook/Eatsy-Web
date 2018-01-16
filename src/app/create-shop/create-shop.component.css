@@ -439,16 +439,15 @@
         vertical-align: middle;
     }
 
-    .btn-select {
+    .btn-group-vertical [btn-fb-checked] {
         background-color: transparent;
         color: red;
         text-align: left;
     }
 
-    .btn-select button:hover,
-    button:focus,
-    .btn-select:hover,
-    .btn-select:focus {
+    .btn-group-vertical 
+    [btn-fb-checked]:hover,
+    [btn-fb-checked]:focus {
         border-left: red solid 4px;
     }
 
