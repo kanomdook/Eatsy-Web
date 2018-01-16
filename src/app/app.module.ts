@@ -44,7 +44,6 @@ import { UiSwitchModule } from 'ngx-toggle-switch/src'
 import { Pager } from 'app/provider/pager';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { ImageCropperModule } from 'ngx-image-cropper';
-
 // import { ModalModule } from 'ngx-bootstrap/modal';
 
 import 'hammerjs';

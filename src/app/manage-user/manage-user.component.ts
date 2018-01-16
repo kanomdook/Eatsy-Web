@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ManageUserService } from 'app/manage-user/manage-user.service';
 import { ServerConfig } from 'app/provider/server.config';
 import { Router } from '@angular/router';
+import { PubSubService } from 'angular2-pubsub';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-manage-user',
@@ -21,14 +23,15 @@ export class ManageUserComponent implements OnInit {
   private editingUserData: any = {};
   private tabType: string = 'customer';
   private action: string = '';
-  constructor(private UserService: ManageUserService, private server: ServerConfig, private router: Router) {
-
+  constructor(private UserService: ManageUserService, private server: ServerConfig, private router: Router, private pubsub: PubSubService) {
   }
 
   ngOnInit() {
+    this.pubsub.$pub('loading', true);
     this.server.isLogin().subscribe(data => {
       if (!data) {
         this.router.navigate(['/login']);
+        this.pubsub.$pub('loading', false);
       } else {
         this.getAllUser();
       }
@@ -36,6 +39,7 @@ export class ManageUserComponent implements OnInit {
   }
 
   getAllUser() {
+
     this.UserService.getUser().subscribe(jso => {
       this.listAllUser = jso.filterrole;
       this.listCust = [];
@@ -54,7 +58,9 @@ export class ManageUserComponent implements OnInit {
         }
 
       });
+      this.pubsub.$pub('loading', false);
     }, err => {
+      this.pubsub.$pub('loading', false);
       const msgERR = JSON.parse(err._body);
       if (msgERR.message === 'Token is incorrect or has expired. Please login again') {
         alert('หมดระยะเวลาการเชื่อมต่อกับระบบบริหารร้านค้า \nกรุณาเข้าสู่ระบบใหม่อีกครั้ง');
@@ -87,6 +93,7 @@ export class ManageUserComponent implements OnInit {
   }
 
   saveUser() {
+    this.pubsub.$pub('loading', true);
     if (this.action === 'แก้ไขบัญชีผู้ใช้') {
       this.UserService.edit(this.editingUserData).subscribe(data => {
         this.getAllUser();
@@ -106,5 +113,10 @@ export class ManageUserComponent implements OnInit {
 
   activeTab(tabType) {
     this.tabType = tabType;
+  }
+
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email.toLowerCase());
   }
 }
