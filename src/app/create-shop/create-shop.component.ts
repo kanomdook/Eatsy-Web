@@ -19,6 +19,8 @@ export class CreateShopComponent implements OnInit {
   email: FormControl;
   shopName: FormControl;
   shopNameEn: FormControl;
+  promoteimageChangedEvent: any = '';
+  croppedImage: any = '';
   @ViewChild('modal') modal: ElementRef;
   @ViewChild('modalproduct') modalproduct: ElementRef;
   @ViewChild('confirmCate') confrimCate: ElementRef;
@@ -113,6 +115,12 @@ export class CreateShopComponent implements OnInit {
       }
     ];
 
+  }
+  fileChangeEvent(event: any): void {
+    this.promoteimageChangedEvent = event;
+  }
+  imageCropped(image: string) {
+    this.croppedImage = image;
   }
 
   selectProductImg() {
