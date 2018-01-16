@@ -453,8 +453,11 @@ img {
     background-color: transparent;
     color: red;
     text-align: left;
-    
 }
-.btn-select :focus :target {
+
+.btn-select button:hover,
+button:focus,
+.btn-select:hover,
+.btn-select:focus {
     border-left: red solid 4px;
 }
