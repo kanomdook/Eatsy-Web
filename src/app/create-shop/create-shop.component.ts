@@ -39,6 +39,7 @@ export class CreateShopComponent implements OnInit {
   showAddCategory: boolean = false;
   private shop: any = {};
   private product: any = {};
+  private selectedProduct: any = {};
   private category: any = {};
   private products: Array<any> = [];
   private oldsProducts: Array<any> = [];
@@ -70,7 +71,9 @@ export class CreateShopComponent implements OnInit {
   private isEditshopMode: boolean = false;
   private blockInput: boolean = true;
   private prdName: string = '';
+  private productModel: any = {};
   private productImgPreSaves: Array<any> = [];
+  private isDelete: boolean = false;
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
@@ -113,15 +116,32 @@ export class CreateShopComponent implements OnInit {
   }
 
   onProductImgChange(event) {
+    this.isDelete = false;
     const fileBrowser = this.uploadImgProduct.nativeElement;
     if (fileBrowser.files.length > 0 && this.productImgPreSaves.length < 3) {
       for (let i = 0; i < fileBrowser.files.length; i++) {
         const reader = new FileReader();
+        const id = Date.now();
         reader.readAsDataURL(fileBrowser.files[i]);
         reader.onload = () => {
           this.productImgPreSaves.push({
-            id: Date.now(),
-            base64: reader.result.replace(/\n/g, '')
+            id: id,
+            base64: 'http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif'//reader.result.replace(/\n/g, '')
+          });
+
+          this.shopService.uploadCateImage(reader.result.replace(/\n/g, '')).subscribe(data => {
+            for (let j = 0; j < this.productImgPreSaves.length; j++) {
+              if (id === this.productImgPreSaves[j].id) {
+                this.productImgPreSaves[j] = {
+                  id: id,
+                  base64: data.imageURL
+                };
+                this.isDelete = true;
+                break;
+              }
+            }
+          }, err => {
+            console.log(err);
           });
         };
       }
@@ -182,6 +202,7 @@ export class CreateShopComponent implements OnInit {
         });
 
         this.cateList.length > 0 ? this.selectedStyle[this.cateList[0]._id] = 'active-select' : null;
+        this.cateID = this.cateList.length > 0 ? this.cateList[0]._id : '';
         data.categories.forEach(element => {
           this.selectList.push(element._id);
         });
@@ -356,8 +377,9 @@ export class CreateShopComponent implements OnInit {
     } else { this.promoteIsEdit = false; }
   }
 
-  filterByCate(cateID) {
+  filterByCate(cateID, cateindex) {
     this.cateID = cateID;
+    this.productModel.cateindex = cateindex;
     this.selectedStyle = [];
     this.selectedStyle[cateID] = 'active-select';
     if (this.cateID) {
@@ -372,29 +394,39 @@ export class CreateShopComponent implements OnInit {
     console.log(this.products);
   }
 
-  createProduct(index, CateIndex, item) {
-    this.product = item;
+  createProduct(index, product) {
     this.CE_action_product = 'เพิ่ม';
+    this.selectedProduct = product;
+    this.productModel.index = index;
     $(this.modalproduct.nativeElement).modal('show');
-
-    // this.modalproduct.nativeElement.click();
-    // alert("Select prd index : " + index + "\nSelect Cate : " + CateIndex);
-
-    // let createPRD = {
-    //   name: ,
-    //   images,
-    //   price: ,
-    //   categories: ,
-    //   index: ,
-    //   cateindex:
-    // }
-    // this.shopService.createProduct()
-
   }
 
   canselSaveProduct() {
     this.showeMainShop = true;
     this.showAddProduct = false;
+  }
+
+  saveProduct() {
+    this.pubsub.$pub('loading', true);
+    let newScreMaImg: Array<any> = [];
+    this.productImgPreSaves.forEach((el, i) => {
+      newScreMaImg.push(el.base64);
+    });
+
+    const data = {
+      name: this.productModel.name,
+      images: newScreMaImg,
+      price: this.productModel.price,
+      categories: this.cateID,
+      index: this.productModel.index,
+      cateindex: this.productModel.cateindex
+    };
+
+    this.shopService.createProduct(data, this.shopID).subscribe(data => {
+      location.reload();
+    }, err => {
+      console.log(err);
+    });
   }
 
   editProduct(product) {
@@ -410,6 +442,7 @@ export class CreateShopComponent implements OnInit {
 
   deleteProduct(id) {
     this.shopService.deleteProduct(id).subscribe(data => {
+      this.pubsub.$pub('loading', false);
       location.reload();
     }, err => {
       console.log(err);
@@ -460,7 +493,7 @@ export class CreateShopComponent implements OnInit {
         this.cateList = [];
         $(this.modal.nativeElement).modal('hide');
         window.location.reload();
-        
+
       }, err => {
         alert("ระบบไม่สามารถเพิ่มหมวดหมู่ร้านค้าได้ กรุณาลองใหม่อีกครั้ง");
         $(this.modal.nativeElement).modal('hide');
@@ -544,32 +577,32 @@ export class CreateShopComponent implements OnInit {
     }
   }
 
-  saveProduct() {
-    if (this.CE_action_product == 'เพิ่ม') {
-      this.product.shop = this.shopID;
-      // this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
-      this.shopService.saveProduct(this.product).subscribe(data => {
-        console.log(data);
-        this.showeMainShop = true;
-        this.showAddProduct = false;
-        location.reload();
-      }, err => {
-        console.log(err);
-      });
-    } else {
-      this.product._id = this.CE_id_product;
-      this.product.shop = this.shopID;
-      // this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
-      this.shopService.editProduct(this.product).subscribe(data => {
-        console.log(data);
-        this.showeMainShop = true;
-        this.showAddProduct = false;
-        location.reload();
-      }, err => {
-        console.log(err);
-      });
-    }
-  }
+  // saveProduct() {
+  //   if (this.CE_action_product == 'เพิ่ม') {
+  //     this.product.shop = this.shopID;
+  //     // this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
+  //     this.shopService.saveProduct(this.product).subscribe(data => {
+  //       console.log(data);
+  //       this.showeMainShop = true;
+  //       this.showAddProduct = false;
+  //       location.reload();
+  //     }, err => {
+  //       console.log(err);
+  //     });
+  //   } else {
+  //     this.product._id = this.CE_id_product;
+  //     this.product.shop = this.shopID;
+  //     // this.product.images = ['http://www.terminal21.co.th/asok/uploaded/content/FujiLogo.jpg'];
+  //     this.shopService.editProduct(this.product).subscribe(data => {
+  //       console.log(data);
+  //       this.showeMainShop = true;
+  //       this.showAddProduct = false;
+  //       location.reload();
+  //     }, err => {
+  //       console.log(err);
+  //     });
+  //   }
+  // }
   getCurrentGeolocation(): Promise<any> {
     return new Promise((resolve, reject) => {
 
@@ -842,7 +875,6 @@ export class CreateShopComponent implements OnInit {
     this.times = {};
     this.useSelectDate = [];
     this.selectDate = [];
-    console.log(this.timeList);
   }
 
   deleteTime(id) {
