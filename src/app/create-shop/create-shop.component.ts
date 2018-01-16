@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { element } from 'protractor';
 import { PubSubService } from 'angular2-pubsub';
-
-
+// import { EmailValidator } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 declare let google;
 declare let $: any;
 @Component({
@@ -15,6 +15,10 @@ declare let $: any;
   styleUrls: ['./create-shop.component.css']
 })
 export class CreateShopComponent implements OnInit {
+  myform: FormGroup;
+  email: FormControl;
+  shopName: FormControl;
+  shopNameEn: FormControl;
   @ViewChild('modal') modal: ElementRef;
   @ViewChild('modalproduct') modalproduct: ElementRef;
   @ViewChild('confirmCate') confrimCate: ElementRef;
@@ -167,7 +171,10 @@ export class CreateShopComponent implements OnInit {
     });
     this.getCurrentGeolocation().then((geo) => {
       this.currentGEO = geo;
-    })
+    });
+    this.createFormControls();
+    this.createForm();
+
     this.shopID = window.localStorage.getItem('selectShop');
     if (this.shopID) {
       this.showeMainShop = true;
@@ -186,7 +193,24 @@ export class CreateShopComponent implements OnInit {
     });
 
   }
+  createFormControls() {
+    this.shopName = new FormControl('', Validators.required);
+    this.shopNameEn = new FormControl('', Validators.required);
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern("[^ @]*@[^ @]*")
+    ]);
+  }
 
+  createForm() {
+    this.myform = new FormGroup({
+      shopname: new FormGroup({
+        shopName: this.shopName,
+        shopNameEn: this.shopNameEn,
+      }),
+      email: this.email
+    });
+  }
 
   InitialData() {
     if (this.shopID) {
@@ -804,6 +828,7 @@ export class CreateShopComponent implements OnInit {
           this.showeditdiv = false;
           this.showeditTime = false;
           alert("ระบบทำการบันทึกข้อมูลร้านค้าเรียบร้อยแล้วค่ะ");
+
           // this.router.navigate(['/manage-shop']);
           location.reload();
         }, err => {
@@ -823,6 +848,7 @@ export class CreateShopComponent implements OnInit {
           this.showeMainShop = true;
           this.showeditdiv = false;
           this.showeditTime = false;
+          window.localStorage.setItem('selectShop', data._id);
           alert("ระบบทำการบันทึกข้อมูลร้านค้าใหม่เรียบร้อยแล้วค่ะ");
           // this.router.navigate(['/manage-shop']);
           location.reload();
@@ -916,4 +942,13 @@ export class CreateShopComponent implements OnInit {
       }
     }
   }
+
+  validateEmail() {
+    let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(this.shop.email);
+  }
+  //   this.validateEmail = function(email) {
+  //     var re = 
+  //     return re.test(email);
+  // };
 }
