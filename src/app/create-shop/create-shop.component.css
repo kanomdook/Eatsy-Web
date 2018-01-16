@@ -445,9 +445,12 @@
         text-align: left;
     }
 
-    .btn-group-vertical 
-    [btn-fb-checked]:hover,
+    .btn-group-vertical [btn-fb-checked]:hover,
     [btn-fb-checked]:focus {
+        border-left: red solid 4px;
+    }
+
+    .btn-fb-checked {
         border-left: red solid 4px;
     }
 
