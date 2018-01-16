@@ -73,12 +73,13 @@ export class CreateShopComponent implements OnInit {
   private prdName: string = '';
   private productModel: any = {};
   private productImgPreSaves: Array<any> = [];
+  private activeMenu: Array<any> = [];
   private isDelete: boolean = false;
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService, private pubsub: PubSubService
-    // private modalService: BsModalService
+
   ) {
     this.galleryOptions = [
       {
@@ -109,6 +110,7 @@ export class CreateShopComponent implements OnInit {
       }
     ];
 
+    this.setActiveMenu(0);
   }
 
   selectProductImg() {
@@ -885,8 +887,19 @@ export class CreateShopComponent implements OnInit {
       }
     }
   }
-  selectTab(tab) {
 
+  setActiveMenu(tab_id) {
+    for (let i = 0; i < 4; i++) {
+      if (i === tab_id) {
+        this.activeMenu[i] = 'btn btn-fb-checked';
+      } else {
+        this.activeMenu[i] = 'btn';
+      }
+    }
+  }
+
+  selectTab(tab) {
+    this.setActiveMenu(tab);
     switch (tab) {
       case 0: {
         this.selectTabs = 0;

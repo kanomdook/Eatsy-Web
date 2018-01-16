@@ -43,10 +43,10 @@
           <div class="row">
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
               <div class="btn-group btn-group-vertical" role="group" aria-label="...">
-                <button type="button" class="btn" btn-fb-checked (click)="selectTab(0)">ข้อมูลเกี่ยวกับร้านค้า</button>
-                <button type="button" class="btn" btn-fb-checked (click)="selectTab(1)">ข้อมูลติดต่อร้านค้า</button>
-                <button type="button" class="btn" btn-fb-checked (click)="selectTab(2)">วันเวลาเปิดปิดร้าน</button>
-                <button type="button" class="btn" btn-fb-checked (click)="selectTab(3)">ที่อยู่ร้าน</button>
+                <button type="button" [class]="activeMenu[0]" btn-fb-checked (click)="selectTab(0)">ข้อมูลเกี่ยวกับร้านค้า</button>
+                <button type="button" [class]="activeMenu[1]" btn-fb-checked (click)="selectTab(1)">ข้อมูลติดต่อร้านค้า</button>
+                <button type="button" [class]="activeMenu[2]" btn-fb-checked (click)="selectTab(2)">วันเวลาเปิดปิดร้าน</button>
+                <button type="button" [class]="activeMenu[3]" btn-fb-checked (click)="selectTab(3)">ที่อยู่ร้าน</button>
               </div>
             </div>
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8">
