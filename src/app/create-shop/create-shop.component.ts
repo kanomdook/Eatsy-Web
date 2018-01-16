@@ -43,6 +43,7 @@ export class CreateShopComponent implements OnInit {
   showeMap: boolean = false;
   showAddProduct: boolean = false;
   showAddCategory: boolean = false;
+  private enableCropImage: boolean = false;
   private shop: any = {};
   private product: any = {};
   private selectedProduct: any = {};
@@ -79,13 +80,14 @@ export class CreateShopComponent implements OnInit {
   private prdName: string = '';
   private productModel: any = {};
   private productImgPreSaves: Array<any> = [];
+  private imagePreCrop: string = '';
   private isDelete: boolean = false;
   private activeMenu: Array<any> = [];
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService, private pubsub: PubSubService
-    // private modalService: BsModalService
+
   ) {
     this.galleryOptions = [
       {
@@ -118,11 +120,32 @@ export class CreateShopComponent implements OnInit {
 
     this.setActiveMenu(0);
   }
+
   fileChangeEvent(event: any): void {
     this.promoteimageChangedEvent = event;
   }
-  imageCropped(image: string) {
+
+  imageCropped(image) {
     this.croppedImage = image;
+  }
+
+  saveCrop() {
+    this.productImgPreSaves.push({
+      id: Date.now(),
+      base64: this.croppedImage
+    });
+    this.enableCropImage = false;
+    this.isDelete = true;
+    $(this.modalproduct.nativeElement).modal('show');
+    const fileBrowser = this.uploadImgProduct.nativeElement;
+    fileBrowser.value = [];
+  }
+
+  cancelCrop() {
+    this.enableCropImage = false;
+    $(this.modalproduct.nativeElement).modal('show');
+    const fileBrowser = this.uploadImgProduct.nativeElement;
+    fileBrowser.value = [];
   }
 
   selectProductImg() {
@@ -130,38 +153,41 @@ export class CreateShopComponent implements OnInit {
   }
 
   onProductImgChange(event) {
-    this.isDelete = false;
-    const fileBrowser = this.uploadImgProduct.nativeElement;
-    if (fileBrowser.files.length > 0 && this.productImgPreSaves.length < 3) {
-      for (let i = 0; i < fileBrowser.files.length; i++) {
-        const reader = new FileReader();
-        const id = Date.now();
-        reader.readAsDataURL(fileBrowser.files[i]);
-        reader.onload = () => {
-          this.productImgPreSaves.push({
-            id: id,
-            base64: 'http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif'//reader.result.replace(/\n/g, '')
-          });
+    this.enableCropImage = true;
+    this.imagePreCrop = event;
+    $(this.modalproduct.nativeElement).modal('hide');
+    // this.isDelete = false;
+    // const fileBrowser = this.uploadImgProduct.nativeElement;
+    // if (fileBrowser.files.length > 0 && this.productImgPreSaves.length < 3) {
+    //   for (let i = 0; i < fileBrowser.files.length; i++) {
+    //     const reader = new FileReader();
+    //     const id = Date.now();
+    //     reader.readAsDataURL(fileBrowser.files[i]);
+    //     reader.onload = () => {
+    //       this.productImgPreSaves.push({
+    //         id: id,
+    //         base64: 'http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif'//reader.result.replace(/\n/g, '')
+    //       });
 
-          this.shopService.uploadCateImage(reader.result.replace(/\n/g, '')).subscribe(data => {
-            for (let j = 0; j < this.productImgPreSaves.length; j++) {
-              if (id === this.productImgPreSaves[j].id) {
-                this.productImgPreSaves[j] = {
-                  id: id,
-                  base64: data.imageURL
-                };
-                this.isDelete = true;
-                break;
-              }
-            }
-          }, err => {
-            console.log(err);
-          });
-        };
-      }
+    //       this.shopService.uploadCateImage(reader.result.replace(/\n/g, '')).subscribe(data => {
+    //         for (let j = 0; j < this.productImgPreSaves.length; j++) {
+    //           if (id === this.productImgPreSaves[j].id) {
+    //             this.productImgPreSaves[j] = {
+    //               id: id,
+    //               base64: data.imageURL
+    //             };
+    //             this.isDelete = true;
+    //             break;
+    //           }
+    //         }
+    //       }, err => {
+    //         console.log(err);
+    //       });
+    //     };
+    //   }
 
-      fileBrowser.value = [];
-    }
+    //   fileBrowser.value = [];
+    // }
   }
 
   deleteImgProduct(id) {
