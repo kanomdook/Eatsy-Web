@@ -342,7 +342,7 @@
         </div>
 
       </div>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+     
         <div class="modal-body">
           
           <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
@@ -369,8 +369,8 @@
               <div class="form-group form-black is-empty">
                 Email
                 <span style="color:red"> *</span>:
-                <input class="form-control" type="email"  [(ngModel)]="editingUserData.email" #email="ngModel" ngModel email>
-                <p *ngIf="f.hasError('email', 'email')">Email is not valid!</p>
+                <input class="form-control" type="email"  [(ngModel)]="editingUserData.email" #email="ngModel" >
+        
               </div>
             </div>
           </div>
@@ -428,7 +428,7 @@
             <button type="button" class="btn btn-success " (click)="saveUser()">บันทึกข้อมูล</button>
           </div>
         </div>
-      </form>
+
     </div>
   </div>
   <!-- MODAL EDIT USER -->
