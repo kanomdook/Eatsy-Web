@@ -362,7 +362,6 @@ export class CreateShopComponent implements OnInit {
           const promteImgStr = reader.result.replace(/\n/g, '');
           this.shop.newpromoteimage = promteImgStr;
           this.shopService.uploadPromoteImage(this.shop).subscribe(data => {
-            console.log(data);
             this.shop.promoteimage.push(data.imageURL);
             this.shopService.edit(this.shop).subscribe(shopRes => {
               location.reload();
@@ -443,8 +442,6 @@ export class CreateShopComponent implements OnInit {
         }
       }
     }
-
-    console.log(this.products);
   }
 
   createProduct(index, product) {
