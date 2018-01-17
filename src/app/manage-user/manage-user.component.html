@@ -73,8 +73,8 @@
                           </tr>
                           <tr *ngFor="let item of listCust[0]; let i = index ">
                             <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{i + pageSelect + 1}}</td>
-                            <td style="text-align: center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.displayName}}</td>
-                            <td style="text-align: center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.firstName}} {{item.lastName}}</td>
+                            <td class="name-ovf" style="text-align: center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.displayName}}</td>
+                            <td class="name-ovf" style="text-align: center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.firstName}} {{item.lastName}}</td>
                             <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.mobile ? item.mobile: '-'}}</td>
                             <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.email}}</td>
                             <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">Active</td>
@@ -120,7 +120,7 @@
                             <th class="text-center tel-col-size">เบอร์โทร</th>
                             <th class="text-center" email-col-size>อีเมล์</th>
                             <th class="text-center col-md-1">สถานะ</th>
-                            <th class="text-center col-md-1">วันที่บันทึก</th>
+
 
                             <th class="text-center col-md-1 col-lg-1 action-col-size">
                               Action
@@ -137,18 +137,16 @@
 
                           </tr>
                           <tr *ngFor="let item of listShopOwner[0]; let i = index ">
-                            <td>{{i + pageSelect + 1}}</td>
-                            <td>{{item.displayName}}</td>
-                            <td>{{item.firstName}} {{item.lastName}}</td>
-                            <td class="text-center">{{item.mobile ? item.mobile: '-'}}</td>
-                            <td class="text-center">{{item.email}}</td>
-                            <td class="text-center">{{item.gender ? item.gender: '-'}}</td>
-                            <td class="text-center">{{item.created | date: 'dd/MM/yyyy'}}</td>
+                            <td class="text-center " data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{i + pageSelect + 1}}</td>
+                            <td class="text-center name-ovf" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.displayName}}</td>
+                            <td class="text-center name-ovf" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.firstName}} {{item.lastName}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.mobile ? item.mobile: '-'}}</td>
+                            <td class="text-center email-ovf" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.email}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.gender ? item.gender: '-'}}</td>
+
 
                             <td class="text-center">
                               <span>
-                                <i class="material-icons edit-btn" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">border_color</i>
-
                                 <ui-switch size="small" color="red" (change)="activeChange($event,item)"></ui-switch>
                               </span>
 
@@ -193,7 +191,7 @@
                             <th class="text-center col-md-2 tel-col-size">เบอร์โทร</th>
                             <th class="text-center" email-col-size>อีเมล์</th>
                             <th class="text-center col-md-1">สถานะ</th>
-                            <th class="text-center col-md-1">วันที่บันทึก</th>
+
 
                             <th class="text-center col-md-1 col-lg-1 action-col-size">
                               Action
@@ -210,18 +208,15 @@
 
                           </tr>
                           <tr *ngFor="let item of listAdmin[0]; let i = index ">
-                            <td>{{i + pageSelect + 1}}</td>
-                            <td>{{item.displayName}}</td>
-                            <td>{{item.firstName}} {{item.lastName}}</td>
-                            <td class="text-center">{{item.mobile ? item.mobile: '-'}}</td>
-                            <td class="text-center">{{item.email}}</td>
-                            <td class="text-center">{{item.gender ? item.gender: '-'}}</td>
-                            <td class="text-center">{{item.created | date: 'dd/MM/yyyy'}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{i + pageSelect + 1}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.displayName}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.firstName}} {{item.lastName}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.mobile ? item.mobile: '-'}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.email}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.gender ? item.gender: '-'}}</td>
 
                             <td class="text-center">
                               <span>
-                                <i class="material-icons edit-btn" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">border_color</i>
-
                                 <ui-switch size="small" color="red" (change)="activeChange($event,item)"></ui-switch>
                               </span>
 
@@ -267,7 +262,6 @@
                             <th class="text-center col-md-2 tel-col-size">เบอร์โทร</th>
                             <th class="text-center" email-col-size>อีเมล์</th>
                             <th class="text-center col-md-1">สถานะ</th>
-                            <th class="text-center col-md-1">วันที่บันทึก</th>
 
                             <th class="text-center col-md-1 col-lg-1 action-col-size">
                               Action
@@ -284,13 +278,12 @@
 
                           </tr>
                           <tr *ngFor="let item of listBiker[0]; let i = index ">
-                            <td>{{i + pageSelect + 1}}</td>
-                            <td>{{item.displayName}}</td>
-                            <td>{{item.firstName}} {{item.lastName}}</td>
-                            <td class="text-center">{{item.mobile ? item.mobile: '-'}}</td>
-                            <td class="text-center">{{item.email}}</td>
-                            <td class="text-center">{{item.gender ? item.gender: '-'}}</td>
-                            <td class="text-center">{{item.created | date: 'dd/MM/yyyy'}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{i + pageSelect + 1}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.displayName}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.firstName}} {{item.lastName}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.mobile ? item.mobile: '-'}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.email}}</td>
+                            <td class="text-center" data-toggle="modal" data-target="#modalEditUser" (click)="editUser(item)">{{item.gender ? item.gender: '-'}}</td>
 
                             <td class="text-center">
                               <span>
@@ -349,89 +342,93 @@
         </div>
 
       </div>
-      <div class="modal-body">
-        <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
-          <div class="col-md-12">
-            <div class="form-group form-black is-empty">
-              Username
-              <span style="color:red"> *</span>:
-              <input class="form-control" type="text" [(ngModel)]="editingUserData.username">
+     
+        <div class="modal-body">
+          
+          <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
+            <div class="col-md-12">
+              <div class="form-group form-black is-empty">
+                Username
+                <span style="color:red"> *</span>:
+                <input class="form-control" type="text" [(ngModel)]="editingUserData.username">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
-          <div class="col-md-12">
-            <div class="form-group form-black is-empty">
-              Password
-              <span style="color:red"> *</span>:
-              <input class="form-control" type="password" [(ngModel)]="editingUserData.password">
+          <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
+            <div class="col-md-12">
+              <div class="form-group form-black is-empty">
+                Password
+                <span style="color:red"> *</span>:
+                <input class="form-control" type="password" [(ngModel)]="editingUserData.password">
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
-          <div class="col-md-12">
-            <div class="form-group form-black is-empty">
-              Email
-              <span style="color:red"> *</span>:
-              <input class="form-control" type="email" [(ngModel)]="editingUserData.email">
+          <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
+            <div class="col-md-12">
+              <div class="form-group form-black is-empty">
+                Email
+                <span style="color:red"> *</span>:
+                <input class="form-control" type="email"  [(ngModel)]="editingUserData.email" #email="ngModel" >
+        
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="row bd">
-          <div class="col-md-12">
-            <div class="form-group form-black is-empty">
-              ชื่อ
-              <span style="color:red"> *</span>:
-              <input class="form-control" type="text" [(ngModel)]="editingUserData.firstName">
+          <div class="row bd">
+            <div class="col-md-12">
+              <div class="form-group form-black is-empty">
+                ชื่อ
+                <span style="color:red"> *</span>:
+                <input class="form-control" type="text" [(ngModel)]="editingUserData.firstName">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row bd">
-          <div class="col-md-12">
-            <div class="form-group form-black is-empty">
-              นามสกุล
-              <span style="color:red"> *</span>:
-              <!-- <label class="control-label">คำค้นหา (เช่น coffee)</label> -->
-              <input class="form-control" type="text" [(ngModel)]="editingUserData.lastName">
+          <div class="row bd">
+            <div class="col-md-12">
+              <div class="form-group form-black is-empty">
+                นามสกุล
+                <span style="color:red"> *</span>:
+                <!-- <label class="control-label">คำค้นหา (เช่น coffee)</label> -->
+                <input class="form-control" type="text" [(ngModel)]="editingUserData.lastName">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row bd">
-          <div class="col-md-12">
-            <div class="form-group form-black is-empty">
-              เบอร์โทร
-              <span style="color:red"> *</span>:
-              <!-- <label class="control-label">คำค้นหา (เช่น coffee)</label> -->
-              <input class="form-control" type="text" [(ngModel)]="editingUserData.mobile">
+          <div class="row bd">
+            <div class="col-md-12">
+              <div class="form-group form-black is-empty">
+                เบอร์โทร
+                <span style="color:red"> *</span>:
+                <!-- <label class="control-label">คำค้นหา (เช่น coffee)</label> -->
+                <input class="form-control" type="text" [(ngModel)]="editingUserData.mobile">
+              </div>
             </div>
-          </div>
-          <!-- <div class="col-md-2 mt-10">
+            <!-- <div class="col-md-2 mt-10">
             <div class="form-group form-black is-empty">
               <button class="btn btn-info" (click)="search()">ค้นหา</button>
             </div>
           </div> -->
-        </div>
-        <div class="row bd" *ngIf="action != 'เพิ่มบัญชีผู้ใช้'">
-          <div class="col-md-12">
+          </div>
+          <div class="row bd" *ngIf="action != 'เพิ่มบัญชีผู้ใช้'">
+            <div class="col-md-12">
 
-            <div class="form-group">
-              <label for="roles">ระดับผู้ใช้:</label>
-              <select class="form-control " id="roles" [(ngModel)]="editingUserData.roles">
-                <option value="admin">Admin</option>
-                <option value="user">Customer</option>
-                <option value="shop">Shop Owner</option>
-                <option value="biker">Biker</option>
-              </select>
+              <div class="form-group">
+                <label for="roles">ระดับผู้ใช้:</label>
+                <select class="form-control " id="roles" [(ngModel)]="editingUserData.roles">
+                  <option value="admin">Admin</option>
+                  <option value="user">Customer</option>
+                  <option value="shop">Shop Owner</option>
+                  <option value="biker">Biker</option>
+                </select>
+              </div>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" #dissmissBtn2 class="btn btn-danger" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-success " (click)="saveUser()">บันทึกข้อมูล</button>
+          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" #dissmissBtn2 class="btn btn-danger" data-dismiss="modal">ปิด</button>
-          <button type="button" class="btn btn-success " (click)="saveUser()">บันทึกข้อมูล</button>
-        </div>
-      </div>
+
     </div>
   </div>
   <!-- MODAL EDIT USER -->

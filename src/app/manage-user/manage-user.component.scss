@@ -41,7 +41,7 @@
 }
 
 [email-col-size] {
-    width: 13rem;
+    width: 9rem;
 }
 
 .edit-color {
@@ -55,7 +55,7 @@
 }
 
 .action-col-size {
-    width: 12rem;
+    width: 14rem;
     text-align: center;
     vertical-align: text-top;
 }
@@ -154,4 +154,16 @@ fieldset[disabled] .form-group .form-control {
     // background-color: #ffffff00 ;
     // border-color: rgb(34, 143, 34);
     // color: rgb(34, 143, 34) !important;
+}
+.email-ovf{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 30rem;
+}
+.name-ovf{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 26rem;
 }
