@@ -6240,7 +6240,7 @@ var SortablejsDirective = (function () {
             var currentOptions_1 = optionsChange.currentValue;
             Object.keys(currentOptions_1).forEach(function (optionName) {
                 if (currentOptions_1[optionName] !== previousOptions_1[optionName]) {
-                    _this._sortable.option(optionName, currentOptions_1[optionName]);
+                    _this._sortable.option(optionName, _this.options[optionName]);
                 }
             });
         }
@@ -6444,11 +6444,7 @@ var PubSubModule = (function () {
 }());
 
 PubSubModule.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
-                providers: [
-                    __WEBPACK_IMPORTED_MODULE_0__angular2_pubsub_service__["a" /* PubSubService */]
-                ]
-            },] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"] },
 ];
 /** @nocollapse */
 PubSubModule.ctorParameters = function () { return []; };
