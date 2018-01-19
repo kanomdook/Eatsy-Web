@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe, PipeTransform  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -51,7 +51,8 @@ import { ManageUserService } from 'app/manage-user/manage-user.service';
 import { ManageAdsComponent } from './manage-ads/manage-ads.component';
 import { SortablejsModule } from 'angular-sortablejs';
 import { PubSubModule } from 'angular2-pubsub';
-
+import { ADSService } from 'app/manage-ads/manage-ads.service';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,7 @@ import { PubSubModule } from 'angular2-pubsub';
     LoginComponent,
     ManageUserComponent,
     ManageAdsComponent,
-
+    // Pipe
   ],
   imports: [
     BrowserModule,
@@ -104,6 +105,7 @@ import { PubSubModule } from 'angular2-pubsub';
     Auth,
     ShopService,
     Pager,
+    ADSService
   ],
   bootstrap: [AppComponent]
 })

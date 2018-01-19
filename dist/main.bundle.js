@@ -161,6 +161,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45_angular_sortablejs__ = __webpack_require__("../../../../angular-sortablejs/dist/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45_angular_sortablejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_45_angular_sortablejs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46_angular2_pubsub__ = __webpack_require__("../../../../angular2-pubsub/esm/src/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47_app_manage_ads_manage_ads_service__ = __webpack_require__("../../../../../src/app/manage-ads/manage-ads.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -210,6 +211,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 // import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 
 
@@ -272,6 +274,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_35_app_provider_auth__["a" /* Auth */],
             __WEBPACK_IMPORTED_MODULE_36_app_create_shop_create_shop_service__["a" /* ShopService */],
             __WEBPACK_IMPORTED_MODULE_39_app_provider_pager__["a" /* Pager */],
+            __WEBPACK_IMPORTED_MODULE_47_app_manage_ads_manage_ads_service__["a" /* ADSService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })
@@ -309,12 +312,14 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_app_create_shop_create_shop_component__ = __webpack_require__("../../../../../src/app/create-shop/create-shop.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_app_manage_user_manage_user_component__ = __webpack_require__("../../../../../src/app/manage-user/manage-user.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_app_login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_app_manage_ads_manage_ads_component__ = __webpack_require__("../../../../../src/app/manage-ads/manage-ads.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -362,6 +367,7 @@ var routes = [
                 component: __WEBPACK_IMPORTED_MODULE_20_app_create_shop_create_shop_component__["a" /* CreateShopComponent */]
             }]
     },
+    { path: 'manage-ads', component: __WEBPACK_IMPORTED_MODULE_23_app_manage_ads_manage_ads_component__["a" /* ManageAdsComponent */] },
     { path: 'manage-user', component: __WEBPACK_IMPORTED_MODULE_21_app_manage_user_manage_user_component__["a" /* ManageUserComponent */] },
     { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
@@ -654,7 +660,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\">\n    <a href=\"#\" class=\"simple-text\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/biker.jpg\" />\n        </div>\n        <span class=\"mgt-20\">\n            <img src=\"../../../assets/img/D.png\" alt=\"image\" width=\"130px\" height=\"36px\">\n        </span>\n    </a>\n</div>\n<div class=\"sidebar-wrapper bg2\">\n    <!-- <form class=\"navbar-form navbar-right\" role=\"search\" *ngIf=\"isMobileMenu()\">\n        <div class=\"form-group form-black is-empty\">\n            <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n            <span class=\"material-input\"></span>\n        </div>\n        <button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n            <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n        </button>\n    </form> -->\n\n    <ul class=\"nav nav-mobile-menu\" *ngIf=\"isMobileMenu()\">\n        <li>\n            <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">dashboard</i>\n                <p class=\"hidden-lg hidden-md\">Dashboard</p>\n            </a>\n        </li>\n        <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">notifications</i>\n                <span class=\"notification\">5</span>\n                <p class=\"hidden-lg hidden-md\">Notifications</p>\n            </a>\n            <ul class=\"dropdown-menu\">\n                <li>\n                    <a href=\"#\">Mike John responded to your email</a>\n                </li>\n                <li>\n                    <a href=\"#\">You have 5 new tasks</a>\n                </li>\n                <li>\n                    <a href=\"#\">You're now friend with Andrew</a>\n                </li>\n                <li>\n                    <a href=\"#\">Another Notification</a>\n                </li>\n                <li>\n                    <a href=\"#\">Another One</a>\n                </li>\n            </ul>\n        </li>\n        <li>\n            <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">person</i>\n                <p class=\"hidden-lg hidden-md\">Profile</p>\n            </a>\n        </li>\n    </ul>\n\n    <div class=\"nav-container\">\n        <ul class=\"nav\">\n            <!-- <li routerLinkActive=\"active\" *ngFor=\"let menuItem of menuItems\" class=\"{{menuItem.class}}\">\n                <a  [routerLink]=\"[menuItem.path]\">\n                    <i class=\"material-icons\">{{menuItem.icon}}</i>\n                    <p>{{menuItem.title}}</p>\n                </a>\n            </li> -->\n            <!-- /////////////////////////////// custom////////////////// -->\n            <!-- <li>\n                <a data-toggle=\"collapse\" href=\"#report\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">assessment</i>\n                    <p>รายงาน <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"report\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"['dashboard']\">\n                                <span class=\"sidebar-normal\">ภาพราม</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['sales']\">\n                                <span class=\"sidebar-normal\">ยอดขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['purchase-order']\">\n                                <span class=\"sidebar-normal\">ยอดซื้อ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['product']\">\n                                <span class=\"sidebar-normal\">สินค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['customer']\">\n                                <span class=\"sidebar-normal\">ลูกค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['manage-file']\">\n                                <span class=\"sidebar-normal\">จัดการไฟล์</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['manage-document']\">\n                                <span class=\"sidebar-normal\">จัดการเอกสาร</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#sell\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">unarchive</i>\n                    <p>รายการขาย <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"sell\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"['create-sell']\">\n                                <span class=\"sidebar-normal\">สร้างรายการขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูรายการขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">บริการส่งสินค้า</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#buy\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">move_to_inbox</i>\n                    <p>รายการซื้อ <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"buy\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สร้างรายการซื้อ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูรายการซื้อ</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#product\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">inbox</i>\n                    <p>สินค้า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"product\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สินค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">คลังสินค้า/สาขา</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สินค้าหลากคุณสมบัติ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">หมวดหมู่</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#customer\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">assignment_ind</i>\n                    <p>ลูกค้า / คู่ค้า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"customer\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ลูกค้า / คู่ค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">กลุ่มลูกค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ตัวแทนจำหน่าย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">หน้าสั่งซื้อ</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#money\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">account_balance_wallet</i>\n                    <p>การเงิน <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"money\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูภาพรวม</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">กระเป๋าเงิน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายได้อื่น</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายจ่ายอื่น</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายการโอนเงิน</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#settings\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">settings</i>\n                    <p>ตั้งค่า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"settings\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ข้อมูลส่วนตัว</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">บริษัท / ร้านค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ผู้ใช้งาน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สิทธิ์การใช้งาน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">เชื่อมต่อบริการอื่น</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li> -->\n\n            <li *ngIf=\"!isLogin\">\n                <a [routerLink]=\"['manage-shop']\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>เข้าสู่ระบบ</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-shop']\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>จัดการร้านค้า</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-user']\">\n                    <i class=\"material-icons\">people</i>\n                    <p>จัดการบัญชีผู้ใช้</p>\n                </a>\n            </li>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n        </ul>\n    </div>\n</div>"
+module.exports = "<div class=\"logo\">\n    <a href=\"#\" class=\"simple-text\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/biker.jpg\" />\n        </div>\n        <span class=\"mgt-20\">\n            <img src=\"../../../assets/img/D.png\" alt=\"image\" width=\"130px\" height=\"36px\">\n        </span>\n    </a>\n</div>\n<div class=\"sidebar-wrapper bg2\">\n    <!-- <form class=\"navbar-form navbar-right\" role=\"search\" *ngIf=\"isMobileMenu()\">\n        <div class=\"form-group form-black is-empty\">\n            <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n            <span class=\"material-input\"></span>\n        </div>\n        <button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n            <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n        </button>\n    </form> -->\n\n    <ul class=\"nav nav-mobile-menu\" *ngIf=\"isMobileMenu()\">\n        <li>\n            <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">dashboard</i>\n                <p class=\"hidden-lg hidden-md\">Dashboard</p>\n            </a>\n        </li>\n        <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">notifications</i>\n                <span class=\"notification\">5</span>\n                <p class=\"hidden-lg hidden-md\">Notifications</p>\n            </a>\n            <ul class=\"dropdown-menu\">\n                <li>\n                    <a href=\"#\">Mike John responded to your email</a>\n                </li>\n                <li>\n                    <a href=\"#\">You have 5 new tasks</a>\n                </li>\n                <li>\n                    <a href=\"#\">You're now friend with Andrew</a>\n                </li>\n                <li>\n                    <a href=\"#\">Another Notification</a>\n                </li>\n                <li>\n                    <a href=\"#\">Another One</a>\n                </li>\n            </ul>\n        </li>\n        <li>\n            <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">person</i>\n                <p class=\"hidden-lg hidden-md\">Profile</p>\n            </a>\n        </li>\n    </ul>\n\n    <div class=\"nav-container\">\n        <ul class=\"nav\">\n            <!-- <li routerLinkActive=\"active\" *ngFor=\"let menuItem of menuItems\" class=\"{{menuItem.class}}\">\n                <a  [routerLink]=\"[menuItem.path]\">\n                    <i class=\"material-icons\">{{menuItem.icon}}</i>\n                    <p>{{menuItem.title}}</p>\n                </a>\n            </li> -->\n            <!-- /////////////////////////////// custom////////////////// -->\n            <!-- <li>\n                <a data-toggle=\"collapse\" href=\"#report\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">assessment</i>\n                    <p>รายงาน <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"report\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"['dashboard']\">\n                                <span class=\"sidebar-normal\">ภาพราม</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['sales']\">\n                                <span class=\"sidebar-normal\">ยอดขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['purchase-order']\">\n                                <span class=\"sidebar-normal\">ยอดซื้อ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['product']\">\n                                <span class=\"sidebar-normal\">สินค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['customer']\">\n                                <span class=\"sidebar-normal\">ลูกค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['manage-file']\">\n                                <span class=\"sidebar-normal\">จัดการไฟล์</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['manage-document']\">\n                                <span class=\"sidebar-normal\">จัดการเอกสาร</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#sell\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">unarchive</i>\n                    <p>รายการขาย <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"sell\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"['create-sell']\">\n                                <span class=\"sidebar-normal\">สร้างรายการขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูรายการขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">บริการส่งสินค้า</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#buy\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">move_to_inbox</i>\n                    <p>รายการซื้อ <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"buy\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สร้างรายการซื้อ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูรายการซื้อ</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#product\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">inbox</i>\n                    <p>สินค้า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"product\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สินค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">คลังสินค้า/สาขา</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สินค้าหลากคุณสมบัติ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">หมวดหมู่</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#customer\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">assignment_ind</i>\n                    <p>ลูกค้า / คู่ค้า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"customer\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ลูกค้า / คู่ค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">กลุ่มลูกค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ตัวแทนจำหน่าย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">หน้าสั่งซื้อ</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#money\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">account_balance_wallet</i>\n                    <p>การเงิน <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"money\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูภาพรวม</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">กระเป๋าเงิน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายได้อื่น</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายจ่ายอื่น</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายการโอนเงิน</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#settings\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">settings</i>\n                    <p>ตั้งค่า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"settings\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ข้อมูลส่วนตัว</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">บริษัท / ร้านค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ผู้ใช้งาน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สิทธิ์การใช้งาน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">เชื่อมต่อบริการอื่น</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li> -->\n\n            <li *ngIf=\"!isLogin\">\n                <a [routerLink]=\"['manage-shop']\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>เข้าสู่ระบบ</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-shop']\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>จัดการร้านค้า</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-user']\">\n                    <i class=\"material-icons\">people</i>\n                    <p>จัดการบัญชีผู้ใช้</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-ads']\">\n                    <i class=\"fa fa-bullhorn\" aria-hidden=\"true\"></i>\n                    <p>จัดการโฆษณา</p>\n                </a>\n            </li>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n        </ul>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -2516,7 +2522,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/manage-ads/manage-ads.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  manage-ads works!\n</p>\n"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-lg-10 col-md-10 col-sm-9 col-xs-7\" style=\"margin-top: 10px\">\n\n      </div>\n      <div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-5\">\n        <button class=\"btn addADS\" type=\"button\" (click)=\"addADS()\">\n          <i class=\"material-icons\">add</i> เพิ่มโฆษณา\n        </button>\n      </div>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"col-12\">\n\n        <div class=\"panel panel-default panel-trans\">\n          <div class=\"panel-heading panel-head\">\n            <h3 class=\"panel-title\">\n              <i class=\"material-icons cl-success\">brightness_1</i> โฆษณาที่ใช้งานอยู่</h3>\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"row scrollmenu\">\n              <div class=\"col-xs-6 col-md-3 col-scroll \" *ngFor=\"let item1 of listAdsActive\">\n                <a class=\"thumbnail\" (click)=\"editADS(item1)\" *ngIf=\"item1.isvideo == false\">\n                  <img [src]=\"item1.image\" alt=\"...\">\n                  <div class=\"block-text\">\n                    <span class=\"ads-text\">{{item1.name}}</span>\n                  </div>\n                </a>\n                <a *ngIf=\"item1.isvideo == true\" class=\"thumbnail\" (click)=\"editADS(item1)\">\n                  <iframe [src]=\"sanitizer.bypassSecurityTrustResourceUrl(yt + item1.videoid)\" frameborder=\"0\" allow=\"encrypted-media\" allowfullscreen></iframe>\n                  <div class=\"block-text\">\n                    <span class=\"ads-text\">{{item1.name}}</span>\n                  </div>\n                </a>\n              </div>\n\n            </div>\n          </div>\n        </div>\n\n        <div class=\"panel panel-default panel-trans \">\n          <div class=\"panel-heading\">\n            <h3 class=\"panel-title\">\n              <i class=\"material-icons cl-orange\">brightness_1</i> โฆษณาที่ยังไม่ถูกใช้งาน</h3>\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"row scrollmenu\">\n              <div class=\"col-xs-6 col-md-3\" *ngFor=\"let item2 of listAdsInActive\">\n                <a (click)=\"editADS(item2)\" class=\"thumbnail\">\n                  <img [src]=\"item2.image\" alt=\"...\">\n                  <div class=\"block-text\">\n                    <span class=\"ads-text\">{{item2.name}}</span>\n                  </div>\n                </a>\n              </div>\n\n            </div>\n          </div>\n        </div>\n\n        <div class=\"panel panel-default panel-trans \">\n          <div class=\"panel-heading\">\n            <h3 class=\"panel-title\">\n              <i class=\"material-icons cl-red\">brightness_1</i> โฆษณาที่สิ้นสุดการใช้งาน</h3>\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"row scrollmenu\">\n              <div class=\"col-xs-6 col-md-3\" *ngFor=\"let item3 of listAdsExpired\">\n                <a (click)=\"editADS(item3)\" class=\"thumbnail\">\n                  <img [src]=\"item3.image\" alt=\"...\">\n                  <div class=\"block-text\">\n                    <span class=\"ads-text\">{{item3.name}}</span>\n                  </div>\n                </a>\n              </div>\n\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n\n\n\n\n\n\n<!-- ---------------------- ADD OR EDIT ADS ---------------------- -->\n<div class=\"modal fade\" #modalads tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" data-keyboard=\"false\" data-backdrop=\"static\">\n  <div class=\"modal-dialog modal-lg\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <div class=\"row \">\n          <div class=\"col-lg-9\">\n            <h4 class=\"modal-title pull-left\"> {{CE_action_ads}}โฆษณา</h4>\n          </div>\n          <div class=\"col-lg-3 text-right verti-middle\">\n            <div class=\"text-status\">สถานะ : </div>\n            <ui-switch size=\"small\" [(ngModel)]=\"adsStatus\" (change)=\"activeChange($event)\"></ui-switch>\n          </div>\n        </div>\n\n      </div>\n      <!--      ADD ADS       -->\n      <div class=\"modal-body\" *ngIf=\"CE_action_ads == 'เพิ่ม'\">\n\n        <div class=\"row\">\n          <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center\">\n            <div *ngIf=\"type == 'image'\">\n              <img (click)=\"selectADSimg()\" class=\"img-size\" src=\"./assets/img/Ads-banner.png\" alt=\"\" *ngIf=\"adsimgAdding == null\">\n              <input #uploadADS type=\"file\" accept=\"image/x-png,image/jpeg\" (change)=\"onADSImgChange($event)\" style=\"visibility:hidden;\">\n              <img (click)=\"selectADSimg()\" class=\"img-size\" [src]=\"adsimgAdding\" alt=\"\" *ngIf=\"adsimgAdding\">\n            </div>\n            <div *ngIf=\"type == 'vdo'\">\n              <img (click)=\"selectADSimg()\" class=\"img-size\" src=\"./assets/img/Ads-banner.png\" alt=\"\" *ngIf=\"adsimgAdding == null\">\n              <input #uploadADS type=\"file\" accept=\"image/x-png,image/jpeg\" (change)=\"onADSImgChange($event)\" style=\"visibility:hidden;\">\n              <img (click)=\"selectADSimg()\" class=\"img-size\" [src]=\"adsimgAdding\" alt=\"\" *ngIf=\"adsimgAdding\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right\">\n            <div class=\"radio\">\n              <label>\n                <input type=\"radio\" name=\"type\" [(ngModel)]=\"type\" value=\"image\" (change)=\"changeType()\"> รูปภาพ</label>\n            </div>\n          </div>\n          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 text-left\">\n            <div class=\"radio\">\n              <label>\n                <input type=\"radio\" name=\"type\" [(ngModel)]=\"type\" value=\"vdo\" (change)=\"changeType()\"> วีดีโอ</label>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\" *ngIf=\"type == 'vdo'\">\n          <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center \"></div>\n          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center \">\n            <div class=\"media\">\n              <div class=\"media-left media-middle\">\n                <iframe width=\"180\" height=\"100\" [src]=\"sanitizer.bypassSecurityTrustResourceUrl(vdolink)\" frameborder=\"0\" allow=\"encrypted-media\"\n                  allowfullscreen></iframe>\n              </div>\n              <div class=\"media-body\">\n                <div class=\"input-group\">\n                  <label class=\"control-label\">YOUTUBE Video ID</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"vdolinkinput\">\n                  <span class=\"input-group-btn\">\n                    <button type=\"button\" class=\"btn btn-success\" (click)=\"upLink(vdolinkinput)\">ยืนยัน</button>\n                  </span>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center \"></div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right\">\n          </div>\n          <div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5 text-left\">\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">ชื่อโฆษณา</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"adsDATA.name\">\n            </div>\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">วันที่เริ่มต้น</label>\n              <input type=\"date\" class=\"form-control\" [(ngModel)]=\"adsDATA.effectivedatestart\">\n            </div>\n          </div>\n          <div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5 text-left\">\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">ลิงค์</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"adsDATA.website\">\n            </div>\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">วันที่สิ้นสุด</label>\n              <input type=\"date\" class=\"form-control\" [(ngModel)]=\"adsDATA.effectivedateend\">\n            </div>\n          </div>\n          <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right\"></div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right\">\n          </div>\n          <div class=\"col-lg-10 col-md-10 col-sm-10 col-xs-10\">\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">รายละเอียด</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"adsDATA.description\">\n            </div>\n          </div>\n          <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right\">\n          </div>\n        </div>\n        <div class=\"row\">\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center\">\n            <button class=\"btn btn-danger\" #dissmissBtn data-dismiss=\"modalads\" (click)=\"cancelSave()\">ยกเลิก</button>\n            <button class=\"btn btn-success\" (click)=\"saveADS()\">บันทึก</button>\n          </div>\n        </div>\n      </div>\n      <!--      ADD ADS       -->\n\n\n      <!-- EDIT ADS -->\n      <div class=\"modal-body\" *ngIf=\"CE_action_ads == 'แก้ไข'\">\n\n        <div class=\"row\">\n          <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center\">\n            <div *ngIf=\"type == 'image'\">\n              <img (click)=\"selectADSimg()\" class=\"img-size\" src=\"./assets/img/Ads-banner.png\" alt=\"\" *ngIf=\"adsimgAdding == null\">\n              <input #uploadADS type=\"file\" accept=\"image/x-png,image/jpeg\" (change)=\"onADSImgChange($event)\" style=\"visibility:hidden;\">\n              <img (click)=\"selectADSimg()\" class=\"img-size\" [src]=\"adsimgAdding\" alt=\"\" *ngIf=\"adsimgAdding\">\n            </div>\n            <div *ngIf=\"type == 'vdo'\">\n              <img (click)=\"selectADSimg()\" class=\"img-size\" src=\"./assets/img/Ads-banner.png\" alt=\"\" *ngIf=\"adsimgAdding == null\">\n              <input #uploadADS type=\"file\" accept=\"image/x-png,image/jpeg\" (change)=\"onADSImgChange($event)\" style=\"visibility:hidden;\">\n              <img (click)=\"selectADSimg()\" class=\"img-size\" [src]=\"adsimgAdding\" alt=\"\" *ngIf=\"adsimgAdding\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right\">\n            <div class=\"radio\">\n              <label>\n                <input type=\"radio\" name=\"type\" [(ngModel)]=\"type\" value=\"image\" (change)=\"changeType()\"> รูปภาพ</label>\n            </div>\n          </div>\n          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 text-left\">\n            <div class=\"radio\">\n              <label>\n                <input type=\"radio\" name=\"type\" [(ngModel)]=\"type\" value=\"vdo\" (change)=\"changeType()\"> วีดีโอ</label>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\" *ngIf=\"type == 'vdo'\">\n          <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center \"></div>\n          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center \">\n            <div class=\"media\">\n              <div class=\"media-left media-middle\">\n                <iframe width=\"180\" height=\"100\" [src]=\"sanitizer.bypassSecurityTrustResourceUrl(vdolink)\" frameborder=\"0\" allow=\"encrypted-media\"\n                  allowfullscreen></iframe>\n              </div>\n              <div class=\"media-body\">\n                <div class=\"input-group\">\n                  <label class=\"control-label\">YOUTUBE Video ID</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"vdolinkinput\">\n                  <span class=\"input-group-btn\">\n                    <button type=\"button\" class=\"btn btn-success\" (click)=\"upLink(vdolinkinput)\">ยืนยัน</button>\n                  </span>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center \"></div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right\">\n          </div>\n          <div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5 text-left\">\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">ชื่อโฆษณา</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"adsEditDATA.name\">\n            </div>\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">วันที่เริ่มต้น</label>\n              <input type=\"date\" [(ngModel)]=\"adsEditDATA.effectivedatestart\" class=\"form-control\">\n              <!-- <input [(ngModel)]=\"adsDATA.effectivedatestart\" [value]=\"adsDATA.effectivedatestart\"> -->\n            </div>\n          </div>\n          <div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5 text-left\">\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">ลิงค์</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"adsEditDATA.website\">\n            </div>\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">วันที่สิ้นสุด</label>\n              <input type=\"date\" class=\"form-control\" [(ngModel)]=\"adsEditDATA.effectivedateend\">\n            </div>\n          </div>\n          <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right\"></div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right\">\n          </div>\n          <div class=\"col-lg-10 col-md-10 col-sm-10 col-xs-10\">\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">รายละเอียด</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"adsEditDATA.description\">\n            </div>\n          </div>\n          <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right\">\n          </div>\n        </div>\n        <div class=\"row\">\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center\">\n            <button class=\"btn btn-danger\" #dissmissBtn data-dismiss=\"modalads\" (click)=\"cancelSave()\">ยกเลิก</button>\n            <button class=\"btn btn-success\" (click)=\"saveADS()\">บันทึก</button>\n          </div>\n        </div>\n      </div>\n\n      <!-- EDIT ADS -->\n    </div>\n  </div>\n</div>\n<!-- ---------------------- ADD OR EDIT ADS ---------------------- -->"
 
 /***/ }),
 
@@ -2528,7 +2534,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "h1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: 'Kanit', sans-serif; }\n\n.addADS {\n  background-color: #ffffff00;\n  color: #228f22;\n  border-color: #228f22;\n  border-radius: 4rem;\n  border: 3px solid;\n  font-size: 1.5rem; }\n\n.block-text {\n  background-color: rgba(0, 0, 0, 0.418);\n  height: 3rem;\n  bottom: 24px;\n  text-align: center;\n  position: absolute;\n  width: 85%; }\n\n.ads-text {\n  color: white;\n  vertical-align: -webkit-baseline-middle; }\n\n.panel-trans {\n  background-color: transparent;\n  border: none;\n  -webkit-box-shadow: none;\n          box-shadow: none; }\n\n.panel-heading {\n  border-radius: 3rem;\n  background-color: white; }\n\n.panel-title {\n  color: black; }\n\n.thumbnail > img {\n  height: 125px;\n  width: auto; }\n\n.thumbnail > iframe {\n  height: 125px;\n  width: 232.5px; }\n\n.cl-success {\n  color: greenyellow; }\n\n.cl-red {\n  color: red; }\n\n.cl-orange {\n  color: orange; }\n\n.scrollmenu {\n  overflow-y: -webkit-paged-x;\n  white-space: nowrap !important;\n  width: 100%;\n  margin-left: 0.5%;\n  margin-right: 3.5%;\n  height: 18.5rem; }\n\n.col-scroll {\n  display: inline-block; }\n\n.verti-middle {\n  vertical-align: -webkit-baseline-middle; }\n\n.text-status {\n  font-size: 1.4rem;\n  display: inline-block;\n  vertical-align: super; }\n\n.img-size {\n  height: 20rem;\n  width: auto; }\n\n.yt-width {\n  width: 50%; }\n\ninput[type=file] {\n  display: none; }\n", ""]);
 
 // exports
 
@@ -2544,6 +2550,11 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ManageAdsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_manage_ads_manage_ads_service__ = __webpack_require__("../../../../../src/app/manage-ads/manage-ads.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_pubsub__ = __webpack_require__("../../../../angular2-pubsub/esm/src/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2554,23 +2565,466 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
 var ManageAdsComponent = (function () {
-    function ManageAdsComponent() {
+    function ManageAdsComponent(ADSservice, server, router, sanitizer, pubsub) {
+        this.ADSservice = ADSservice;
+        this.server = server;
+        this.router = router;
+        this.sanitizer = sanitizer;
+        this.pubsub = pubsub;
+        this.listAdsActive = [];
+        this.listAdsInActive = [];
+        this.listAdsExpired = [];
+        this.adsimgAdding = null;
+        this.adsvdoAdding = null;
+        this.yt = 'https://www.youtube.com/embed/';
+        this.adsDATA = {};
+        this.adsEditDATA = {};
+        this.ckLinkNull = true;
+        this.adsStatus = false;
+        this.today = new Date();
+        this.isEditImage = false;
     }
     ManageAdsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.pubsub.$pub('loading', true);
+        this.server.isLogin().subscribe(function (data) {
+            if (!data) {
+                _this.pubsub.$pub('loading', false);
+                _this.router.navigate(['/login']);
+            }
+            _this.LoadInitial();
+        });
+    };
+    ManageAdsComponent.prototype.LoadInitial = function () {
+        var _this = this;
+        this.listAdsActive = [];
+        this.listAdsInActive = [];
+        this.listAdsExpired = [];
+        this.ADSservice.getAdsList().subscribe(function (data) {
+            _this.pubsub.$pub('loading', false);
+            data.forEach(function (element) {
+                if (element.status == true && element.effectivedateend >= _this.today.toISOString()) {
+                    _this.listAdsActive.push(element);
+                }
+                else if (element.status == false && element.effectivedateend >= _this.today.toISOString()) {
+                    _this.listAdsInActive.push(element);
+                }
+                else if (element.effectivedateend < _this.today.toISOString()) {
+                    _this.listAdsExpired.push(element);
+                }
+            });
+            console.log(data);
+            console.log(_this.listAdsActive);
+            console.log(_this.listAdsInActive);
+            console.log(_this.listAdsExpired);
+            // DEFAULT INIT DATA
+            _this.adsDATA.status = false;
+            // DEFAULT INIT DATA
+        });
+    };
+    ManageAdsComponent.prototype.addADS = function () {
+        this.CE_action_ads = "เพิ่ม";
+        this.type = 'image';
+        this.cancelSave();
+        $(this.modalads.nativeElement).modal('show');
+    };
+    ManageAdsComponent.prototype.editADS = function (item) {
+        this.CE_action_ads = "แก้ไข";
+        var itemdata = JSON.parse(JSON.stringify(item));
+        this.adsEditDATA = itemdata;
+        // console.log(item.effectivedatestart.toUTCString());
+        // item.effectivedatestart = item.effectivedatestart.toLocaleDateString();
+        // item.effectivedateend = item.effectivedateend.toLocaleDateString();
+        console.log(this.adsEditDATA);
+        if (item.isvideo == false) {
+            this.type = 'image';
+        }
+        else if (item.isvideo == true) {
+            this.type = 'vdo';
+            this.vdolink = this.yt + item.videoid;
+        }
+        // this.adsEditDATA = item;
+        this.adsEditDATA.effectivedatestart = this.adsEditDATA.effectivedatestart.toString().substring(0, 10);
+        this.adsEditDATA.effectivedateend = this.adsEditDATA.effectivedateend.toString().substring(0, 10);
+        this.adsStatus = item.status;
+        this.adsimgAdding = item.image;
+        // console.log(this.adsDATA);
+        $(this.modalads.nativeElement).modal('show');
+    };
+    ManageAdsComponent.prototype.changeType = function () {
+        if (this.type == 'image') {
+            // this.adsvdoAdding = null;
+            this.vdolinkinput = null;
+        }
+        else if (this.type == 'vdo') {
+            this.adsimgAdding = null;
+            this.vdolink = this.yt + 'PZ4pctQMdg4';
+        }
+    };
+    ManageAdsComponent.prototype.activeChange = function ($event) {
+        if ($event === true) {
+            this.adsDATA.status = true;
+        }
+        else if ($event === false) {
+            this.adsDATA.status = false;
+        }
+    };
+    ManageAdsComponent.prototype.upLink = function (link) {
+        if (link) {
+            this.ckLinkNull = false;
+            this.vdolink = this.yt + link;
+        }
+        else {
+            this.ckLinkNull = true;
+        }
+    };
+    ManageAdsComponent.prototype.selectADSimg = function () {
+        this.uploadADS.nativeElement.click();
+    };
+    ManageAdsComponent.prototype.onADSImgChange = function ($event) {
+        var _this = this;
+        console.log("PASS");
+        var fileBrowser = this.uploadADS.nativeElement;
+        var reader = new FileReader();
+        reader.readAsDataURL(fileBrowser.files[0]);
+        if (fileBrowser.files.length > 0) {
+            reader.onload = function () {
+                _this.isEditImage = true;
+                _this.adsimgAdding = reader.result.replace(/\n/g, '');
+            };
+        }
+    };
+    ManageAdsComponent.prototype.saveADS = function () {
+        var _this = this;
+        this.pubsub.$pub('loading', true);
+        if (this.CE_action_ads == "เพิ่ม") {
+            if (this.type == 'image') {
+                if (this.adsimgAdding) {
+                    var sendADS_1;
+                    this.ADSservice.uploadImage(this.adsimgAdding).subscribe(function (upImg) {
+                        sendADS_1 = {
+                            name: _this.adsDATA.name,
+                            description: _this.adsDATA.description,
+                            image: upImg.imageURL,
+                            isvideo: false,
+                            website: _this.adsDATA.website,
+                            effectivedatestart: _this.adsDATA.effectivedatestart,
+                            effectivedateend: _this.adsDATA.effectivedateend,
+                            status: _this.adsStatus
+                        };
+                        _this.ADSservice.postAds(sendADS_1).subscribe(function (data) {
+                            console.log(data);
+                            _this.pubsub.$pub('loading', false);
+                            $(_this.modalads.nativeElement).modal('hide');
+                            alert("ระบบได้ทำการเพิ่มรูปภาพโฆษณาเรียบร้อยแล้วค่ะ");
+                            _this.LoadInitial();
+                        }, function (errSave) {
+                            console.log(errSave);
+                            _this.pubsub.$pub('loading', false);
+                            alert("ระบบไม่สามารถทำการเพิ่มรูปภาพโฆษณาได้ค่ะ");
+                        });
+                    }, function (err) {
+                        console.log(err);
+                        _this.pubsub.$pub('loading', false);
+                        alert("ระบบไม่สามารถอัพโหลดรูปภาพได้ กรุณาลองใหม่อีกครั้งค่ะ");
+                    });
+                }
+                else {
+                    this.pubsub.$pub('loading', false);
+                    alert("กรุณาเพิ่มรูปภาพโฆษณาก่อนทำการบันทึกค่ะ");
+                }
+            }
+            else if (this.type == 'vdo') {
+                this.pubsub.$pub('loading', true);
+                if (this.ckLinkNull == true) {
+                    this.pubsub.$pub('loading', false);
+                    alert("กรุณาใส่ ID ของ Video YOUTUBE ด้วยค่ะ");
+                }
+                else if (!this.adsimgAdding) {
+                    this.pubsub.$pub('loading', false);
+                    alert("กรุณาเพิ่มรูปภาพโฆษณาด้วยค่ะ");
+                }
+                else if (!this.adsimgAdding && this.ckLinkNull) {
+                    this.pubsub.$pub('loading', false);
+                    alert("กรุณาเพิ่มรูปภาพโฆษณาและวีดีโอโฆษณาด้วยค่ะ");
+                }
+                else if (this.ckLinkNull == false && this.adsimgAdding) {
+                    this.ADSservice.uploadImage(this.adsimgAdding).subscribe(function (upImg) {
+                        var sendADS = {
+                            name: _this.adsDATA.name,
+                            image: upImg.imageURL,
+                            description: _this.adsDATA.description,
+                            videoid: _this.adsDATA.vdolink,
+                            isvideo: true,
+                            website: _this.adsDATA.website,
+                            effectivedatestart: _this.adsDATA.effectivedatestart.toISOString(),
+                            effectivedateend: _this.adsDATA.effectivedateend.toISOString(),
+                            status: _this.adsStatus
+                        };
+                        _this.ADSservice.postAds(sendADS).subscribe(function (data) {
+                            console.log(data);
+                            _this.pubsub.$pub('loading', false);
+                            $(_this.modalads.nativeElement).modal('hide');
+                            alert("ระบบได้ทำการเพิ่มวีดีโอโฆษณาเรียบร้อยแล้วค่ะ");
+                            _this.LoadInitial();
+                        }, function (err) {
+                            console.log(err);
+                            _this.pubsub.$pub('loading', false);
+                            alert("ระบบไม่สามารถเพิ่มวีดีโอโฆษณาได้ กรุณาลองใหม่อีกครั้งค่ะ");
+                        });
+                    }, function (errUpimage) {
+                        _this.pubsub.$pub('loading', false);
+                        alert("ระบบไม่สามารถทำการเพิ่มรูปภาพโฆษณาได้ค่ะ");
+                    });
+                }
+            }
+        }
+        else if (this.CE_action_ads == "แก้ไข") {
+            if (this.type == 'image') {
+                if (this.adsimgAdding) {
+                    var sendADS_2;
+                    if (this.isEditImage == true) {
+                        this.ADSservice.uploadImage(this.adsimgAdding).subscribe(function (upImg) {
+                            sendADS_2 = {
+                                _id: _this.adsEditDATA._id,
+                                name: _this.adsEditDATA.name,
+                                description: _this.adsEditDATA.description,
+                                image: upImg.imageURL,
+                                isvideo: false,
+                                website: _this.adsEditDATA.website,
+                                effectivedatestart: _this.adsEditDATA.effectivedatestart,
+                                effectivedateend: _this.adsEditDATA.effectivedateend,
+                                status: _this.adsStatus
+                            };
+                            _this.ADSservice.editAds(sendADS_2).subscribe(function (data) {
+                                console.log(data);
+                                _this.pubsub.$pub('loading', false);
+                                $(_this.modalads.nativeElement).modal('hide');
+                                alert("ระบบได้ทำการแก้ไขโฆษณาเรียบร้อยแล้วค่ะ");
+                                _this.LoadInitial();
+                            }, function (errSave) {
+                                console.log(errSave);
+                                _this.pubsub.$pub('loading', false);
+                                alert("ระบบไม่สามารถทำการแก้ไขโฆษณาได้ค่ะ");
+                            });
+                        }, function (err) {
+                            console.log(err);
+                            _this.pubsub.$pub('loading', false);
+                            alert("ระบบไม่สามารถอัพโหลดรูปภาพแก้ไขได้ กรุณาลองใหม่อีกครั้งค่ะ");
+                        });
+                    }
+                    else if (this.isEditImage == false) {
+                        sendADS_2 = {
+                            _id: this.adsEditDATA._id,
+                            name: this.adsEditDATA.name,
+                            description: this.adsEditDATA.description,
+                            image: this.adsimgAdding,
+                            isvideo: false,
+                            website: this.adsEditDATA.website,
+                            effectivedatestart: this.adsEditDATA.effectivedatestart,
+                            effectivedateend: this.adsEditDATA.effectivedateend,
+                            status: this.adsStatus
+                        };
+                        this.ADSservice.editAds(sendADS_2).subscribe(function (data) {
+                            console.log(data);
+                            _this.pubsub.$pub('loading', false);
+                            $(_this.modalads.nativeElement).modal('hide');
+                            alert("ระบบได้ทำการแก้ไขโฆษณาเรียบร้อยแล้วค่ะ");
+                            _this.LoadInitial();
+                        }, function (errSave) {
+                            console.log(errSave);
+                            _this.pubsub.$pub('loading', false);
+                            alert("ระบบไม่สามารถทำการแก้ไขโฆษณาได้ค่ะ");
+                        });
+                    }
+                }
+                else {
+                    this.pubsub.$pub('loading', false);
+                    alert("กรุณาเพิ่มรูปภาพโฆษณาก่อนทำการบันทึกค่ะ");
+                }
+            }
+            else if (this.type == 'vdo') {
+                this.pubsub.$pub('loading', true);
+                if (this.ckLinkNull == true) {
+                    this.pubsub.$pub('loading', false);
+                    alert("กรุณาใส่ ID ของ Video YOUTUBE ด้วยค่ะ");
+                }
+                else if (!this.adsimgAdding) {
+                    this.pubsub.$pub('loading', false);
+                    alert("กรุณาเพิ่มรูปภาพโฆษณาด้วยค่ะ");
+                }
+                else if (!this.adsimgAdding && this.ckLinkNull) {
+                    this.pubsub.$pub('loading', false);
+                    alert("กรุณาเพิ่มรูปภาพโฆษณาและวีดีโอโฆษณาด้วยค่ะ");
+                }
+                else if (this.ckLinkNull == false && this.adsimgAdding) {
+                    if (this.isEditImage == true) {
+                        this.ADSservice.uploadImage(this.adsimgAdding).subscribe(function (upImg) {
+                            var sendADS = {
+                                _id: _this.adsEditDATA._id,
+                                name: _this.adsEditDATA.name,
+                                image: upImg.imageURL,
+                                description: _this.adsEditDATA.description,
+                                videoid: _this.adsEditDATA.vdolink,
+                                isvideo: true,
+                                website: _this.adsEditDATA.website,
+                                effectivedatestart: _this.adsEditDATA.effectivedatestart,
+                                effectivedateend: _this.adsEditDATA.effectivedateend,
+                                status: _this.adsStatus
+                            };
+                            _this.ADSservice.editAds(sendADS).subscribe(function (data) {
+                                console.log(data);
+                                _this.pubsub.$pub('loading', false);
+                                $(_this.modalads.nativeElement).modal('hide');
+                                alert("ระบบได้ทำการแก้ไขโฆษณาเรียบร้อยแล้วค่ะ");
+                                _this.LoadInitial();
+                            }, function (err) {
+                                console.log(err);
+                                _this.pubsub.$pub('loading', false);
+                                alert("ระบบไม่สามารถทำการแก้ไขโฆษณาได้ กรุณาลองใหม่อีกครั้งค่ะ");
+                            });
+                        }, function (errUpimage) {
+                            _this.pubsub.$pub('loading', false);
+                            alert("ระบบไม่สามารถทำการแก้ไขโฆษณาได้ค่ะ");
+                        });
+                    }
+                    else if (this.isEditImage == false) {
+                        var sendADS = {
+                            _id: this.adsEditDATA._id,
+                            name: this.adsEditDATA.name,
+                            image: this.adsimgAdding,
+                            description: this.adsEditDATA.description,
+                            videoid: this.adsEditDATA.vdolink,
+                            isvideo: true,
+                            website: this.adsEditDATA.website,
+                            effectivedatestart: this.adsEditDATA.effectivedatestart,
+                            effectivedateend: this.adsEditDATA.effectivedateend,
+                            status: this.adsStatus
+                        };
+                        this.ADSservice.editAds(sendADS).subscribe(function (data) {
+                            console.log(data);
+                            _this.pubsub.$pub('loading', false);
+                            $(_this.modalads.nativeElement).modal('hide');
+                            alert("ระบบได้ทำการแก้ไขโฆษณาเรียบร้อยแล้วค่ะ");
+                            _this.LoadInitial();
+                        }, function (err) {
+                            console.log(err);
+                            _this.pubsub.$pub('loading', false);
+                            alert("ระบบไม่สามารถทำการแก้ไขโฆษณาได้ กรุณาลองใหม่อีกครั้งค่ะ");
+                        });
+                    }
+                }
+            }
+        }
+    };
+    ManageAdsComponent.prototype.cancelSave = function () {
+        $(this.modalads.nativeElement).modal('hide');
+        this.adsimgAdding = null;
+        this.adsvdoAdding = null;
+        this.ckLinkNull = null;
+        this.adsDATA.name = '';
+        this.adsDATA.description = '';
+        this.adsDATA.videoid = '';
+        this.adsDATA.effectivedatestart = '';
+        this.adsDATA.effectivedateend = '';
+        this.adsDATA.website = '';
+        this.adsDATA.isvideo = false;
+        this.adsStatus = false;
+        this.vdolink = '';
     };
     return ManageAdsComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('modalads'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object)
+], ManageAdsComponent.prototype, "modalads", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('uploadADS'),
+    __metadata("design:type", Object)
+], ManageAdsComponent.prototype, "uploadADS", void 0);
 ManageAdsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-manage-ads',
         template: __webpack_require__("../../../../../src/app/manage-ads/manage-ads.component.html"),
         styles: [__webpack_require__("../../../../../src/app/manage-ads/manage-ads.component.scss")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_app_manage_ads_manage_ads_service__["a" /* ADSService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_manage_ads_manage_ads_service__["a" /* ADSService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_app_provider_server_config__["a" /* ServerConfig */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_provider_server_config__["a" /* ServerConfig */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["DomSanitizer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["DomSanitizer"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5_angular2_pubsub__["b" /* PubSubService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_angular2_pubsub__["b" /* PubSubService */]) === "function" && _f || Object])
 ], ManageAdsComponent);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=manage-ads.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/manage-ads/manage-ads.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ADSService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var ADSService = (function () {
+    function ADSService(http, server) {
+        this.http = http;
+        this.server = server;
+    }
+    ADSService.prototype.getAdsList = function () {
+        return this.http.get(this.server.url + 'api/ads/', this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+    };
+    ADSService.prototype.postAds = function (data) {
+        return this.http.post(this.server.url + 'api/ads/', data, this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+    };
+    ADSService.prototype.editAds = function (data) {
+        return this.http.put(this.server.url + 'api/ads/' + data._id, data, this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+    };
+    ADSService.prototype.uploadImage = function (img) {
+        return this.http.post(this.server.url + 'api/products_picture', { data: img.replace('data:image/jpeg;base64,', '') }, this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+    };
+    return ADSService;
+}());
+ADSService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__["a" /* ServerConfig */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__["a" /* ServerConfig */]) === "function" && _b || Object])
+], ADSService);
+
+var _a, _b;
+//# sourceMappingURL=manage-ads.service.js.map
 
 /***/ }),
 

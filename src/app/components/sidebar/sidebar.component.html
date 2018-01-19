@@ -315,7 +315,12 @@
                 </a>
             </li>
 
-
+            <li *ngIf="isLogin">
+                <a [routerLink]="['manage-ads']">
+                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                    <p>จัดการโฆษณา</p>
+                </a>
+            </li>
 
 
 

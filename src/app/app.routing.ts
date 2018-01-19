@@ -23,6 +23,7 @@ import { CreateShopComponent } from 'app/create-shop/create-shop.component';
 import { ManageUserComponent } from 'app/manage-user/manage-user.component';
 import { LoginComponent } from 'app/login/login.component';
 import { AppComponent } from 'app/app.component';
+import { ManageAdsComponent } from 'app/manage-ads/manage-ads.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
       component: CreateShopComponent
     }]
   },
+  { path: 'manage-ads', component: ManageAdsComponent},
   { path: 'manage-user', component: ManageUserComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
