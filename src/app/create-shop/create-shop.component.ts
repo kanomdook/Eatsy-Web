@@ -252,14 +252,16 @@ export class CreateShopComponent implements OnInit {
     if (this.shopID) {
       this.shopService.getShopByID(this.shopID).subscribe(data => {
         this.shop = data;
+        this.shop.promoteimage = this.shop.promoteimage[0] == null ? [] : this.shop.promoteimage;
+        console.log(this.shop);
         this.categorys = this.shop.items;
-        this.products = this.categorys.length > 0 ? this.categorys[0].products : [];
-        console.log(this.products);
         this.categorys.forEach((el, i) => {
           if (el !== null) {
             this.cateList.push(el.cate);
           }
         });
+        
+        this.products = this.categorys.length > 0 ? this.categorys[0].products : [];        
 
         this.cateList.length > 0 ? this.selectedStyle[this.cateList[0]._id] = 'active-select' : null;
         this.cateID = this.cateList.length > 0 ? this.cateList[0]._id : '';
@@ -296,12 +298,6 @@ export class CreateShopComponent implements OnInit {
         };
         this.timeList = data.times;
         this.openTimeString = this.timeList.length > 0 ? this.timeList[0].timestart + '-' + this.timeList[0].timeend : '-';
-      }, err => {
-        console.log(err);
-      });
-
-      this.shopService.getProductsByID(this.shopID).subscribe(data => {
-        this.products = data.items;
       }, err => {
         console.log(err);
       });
@@ -358,24 +354,20 @@ export class CreateShopComponent implements OnInit {
   onPromoteImgChange(e) {
     this.pubsub.$pub('loading', true);
     const fileBrowser = this.promoteimgInput.nativeElement;
-
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBrowser.files[0]);
     if (this.shopID) {
       if (fileBrowser.files.length > 0) {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileBrowser.files[0]);
         reader.onload = () => {
-          let promteImgStr = reader.result.replace(/\n/g, '');
+          const promteImgStr = reader.result.replace(/\n/g, '');
           this.shop.newpromoteimage = promteImgStr;
           this.shopService.uploadPromoteImage(this.shop).subscribe(data => {
             this.shop.promoteimage.push(data.imageURL);
             this.shopService.edit(this.shop).subscribe(shopRes => {
-              this.pubsub.$pub('loading', false);
-              alert("เพิ่มรูปภาพโปรโมทร้านเรียบร้อยแล้วค่ะ");
-              this.galleryImages = [];
-              this.InitialData();
+              location.reload();
             }, err => {
               this.pubsub.$pub('loading', false);
-              alert("เกิดข้อผิดพลาดในการเพิ่มรูปภาพโปรโมทร้าน กรุณาลองใหม่อีกครั้งค่ะ");
+              alert('เกิดข้อผิดพลาดในการเพิ่มรูปภาพโปรโมทร้าน กรุณาลองใหม่อีกครั้งค่ะ');
               console.log(err);
             });
           }, err => {
@@ -450,8 +442,6 @@ export class CreateShopComponent implements OnInit {
         }
       }
     }
-
-    console.log(this.products);
   }
 
   createProduct(index, product) {
