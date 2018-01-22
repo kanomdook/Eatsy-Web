@@ -73,6 +73,9 @@ export class ManageAdsComponent implements OnInit {
       // DEFAULT INIT DATA
       this.adsDATA.status = false;
       // DEFAULT INIT DATA
+    },(err)=>{
+    console.log(err);
+
     });
   }
 

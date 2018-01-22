@@ -2618,6 +2618,8 @@ var ManageAdsComponent = (function () {
             // DEFAULT INIT DATA
             _this.adsDATA.status = false;
             // DEFAULT INIT DATA
+        }, function (err) {
+            console.log(err);
         });
     };
     ManageAdsComponent.prototype.addADS = function () {
