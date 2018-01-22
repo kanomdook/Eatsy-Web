@@ -2590,7 +2590,7 @@ var ManageAdsComponent = (function () {
                 _this.pubsub.$pub('loading', false);
                 _this.router.navigate(['/login']);
             }
-            // this.LoadInitial();
+            _this.LoadInitial();
         });
     };
     ManageAdsComponent.prototype.LoadInitial = function () {
@@ -2988,9 +2988,8 @@ var ADSService = (function () {
         this.http = http;
         this.server = server;
     }
-    // this.server.AuthHeaders()
     ADSService.prototype.getAdsList = function () {
-        return this.http.get(this.server.url + 'api/ads/')
+        return this.http.get(this.server.url + 'api/ads/', this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
     };

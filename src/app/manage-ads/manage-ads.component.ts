@@ -45,7 +45,7 @@ export class ManageAdsComponent implements OnInit {
         this.pubsub.$pub('loading', false);
         this.router.navigate(['/login']);
       }
-      // this.LoadInitial();
+      this.LoadInitial();
     });
 
   }
