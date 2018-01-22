@@ -2988,8 +2988,9 @@ var ADSService = (function () {
         this.http = http;
         this.server = server;
     }
+    // this.server.AuthHeaders()
     ADSService.prototype.getAdsList = function () {
-        return this.http.get(this.server.url + 'api/ads/', this.server.AuthHeaders())
+        return this.http.get(this.server.url + 'api/ads/')
             .map(function (res) { return res.json(); })
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
     };
