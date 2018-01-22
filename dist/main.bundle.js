@@ -2590,7 +2590,7 @@ var ManageAdsComponent = (function () {
                 _this.pubsub.$pub('loading', false);
                 _this.router.navigate(['/login']);
             }
-            _this.LoadInitial();
+            // this.LoadInitial();
         });
     };
     ManageAdsComponent.prototype.LoadInitial = function () {
