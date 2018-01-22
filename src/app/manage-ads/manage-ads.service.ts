@@ -11,7 +11,7 @@ export class ADSService {
 
     }
     getAdsList(): Observable<any> {
-        return this.http.get(this.server.url + 'api/ads/', this.server.AuthHeaders())
+        return this.http.get(this.server.url + 'api/ads/', {})
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }

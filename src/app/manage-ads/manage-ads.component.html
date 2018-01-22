@@ -29,7 +29,7 @@
                   </div>
                 </a>
                 <a *ngIf="item1.isvideo == true" class="thumbnail" (click)="editADS(item1)">
-                  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(yt + item1.videoid)" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+                  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(yt + item1.videoid)" width="180" height="100" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
                   <div class="block-text">
                     <span class="ads-text">{{item1.name}}</span>
                   </div>
@@ -54,6 +54,12 @@
                     <span class="ads-text">{{item2.name}}</span>
                   </div>
                 </a>
+                <a *ngIf="item2.isvideo == true" class="thumbnail" (click)="editADS(item2)">
+                  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(yt + item2.videoid)" width="180" height="100" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+                  <div class="block-text">
+                    <span class="ads-text">{{item2.name}}</span>
+                  </div>
+                </a>
               </div>
 
             </div>
@@ -70,6 +76,12 @@
               <div class="col-xs-6 col-md-3" *ngFor="let item3 of listAdsExpired">
                 <a (click)="editADS(item3)" class="thumbnail">
                   <img [src]="item3.image" alt="...">
+                  <div class="block-text">
+                    <span class="ads-text">{{item3.name}}</span>
+                  </div>
+                </a>
+                <a *ngIf="item3.isvideo == true" class="thumbnail" (click)="editADS(item3)">
+                  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(yt + item3.videoid)" width="180" height="100" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
                   <div class="block-text">
                     <span class="ads-text">{{item3.name}}</span>
                   </div>
