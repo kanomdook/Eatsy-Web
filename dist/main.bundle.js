@@ -162,6 +162,8 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45_angular_sortablejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_45_angular_sortablejs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46_angular2_pubsub__ = __webpack_require__("../../../../angular2-pubsub/esm/src/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47_app_manage_ads_manage_ads_service__ = __webpack_require__("../../../../../src/app/manage-ads/manage-ads.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48_app_manage_campaign_manage_campaign_component__ = __webpack_require__("../../../../../src/app/manage-campaign/manage-campaign.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_app_manage_campaign_manage_campaign_service__ = __webpack_require__("../../../../../src/app/manage-campaign/manage-campaign.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -217,6 +219,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -246,6 +250,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_34__login_login_component__["a" /* LoginComponent */],
             __WEBPACK_IMPORTED_MODULE_25__manage_user_manage_user_component__["a" /* ManageUserComponent */],
             __WEBPACK_IMPORTED_MODULE_44__manage_ads_manage_ads_component__["a" /* ManageAdsComponent */],
+            __WEBPACK_IMPORTED_MODULE_48_app_manage_campaign_manage_campaign_component__["a" /* ManageCampaignComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
@@ -274,7 +279,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_35_app_provider_auth__["a" /* Auth */],
             __WEBPACK_IMPORTED_MODULE_36_app_create_shop_create_shop_service__["a" /* ShopService */],
             __WEBPACK_IMPORTED_MODULE_39_app_provider_pager__["a" /* Pager */],
-            __WEBPACK_IMPORTED_MODULE_47_app_manage_ads_manage_ads_service__["a" /* ADSService */]
+            __WEBPACK_IMPORTED_MODULE_47_app_manage_ads_manage_ads_service__["a" /* ADSService */],
+            __WEBPACK_IMPORTED_MODULE_49_app_manage_campaign_manage_campaign_service__["a" /* CampaignService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })
@@ -313,12 +319,14 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_app_manage_user_manage_user_component__ = __webpack_require__("../../../../../src/app/manage-user/manage-user.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_app_login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_app_manage_ads_manage_ads_component__ = __webpack_require__("../../../../../src/app/manage-ads/manage-ads.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_app_manage_campaign_manage_campaign_component__ = __webpack_require__("../../../../../src/app/manage-campaign/manage-campaign.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -369,6 +377,7 @@ var routes = [
     },
     { path: 'manage-ads', component: __WEBPACK_IMPORTED_MODULE_23_app_manage_ads_manage_ads_component__["a" /* ManageAdsComponent */] },
     { path: 'manage-user', component: __WEBPACK_IMPORTED_MODULE_21_app_manage_user_manage_user_component__["a" /* ManageUserComponent */] },
+    { path: 'manage-campaign', component: __WEBPACK_IMPORTED_MODULE_24_app_manage_campaign_manage_campaign_component__["a" /* ManageCampaignComponent */] },
     { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 var AppRoutingModule = (function () {
@@ -660,7 +669,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\">\n    <a href=\"#\" class=\"simple-text\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/biker.jpg\" />\n        </div>\n        <span class=\"mgt-20\">\n            <img src=\"../../../assets/img/D.png\" alt=\"image\" width=\"130px\" height=\"36px\">\n        </span>\n    </a>\n</div>\n<div class=\"sidebar-wrapper bg2\">\n    <!-- <form class=\"navbar-form navbar-right\" role=\"search\" *ngIf=\"isMobileMenu()\">\n        <div class=\"form-group form-black is-empty\">\n            <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n            <span class=\"material-input\"></span>\n        </div>\n        <button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n            <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n        </button>\n    </form> -->\n\n    <ul class=\"nav nav-mobile-menu\" *ngIf=\"isMobileMenu()\">\n        <li>\n            <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">dashboard</i>\n                <p class=\"hidden-lg hidden-md\">Dashboard</p>\n            </a>\n        </li>\n        <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">notifications</i>\n                <span class=\"notification\">5</span>\n                <p class=\"hidden-lg hidden-md\">Notifications</p>\n            </a>\n            <ul class=\"dropdown-menu\">\n                <li>\n                    <a href=\"#\">Mike John responded to your email</a>\n                </li>\n                <li>\n                    <a href=\"#\">You have 5 new tasks</a>\n                </li>\n                <li>\n                    <a href=\"#\">You're now friend with Andrew</a>\n                </li>\n                <li>\n                    <a href=\"#\">Another Notification</a>\n                </li>\n                <li>\n                    <a href=\"#\">Another One</a>\n                </li>\n            </ul>\n        </li>\n        <li>\n            <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">person</i>\n                <p class=\"hidden-lg hidden-md\">Profile</p>\n            </a>\n        </li>\n    </ul>\n\n    <div class=\"nav-container\">\n        <ul class=\"nav\">\n            <!-- <li routerLinkActive=\"active\" *ngFor=\"let menuItem of menuItems\" class=\"{{menuItem.class}}\">\n                <a  [routerLink]=\"[menuItem.path]\">\n                    <i class=\"material-icons\">{{menuItem.icon}}</i>\n                    <p>{{menuItem.title}}</p>\n                </a>\n            </li> -->\n            <!-- /////////////////////////////// custom////////////////// -->\n            <!-- <li>\n                <a data-toggle=\"collapse\" href=\"#report\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">assessment</i>\n                    <p>รายงาน <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"report\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"['dashboard']\">\n                                <span class=\"sidebar-normal\">ภาพราม</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['sales']\">\n                                <span class=\"sidebar-normal\">ยอดขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['purchase-order']\">\n                                <span class=\"sidebar-normal\">ยอดซื้อ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['product']\">\n                                <span class=\"sidebar-normal\">สินค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['customer']\">\n                                <span class=\"sidebar-normal\">ลูกค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['manage-file']\">\n                                <span class=\"sidebar-normal\">จัดการไฟล์</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['manage-document']\">\n                                <span class=\"sidebar-normal\">จัดการเอกสาร</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#sell\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">unarchive</i>\n                    <p>รายการขาย <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"sell\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"['create-sell']\">\n                                <span class=\"sidebar-normal\">สร้างรายการขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูรายการขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">บริการส่งสินค้า</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#buy\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">move_to_inbox</i>\n                    <p>รายการซื้อ <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"buy\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สร้างรายการซื้อ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูรายการซื้อ</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#product\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">inbox</i>\n                    <p>สินค้า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"product\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สินค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">คลังสินค้า/สาขา</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สินค้าหลากคุณสมบัติ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">หมวดหมู่</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#customer\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">assignment_ind</i>\n                    <p>ลูกค้า / คู่ค้า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"customer\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ลูกค้า / คู่ค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">กลุ่มลูกค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ตัวแทนจำหน่าย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">หน้าสั่งซื้อ</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#money\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">account_balance_wallet</i>\n                    <p>การเงิน <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"money\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูภาพรวม</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">กระเป๋าเงิน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายได้อื่น</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายจ่ายอื่น</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายการโอนเงิน</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#settings\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">settings</i>\n                    <p>ตั้งค่า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"settings\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ข้อมูลส่วนตัว</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">บริษัท / ร้านค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ผู้ใช้งาน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สิทธิ์การใช้งาน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">เชื่อมต่อบริการอื่น</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li> -->\n\n            <li *ngIf=\"!isLogin\">\n                <a [routerLink]=\"['manage-shop']\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>เข้าสู่ระบบ</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-shop']\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>จัดการร้านค้า</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-user']\">\n                    <i class=\"material-icons\">people</i>\n                    <p>จัดการบัญชีผู้ใช้</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-ads']\">\n                    <i class=\"fa fa-bullhorn\" aria-hidden=\"true\"></i>\n                    <p>จัดการโฆษณา</p>\n                </a>\n            </li>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n        </ul>\n    </div>\n</div>"
+module.exports = "<div class=\"logo\">\n    <a href=\"#\" class=\"simple-text\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/biker.jpg\" />\n        </div>\n        <span class=\"mgt-20\">\n            <img src=\"../../../assets/img/D.png\" alt=\"image\" width=\"130px\" height=\"36px\">\n        </span>\n    </a>\n</div>\n<div class=\"sidebar-wrapper bg2\">\n    <!-- <form class=\"navbar-form navbar-right\" role=\"search\" *ngIf=\"isMobileMenu()\">\n        <div class=\"form-group form-black is-empty\">\n            <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n            <span class=\"material-input\"></span>\n        </div>\n        <button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n            <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n        </button>\n    </form> -->\n\n    <ul class=\"nav nav-mobile-menu\" *ngIf=\"isMobileMenu()\">\n        <li>\n            <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">dashboard</i>\n                <p class=\"hidden-lg hidden-md\">Dashboard</p>\n            </a>\n        </li>\n        <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">notifications</i>\n                <span class=\"notification\">5</span>\n                <p class=\"hidden-lg hidden-md\">Notifications</p>\n            </a>\n            <ul class=\"dropdown-menu\">\n                <li>\n                    <a href=\"#\">Mike John responded to your email</a>\n                </li>\n                <li>\n                    <a href=\"#\">You have 5 new tasks</a>\n                </li>\n                <li>\n                    <a href=\"#\">You're now friend with Andrew</a>\n                </li>\n                <li>\n                    <a href=\"#\">Another Notification</a>\n                </li>\n                <li>\n                    <a href=\"#\">Another One</a>\n                </li>\n            </ul>\n        </li>\n        <li>\n            <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                <i class=\"material-icons\">person</i>\n                <p class=\"hidden-lg hidden-md\">Profile</p>\n            </a>\n        </li>\n    </ul>\n\n    <div class=\"nav-container\">\n        <ul class=\"nav\">\n            <!-- <li routerLinkActive=\"active\" *ngFor=\"let menuItem of menuItems\" class=\"{{menuItem.class}}\">\n                <a  [routerLink]=\"[menuItem.path]\">\n                    <i class=\"material-icons\">{{menuItem.icon}}</i>\n                    <p>{{menuItem.title}}</p>\n                </a>\n            </li> -->\n            <!-- /////////////////////////////// custom////////////////// -->\n            <!-- <li>\n                <a data-toggle=\"collapse\" href=\"#report\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">assessment</i>\n                    <p>รายงาน <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"report\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"['dashboard']\">\n                                <span class=\"sidebar-normal\">ภาพราม</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['sales']\">\n                                <span class=\"sidebar-normal\">ยอดขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['purchase-order']\">\n                                <span class=\"sidebar-normal\">ยอดซื้อ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['product']\">\n                                <span class=\"sidebar-normal\">สินค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['customer']\">\n                                <span class=\"sidebar-normal\">ลูกค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['manage-file']\">\n                                <span class=\"sidebar-normal\">จัดการไฟล์</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"['manage-document']\">\n                                <span class=\"sidebar-normal\">จัดการเอกสาร</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#sell\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">unarchive</i>\n                    <p>รายการขาย <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"sell\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"['create-sell']\">\n                                <span class=\"sidebar-normal\">สร้างรายการขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูรายการขาย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">บริการส่งสินค้า</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#buy\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">move_to_inbox</i>\n                    <p>รายการซื้อ <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"buy\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สร้างรายการซื้อ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูรายการซื้อ</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#product\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">inbox</i>\n                    <p>สินค้า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"product\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สินค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">คลังสินค้า/สาขา</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สินค้าหลากคุณสมบัติ</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">หมวดหมู่</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#customer\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">assignment_ind</i>\n                    <p>ลูกค้า / คู่ค้า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"customer\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ลูกค้า / คู่ค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">กลุ่มลูกค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ตัวแทนจำหน่าย</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">หน้าสั่งซื้อ</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#money\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">account_balance_wallet</i>\n                    <p>การเงิน <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"money\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ดูภาพรวม</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">กระเป๋าเงิน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายได้อื่น</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายจ่ายอื่น</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">รายการโอนเงิน</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li>\n\n            <li>\n                <a data-toggle=\"collapse\" href=\"#settings\" class=\"collapsed\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">settings</i>\n                    <p>ตั้งค่า <b class=\"caret\"></b></p>\n                </a>\n                <div class=\"collapse\" id=\"settings\" aria-expanded=\"false\" style=\"height: 0px;\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ข้อมูลส่วนตัว</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">บริษัท / ร้านค้า</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">ผู้ใช้งาน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">สิทธิ์การใช้งาน</span>\n                            </a>\n                        </li>\n                        <li>\n                            <a [routerLink]=\"dashboard\">\n                                <span class=\"sidebar-normal\">เชื่อมต่อบริการอื่น</span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </li> -->\n\n            <li *ngIf=\"!isLogin\">\n                <a [routerLink]=\"['manage-shop']\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>เข้าสู่ระบบ</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-shop']\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>จัดการร้านค้า</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-user']\">\n                    <i class=\"material-icons\">people</i>\n                    <p>จัดการบัญชีผู้ใช้</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-ads']\">\n                    <i class=\"fa fa-bullhorn\" aria-hidden=\"true\"></i>\n                    <p>จัดการโฆษณา</p>\n                </a>\n            </li>\n\n            <li *ngIf=\"isLogin\">\n                <a [routerLink]=\"['manage-campaign']\">\n                    <i class=\"fa fa-bullhorn\" aria-hidden=\"true\"></i>\n                    <p>จัดการแคมเปญ</p>\n                </a>\n            </li>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n        </ul>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -693,7 +702,9 @@ var ROUTES = [
     { path: 'manage-document', title: 'จัดการเอกสาร', icon: '', class: '' },
     { path: 'create-sell', title: 'สร้างรายการขาย', icon: '', class: '' },
     { path: 'manage-shop', title: 'จัดการร้านค้า', icon: '', class: '' },
-    { path: 'manage-user', title: 'จัดการบัญชีผู้ใช้', icon: '', class: '' }
+    { path: 'manage-user', title: 'จัดการบัญชีผู้ใช้', icon: '', class: '' },
+    { path: 'manage-ads', title: 'จัดการโฆษณา', icon: '', class: '' },
+    { path: 'manage-campaign', title: 'จัดการแคมเปญ', icon: '', class: '' }
 ];
 var SidebarComponent = (function () {
     function SidebarComponent(server) {
@@ -1792,12 +1803,9 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShopService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1822,89 +1830,89 @@ var ShopService = (function () {
     ShopService.prototype.save = function (shop) {
         return this.http.post(this.server.url + 'api/shops', shop, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.uploadCateImage = function (imgcategory) {
         return this.http.post(this.server.url + 'api/products_picture', { data: imgcategory.replace('data:image/jpeg;base64,', '') }, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.uploadImage = function (shop) {
         return this.http.post(this.server.url + 'api/products_picture', { data: shop.coverimage.replace('data:image/jpeg;base64,', '') }, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.uploadPromoteImage = function (shop) {
         return this.http.post(this.server.url + 'api/products_picture', { data: shop.newpromoteimage.replace('data:image/jpeg;base64,', '') }, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.edit = function (shop) {
         return this.http.put(this.server.url + 'api/shops/' + shop._id, shop, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.delete = function (id) {
         return this.http.delete(this.server.url + 'api/shops/' + id, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.getShopByID = function (id) {
         return this.http.get(this.server.url + 'api/shops/' + id, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     //////////////product
     ShopService.prototype.createProduct = function (product, shop_id) {
         return this.http.put(this.server.url + 'api/createproduct/' + shop_id, product, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.saveProduct = function (product) {
         return this.http.post(this.server.url + 'api/products', product, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.editProduct = function (product) {
         return this.http.put(this.server.url + 'api/products/' + product._id, product, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.deleteProduct = function (id) {
         return this.http.delete(this.server.url + 'api/products/' + id, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.getProductsByID = function (id) {
         return this.http.get(this.server.url + 'api/productsbyshop/' + id, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     /////////////category
     ShopService.prototype.saveCategory = function (category, shopID) {
         return this.http.put(this.server.url + 'api/createcate/' + shopID, category, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.editCategory = function (category, cateID) {
         return this.http.put(this.server.url + 'api/categoryproducts/' + cateID, category, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.deleteCategory = function (id) {
         return this.http.delete(this.server.url + 'api/categoryproducts/' + id, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.getCategoryByID = function (id) {
         return this.http.get(this.server.url + 'api/categoryproductsbyshop/' + id, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ShopService.prototype.getCategoryShop = function () {
         return this.http.get(this.server.url + 'api/categoryshops', this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     return ShopService;
 }());
@@ -2311,12 +2319,9 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2338,7 +2343,7 @@ var DashboardService = (function () {
     DashboardService.prototype.getData = function () {
         return this.http.get('../../assets/data/dashboard.json')
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error.json().error || 'Server error'); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error.json().error || 'Server error'); });
     };
     return DashboardService;
 }());
@@ -2632,9 +2637,6 @@ var ManageAdsComponent = (function () {
         this.CE_action_ads = "แก้ไข";
         var itemdata = JSON.parse(JSON.stringify(item));
         this.adsEditDATA = itemdata;
-        // console.log(item.effectivedatestart.toUTCString());
-        // item.effectivedatestart = item.effectivedatestart.toLocaleDateString();
-        // item.effectivedateend = item.effectivedateend.toLocaleDateString();
         console.log(this.adsEditDATA);
         if (item.isvideo == false) {
             this.type = 'image';
@@ -2643,7 +2645,6 @@ var ManageAdsComponent = (function () {
             this.type = 'vdo';
             this.vdolink = this.yt + item.videoid;
         }
-        // this.adsEditDATA = item;
         this.adsEditDATA.effectivedatestart = this.adsEditDATA.effectivedatestart.toString().substring(0, 10);
         this.adsEditDATA.effectivedateend = this.adsEditDATA.effectivedateend.toString().substring(0, 10);
         this.adsStatus = item.status;
@@ -2653,7 +2654,6 @@ var ManageAdsComponent = (function () {
     };
     ManageAdsComponent.prototype.changeType = function () {
         if (this.type == 'image') {
-            // this.adsvdoAdding = null;
             this.vdolinkinput = null;
         }
         else if (this.type == 'vdo') {
@@ -2757,8 +2757,8 @@ var ManageAdsComponent = (function () {
                             videoid: _this.adsDATA.vdolink,
                             isvideo: true,
                             website: _this.adsDATA.website,
-                            effectivedatestart: _this.adsDATA.effectivedatestart.toISOString(),
-                            effectivedateend: _this.adsDATA.effectivedateend.toISOString(),
+                            effectivedatestart: _this.adsDATA.effectivedatestart,
+                            effectivedateend: _this.adsDATA.effectivedateend,
                             status: _this.adsStatus
                         };
                         _this.ADSservice.postAds(sendADS).subscribe(function (data) {
@@ -2963,12 +2963,9 @@ var _a, _b, _c, _d, _e, _f;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ADSService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2993,22 +2990,22 @@ var ADSService = (function () {
     ADSService.prototype.getAdsList = function () {
         return this.http.get(this.server.url + 'api/ads/', {})
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ADSService.prototype.postAds = function (data) {
         return this.http.post(this.server.url + 'api/ads/', data, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ADSService.prototype.editAds = function (data) {
         return this.http.put(this.server.url + 'api/ads/' + data._id, data, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ADSService.prototype.uploadImage = function (img) {
         return this.http.post(this.server.url + 'api/products_picture', { data: img.replace('data:image/jpeg;base64,', '') }, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     return ADSService;
 }());
@@ -3019,6 +3016,380 @@ ADSService = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=manage-ads.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/manage-campaign/manage-campaign.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"main-content\">\n\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-lg-7 col-md-7 col-sm-7 col-xs-7\" style=\"margin-top: 10px\">\n\n      </div>\n      <div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5\">\n        <button class=\"btn addcampaign\" type=\"button\" (click)=\"campaignManage()\">\n          <i class=\"material-icons\">add</i> จัดการประเภทแคมเปญ\n        </button>\n        <button class=\"btn addcampaign\" type=\"button\" (click)=\"addCampaign()\">\n          <i class=\"material-icons\">add</i> เพิ่มแคมเปญ\n        </button>\n      </div>\n    </div>\n\n    <!-- //////Apple/// -->\n\n    <div class=\"tab-content\">\n\n      <div class=\"row\">\n        <div class=\"col-md-12\">\n          <div class=\"card\">\n            <div class=\"card-content table-responsive\">\n              <table class=\"table table-hover\">\n                <thead class=\"text-danger\">\n                  <tr>\n                    <th class=\"text-center col-md-1\">#</th>\n                    <th class=\"text-center\">ชื่อแคมเปญ</th>\n                    <th class=\"text-center col-md-2\">การแจก coin</th>\n                    <th class=\"text-center col-md-2\" >วันที่เริ่มต้น</th>\n                    <th class=\"text-center col-md-2 \">วันที่สิ้นสุด</th>\n                    <th class=\"text-center col-md-2\">สถานะ</th>\n\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngIf=\"campaignList.length == 0\">\n                    <td colspan=\"7\" class=\"text-center\">\n                      ยังไม่มีข้อมูลแคมเปญในระบบค่ะ\n                    </td>\n\n                  </tr>\n                  <tr *ngFor=\"let campaign of campaignList; let i = index \">\n                    <td class=\"text-center\" (click)=\"editCampaign(campaign)\">{{i + 1}}</td>\n                    <td (click)=\"editCampaign(campaign)\">{{campaign.name}}</td>\n                    <td class=\"text-center\" (click)=\"editCampaign(campaign)\">{{campaign.coin_give}} coin</td>\n                    <td class=\"text-center\" (click)=\"editCampaign(campaign)\">{{campaign.effectivedatestart | date: 'short'}}</td>\n                    <td class=\"text-center\" (click)=\"editCampaign(campaign)\">{{campaign.effectivedateend | date: 'short'}}</td>\n                    <td class=\"text-center \">\n                      <span *ngIf=\"campaign.status == true\">ใช้งานอยู่</span>\n                      <span *ngIf=\"campaign.status == false\">ปิดการใช้งาน</span>\n                    </td>\n                  </tr>\n\n                </tbody>\n              </table>\n\n              <!-- <div class=\"pc\">\n                <nav aria-label=\"Page navigation\">\n                  <ul class=\"pagination\">\n                    <li [class]=\"curentPage[item]\" *ngFor=\"let item of shopsL.pagings\">\n                      <a (click)=\"pageing(item)\">{{item}}</a>\n                    </li>\n                  </ul>\n                </nav>\n              </div> -->\n            </div>\n          </div>\n        </div>\n      </div>\n\n\n    </div>\n\n\n\n    <!-- ////? -->\n\n\n  </div>\n</div>\n\n<!-- /////////////////////////////////MODAL CAMPAIGN TYPE MANAGE///////////////////////// -->\n\n<div class=\"modal fade\" #modalCampaignType tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" data-keyboard=\"false\"\n  data-backdrop=\"static\">\n  <div class=\"modal-dialog modal-lg\" role=\"document\">\n    <div class=\"modal-content modal-width\">\n      <div class=\"modal-header\">\n        <h4 class=\"modal-title\" id=\"exampleModalLabel\">จัดการประเภทแคมเปญ</h4>\n      </div>\n      <div class=\"modal-body\">\n        <span>\n          ชื่อประเภทแคมเปญ :\n          <input type=\"text\" name=\"\" id=\"\" [(ngModel)]=\"campTypename\">\n\n          <button type=\"button\" class=\"btn btn-success\" (click)=\"addType(campTypename)\">เพิ่ม</button>\n        </span>\n\n        <table class=\"table-width table\">\n          <thead class=\"text-danger display-block\">\n            <tr>\n              <th class=\"text-center col1\">ชื่อประเภทแคมเปญ</th>\n              <th class=\"col2\"></th>\n            </tr>\n          </thead>\n          <tbody class=\"display-block table-body\">\n            <tr *ngFor=\"let item of campaignTypeList\" class=\"no-padding\">\n              <td class=\"col1\">\n                {{item.name}}\n              </td>\n              <td class=\"text-center col2\">\n                <button class=\"btn btn-danger btn-sm\" (click)=\"deleteCampType(item)\">\n                  <i class=\"material-icons\">delete_forever</i>\n                </button>\n\n              </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" #dissmissBtn class=\"btn btn-default\" data-dismiss=\"modal\">ปิด</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- /////////////////////////////////MODAL CAMPAIGN TYPE MANAGE///////////////////////// -->\n\n\n<!-- /////////////////////////////////MODAL MANAGE CAMPAIGN ///////////////////////// -->\n\n<div class=\"modal fade\" #modalCampaign tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" data-keyboard=\"false\"\n  data-backdrop=\"static\">\n  <div class=\"modal-dialog modal-lg\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <div class=\"row \">\n          <div class=\"col-lg-9\">\n            <h4 class=\"modal-title pull-left\">{{CE_CAMPAIGN_ACTION}}แคมเปญ\n            </h4>\n          </div>\n          <div class=\"col-lg-3 text-right verti-middle\">\n            <span class=\"text-status\">\n              สถานะ :\n              <ui-switch size=\"small\" [(ngModel)]=\"campaignData.status\" ></ui-switch>\n            </span>\n          </div>\n        </div>\n\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"row\">\n          <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center\">\n            <img (click)=\"selectCampaignImg()\" class=\"img-size\" src=\"./assets/img/Campaign-banner.png\" alt=\"\" *ngIf=\"!campimgAdding\">\n            <input #uploadCampaign type=\"file\" accept=\"image/x-png,image/jpeg\" (change)=\"onCampaignImgChange($event)\" style=\"visibility:hidden;\">\n            <img (click)=\"selectCampaignImg()\" class=\"img-size\" [src]=\"campimgAdding\" alt=\"\" *ngIf=\"campimgAdding\">\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center\"></div>\n          <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center\">\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">ชื่อแคมเปญ</label>\n              <input type=\"text\" class=\"form-control\" name=\"\" id=\"\" [(ngModel)]=\"campaignData.name\">\n            </div>\n          </div>\n          <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center\">\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">ประเภทแคมเปญ</label>\n              <select class=\"form-control\" [(ngModel)]=\"campaignData.type\">\n                <option value=\"{{item._id}}\" *ngFor=\"let item of campaignTypeList\">{{item.name}}</option>\n              </select>\n            </div>\n          </div>\n          <div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center\"></div>\n\n        </div>\n\n        <div class=\"row\">\n          <div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center\">\n          </div>\n          <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8 text-center\">\n\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">รายละเอียด</label>\n              <input type=\"text\" class=\"form-control\" name=\"\" id=\"\" [(ngModel)]=\"campaignData.detail\">\n            </div>\n            <div class=\"form-group form-black floating is-empty\">\n              <label class=\"control-label\">แจก Coin : </label>\n              <input type=\"number\" class=\"form-control\" name=\"\" id=\"\" [(ngModel)]=\"campaignData.coin_give\">\n            </div>\n\n            <span>\n              <label class=\"control-label\">วันที่เริ่มต้น : </label>\n              <input type=\"datetime-local\" name=\"\" id=\"\" [(ngModel)]=\"campaignData.effectivedatestart\">\n              <label class=\"control-label\">วันที่สิ้นสุด : </label>\n              <input type=\"datetime-local\" name=\"\" id=\"\" [(ngModel)]=\"campaignData.effectivedateend\">\n            </span>\n          </div>\n          <div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center\">\n          </div>\n        </div>\n\n\n        <div class=\"modal-footer text-center\">\n          <button type=\"button\" class=\"btn btn-default\" (click)=\"cancelAddCampaign()\">ยกเลิก</button>\n          <button type=\"button\" *ngIf=\"campaignData._id\" class=\"btn btn-danger\" (click)=\"deleteCampaign(campaignData)\">ลบแคมเปญนี้</button>\n          <button type=\"button\" class=\"btn btn-success\" (click)=\"saveCampaign()\">บันทึก</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- /////////////////////////////////MODAL MANAGE CAMPAIGN///////////////////////// -->"
+
+/***/ }),
+
+/***/ "../../../../../src/app/manage-campaign/manage-campaign.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "h1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: 'Kanit', sans-serif; }\n\n.addcampaign {\n  background-color: #ffffff00;\n  color: #228f22;\n  border-color: #228f22;\n  border-radius: 4rem;\n  border: 3px solid;\n  font-size: 1.5rem; }\n\n.table-width {\n  width: 100%; }\n\n.modal-width {\n  width: 50%; }\n\n.scrollmenu {\n  overflow-x: -webkit-paged-y;\n  white-space: nowrap !important; }\n\n.display-block {\n  display: block; }\n\n.table-body {\n  height: 250px;\n  /* Just for the demo          */\n  overflow-y: auto;\n  /* Trigger vertical scroll    */\n  overflow-x: hidden;\n  /* Hide the horizontal scroll */ }\n\n.col1 {\n  width: 300px; }\n\n.col2 {\n  width: 125px; }\n\n.img-size {\n  height: 20rem;\n  width: auto; }\n\n.verti-middle {\n  vertical-align: -webkit-baseline-middle; }\n\n.date-input-width {\n  width: 15rem; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/manage-campaign/manage-campaign.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ManageCampaignComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_pubsub__ = __webpack_require__("../../../../angular2-pubsub/esm/src/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_manage_campaign_manage_campaign_service__ = __webpack_require__("../../../../../src/app/manage-campaign/manage-campaign.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ManageCampaignComponent = (function () {
+    function ManageCampaignComponent(router, server, pubsub, campaignService) {
+        this.router = router;
+        this.server = server;
+        this.pubsub = pubsub;
+        this.campaignService = campaignService;
+        this.campaignTypeList = [];
+        this.campaignList = [];
+        this.CE_CAMPAIGN_ACTION = '';
+        this.campaignData = {};
+        this.changeImage = false;
+        this.pubsub.$pub('loading', true);
+    }
+    ManageCampaignComponent.prototype.ngOnInit = function () {
+        this.initialize();
+        this.initialize_campaignType();
+    };
+    ManageCampaignComponent.prototype.initialize = function () {
+        var _this = this;
+        this.campaignService.getCampaign().subscribe(function (data) {
+            _this.pubsub.$pub('loading', false);
+            _this.campaignList = data;
+            console.log(data);
+        }, function (err) {
+            _this.pubsub.$pub('loading', false);
+            alert("ระบบไม่สามารถทำการโหลดข้อมูลแคมเปญได้ค่ะ กรุณาลองใหม่อีกครั้ง");
+        });
+    };
+    ManageCampaignComponent.prototype.initialize_campaignType = function () {
+        var _this = this;
+        this.campaignService.getCampaignTypeList().subscribe(function (data) {
+            _this.pubsub.$pub('loading', false);
+            _this.campaignTypeList = data;
+            console.log(data);
+        }, function (err) {
+            _this.pubsub.$pub('loading', false);
+            alert("ระบบไม่สามารถทำการโหลดข้อมูลประเภทแคมเปญได้ค่ะ");
+        });
+    };
+    ManageCampaignComponent.prototype.campaignManage = function () {
+        $(this.modalCampaignType.nativeElement).modal('show');
+        this.pubsub.$pub('loading', true);
+        this.initialize_campaignType();
+    };
+    ManageCampaignComponent.prototype.addType = function (name) {
+        var _this = this;
+        this.pubsub.$pub('loading', true);
+        var sendType = {
+            name: name
+        };
+        this.campaignService.postCampaignType(sendType).subscribe(function (data) {
+            console.log(data);
+            alert("ระบบได้ทำการเพิ่มประเภทแคมเปญเรียบร้อยแล้วค่ะ");
+            _this.initialize_campaignType();
+        }, function (err) {
+            _this.pubsub.$pub('loading', false);
+            alert("ระบบwม่สามารถเพิ่มประเภทแคมเปญได้ค่ะ");
+        });
+    };
+    ManageCampaignComponent.prototype.deleteCampType = function (Camp) {
+        var _this = this;
+        this.pubsub.$pub('loading', true);
+        this.campaignService.deleteCampType(Camp).subscribe(function (data) {
+            alert("ระบบได้ทำการลบประเภทแคมเปญเรียบร้อยแล้วค่ะ");
+            _this.initialize_campaignType();
+        }, function (err) {
+        });
+    };
+    ManageCampaignComponent.prototype.addCampaign = function () {
+        this.CE_CAMPAIGN_ACTION = 'เพิ่ม';
+        this.campaignData.status = false;
+        $(this.modalCampaign.nativeElement).modal('show');
+    };
+    ManageCampaignComponent.prototype.selectCampaignImg = function () {
+        this.uploadCampaign.nativeElement.click();
+    };
+    ManageCampaignComponent.prototype.onCampaignImgChange = function ($event) {
+        var _this = this;
+        var fileBrowser = this.uploadCampaign.nativeElement;
+        var reader = new FileReader();
+        reader.readAsDataURL(fileBrowser.files[0]);
+        if (fileBrowser.files.length > 0) {
+            reader.onload = function () {
+                _this.campimgAdding = reader.result.replace(/\n/g, '');
+                _this.changeImage = true;
+            };
+        }
+    };
+    ManageCampaignComponent.prototype.editCampaign = function (item) {
+        console.log(item);
+        this.CE_CAMPAIGN_ACTION = 'แก้ไข';
+        var itemdata = JSON.parse(JSON.stringify(item));
+        this.campaignData = itemdata;
+        this.campaignData.effectivedatestart = itemdata.effectivedatestart.toString().substring(0, 16);
+        this.campaignData.effectivedateend = itemdata.effectivedateend.toString().substring(0, 16);
+        this.campimgAdding = item.image;
+        $(this.modalCampaign.nativeElement).modal('show');
+    };
+    ManageCampaignComponent.prototype.saveCampaign = function () {
+        var _this = this;
+        this.pubsub.$pub('loading', true);
+        // console.log(this.campaignData);
+        if (this.CE_CAMPAIGN_ACTION == 'เพิ่ม') {
+            if (this.changeImage == true && this.campimgAdding) {
+                this.campaignService.uploadImage(this.campimgAdding).subscribe(function (UpImg) {
+                    console.log(UpImg);
+                    var sendCampaign = {
+                        name: _this.campaignData.name,
+                        detail: _this.campaignData.detail,
+                        coin_give: _this.campaignData.coin_give,
+                        effectivedatestart: _this.campaignData.effectivedatestart,
+                        effectivedateend: _this.campaignData.effectivedateend,
+                        type: _this.campaignData.type,
+                        status: _this.campaignData.status,
+                        image: UpImg.imageURL,
+                        remark: _this.campaignData.remark
+                    };
+                    console.log(sendCampaign);
+                    _this.campaignService.postCampaign(sendCampaign).subscribe(function (data) {
+                        _this.pubsub.$pub('loading', false);
+                        _this.changeImage = false;
+                        alert("ระบบทำการเพิ่มแคมเปญเรียบร้อยแล้วค่ะ");
+                        $(_this.modalCampaign.nativeElement).modal('hide');
+                        _this.pubsub.$pub('loading', true);
+                        _this.initialize();
+                    }, function (err) {
+                        _this.pubsub.$pub('loading', false);
+                        alert("ระบบไม่สามารถเพิ่มแคมเปญได้ค่ะ");
+                    });
+                }, function (err) {
+                    _this.pubsub.$pub('loading', false);
+                    alert("ระบบไม่สามารถทำการเพิ่มรูปภาพแคมเปญได้ค่ะ");
+                });
+            }
+            else {
+                alert("ERR");
+            }
+        }
+        else if (this.CE_CAMPAIGN_ACTION == 'แก้ไข') {
+            if (this.changeImage == false) {
+                var sendCampaign = {
+                    _id: this.campaignData._id,
+                    name: this.campaignData.name,
+                    detail: this.campaignData.detail,
+                    coin_give: this.campaignData.coin_give,
+                    effectivedatestart: this.campaignData.effectivedatestart,
+                    effectivedateend: this.campaignData.effectivedateend,
+                    type: this.campaignData.type,
+                    status: this.campaignData.status,
+                    image: this.campaignData.image,
+                    remark: this.campaignData.remark
+                };
+                this.campaignService.putCampaign(sendCampaign).subscribe(function (data) {
+                    alert("ระบบทำการแก้ไขแคมเปญเรียบร้อยแล้วค่ะ");
+                    _this.initialize();
+                }, function (err) {
+                    _this.pubsub.$pub('loading', false);
+                    alert("ระบบไม่สามารถแก้ไขแคมเปญได้ค่ะ");
+                });
+            }
+            else if (this.changeImage == true) {
+                this.campaignService.uploadImage(this.campimgAdding).subscribe(function (UpImg) {
+                    var sendCampaign = {
+                        _id: _this.campaignData._id,
+                        name: _this.campaignData.name,
+                        detail: _this.campaignData.detail,
+                        coin_give: _this.campaignData.coin_give,
+                        effectivedatestart: _this.campaignData.effectivedatestart,
+                        effectivedateend: _this.campaignData.effectivedateend,
+                        type: _this.campaignData.type,
+                        status: _this.campaignData.status,
+                        image: UpImg.imageURL,
+                        remark: _this.campaignData.remark
+                    };
+                    _this.campaignService.putCampaign(sendCampaign).subscribe(function (data) {
+                        _this.changeImage = false;
+                        alert("ระบบทำการแก้ไขแคมเปญเรียบร้อยแล้วค่ะ");
+                        _this.initialize();
+                    }, function (err) {
+                        _this.pubsub.$pub('loading', false);
+                        alert("ระบบไม่สามารถแก้ไขแคมเปญได้ค่ะ");
+                    });
+                }, function (err) {
+                    _this.pubsub.$pub('loading', false);
+                    alert("ระบบไม่สามารถทำการเพิ่มรูปภาพแคมเปญได้ค่ะ");
+                });
+            }
+        }
+    };
+    ManageCampaignComponent.prototype.cancelAddCampaign = function () {
+        this.campaignData = {};
+        this.campimgAdding = null;
+        this.changeImage = false;
+        $(this.modalCampaign.nativeElement).modal('hide');
+    };
+    ManageCampaignComponent.prototype.deleteCampaign = function (item) {
+        var _this = this;
+        var cfDelete = confirm('คุณต้องการลบแคมเปญนี้ใช่หรือไม่');
+        console.log(item);
+        if (cfDelete) {
+            this.pubsub.$pub('loading', true);
+            this.campaignService.deleteCampaign(item).subscribe(function (data) {
+                _this.pubsub.$pub('loading', false);
+                alert("ระบบได้ทำการลบแคมเปญเรียบร้อยแล้วค่ะ");
+                _this.cancelAddCampaign();
+                _this.pubsub.$pub('loading', true);
+                _this.initialize();
+            }, function (err) {
+                _this.pubsub.$pub('loading', false);
+                alert("ระบบไม่สามารภทำการลบแคมเปญได้ในขณะนี้ค่ะ กรุณาลองใหม่อีกครั้งค่ะ");
+                console.log(err);
+            });
+        }
+    };
+    return ManageCampaignComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('modalCampaignType'),
+    __metadata("design:type", Object)
+], ManageCampaignComponent.prototype, "modalCampaignType", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('modalCampaign'),
+    __metadata("design:type", Object)
+], ManageCampaignComponent.prototype, "modalCampaign", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('uploadCampaign'),
+    __metadata("design:type", Object)
+], ManageCampaignComponent.prototype, "uploadCampaign", void 0);
+ManageCampaignComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-manage-campaign',
+        template: __webpack_require__("../../../../../src/app/manage-campaign/manage-campaign.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/manage-campaign/manage-campaign.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_provider_server_config__["a" /* ServerConfig */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_provider_server_config__["a" /* ServerConfig */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_pubsub__["b" /* PubSubService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_pubsub__["b" /* PubSubService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_app_manage_campaign_manage_campaign_service__["a" /* CampaignService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_manage_campaign_manage_campaign_service__["a" /* CampaignService */]) === "function" && _d || Object])
+], ManageCampaignComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=manage-campaign.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/manage-campaign/manage-campaign.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CampaignService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var CampaignService = (function () {
+    function CampaignService(http, server) {
+        this.http = http;
+        this.server = server;
+    }
+    CampaignService.prototype.getCampaign = function () {
+        return this.http.get(this.server.url + 'api/campaigns/', {})
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
+    };
+    CampaignService.prototype.getCampaignTypeList = function () {
+        return this.http.get(this.server.url + 'api/campaignmasters/', {})
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
+    };
+    CampaignService.prototype.postCampaignType = function (data) {
+        return this.http.post(this.server.url + 'api/campaignmasters/', data, this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
+    };
+    CampaignService.prototype.postCampaign = function (data) {
+        return this.http.post(this.server.url + 'api/campaigns/', data, this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
+    };
+    CampaignService.prototype.deleteCampType = function (data) {
+        return this.http.delete(this.server.url + 'api/campaignmasters/' + data._id, this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
+    };
+    CampaignService.prototype.deleteCampaign = function (data) {
+        return this.http.delete(this.server.url + 'api/campaigns/' + data._id, this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
+    };
+    CampaignService.prototype.putCampaign = function (data) {
+        return this.http.put(this.server.url + 'api/campaigns/' + data._id, data, this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
+    };
+    CampaignService.prototype.uploadImage = function (img) {
+        return this.http.post(this.server.url + 'api/products_picture', { data: img.replace('data:image/jpeg;base64,', '') }, this.server.AuthHeaders())
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
+    };
+    return CampaignService;
+}());
+CampaignService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__["a" /* ServerConfig */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__["a" /* ServerConfig */]) === "function" && _b || Object])
+], CampaignService);
+
+var _a, _b;
+//# sourceMappingURL=manage-campaign.service.js.map
 
 /***/ }),
 
@@ -3601,12 +3972,9 @@ var _a, _b, _c, _d, _e, _f, _g;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ManageShopService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3631,32 +3999,32 @@ var ManageShopService = (function () {
     ManageShopService.prototype.save = function (data) {
         return this.http.post(this.server.url + 'api/shops', data, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageShopService.prototype.getList = function () {
         return this.http.get(this.server.url + 'api/shops', {})
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageShopService.prototype.getListShop = function () {
         return this.http.get(this.server.url + 'api/shops/categories', {})
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageShopService.prototype.getLocalJSONshoplist = function () {
         return this.http.get(this.server.url + 'api/adminhome', this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageShopService.prototype.sendMail = function (shop) {
         return this.http.put(this.server.url + 'api/shops/createusershop/' + shop._id, shop, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageShopService.prototype.setActiveShop = function (shop) {
         return this.http.put(this.server.url + 'api/shops/' + shop._id, shop, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageShopService.prototype.searchShop = function (typeTab, currentPage, keyword) {
         return this.http.post(this.server.url + 'api/filtershop', {
@@ -3665,12 +4033,12 @@ var ManageShopService = (function () {
             keyword: keyword
         }, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageShopService.prototype.checkShopByName = function (shopList) {
         return this.http.post(this.server.url + 'api/checkshopbyname', shopList, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     return ManageShopService;
 }());
@@ -3871,12 +4239,9 @@ var _a, _b, _c, _d;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ManageUserService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3901,22 +4266,22 @@ var ManageUserService = (function () {
     ManageUserService.prototype.getUser = function () {
         return this.http.get(this.server.url + 'api/management/users', this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageUserService.prototype.add = function (user) {
         return this.http.post(this.server.url + 'api/auth/signup', user, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageUserService.prototype.edit = function (user) {
         return this.http.put(this.server.url + 'api/users/' + user._id, user, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     ManageUserService.prototype.delete = function (user_id) {
         return this.http.delete(this.server.url + 'api/users/' + user_id, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     return ManageUserService;
 }());
@@ -4269,12 +4634,9 @@ ProductComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Auth; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_provider_server_config__ = __webpack_require__("../../../../../src/app/provider/server.config.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4299,7 +4661,7 @@ var Auth = (function () {
     Auth.prototype.sigin = function (credentials) {
         return this.http.post(this.server.url + 'api/auth/signin', credentials, this.server.AuthHeaders())
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error); });
     };
     return Auth;
 }());
@@ -4401,8 +4763,7 @@ Pager = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ServerConfig; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4422,19 +4783,19 @@ var ServerConfig = (function () {
     ServerConfig.prototype.isLogin = function () {
         var user = window.localStorage.getItem('user');
         if (user ? JSON.parse(user).loginToken : false) {
-            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["of"])(true);
+            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(true);
         }
         else {
-            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["of"])(false);
+            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(false);
         }
     };
     ServerConfig.prototype.logout = function () {
         window.localStorage.removeItem('user');
-        return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["of"])(true);
+        return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(true);
     };
     ServerConfig.prototype.getUser = function () {
         var user = window.localStorage.getItem('user');
-        return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["of"])(JSON.parse(user));
+        return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(JSON.parse(user));
     };
     ServerConfig.prototype.AuthHeaders = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
