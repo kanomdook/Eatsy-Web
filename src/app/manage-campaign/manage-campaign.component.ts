@@ -138,11 +138,9 @@ export class ManageCampaignComponent implements OnInit {
           }
           console.log(sendCampaign);
           this.campaignService.postCampaign(sendCampaign).subscribe((data) => {
-            this.pubsub.$pub('loading', false);
             this.changeImage = false;
             alert("ระบบทำการเพิ่มแคมเปญเรียบร้อยแล้วค่ะ");
             $(this.modalCampaign.nativeElement).modal('hide');
-            this.pubsub.$pub('loading', true);
             this.initialize();
           }, (err) => {
             this.pubsub.$pub('loading', false);

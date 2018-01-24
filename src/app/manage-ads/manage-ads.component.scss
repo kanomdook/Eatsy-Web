@@ -19,10 +19,11 @@ h6 {
 .block-text {
     background-color: rgba(0, 0, 0, 0.418);
     height: 3rem;
-    bottom: 24px;
+    bottom: 0.5rem;
+    left: 2rem;
     text-align: center;
     position: absolute;
-    width: 85%;
+    width: 85.5%;
 }
 
 .ads-text {
@@ -45,6 +46,10 @@ h6 {
     color: black;
 }
 
+.thumbnail {
+    margin-bottom: 0px;
+   height: 13.5rem;
+}
 .thumbnail>img {
     height: 125px;
     width: auto;
