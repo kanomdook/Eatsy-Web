@@ -112,8 +112,8 @@ export class ManageCampaignComponent implements OnInit {
     this.CE_CAMPAIGN_ACTION = 'แก้ไข';
     let itemdata = JSON.parse(JSON.stringify(item));
     this.campaignData = itemdata;
-    this.campaignData.effectivedatestart = itemdata.effectivedatestart.toString().substring(0, 16);
-    this.campaignData.effectivedateend = itemdata.effectivedateend.toString().substring(0, 16);
+    // this.campaignData.effectivedatestart = itemdata.effectivedatestart.toString().substring(0, 16);
+    // this.campaignData.effectivedateend = itemdata.effectivedateend.toString().substring(0, 16);
     this.campimgAdding = item.image;
     $(this.modalCampaign.nativeElement).modal('show');
   }
@@ -170,6 +170,7 @@ export class ManageCampaignComponent implements OnInit {
         }
         this.campaignService.putCampaign(sendCampaign).subscribe((data) => {
           alert("ระบบทำการแก้ไขแคมเปญเรียบร้อยแล้วค่ะ");
+          $(this.modalCampaign.nativeElement).modal('hide');
           this.initialize();
         }, (err) => {
           this.pubsub.$pub('loading', false);
@@ -192,6 +193,7 @@ export class ManageCampaignComponent implements OnInit {
           this.campaignService.putCampaign(sendCampaign).subscribe((data) => {
             this.changeImage = false;
             alert("ระบบทำการแก้ไขแคมเปญเรียบร้อยแล้วค่ะ");
+            $(this.modalCampaign.nativeElement).modal('hide');
             this.initialize();
           }, (err) => {
             this.pubsub.$pub('loading', false);
