@@ -155,15 +155,21 @@ fieldset[disabled] .form-group .form-control {
     // border-color: rgb(34, 143, 34);
     // color: rgb(34, 143, 34) !important;
 }
-.email-ovf{
+
+.email-ovf {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     max-width: 30rem;
 }
-.name-ovf{
+
+.name-ovf {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     max-width: 26rem;
+}
+
+.modal-content .modal-footer button {
+    width: 10rem;
 }

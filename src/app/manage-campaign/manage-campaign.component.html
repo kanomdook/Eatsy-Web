@@ -197,15 +197,14 @@
           <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
 
             <div class="form-group form-black floating is-empty">
-            รายละเอียด
+              รายละเอียด
               <input type="text" class="form-control" name="" id="" [(ngModel)]="campaignData.detail">
             </div>
 
 
             <span>
-             วันที่เริ่มต้น : 
-              <input type="datetime-local" class="date-input-width" name="" id="" [(ngModel)]="campaignData.effectivedatestart">
-              วันที่สิ้นสุด :
+              วันที่เริ่มต้น :
+              <input type="datetime-local" class="date-input-width" name="" id="" [(ngModel)]="campaignData.effectivedatestart"> วันที่สิ้นสุด :
               <input type="datetime-local" class="date-input-width" name="" id="" [(ngModel)]="campaignData.effectivedateend">
             </span>
           </div>
@@ -215,9 +214,15 @@
 
 
         <div class="modal-footer text-center">
-          <button type="button" class="btn btn-default" (click)="cancelAddCampaign()">ยกเลิก</button>
-          <button type="button" *ngIf="campaignData._id" class="btn btn-danger" (click)="deleteCampaign(campaignData)">ลบแคมเปญนี้</button>
-          <button type="button" class="btn btn-success" (click)="saveCampaign()">บันทึก</button>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 textcenter">
+              <button type="button" class="btn btn-success" (click)="saveCampaign()">บันทึก</button>
+
+              <button type="button" class="btn btn-default" (click)="cancelAddCampaign()">ยกเลิก</button>
+              <!-- <button type="button" *ngIf="campaignData._id" class="btn btn-danger" (click)="deleteCampaign(campaignData)">ลบแคมเปญนี้</button> -->
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

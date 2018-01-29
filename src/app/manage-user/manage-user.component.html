@@ -342,92 +342,96 @@
         </div>
 
       </div>
-     
-        <div class="modal-body">
-          
-          <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
-            <div class="col-md-12">
-              <div class="form-group form-black is-empty">
-                Username
-                <span style="color:red"> *</span>:
-                <input class="form-control" type="text" [(ngModel)]="editingUserData.username">
-              </div>
-            </div>
-          </div>
-          <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
-            <div class="col-md-12">
-              <div class="form-group form-black is-empty">
-                Password
-                <span style="color:red"> *</span>:
-                <input class="form-control" type="password" [(ngModel)]="editingUserData.password">
-              </div>
-            </div>
-          </div>
 
-          <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
-            <div class="col-md-12">
-              <div class="form-group form-black is-empty">
-                Email
-                <span style="color:red"> *</span>:
-                <input class="form-control" type="email"  [(ngModel)]="editingUserData.email" #email="ngModel" >
-        
-              </div>
-            </div>
-          </div>
+      <div class="modal-body">
 
-          <div class="row bd">
-            <div class="col-md-12">
-              <div class="form-group form-black is-empty">
-                ชื่อ
-                <span style="color:red"> *</span>:
-                <input class="form-control" type="text" [(ngModel)]="editingUserData.firstName">
-              </div>
+        <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
+          <div class="col-md-12">
+            <div class="form-group form-black is-empty">
+              Username
+              <span style="color:red"> *</span>:
+              <input class="form-control" type="text" [(ngModel)]="editingUserData.username">
             </div>
           </div>
-          <div class="row bd">
-            <div class="col-md-12">
-              <div class="form-group form-black is-empty">
-                นามสกุล
-                <span style="color:red"> *</span>:
-                <!-- <label class="control-label">คำค้นหา (เช่น coffee)</label> -->
-                <input class="form-control" type="text" [(ngModel)]="editingUserData.lastName">
-              </div>
+        </div>
+        <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
+          <div class="col-md-12">
+            <div class="form-group form-black is-empty">
+              Password
+              <span style="color:red"> *</span>:
+              <input class="form-control" type="password" [(ngModel)]="editingUserData.password">
             </div>
           </div>
-          <div class="row bd">
-            <div class="col-md-12">
-              <div class="form-group form-black is-empty">
-                เบอร์โทร
-                <span style="color:red"> *</span>:
-                <!-- <label class="control-label">คำค้นหา (เช่น coffee)</label> -->
-                <input class="form-control" type="text" [(ngModel)]="editingUserData.mobile">
-              </div>
+        </div>
+
+        <div class="row bd" *ngIf="action == 'เพิ่มบัญชีผู้ใช้'">
+          <div class="col-md-12">
+            <div class="form-group form-black is-empty">
+              Email
+              <span style="color:red"> *</span>:
+              <input class="form-control" type="email" [(ngModel)]="editingUserData.email" #email="ngModel">
+
             </div>
-            <!-- <div class="col-md-2 mt-10">
+          </div>
+        </div>
+
+        <div class="row bd">
+          <div class="col-md-12">
+            <div class="form-group form-black is-empty">
+              ชื่อ
+              <span style="color:red"> *</span>:
+              <input class="form-control" type="text" [(ngModel)]="editingUserData.firstName">
+            </div>
+          </div>
+        </div>
+        <div class="row bd">
+          <div class="col-md-12">
+            <div class="form-group form-black is-empty">
+              นามสกุล
+              <span style="color:red"> *</span>:
+              <!-- <label class="control-label">คำค้นหา (เช่น coffee)</label> -->
+              <input class="form-control" type="text" [(ngModel)]="editingUserData.lastName">
+            </div>
+          </div>
+        </div>
+        <div class="row bd">
+          <div class="col-md-12">
+            <div class="form-group form-black is-empty">
+              เบอร์โทร
+              <span style="color:red"> *</span>:
+              <!-- <label class="control-label">คำค้นหา (เช่น coffee)</label> -->
+              <input class="form-control" type="text" [(ngModel)]="editingUserData.mobile">
+            </div>
+          </div>
+          <!-- <div class="col-md-2 mt-10">
             <div class="form-group form-black is-empty">
               <button class="btn btn-info" (click)="search()">ค้นหา</button>
             </div>
           </div> -->
-          </div>
-          <div class="row bd" *ngIf="action != 'เพิ่มบัญชีผู้ใช้'">
-            <div class="col-md-12">
+        </div>
+        <div class="row bd" *ngIf="action != 'เพิ่มบัญชีผู้ใช้'">
+          <div class="col-md-12">
 
-              <div class="form-group">
-                <label for="roles">ระดับผู้ใช้:</label>
-                <select class="form-control " id="roles" [(ngModel)]="editingUserData.roles">
-                  <option value="admin">Admin</option>
-                  <option value="user">Customer</option>
-                  <option value="shop">Shop Owner</option>
-                  <option value="biker">Biker</option>
-                </select>
-              </div>
+            <div class="form-group">
+              <label for="roles">ระดับผู้ใช้:</label>
+              <select class="form-control " id="roles" [(ngModel)]="editingUserData.roles">
+                <option value="admin">Admin</option>
+                <option value="user">Customer</option>
+                <option value="shop">Shop Owner</option>
+                <option value="biker">Biker</option>
+              </select>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" #dissmissBtn2 class="btn btn-danger" data-dismiss="modal">ปิด</button>
-            <button type="button" class="btn btn-success " (click)="saveUser()">บันทึกข้อมูล</button>
+        </div>
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+              <button class="btn btn-success" (click)="saveUser()">บันทึก</button>
+              <button #dissmissBtn2 class="btn" data-dismiss="modal">ยกเลิก</button>
+            </div>
           </div>
         </div>
+      </div>
 
     </div>
   </div>

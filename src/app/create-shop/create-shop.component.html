@@ -34,7 +34,7 @@
                 </button>
                 <button type="submit" class="btn btn-success" *ngIf="isEditshopMode == true" (click)="save()">บันทึก</button>
                 <!-- <button class="btn btn-success" *ngIf="!shop._id" (click)="save()">บันทึก</button> -->
-                <button class="btn btn-danger" *ngIf="shop._id && isEditshopMode == true" (click)="changeEditShopMode()">ยกเลิก</button>
+                <button class="btn" *ngIf="shop._id && isEditshopMode == true" (click)="changeEditShopMode()">ยกเลิก</button>
                 <!-- <button class="btn btn-danger" *ngIf="!shop._id" (click)="cancelEditShop()">กลับสู่หน้าจัดการร้านค้า</button> -->
               </div>
             </div>
@@ -199,7 +199,7 @@
                 <!-- SHOP ADDRESS -->
                 <div class="card-block" *ngIf="selectTabs == 3">
                   <div class="form-group">
-                      ที่อยู่
+                    ที่อยู่
                     <textarea rows="1" class="form-control ct" placeholder="" name="addr" [(ngModel)]="address"></textarea>
                   </div>
                   <p class="pin" (click)="openSelectMap()">
@@ -353,8 +353,8 @@
           </div>
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-              <button class="btn btn-primary" (click)="saveCategory()">บันทึก</button>
-              <button class="btn btn-danger" #dissmissBtn data-dismiss="modal" (click)="cancelCategory(cateModal)">ยกเลิก</button>
+              <button class="btn btn-success" (click)="saveCategory()">บันทึก</button>
+              <button class="btn " #dissmissBtn data-dismiss="modal" (click)="cancelCategory(cateModal)">ยกเลิก</button>
             </div>
           </div>
         </div>
@@ -406,8 +406,8 @@
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
 
-              <button class="btn btn-primary" (click)="saveProduct()">บันทึก</button>
-              <button class="btn btn-danger" #dissmissBtn data-dismiss="modalproduct" (click)="cancelCategory(cateModal)">ยกเลิก</button>
+              <button class="btn btn-success" (click)="saveProduct()">บันทึก</button>
+              <button class="btn " #dissmissBtn data-dismiss="modalproduct" (click)="cancelCategory(cateModal)">ยกเลิก</button>
             </div>
           </div>
         </div>
