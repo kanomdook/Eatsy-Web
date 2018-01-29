@@ -260,9 +260,7 @@ export class CreateShopComponent implements OnInit {
             this.cateList.push(el.cate);
           }
         });
-        
-        this.products = this.categorys.length > 0 ? this.categorys[0].products : [];        
-
+        this.products = this.categorys.length > 0 ? this.categorys[0].products : [];
         this.cateList.length > 0 ? this.selectedStyle[this.cateList[0]._id] = 'active-select' : null;
         this.cateID = this.cateList.length > 0 ? this.cateList[0]._id : '';
         data.categories.forEach(element => {
@@ -627,7 +625,7 @@ export class CreateShopComponent implements OnInit {
     }
   }
 
- 
+
   getCurrentGeolocation(): Promise<any> {
     return new Promise((resolve, reject) => {
 
