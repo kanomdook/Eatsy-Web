@@ -242,7 +242,7 @@
               <!-- <div class="row scroll-x" [dragula]='"zone1"'> -->
 
               <!-- ADD CATE -->
-              <div class="col-md-2 col-scroll" (click)="updateCateImg()">
+              <div class="col-lg-2 col-md-2 col-sm-2 col-scroll" (click)="updateCateImg()">
                 <img class="img" src="http://res.cloudinary.com/ha7s6qhcg/image/upload/v1511499758/pp_clfpol.jpg" alt="image">
                 <input type="file" #cateimgInput accept="image/*" [(ngModel)]="cateImg" (change)="onCateImgChange($event,cateModal)" style="visibility: hidden;"
                 />
@@ -252,8 +252,8 @@
 
 
               <!-- SHOW CATEGOY ZONE -->
-              <div class="col-2 col-scroll" *ngFor="let item of cateList;let i = index">
-                <div style="margin-right:20px;" *ngIf="item && item._id">
+              <div class="col-lg-2 col-md-2 col-sm-2 col-scroll" *ngFor="let item of cateList;let i = index">
+                <div *ngIf="item && item._id" class="cate-w">
                   <div class="deleteCateClass">
                     <i class="material-icons add-dropShadow" (click)="deleteCategory(item._id)">delete</i>
                   </div>
@@ -264,7 +264,7 @@
                     <img style="width:150px;height:150px;" (click)="filterByCate(item._id, i)" [src]="item.image ? item.image : 'http://www.jordans.com/~/media/jordans%20redesign/no-image-found.ashx?h=275&la=en&w=275&hash=F87BC23F17E37D57E2A0B1CC6E2E3EEE312AAD5B'"
                       alt="image" cate-img>
                   </div>
-                  <div class="box-text">
+                  <div class="box-text" (click)="filterByCate(item._id, i)">
                     <span style="text-align: center;color: #ffffff;height: 3rem;vertical-align: -webkit-baseline-middle;">
                       {{item.name}}
                     </span>

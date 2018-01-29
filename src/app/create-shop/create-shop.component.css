@@ -384,11 +384,12 @@
     }
 
     .scrollmenu {
-        overflow: auto;
+        overflow: -webkit-paged-x;
         white-space: nowrap !important;
         width: 98.5%;
         margin-left: 0.5%;
         margin-right: 3.5%;
+        height: 235px;
     }
 
     .col-scroll {
@@ -466,4 +467,8 @@
     .price-label {
         right: 4px;
         position: absolute;
+    }
+
+    .cate-w {
+        width: 150px;
     }
