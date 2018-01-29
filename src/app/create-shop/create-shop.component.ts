@@ -83,9 +83,11 @@ export class CreateShopComponent implements OnInit {
   private imagePreCrop: string = '';
   private isDelete: boolean = false;
   private activeMenu: Array<any> = [];
+  private chkImgProductChange: boolean = false;
   promoteIsEdit: boolean = false;
   updateOrEditCateImg: any;
   limitPrdImg = 3;
+  private promopriceSelected: boolean;
   constructor(private server: ServerConfig, private router: Router, private shopService: ShopService, private pubsub: PubSubService
 
   ) {
@@ -200,6 +202,7 @@ export class CreateShopComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pubsub.$pub('loading', true);
     this.server.isLogin().subscribe(data => {
       if (!data) {
         this.router.navigate(['/login']);
@@ -222,8 +225,10 @@ export class CreateShopComponent implements OnInit {
     }
     this.shop.categories = '';
     this.shopService.getCategoryShop().subscribe(data => {
+
       this.categoryShopList = data;
       this.InitialData();
+      this.pubsub.$pub('loading', false);
     }, err => {
       console.log(err);
     });
@@ -445,8 +450,10 @@ export class CreateShopComponent implements OnInit {
   createProduct(index, product) {
     this.CE_action_product = 'เพิ่ม';
     this.selectedProduct = product;
+    console.log(product);
     this.productModel.index = index;
     $(this.modalproduct.nativeElement).modal('show');
+    console.log("ADD PRD");
   }
 
   canselSaveProduct() {
@@ -455,37 +462,70 @@ export class CreateShopComponent implements OnInit {
   }
 
   saveProduct() {
-    this.pubsub.$pub('loading', true);
-    let newScreMaImg: Array<any> = [];
-    this.productImgPreSaves.forEach((el, i) => {
-      newScreMaImg.push(el.base64);
-    });
 
-    const data = {
-      name: this.productModel.name,
-      images: newScreMaImg,
-      price: this.productModel.price,
-      categories: this.cateID,
-      index: this.productModel.index,
-      cateindex: this.productModel.cateindex
-    };
+    // this.pubsub.$pub('loading', true);
+    // let newScreMaImg: Array<any> = [];
+    // this.productImgPreSaves.forEach((el, i) => {
+    //   newScreMaImg.push(el.base64);
+    // });
+    // let imgUrls: Array<any> = [];
+    // newScreMaImg.forEach((el, i) => {
+    //   this.shopService.uploadImage(el).subscribe((data) => {
+    //     imgUrls.push(data.imageURL);
+    //     if (i === newScreMaImg.length) {
+    //       if (this.promopriceSelected === true) {
+    //         data = {
+    //           name: this.productModel.name,
+    //           images: newScreMaImg,
+    //           price: this.productModel.price,
+    //           categories: this.cateID,
+    //           index: this.productModel.index,
+    //           cateindex: this.productModel.cateindex,
+    //           isrecommend: this.productModel.isrecommend,
+    //           ispromotionprice: this.promopriceSelected,
+    //           promotionprice: this.productModel.promotionprice,
+    //           startdate: this.productModel.startdate,
+    //           expiredate: this.productModel.expiredate
+    //         };
+    //       } else {
+    //         data = {
+    //           name: this.productModel.name,
+    //           images: newScreMaImg,
+    //           price: this.productModel.price,
+    //           categories: this.cateID,
+    //           index: this.productModel.index,
+    //           cateindex: this.productModel.cateindex,
+    //           isrecommend: this.productModel.isrecommend,
+    //           ispromotionprice: this.promopriceSelected
+    //         };
+    //       }
+    //       this.shopService.createProduct(data, this.shopID).subscribe(data => {
+    //         location.reload();
+    //       }, err => {
+    //         console.log(err);
+    //       });
+    //     }
+    //   });
+    // });
+    // let data;
 
-    this.shopService.createProduct(data, this.shopID).subscribe(data => {
-      location.reload();
-    }, err => {
-      console.log(err);
-    });
   }
 
-  editProduct(product) {
+  editProduct(i, product) {
     this.prdName = product.name;
+    console.log(product);
     this.showeMainShop = false;
-    this.showAddProduct = true;
+    this.productModel = product;
     // this.product.name = product.name;
     this.product.price = product.price;
+    this.productModel.startdate = this.productModel.startdate.toString().substring(0, 10);
+    this.productModel.expiredate = this.productModel.expiredate.toString().substring(0, 10);
     this.product.categories = product.categories ? product.categories._id : '';
     this.CE_action_product = 'แก้ไข';
     this.CE_id_product = product._id;
+    this.promopriceSelected = product.ispromotionprice;
+    console.log("EDIT PRD");
+    $(this.modalproduct.nativeElement).modal('show');
   }
 
   deleteProduct(id) {
@@ -959,4 +999,10 @@ export class CreateShopComponent implements OnInit {
   //     var re = 
   //     return re.test(email);
   // };
+
+  cancelproduct() {
+    this.productModel = {};
+    this.promopriceSelected = false;
+  }
+
 }

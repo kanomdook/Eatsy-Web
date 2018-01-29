@@ -392,6 +392,10 @@
         height: 235px;
     }
 
+    .margin-right {
+        margin-right: 2rem;
+    }
+
     .col-scroll {
         display: inline-block;
     }

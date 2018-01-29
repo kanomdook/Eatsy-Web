@@ -289,7 +289,7 @@
                           alt="image" cate-img>
                       </div>
                       <div *ngIf="item.name != 'default'">
-                        <img class="img" (click)="editProduct(i,selectedCate)" [src]="item.images[0]" alt="image" cate-img>
+                        <img class="img" (click)="editProduct(i,item)" [src]="item.images[0]" alt="image" cate-img>
                         <p class="name-label">{{item.name}}
                           <span class="price-label">{{item.price}}.-</span>
                         </p>
@@ -388,6 +388,33 @@
               </div>
               <div class="col-md-2"></div>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" *ngIf="CE_action_product == 'แก้ไข'">
+              <div class="col-md-2"></div>
+              <div *ngIf="productImgPreSaves.length < 3" class="col-md-2" style="background-color: #c0c0c0;height: 128px; cursor:pointer"
+                (click)="selectProductImg()">
+                <i class="material-icons" style="margin-top: 4rem">add_a_photo</i>
+                <input #uploadImgProduct type="file" accept="image/x-png,image/jpeg" (change)="onProductImgChange($event)">
+              </div>
+              <div class="col-md-2" *ngFor="let item of productModel.images">
+                <span class="bin-3" *ngIf="isDelete">
+                  <i class="material-icons add-dropShadow" style="font-size: 26px" (click)="deleteImgProduct(item.id)">delete</i>
+                </span>
+                <img [src]="item" alt="" width="128px" height="128px">
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
+
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="productModel.isrecommend">
+              <label class="form-check-label" for="exampleCheck1">สินค้าแนะนำ</label>
+              <span class="margin-right"></span>
+
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="promopriceSelected">
+              <label class="form-check-label" for="exampleCheck1">สินค้าโปรโมชั่น</label>
+
+            </div>
           </div>
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-left">
@@ -400,6 +427,18 @@
                 <h5>ราคา</h5>
                 <input type="number" class="form-control" placeholder="Product price" name="productprice" [(ngModel)]="productModel.price">
               </div>
+              <div class="form-group" *ngIf="promopriceSelected">
+                <h5>ราคาโปรโมชั่น</h5>
+                <input type="number" class="form-control" placeholder="Product promotion price" name="productprice" [(ngModel)]="productModel.promotionprice">
+              </div>
+              <div class="form-group" *ngIf="promopriceSelected == true">
+                <h5>วันที่เริ่มต้น</h5>
+                <input type="date" class="form-control" name="promopricatestart" [(ngModel)]="productModel.startdate">
+              </div>
+              <div class="form-group" *ngIf="promopriceSelected == true">
+                <h5>วันที่สิ้นสุด</h5>
+                <input type="date" class="form-control" name="promopricateend" [(ngModel)]="productModel.expiredate">
+              </div>
             </div>
           </div>
 
@@ -407,7 +446,7 @@
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
 
               <button class="btn btn-success" (click)="saveProduct()">บันทึก</button>
-              <button class="btn " #dissmissBtn data-dismiss="modalproduct" (click)="cancelCategory(cateModal)">ยกเลิก</button>
+              <button class="btn " #dissmissBtn data-dismiss="modalproduct" (click)="cancelproduct()">ยกเลิก</button>
             </div>
           </div>
         </div>
