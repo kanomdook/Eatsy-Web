@@ -476,3 +476,7 @@
     .cate-w {
         width: 150px;
     }
+
+    ngx-gallery {
+        z-index: -1000;
+    }

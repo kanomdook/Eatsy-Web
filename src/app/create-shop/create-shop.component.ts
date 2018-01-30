@@ -1001,6 +1001,7 @@ export class CreateShopComponent implements OnInit {
   // };
 
   cancelproduct() {
+    $(this.modalproduct.nativeElement).modal('hide');
     this.productModel = {};
     this.promopriceSelected = false;
   }

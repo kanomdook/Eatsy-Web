@@ -374,19 +374,17 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" *ngIf="CE_action_product == 'เพิ่ม'">
-              <div class="col-md-2"></div>
-              <div *ngIf="productImgPreSaves.length < 3" class="col-md-2" style="background-color: #c0c0c0;height: 128px; cursor:pointer"
+              <div *ngIf="productImgPreSaves.length < 3" class="col-lg-2 col-md-2 col-sm-2" style="background-color: #c0c0c0;height: 128px; cursor:pointer"
                 (click)="selectProductImg()">
                 <i class="material-icons" style="margin-top: 4rem">add_a_photo</i>
                 <input #uploadImgProduct type="file" accept="image/x-png,image/jpeg" (change)="onProductImgChange($event)">
               </div>
-              <div class="col-md-2" *ngFor="let item of productImgPreSaves">
+              <div class="col-lg-2 col-md-2 col-sm-2" *ngFor="let item of productImgPreSaves">
                 <span class="bin-3" *ngIf="isDelete">
                   <i class="material-icons add-dropShadow" style="font-size: 26px" (click)="deleteImgProduct(item.id)">delete</i>
                 </span>
                 <img [src]="item.base64" alt="" width="128px" height="128px">
               </div>
-              <div class="col-md-2"></div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" *ngIf="CE_action_product == 'แก้ไข'">
               <div class="col-md-2"></div>
