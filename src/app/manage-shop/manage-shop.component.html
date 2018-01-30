@@ -103,7 +103,7 @@
                       <td (click)="editShop(item)">{{item.name}}</td>
                       <td class="text-center" (click)="editShop(item)">{{item.tel ? item.tel: '-'}}</td>
                       <td *ngIf="!item.address" (click)="editShop(item)">ไม่ปรากฎที่อยู่ร้าน</td>
-                      <td *ngIf="item.address" (click)="editShop(item)"  class="adr-ovf">{{item.address.address ? item.address.address: '-'}}</td>
+                      <td *ngIf="item.address" (click)="editShop(item)" class="adr-ovf">{{item.address.address ? item.address.address: '-'}}</td>
                       <td class="text-center" (click)="editShop(item)">{{item.importform}}
                         <p subText>by {{item.user.firstName}}</p>
                       </td>
@@ -115,7 +115,7 @@
                         <p *ngIf="item.issendmail">Joined</p>
                       </td>
                       <td class="text-center">
-                        <ui-switch [(ngModel)]="item.isactiveshop" (change)="activeChange($event,item)"></ui-switch>
+                        <ui-switch size="small" [(ngModel)]="item.isactiveshop" (change)="activeChange($event,item)"></ui-switch>
 
 
                         <div class="dropdown pull-right">

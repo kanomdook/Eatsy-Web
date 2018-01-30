@@ -404,41 +404,64 @@
           </div>
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-
-              <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="productModel.isrecommend">
-              <label class="form-check-label" for="exampleCheck1">สินค้าแนะนำ</label>
+              <input type="checkbox" class="form-check-input" [(ngModel)]="productModel.isrecommend">
+              <label class="form-check-label">สินค้าแนะนำ</label>
               <span class="margin-right"></span>
-
-              <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="promopriceSelected">
-              <label class="form-check-label" for="exampleCheck1">สินค้าโปรโมชั่น</label>
-
+              <input type="checkbox" class="form-check-input" [(ngModel)]="promopriceSelected">
+              <label class="form-check-label">สินค้าโปรโมชั่น</label>
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-left">
-              <div class="form-group">
-                <h5>ชื่อสินค้า</h5>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
+            </div>
+            <div class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 text-center">
+              <div class="form-group form-black floating is-empty">
+                ชื่อสินค้า
                 <input type="text" class="form-control" placeholder="Product name" name="productname" [(ngModel)]="productModel.name">
               </div>
-
-              <div class="form-group">
-                <h5>ราคา</h5>
+            </div>
+            <div class="col-lg-3 col-mg-3 col-sm-3 col-xs-3 text-center">
+              <div class="form-group form-black floating is-empty">
+                ราคา
                 <input type="number" class="form-control" placeholder="Product price" name="productprice" [(ngModel)]="productModel.price">
               </div>
-              <div class="form-group" *ngIf="promopriceSelected">
-                <h5>ราคาโปรโมชั่น</h5>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
+            </div>
+          </div>
+          <div class="row" *ngIf="promopriceSelected">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
+            </div>
+            <div class="col-lg-10 col-mg-10 col-sm-10 col-xs-10 text-center">
+
+              <div class="form-group form-black floating is-empty" *ngIf="promopriceSelected">
+                ราคาโปรโมชั่น
                 <input type="number" class="form-control" placeholder="Product promotion price" name="productprice" [(ngModel)]="productModel.promotionprice">
               </div>
-              <div class="form-group" *ngIf="promopriceSelected == true">
-                <h5>วันที่เริ่มต้น</h5>
+
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
+            </div>
+          </div>
+          <div class="row" *ngIf="promopriceSelected == true">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
+            </div>
+            <div class="col-lg-5 col-mg-5 col-sm-5 col-xs-5 text-center">
+              <div class="form-group form-black floating is-empty" *ngIf="promopriceSelected == true">
+                วันที่เริ่มต้น
                 <input type="date" class="form-control" name="promopricatestart" [(ngModel)]="productModel.startdate">
               </div>
-              <div class="form-group" *ngIf="promopriceSelected == true">
-                <h5>วันที่สิ้นสุด</h5>
+            </div>
+            <div class="col-lg-5 col-mg-5 col-sm-5 col-xs-5 text-center">
+              <div class="form-group form-black floating is-empty" *ngIf="promopriceSelected == true">
+                วันที่สิ้นสุด
                 <input type="date" class="form-control" name="promopricateend" [(ngModel)]="productModel.expiredate">
               </div>
             </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
+            </div>
           </div>
+
 
           <div class="row">
             <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">

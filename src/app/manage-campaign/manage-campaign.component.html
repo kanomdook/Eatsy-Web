@@ -26,7 +26,7 @@
               <table class="table table-hover">
                 <thead class="text-danger">
                   <tr>
-                    <th class="text-center col-md-1">#</th>
+                    <th class="text-center col-md-1 index-w">#</th>
                     <th class="text-center">ชื่อแคมเปญ</th>
                     <th class="text-center col-md-2">การแจก coin</th>
                     <th class="text-center col-md-2">วันที่เริ่มต้น</th>
@@ -44,7 +44,9 @@
                   </tr>
                   <tr *ngFor="let campaign of campaignList; let i = index ">
                     <td class="text-center" (click)="editCampaign(campaign)">{{i + 1}}</td>
-                    <td (click)="editCampaign(campaign)">{{campaign.name}}</td>
+                    <td (click)="editCampaign(campaign)">
+                      <img class="img-preview" [src]="campaign.image"> {{campaign.name}}
+                    </td>
                     <td class="text-center" (click)="editCampaign(campaign)">{{campaign.coin_give}} coin</td>
                     <td class="text-center" (click)="editCampaign(campaign)">{{campaign.effectivedatestart | date: 'short'}}</td>
                     <td class="text-center" (click)="editCampaign(campaign)">{{campaign.effectivedateend | date: 'short'}}</td>
