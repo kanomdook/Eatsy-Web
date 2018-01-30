@@ -518,8 +518,8 @@ export class CreateShopComponent implements OnInit {
     this.productModel = product;
     // this.product.name = product.name;
     this.product.price = product.price;
-    this.productModel.startdate = this.productModel.startdate.toString().substring(0, 10);
-    this.productModel.expiredate = this.productModel.expiredate.toString().substring(0, 10);
+    if (this.productModel.startdate) { this.productModel.startdate = this.productModel.startdate.toString().substring(0, 10); }
+    if (this.productModel.expiredate) { this.productModel.expiredate = this.productModel.expiredate.toString().substring(0, 10); }
     this.product.categories = product.categories ? product.categories._id : '';
     this.CE_action_product = 'แก้ไข';
     this.CE_id_product = product._id;
