@@ -5,7 +5,7 @@
 
       </div>
       <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
-        <button class="btn addADS" type="button" (click)="addADS()">
+        <button class="btn addBTN" type="button" (click)="addADS()">
           <i class="material-icons">add</i> เพิ่มโฆษณา
         </button>
       </div>
@@ -22,15 +22,9 @@
           <div class="panel-body">
             <div class="row scrollmenu">
               <div class="col-xs-6 col-md-3 col-scroll col-lg-3" *ngFor="let item1 of listAdsActive">
-                <a class="thumbnail" (click)="editADS(item1)" *ngIf="item1.isvideo == false">
-                  <img [src]="item1.image" alt="...">
-                  <div class="block-text">
-                    <span class="ads-text ">{{item1.name}}</span>
-                  </div>
-                </a>
-                <a *ngIf="item1.isvideo == true" class="thumbnail" (click)="editADS(item1)">
-                  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(yt + item1.videoid)" width="210" height="115" frameborder="0" allow="encrypted-media"
-                    allowfullscreen></iframe>
+                <a class="thumbnail" (click)="editADS(item1)">
+                  <img [src]="item1.image">
+                  <img *ngIf="item1.isvideo" src="../assets/img/play-icon.png" class="play-icon">
                   <div class="block-text">
                     <span class="ads-text ">{{item1.name}}</span>
                   </div>
@@ -49,15 +43,9 @@
           <div class="panel-body">
             <div class="row scrollmenu">
               <div class="col-xs-6 col-md-3 col-lg-3" *ngFor="let item2 of listAdsInActive">
-                <a (click)="editADS(item2)" class="thumbnail" *ngIf="item2.isvideo == false">
-                  <img [src]="item2.image" alt="...">
-                  <div class="block-text">
-                    <span class="ads-text">{{item2.name}}</span>
-                  </div>
-                </a>
-                <a *ngIf="item2.isvideo == true" class="thumbnail" (click)="editADS(item2)">
-                  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(yt + item2.videoid)" width="210" height="115" frameborder="0" allow="encrypted-media"
-                    allowfullscreen></iframe>
+                <a (click)="editADS(item2)" class="thumbnail">
+                  <img [src]="item2.image">
+                  <img *ngIf="item2.isvideo" src="../assets/img/play-icon.png" class="play-icon">
                   <div class="block-text">
                     <span class="ads-text">{{item2.name}}</span>
                   </div>
@@ -77,15 +65,9 @@
             <div class="row scrollmenu">
               <div class="col-xs-6 col-md-3 col-lg-3" *ngFor="let item3 of listAdsExpired">
 
-                <a (click)="editADS(item3)" class="thumbnail" *ngIf="item3.isvideo == false">
-                  <img [src]="item3.image" alt="...">
-                  <div class="block-text">
-                    <span class="ads-text">{{item3.name}}</span>
-                  </div>
-                </a>
-                <a *ngIf="item3.isvideo == true" class="thumbnail" (click)="editADS(item3)">
-                  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(yt + item3.videoid)" width="210" height="115" frameborder="0" allow="encrypted-media"
-                    allowfullscreen></iframe>
+                <a (click)="editADS(item3)" class="thumbnail">
+                  <img [src]="item3.image">
+                  <img *ngIf="item3.isvideo" src="../assets/img/play-icon.png" class="play-icon">
                   <div class="block-text">
                     <span class="ads-text">{{item3.name}}</span>
                   </div>
@@ -113,27 +95,18 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="row ">
-          <div class="col-lg-9">
+          <div class="col-lg-12">
             <h4 class="modal-title pull-left"> {{CE_action_ads}}โฆษณา</h4>
-          </div>
-          <div class="col-lg-3 text-right verti-middle">
-            <div class="text-status">สถานะ : </div>
-            <ui-switch size="small" [(ngModel)]="adsStatus" (change)="activeChange($event)"></ui-switch>
+            <button type="button" class="close close-modal" data-dismiss="modal" #modalads aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         </div>
-
       </div>
-      <!--      ADD ADS       -->
-      <div class="modal-body" *ngIf="CE_action_ads == 'เพิ่ม'">
-
+      <div class="modal-body">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-            <div *ngIf="type == 'image'">
-              <img (click)="selectADSimg()" class="img-size" src="./assets/img/Ads-banner.png" alt="" *ngIf="adsimgAdding == null">
-              <input #uploadADS type="file" accept="image/x-png,image/jpeg" (change)="onADSImgChange($event)" style="visibility:hidden;">
-              <img (click)="selectADSimg()" class="img-size" [src]="adsimgAdding" alt="" *ngIf="adsimgAdding">
-            </div>
-            <div *ngIf="type == 'vdo'">
+            <div>
               <img (click)="selectADSimg()" class="img-size" src="./assets/img/Ads-banner.png" alt="" *ngIf="adsimgAdding == null">
               <input #uploadADS type="file" accept="image/x-png,image/jpeg" (change)="onADSImgChange($event)" style="visibility:hidden;">
               <img (click)="selectADSimg()" class="img-size" [src]="adsimgAdding" alt="" *ngIf="adsimgAdding">
@@ -155,25 +128,23 @@
           </div>
         </div>
         <div class="row" *ngIf="type == 'vdo'">
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center "></div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center ">
-            <div class="media">
-              <div class="media-left media-middle">
-                <iframe width="180" height="100" [src]="sanitizer.bypassSecurityTrustResourceUrl(vdolink)" frameborder="0" allow="encrypted-media"
-                  allowfullscreen></iframe>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <iframe width="180" height="100" [src]="sanitizer.bypassSecurityTrustResourceUrl(vdolink)" frameborder="0" allow="encrypted-media"
+              allowfullscreen></iframe>
+            <p>
+              YOUTUBE Video ID
+            </p>
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <input type="text" class="form-control" [(ngModel)]="adsDATA.videoid" (ngModelChange)="upLink(adsDATA.videoid)">
               </div>
-              <div class="media-body">
-                <div class="input-group">
-                  YOUTUBE Video ID
-                  <input type="text" class="form-control" [(ngModel)]="vdolinkinput">
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-success" (click)="upLink(vdolinkinput)">ยืนยัน</button>
-                  </span>
-                </div>
-              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
             </div>
+            <!-- <span class="input-group-btn">
+              <button type="button" class="btn btn-success" (click)="upLink(adsDATA.videoid)">ยืนยัน</button>
+            </span> -->
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center "></div>
         </div>
         <div class="row">
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
@@ -208,6 +179,10 @@
               รายละเอียด
               <input type="text" class="form-control" [(ngModel)]="adsDATA.description">
             </div>
+            <!-- <div class="form-group form-black floating is-empty"> -->
+              <span class="text-status">สถานะ : </span>
+              <ui-switch size="small" class="ads-status" [(ngModel)]="adsStatus" (change)="activeChange($event)"></ui-switch>
+            <!-- </div> -->
           </div>
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
           </div>
@@ -217,114 +192,10 @@
         <div class="row">
           <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
             <button class="btn btn-success" (click)="saveADS()">บันทึก</button>
-            <button class="btn btn-default" #dissmissBtn data-dismiss="modalads" (click)="cancelSave()">ยกเลิก</button>
+            <button class="btn btn-danger" *ngIf="CE_action_ads == 'แก้ไข'" (click)="removeAds(adsDATA)">ลบ</button>
           </div>
         </div>
       </div>
-      <!--      ADD ADS       -->
-
-
-      <!-- EDIT ADS -->
-      <div class="modal-body" *ngIf="CE_action_ads == 'แก้ไข'">
-
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-            <div *ngIf="type == 'image'">
-              <img (click)="selectADSimg()" class="img-size" src="./assets/img/Ads-banner.png" alt="" *ngIf="adsimgAdding == null">
-              <input #uploadADS type="file" accept="image/x-png,image/jpeg" (change)="onADSImgChange($event)" style="visibility:hidden;">
-              <img (click)="selectADSimg()" class="img-size" [src]="adsimgAdding" alt="" *ngIf="adsimgAdding">
-            </div>
-            <div *ngIf="type == 'vdo'">
-              <img (click)="selectADSimg()" class="img-size" src="./assets/img/Ads-banner.png" alt="" *ngIf="adsimgAdding == null">
-              <input #uploadADS type="file" accept="image/x-png,image/jpeg" (change)="onADSImgChange($event)" style="visibility:hidden;">
-              <img (click)="selectADSimg()" class="img-size" [src]="adsimgAdding" alt="" *ngIf="adsimgAdding">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-            <div class="radio">
-              <label>
-                <input type="radio" name="type" [(ngModel)]="type" value="image" (change)="changeType()"> รูปภาพ</label>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-left">
-            <div class="radio">
-              <label>
-                <input type="radio" name="type" [(ngModel)]="type" value="vdo" (change)="changeType()"> วีดีโอ</label>
-            </div>
-          </div>
-        </div>
-        <div class="row" *ngIf="type == 'vdo'">
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center "></div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center ">
-            <div class="media">
-              <div class="media-left media-middle">
-                <iframe width="180" height="100" [src]="sanitizer.bypassSecurityTrustResourceUrl(vdolink)" frameborder="0" allow="encrypted-media"
-                  allowfullscreen></iframe>
-              </div>
-              <div class="media-body">
-                <div class="input-group">
-                  YOUTUBE Video ID
-                  <input type="text" class="form-control" [(ngModel)]="vdolinkinput">
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-success" (click)="upLink(vdolinkinput)">ยืนยัน</button>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center "></div>
-        </div>
-        <div class="row">
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
-          </div>
-          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-left">
-            <div class="form-group form-black floating is-empty">
-              ชื่อโฆษณา
-              <input type="text" class="form-control" [(ngModel)]="adsEditDATA.name">
-            </div>
-            <div class="form-group form-black floating is-empty">
-              วันที่เริ่มต้น
-              <input type="date" [(ngModel)]="adsEditDATA.effectivedatestart" class="form-control">
-              <!-- <input [(ngModel)]="adsDATA.effectivedatestart" [value]="adsDATA.effectivedatestart"> -->
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-left">
-            <div class="form-group form-black floating is-empty">
-              ลิงค์
-              <input type="text" class="form-control" [(ngModel)]="adsEditDATA.website">
-            </div>
-            <div class="form-group form-black floating is-empty">
-              วันที่สิ้นสุด
-              <input type="date" class="form-control" [(ngModel)]="adsEditDATA.effectivedateend">
-            </div>
-          </div>
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right"></div>
-        </div>
-        <div class="row">
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
-          </div>
-          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-            <div class="form-group form-black floating is-empty">
-              รายละเอียด
-              <input type="text" class="form-control" [(ngModel)]="adsEditDATA.description">
-            </div>
-          </div>
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
-          </div>
-        </div>
-        <div class="row">
-        </div>
-        <div class="row">
-          <div class="col-lg-12 col-mg-12 col-sm-12 col-xs-12 text-center">
-            <button class="btn btn-success" (click)="saveADS()">บันทึก</button>
-            <button class="btn btn-default" #dissmissBtn data-dismiss="modalads" (click)="cancelSave()">ยกเลิก</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- EDIT ADS -->
     </div>
   </div>
 </div>

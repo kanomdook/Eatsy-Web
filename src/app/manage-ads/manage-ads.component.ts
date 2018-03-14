@@ -26,7 +26,6 @@ export class ManageAdsComponent implements OnInit {
   private vdolink: string;
   private yt = 'https://www.youtube.com/embed/';
   private adsDATA: any = {};
-  private adsEditDATA: any = {};
   private ckLinkNull: boolean = true;
   private adsStatus: boolean = false;
   private vdolinkinput: string;
@@ -39,6 +38,7 @@ export class ManageAdsComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log('object');
     this.pubsub.$pub('loading', true);
     this.server.isLogin().subscribe(data => {
       if (!data) {
@@ -73,13 +73,15 @@ export class ManageAdsComponent implements OnInit {
       // DEFAULT INIT DATA
       this.adsDATA.status = false;
       // DEFAULT INIT DATA
-    },(err)=>{
-    console.log(err);
+    }, (err) => {
+      console.log(err);
 
     });
   }
 
   addADS() {
+    this.vdolinkinput = '';
+    this.vdolink = '';
     this.CE_action_ads = "เพิ่ม";
     this.type = 'image';
     this.cancelSave();
@@ -88,30 +90,25 @@ export class ManageAdsComponent implements OnInit {
   editADS(item) {
     this.CE_action_ads = "แก้ไข";
     let itemdata = JSON.parse(JSON.stringify(item));
-    this.adsEditDATA = itemdata;
-    console.log(this.adsEditDATA);
+    this.adsDATA = itemdata;
+    console.log(this.adsDATA);
     if (item.isvideo == false) {
       this.type = 'image';
     } else if (item.isvideo == true) {
       this.type = 'vdo';
       this.vdolink = this.yt + item.videoid;
     }
-    this.adsEditDATA.effectivedatestart = this.adsEditDATA.effectivedatestart.toString().substring(0, 10);
-    this.adsEditDATA.effectivedateend = this.adsEditDATA.effectivedateend.toString().substring(0, 10);
+    this.adsDATA.effectivedatestart = this.adsDATA.effectivedatestart.toString().substring(0, 10);
+    this.adsDATA.effectivedateend = this.adsDATA.effectivedateend.toString().substring(0, 10);
     this.adsStatus = item.status;
     this.adsimgAdding = item.image;
-
-    // console.log(this.adsDATA);
     $(this.modalads.nativeElement).modal('show');
   }
 
 
   changeType() {
-    if (this.type == 'image') {
-      this.vdolinkinput = null;
-    } else if (this.type == 'vdo') {
-      this.adsimgAdding = null;
-      this.vdolink = this.yt + 'PZ4pctQMdg4';
+    if (this.type == 'vdo') {
+      this.vdolink = this.yt + this.adsDATA.videoid;
     }
   }
 
@@ -124,14 +121,9 @@ export class ManageAdsComponent implements OnInit {
   }
 
   upLink(link) {
-    if (link) {
-      this.ckLinkNull = false;
-      this.vdolink = this.yt + link;
-      // alert("false");
-    } else {
-      this.ckLinkNull = true;
-      // alert("true");
-    }
+    this.ckLinkNull = false;
+    this.vdolink = this.yt + link;
+    this.adsDATA.videoid = link;
   }
 
   selectADSimg() {
@@ -189,7 +181,7 @@ export class ManageAdsComponent implements OnInit {
         }
       } else if (this.type == 'vdo') {
         this.pubsub.$pub('loading', true);
-        if (this.ckLinkNull == true) {
+        if (!this.adsDATA || this.adsDATA.videoid === '') {
           this.pubsub.$pub('loading', false);
           alert("กรุณาใส่ ID ของ Video YOUTUBE ด้วยค่ะ");
         } else if (!this.adsimgAdding) {
@@ -198,13 +190,13 @@ export class ManageAdsComponent implements OnInit {
         } else if (!this.adsimgAdding && this.ckLinkNull) {
           this.pubsub.$pub('loading', false);
           alert("กรุณาเพิ่มรูปภาพโฆษณาและวีดีโอโฆษณาด้วยค่ะ");
-        } else if (this.ckLinkNull == false && this.adsimgAdding) {
+        } else if (this.adsimgAdding) {
           this.ADSservice.uploadImage(this.adsimgAdding).subscribe((upImg) => {
             let sendADS = {
               name: this.adsDATA.name,
               image: upImg.imageURL,
               description: this.adsDATA.description,
-              videoid: this.adsDATA.vdolink,
+              videoid: this.adsDATA.videoid,
               isvideo: true,
               website: this.adsDATA.website,
               effectivedatestart: this.adsDATA.effectivedatestart,
@@ -235,14 +227,14 @@ export class ManageAdsComponent implements OnInit {
           if (this.isEditImage == true) {
             this.ADSservice.uploadImage(this.adsimgAdding).subscribe((upImg) => {
               sendADS = {
-                _id: this.adsEditDATA._id,
-                name: this.adsEditDATA.name,
-                description: this.adsEditDATA.description,
+                _id: this.adsDATA._id,
+                name: this.adsDATA.name,
+                description: this.adsDATA.description,
                 image: upImg.imageURL,
                 isvideo: false,
-                website: this.adsEditDATA.website,
-                effectivedatestart: this.adsEditDATA.effectivedatestart,
-                effectivedateend: this.adsEditDATA.effectivedateend,
+                website: this.adsDATA.website,
+                effectivedatestart: this.adsDATA.effectivedatestart,
+                effectivedateend: this.adsDATA.effectivedateend,
                 status: this.adsStatus
               }
               this.ADSservice.editAds(sendADS).subscribe((data) => {
@@ -263,14 +255,14 @@ export class ManageAdsComponent implements OnInit {
             })
           } else if (this.isEditImage == false) {
             sendADS = {
-              _id: this.adsEditDATA._id,
-              name: this.adsEditDATA.name,
-              description: this.adsEditDATA.description,
+              _id: this.adsDATA._id,
+              name: this.adsDATA.name,
+              description: this.adsDATA.description,
               image: this.adsimgAdding,
               isvideo: false,
-              website: this.adsEditDATA.website,
-              effectivedatestart: this.adsEditDATA.effectivedatestart,
-              effectivedateend: this.adsEditDATA.effectivedateend,
+              website: this.adsDATA.website,
+              effectivedatestart: this.adsDATA.effectivedatestart,
+              effectivedateend: this.adsDATA.effectivedateend,
               status: this.adsStatus
             }
             this.ADSservice.editAds(sendADS).subscribe((data) => {
@@ -291,7 +283,7 @@ export class ManageAdsComponent implements OnInit {
         }
       } else if (this.type == 'vdo') {
         this.pubsub.$pub('loading', true);
-        if (this.ckLinkNull == true) {
+        if (!this.adsDATA || this.adsDATA.videoid === '') {
           this.pubsub.$pub('loading', false);
           alert("กรุณาใส่ ID ของ Video YOUTUBE ด้วยค่ะ");
         } else if (!this.adsimgAdding) {
@@ -300,19 +292,19 @@ export class ManageAdsComponent implements OnInit {
         } else if (!this.adsimgAdding && this.ckLinkNull) {
           this.pubsub.$pub('loading', false);
           alert("กรุณาเพิ่มรูปภาพโฆษณาและวีดีโอโฆษณาด้วยค่ะ");
-        } else if (this.ckLinkNull == false && this.adsimgAdding) {
+        } else if (this.adsimgAdding) {
           if (this.isEditImage == true) {
             this.ADSservice.uploadImage(this.adsimgAdding).subscribe((upImg) => {
               let sendADS = {
-                _id: this.adsEditDATA._id,
-                name: this.adsEditDATA.name,
+                _id: this.adsDATA._id,
+                name: this.adsDATA.name,
                 image: upImg.imageURL,
-                description: this.adsEditDATA.description,
-                videoid: this.adsEditDATA.vdolink,
+                description: this.adsDATA.description,
+                videoid: this.adsDATA.videoid,
                 isvideo: true,
-                website: this.adsEditDATA.website,
-                effectivedatestart: this.adsEditDATA.effectivedatestart,
-                effectivedateend: this.adsEditDATA.effectivedateend,
+                website: this.adsDATA.website,
+                effectivedatestart: this.adsDATA.effectivedatestart,
+                effectivedateend: this.adsDATA.effectivedateend,
                 status: this.adsStatus
               }
               this.ADSservice.editAds(sendADS).subscribe((data) => {
@@ -332,15 +324,15 @@ export class ManageAdsComponent implements OnInit {
             });
           } else if (this.isEditImage == false) {
             let sendADS = {
-              _id: this.adsEditDATA._id,
-              name: this.adsEditDATA.name,
+              _id: this.adsDATA._id,
+              name: this.adsDATA.name,
               image: this.adsimgAdding,
-              description: this.adsEditDATA.description,
-              videoid: this.adsEditDATA.vdolink,
+              description: this.adsDATA.description,
+              videoid: this.adsDATA.videoid,
               isvideo: true,
-              website: this.adsEditDATA.website,
-              effectivedatestart: this.adsEditDATA.effectivedatestart,
-              effectivedateend: this.adsEditDATA.effectivedateend,
+              website: this.adsDATA.website,
+              effectivedatestart: this.adsDATA.effectivedatestart,
+              effectivedateend: this.adsDATA.effectivedateend,
               status: this.adsStatus
             }
             this.ADSservice.editAds(sendADS).subscribe((data) => {
@@ -360,6 +352,23 @@ export class ManageAdsComponent implements OnInit {
       }
     }
   }
+  removeAds(item) {
+    const cfDelete = confirm('คุณต้องการลบโฆษณานี้ใช่หรือไม่');
+    if (cfDelete) {
+      this.pubsub.$pub('loading', true);
+      this.ADSservice.delteAds(item).subscribe((success) => {
+        alert("ระบบได้ทำการลบโฆษณาเรียบร้อยแล้วค่ะ");
+        $(this.modalads.nativeElement).modal('hide');
+        this.cancelSave();
+        this.LoadInitial();
+
+      }, (err) => {
+        alert("ระบบไม่สามารถทำการลบโฆษณาได้ค่ะ กรุณาลองใหม่อีกครั้ง");
+        this.pubsub.$pub('loading', false);
+      })
+    }
+  }
+
   cancelSave() {
     $(this.modalads.nativeElement).modal('hide');
     this.adsimgAdding = null;

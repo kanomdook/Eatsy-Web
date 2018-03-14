@@ -31,4 +31,10 @@ export class ADSService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error));
     }
+    
+    delteAds(data): Observable<any> {
+        return this.http.delete(this.server.url + 'api/ads/' + data._id, this.server.AuthHeaders())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error));
+    }
 }

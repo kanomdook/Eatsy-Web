@@ -9,8 +9,8 @@ h6 {
 
 .addADS {
     background-color: #ffffff00;
-    color: rgb(34, 143, 34);
-    border-color: rgb(34, 143, 34);
+    color: #3c6233;;
+    border-color: #3c6233;;
     border-radius: 4rem;
     border: 3px solid;
     font-size: 1.5rem;
@@ -92,12 +92,10 @@ h6 {
 
 .text-status {
     font-size: 1.4rem;
-    display: inline-block;
-    vertical-align: super;
 }
 
 .img-size {
-    height: 20rem;
+    height: 300px;
     width: auto;
 }
 
@@ -112,3 +110,84 @@ input[type=file] {
 .radio label {
     color: black;
 }
+
+.icon-delete {
+    font-size: 2rem;
+}
+
+.close {
+    font-size: 4rem;
+}
+
+.close-modal {
+    margin-top: -10px;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.ads-status {
+    padding-top: 14px !important;
+}
+
+.play-icon {
+    position: absolute;
+    width: 100px !important;
+    height: 100px !important;
+    left: 50%;
+    top: 0;
+    margin-left: -52px;
+}
+.addBTN {
+    background-color: #ffffff00;
+    color: #3c6233;
+    border-color: #3c6233;
+    border-radius: 4rem;
+    border: 3px solid;
+    font-size: 1.5rem;
+}
+
+.addBTN :focus {
+    background-color: #ffffff00;
+}
+.btn.btn-success,
+.btn.btn-success:hover,
+.btn.btn-success:focus,
+.btn.btn-success:active,
+.btn.btn-success.active,
+.btn.btn-success:active:focus,
+.btn.btn-success:active:hover,
+.btn.btn-success.active:focus,
+.btn.btn-success.active:hover,
+.open>.btn.btn-success.dropdown-toggle,
+.open>.btn.btn-success.dropdown-toggle:focus,
+.open>.btn.btn-success.dropdown-toggle:hover,
+.navbar .navbar-nav>li>a.btn.btn-success,
+.navbar .navbar-nav>li>a.btn.btn-success:hover,
+.navbar .navbar-nav>li>a.btn.btn-success:focus,
+.navbar .navbar-nav>li>a.btn.btn-success:active,
+.navbar .navbar-nav>li>a.btn.btn-success.active,
+.navbar .navbar-nav>li>a.btn.btn-success:active:focus,
+.navbar .navbar-nav>li>a.btn.btn-success:active:hover,
+.navbar .navbar-nav>li>a.btn.btn-success.active:focus,
+.navbar .navbar-nav>li>a.btn.btn-success.active:hover,
+.open>.navbar .navbar-nav>li>a.btn.btn-success.dropdown-toggle,
+.open>.navbar .navbar-nav>li>a.btn.btn-success.dropdown-toggle:focus,
+.open>.navbar .navbar-nav>li>a.btn.btn-success.dropdown-toggle:hover {
+    background-color: #3c6233;
+    color: #FFFFFF;
+}
+
+.btn.btn-danger, .btn.btn-danger:hover, .btn.btn-danger:focus, .btn.btn-danger:active, .btn.btn-danger.active, .btn.btn-danger:active:focus, .btn.btn-danger:active:hover, .btn.btn-danger.active:focus, .btn.btn-danger.active:hover, .open > .btn.btn-danger.dropdown-toggle, .open > .btn.btn-danger.dropdown-toggle:focus, .open > .btn.btn-danger.dropdown-toggle:hover, .navbar .navbar-nav > li > a.btn.btn-danger, .navbar .navbar-nav > li > a.btn.btn-danger:hover, .navbar .navbar-nav > li > a.btn.btn-danger:focus, .navbar .navbar-nav > li > a.btn.btn-danger:active, .navbar .navbar-nav > li > a.btn.btn-danger.active, .navbar .navbar-nav > li > a.btn.btn-danger:active:focus, .navbar .navbar-nav > li > a.btn.btn-danger:active:hover, .navbar .navbar-nav > li > a.btn.btn-danger.active:focus, .navbar .navbar-nav > li > a.btn.btn-danger.active:hover, .open > .navbar .navbar-nav > li > a.btn.btn-danger.dropdown-toggle, .open > .navbar .navbar-nav > li > a.btn.btn-danger.dropdown-toggle:focus, .open > .navbar .navbar-nav > li > a.btn.btn-danger.dropdown-toggle:hover {
+    background-color: #D50000;
+    color: #FFFFFF;
+}
+
+.radio input[type=radio]:checked ~ .circle {
+    border-color: #3c6233 !important;
+}
+.radio input[type=radio]:checked ~ .check {
+    background-color: #3c6233 !important;
+}
+
